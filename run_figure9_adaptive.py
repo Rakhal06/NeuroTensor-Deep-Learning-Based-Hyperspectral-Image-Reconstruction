@@ -85,7 +85,8 @@ if __name__ == '__main__':
     # ==================== BASELINE CONFIGURATION (FROZEN) ====================
     # These parameters are identical to the validated baseline run_figure9.py
     expname = 'icvl'
-    n_inputs = R_MAX          # Input channels match max capacity
+    n_inputs = 20             # Input channels match frozen baseline (SVD_BASELINE_RANK)
+    MASK_RATIO = 0.05
     init_nconv = 128
     num_channels_up = 5
     nettype = 'dip'
@@ -102,13 +103,18 @@ if __name__ == '__main__':
 
     # ==================== ADAPTIVE RANK STATE ====================
     current_rank = R_START
+    rank_locked = False
+    selected_rank = None
+    rank_lock_epoch = None
     last_increase_epoch = 0         # Treat initial rank as epoch-0 event
     rank_history = []               # List of (epoch, old_rank, new_rank) tuples
-    loss_ema_history = []           # Smoothed loss value per epoch
+    train_loss_ema_history = []     # Smoothed training loss value per epoch
+    val_loss_ema_history = []       # Smoothed validation loss value per epoch
+    val_ema_at_last_plateau = None
 
     # ==================== PRINT CONFIGURATION ====================
     print("=" * 70)
-    print("ADAPTIVE RANK SELECTION — PLATEAU-BASED")
+    print("SELF-SUPERVISED ONLINE MODEL SELECTION FOR EFFECTIVE RANK")
     print("=" * 70)
     print(f"R_START                  = {R_START}")
     print(f"R_MAX                    = {R_MAX}")
@@ -143,7 +149,18 @@ if __name__ == '__main__':
 
     criterion_l1 = losses.L1Norm()
 
-    loss_array = np.zeros(epochs)
+    # Create a fixed random binary mask for held-out validation
+    # Mask is True for visible/training (95%), False for held-out/validation (5%)
+    # No clean ground truth is used here.
+    np.random.seed(42) # For fixed mask geometry across identical noise setups
+    mask_np = np.random.rand(*cube_noisy.shape) > MASK_RATIO
+    mask_train = torch.tensor(mask_np.reshape(H * W, nwvl))[None, ...].cuda()
+    mask_val = ~mask_train
+    # Remove seed after mask creation to preserve stochastic training behavior
+    np.random.seed(None)
+
+    train_loss_array = np.zeros(epochs)
+    val_loss_array = np.zeros(epochs)
     mse_array = np.zeros(epochs)
     rank_array = np.zeros(epochs, dtype=int)
 
@@ -201,7 +218,7 @@ if __name__ == '__main__':
     spec_inp_per = spec_inp.detach().clone()
 
     hs_estim_avg = None
-    best_loss = float('inf')
+    best_val_loss = float('inf')
     best_epoch = 0
     best_rank_at_best = R_START
 
@@ -211,7 +228,8 @@ if __name__ == '__main__':
     # Reset peak VRAM counter
     torch.cuda.reset_peak_memory_stats()
 
-    smoothed_loss = None  # Initialized on first epoch
+    smoothed_train_loss = None  # Initialized on first epoch
+    smoothed_val_loss = None
 
     print(f"Starting training with initial active rank = {current_rank}")
     print("-" * 70)
@@ -246,102 +264,114 @@ if __name__ == '__main__':
         hs_estim = torch.bmm(U_active, V_active)  # (1, H*W, nwvl)
 
         # Loss computation (self-supervised against noisy observation)
-        # This L1 loss is the ONLY signal used for training and rank decisions.
-        loss = criterion_l1(hsten_noisy - hs_estim)
-        loss_val = loss.item()
-        loss_array[idx] = loss_val
-        # Ground-truth MSE: for post-hoc monitoring and plotting ONLY.
-        # Does NOT contribute to gradients (.item() detaches from graph).
-        # Does NOT influence rank-growth decisions (only L1 loss EMA is used).
-        # Does NOT trigger early stopping.
-        # The baseline (run_figure9.py) computes this identically.
+        # Calculate L1 on masked (val) and unmasked (train) elements
+        diff = hsten_noisy - hs_estim
+        
+        # Training loss: mean over unmasked elements
+        train_diff = diff[mask_train]
+        train_loss = train_diff.abs().mean()
+        train_loss_val = train_loss.item()
+        train_loss_array[idx] = train_loss_val
+        
+        # Validation loss: mean over masked elements
+        val_diff = diff[mask_val]
+        val_loss = val_diff.abs().mean()
+        val_loss_val = val_loss.item()
+        val_loss_array[idx] = val_loss_val
+        
+        # Ground-truth MSE: for post-hoc monitoring ONLY.
         mse_array[idx] = ((hs_estim - hsten) ** 2).mean().item()
 
         # ---- EMA SMOOTHING ----
-        if smoothed_loss is None:
-            smoothed_loss = loss_val
+        if smoothed_train_loss is None:
+            smoothed_train_loss = train_loss_val
+            smoothed_val_loss = val_loss_val
+            # Initialize the validation reference with the initial random-network state.
+            # This ensures Rank 4 must genuinely outperform random noise to trigger a growth to Rank 6,
+            # avoiding an unconditional first increase.
+            val_ema_at_last_plateau = val_loss_val
         else:
-            smoothed_loss = LOSS_EMA_ALPHA * smoothed_loss + \
-                            (1 - LOSS_EMA_ALPHA) * loss_val
-        loss_ema_history.append(smoothed_loss)
+            smoothed_train_loss = LOSS_EMA_ALPHA * smoothed_train_loss + \
+                            (1 - LOSS_EMA_ALPHA) * train_loss_val
+            smoothed_val_loss = LOSS_EMA_ALPHA * smoothed_val_loss + \
+                            (1 - LOSS_EMA_ALPHA) * val_loss_val
+        train_loss_ema_history.append(smoothed_train_loss)
+        val_loss_ema_history.append(smoothed_val_loss)
 
         tbar.set_description(
-            f'r={current_rank:2d} | L1={loss_val:.4e} | '
-            f'EMA={smoothed_loss:.4e} | MSE={mse_array[idx]:.4e}'
+            f'r={current_rank:2d} | T-EMA={smoothed_train_loss:.4e} | '
+            f'V-EMA={smoothed_val_loss:.4e}'
         )
         tbar.refresh()
 
-        # Backpropagation and optimizer step (identical to baseline)
+        # Backpropagation and optimizer step (only on training loss)
         optimizer.zero_grad()
-        loss.backward()
+        train_loss.backward()
         optimizer.step()
 
-        # Best estimate tracking (same logic as baseline)
-        if loss_val < best_loss:
-            best_loss = loss_val
+        # Best estimate tracking based on Validation Loss
+        if val_loss_val < best_val_loss:
+            best_val_loss = val_loss_val
             best_epoch = idx
             best_rank_at_best = current_rank
             best_hs_estim = copy.deepcopy(hs_estim.detach().squeeze())
 
-            # Exponential averaging (same as baseline)
             if hs_estim_avg is None:
                 hs_estim_avg = hs_estim.detach()
             else:
                 hs_estim_avg = exp_weight * hs_estim_avg + \
                                (1 - exp_weight) * hs_estim.detach()
 
-        # ---- PLATEAU DETECTION & RANK GROWTH ----
-        # Check conditions:
-        #   1. current_rank < R_MAX (room to grow)
-        #   2. Enough epochs since last increase (cooldown)
-        #   3. Enough total epochs for window comparison
+        # ---- PLATEAU DETECTION & VALIDATION-BASED RANK LOCKING ----
         epochs_since_increase = idx - last_increase_epoch
-        if (current_rank < R_MAX
+        if (not rank_locked 
+                and current_rank < R_MAX
                 and epochs_since_increase > MIN_EPOCHS_BEFORE_GROWTH
                 and idx >= PLATEAU_WINDOW):
 
-            past_ema = loss_ema_history[idx - PLATEAU_WINDOW]
-            current_ema = smoothed_loss
+            past_train_ema = train_loss_ema_history[idx - PLATEAU_WINDOW]
+            current_train_ema = smoothed_train_loss
 
-            # Relative improvement over the window
-            if past_ema > 0:
-                relative_improvement = (past_ema - current_ema) / past_ema
+            if past_train_ema > 0:
+                rel_train_improvement = (past_train_ema - current_train_ema) / past_train_ema
             else:
-                relative_improvement = 0.0
+                rel_train_improvement = 0.0
 
-            # If improvement is below threshold, the loss has plateaued
-            if relative_improvement < PLATEAU_THRESHOLD:
-                old_rank = current_rank
-                current_rank = min(current_rank + R_STEP, R_MAX)
-                last_increase_epoch = idx
-                rank_history.append((idx, old_rank, current_rank))
+            # Directional Plateau: Improvement is positive but very small.
+            # 0 <= rel_improvement < threshold. 
+            # Negative improvement (loss increase) is not a growth opportunity.
+            if 0 <= rel_train_improvement < PLATEAU_THRESHOLD:
+                # Check validation signal to decide whether to grow or lock
+                if smoothed_val_loss < val_ema_at_last_plateau:
+                    # Generalization improved, accept growth
+                    old_rank = current_rank
+                    current_rank = min(current_rank + R_STEP, R_MAX)
+                    last_increase_epoch = idx
+                    val_ema_at_last_plateau = smoothed_val_loss
+                    rank_history.append((idx, old_rank, current_rank))
 
-                # ---- RESET ADAM STATE FOR NEWLY ACTIVATED CHANNELS ----
-                # The final output-layer parameters for channels [old_rank:current_rank]
-                # have received zero gradient while masked. Their Adam first moment
-                # (exp_avg) and second moment (exp_avg_sq) are exactly zero.
-                # We explicitly reset them to ensure deterministic behavior.
-                #
-                # Note: Adam's step counter is per-parameter (not per-element),
-                # so it cannot be reset for individual output channels. With a
-                # high step count and freshly zeroed moments, the bias-corrected
-                # effective learning rate for new channels is ~2x the nominal lr
-                # for the first few steps. This modest amplification self-corrects
-                # as the moments accumulate real gradient statistics, and does not
-                # affect the already-active channels.
-                for param in final_conv_params:
-                    state = optimizer.state.get(param)
-                    if state and 'exp_avg' in state:
-                        state['exp_avg'][old_rank:current_rank] = 0
-                        state['exp_avg_sq'][old_rank:current_rank] = 0
-
-                tbar.write(
-                    f"[RANK INCREASE] Epoch {idx}: "
-                    f"rank {old_rank} -> {current_rank} | "
-                    f"rel_improvement={relative_improvement:.6f} "
-                    f"< threshold={PLATEAU_THRESHOLD} | "
-                    f"Adam state reset for channels [{old_rank}:{current_rank}]"
-                )
+                    # Note on Adam optimizer state:
+                    # PyTorch Adam naturally tracks state per-tensor. The newly activated
+                    # output rows received zero gradient while masked, so their moments
+                    # are exactly zero. When activated at a large global step, they
+                    # experience a known transient effective learning rate multiplier 
+                    # of ~3.16x. With lr=1e-3, this is perfectly stable. We let PyTorch
+                    # handle this naturally without unsupported moment-copying.
+                    tbar.write(
+                        f"[RANK INCREASE] Epoch {idx}: "
+                        f"rank {old_rank} -> {current_rank} | "
+                        f"Val EMA: {smoothed_val_loss:.4e}"
+                    )
+                else:
+                    # Validation stalled or degraded, permanently lock rank
+                    rank_locked = True
+                    selected_rank = current_rank
+                    rank_lock_epoch = idx
+                    tbar.write(
+                        f"[RANK LOCKED] Epoch {idx}: "
+                        f"Validation plateaued at rank {current_rank}. "
+                        f"Growth permanently stopped."
+                    )
 
     toc = time.time()
     runtime = toc - tic
@@ -354,10 +384,16 @@ if __name__ == '__main__':
     print("\n" + "=" * 70)
     print("TRAINING COMPLETE")
     print("=" * 70)
+    # Fallback if never locked
+    if not rank_locked:
+        selected_rank = current_rank
+        rank_lock_epoch = epochs - 1
+
     print(f"Final active rank:   {current_rank}")
-    print(f"Best epoch:          {best_epoch}")
-    print(f"Rank at best epoch:  {best_rank_at_best}")
-    print(f"Best L1 loss:        {best_loss:.6e}")
+    print(f"Locked/Selected rank:{selected_rank} (locked at epoch {rank_lock_epoch})")
+    print(f"Best validation epoch:{best_epoch}")
+    print(f"Rank at best val ep: {best_rank_at_best}")
+    print(f"Best Val L1 loss:    {best_val_loss:.6e}")
     print(f"Runtime:             {runtime:.2f} seconds")
     print(f"Peak GPU VRAM:       {peak_vram_mb:.2f} MB")
 
@@ -382,8 +418,9 @@ if __name__ == '__main__':
     print(f"SVD rank-{SVD_BASELINE_RANK} SSIM:          {svd_ssim:.4f}")
     print(f"Adaptive DeepTensor PSNR:  {dt_psnr:.2f} dB")
     print(f"Adaptive DeepTensor SSIM:  {dt_ssim:.4f}")
-    print(f"Final selected rank:       {current_rank}")
-    print(f"Rank at best epoch:        {best_rank_at_best}")
+    print(f"Final active rank:         {current_rank}")
+    print(f"Locked/Selected rank:      {selected_rank} (at ep {rank_lock_epoch})")
+    print(f"Rank at best val epoch:    {best_rank_at_best}")
     print(f"Total rank increases:      {len(rank_history)}")
     print(f"Runtime:                   {runtime:.2f} seconds")
     print(f"Peak GPU VRAM:             {peak_vram_mb:.2f} MB")
@@ -415,10 +452,12 @@ if __name__ == '__main__':
                          f'{dt_psnr:.1f} dB | {dt_ssim:.2f}')
 
     # Loss curve
-    axes[1, 0].semilogy(loss_array)
+    axes[1, 0].semilogy(train_loss_array, label='Train (95%)')
+    axes[1, 0].semilogy(val_loss_array, label='Val (5%)', alpha=0.7)
     axes[1, 0].set_title('L1 Loss')
     axes[1, 0].set_xlabel('Epoch')
     axes[1, 0].set_ylabel('L1 Loss')
+    axes[1, 0].legend()
 
     # Rank evolution
     axes[1, 1].plot(rank_array, linewidth=2)
