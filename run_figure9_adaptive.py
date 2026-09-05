@@ -384,13 +384,14 @@ if __name__ == '__main__':
     print("\n" + "=" * 70)
     print("TRAINING COMPLETE")
     print("=" * 70)
-    # Fallback if never locked
+    # Fallback if never locked: report the rank associated with best validation reconstruction
     if not rank_locked:
-        selected_rank = current_rank
-        rank_lock_epoch = epochs - 1
+        selected_rank = best_rank_at_best
+
+    rank_status_str = f"Locked rank: {selected_rank} (at ep {rank_lock_epoch})" if rank_locked else f"Selected rank: {selected_rank} (best val at ep {best_epoch}, unlocked)"
 
     print(f"Final active rank:   {current_rank}")
-    print(f"Locked/Selected rank:{selected_rank} (locked at epoch {rank_lock_epoch})")
+    print(f"Status:              {rank_status_str}")
     print(f"Best validation epoch:{best_epoch}")
     print(f"Rank at best val ep: {best_rank_at_best}")
     print(f"Best Val L1 loss:    {best_val_loss:.6e}")
@@ -419,7 +420,7 @@ if __name__ == '__main__':
     print(f"Adaptive DeepTensor PSNR:  {dt_psnr:.2f} dB")
     print(f"Adaptive DeepTensor SSIM:  {dt_ssim:.4f}")
     print(f"Final active rank:         {current_rank}")
-    print(f"Locked/Selected rank:      {selected_rank} (at ep {rank_lock_epoch})")
+    print(f"Selected/Locked rank:      {selected_rank} ({'locked' if rank_locked else 'unlocked'})")
     print(f"Rank at best val epoch:    {best_rank_at_best}")
     print(f"Total rank increases:      {len(rank_history)}")
     print(f"Runtime:                   {runtime:.2f} seconds")
