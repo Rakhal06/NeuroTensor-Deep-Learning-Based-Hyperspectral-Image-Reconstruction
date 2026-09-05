@@ -182,15 +182,16 @@ if __name__ == '__main__':
     plt.subplot(2, 2, 1)
     plt.imshow(cube[..., wvl_idx]); plt.title('Ground truth')
     
+    data_range = cube.max() - cube.min()
     plt.subplot(2, 2, 2)
     snrval = utils.psnr(cube, cube_lr)
-    ssimval = ssim_func(cube, cube_lr, multichannel=True)
+    ssimval = ssim_func(cube, cube_lr, channel_axis=-1, data_range=data_range)
     plt.imshow(cube_lr[..., wvl_idx])
     plt.title('SVD | %.1f dB | %.2f'%(snrval, ssimval))
     
     plt.subplot(2, 2, 3)    
     snrval = utils.psnr(cube, cube_estim)
-    ssimval = ssim_func(cube, cube_estim, multichannel=True)
+    ssimval = ssim_func(cube, cube_estim, channel_axis=-1, data_range=data_range)
     plt.imshow(cube_estim[..., wvl_idx])
     plt.title('DeepTensor | %.1f dB | %.2f'%(snrval, ssimval))
     
