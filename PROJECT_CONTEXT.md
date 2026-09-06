@@ -2,15 +2,54 @@
 
 ## 1. Project Identity
 - **Project Name:** DeepTensor-Extended (DeepTensor-Low-Rank-Tensor-Decomposition)
-- **Faculty:** Not explicitly specified in the current context
-- **Students:** Rakhal
+- **Faculty:** Dr. Sibasankar Padhy
+- **Students:** B. Rakhal Krishna (24BDS009), Dargupally Ashish (24BDS015)
 - **Research Topic:** DeepTensor: Low-Rank Tensor Decomposition with Deep Network Priors
-- **Main Objective:** Extend the baseline DeepTensor framework to support Adaptive Rank Selection and Sparsity-Regularized Rank Discovery, removing the need for manual rank specification, with future directions toward tensor completion, robustness, and Transformer-based extensions.
+- **Main Objective:** Extend the baseline DeepTensor framework across multiple dimensions—including Adaptive Rank Selection, Sparsity-Regularized Rank Discovery, Tensor Completion under missing data, and Noise-Type Robustness at matched input corruption—while keeping the baseline framework reproducible and scientifically audited.
 
-## 2. Research Problem
-Classical low-rank tensor decomposition and the original DeepTensor approach require a fixed, manually specified rank hyperparameter (e.g., $R=20$). Selecting this rank is often arbitrary or requires computationally expensive trial-and-error grid searches. The core research problem is how to dynamically and adaptively determine the optimal effective rank during self-supervised optimization without relying on clean ground truth data.
+---
 
-## 3. Completed Extensions & Baseline Verification
+## 2. Research Problem & Project Overview
+Classical low-rank tensor decomposition and the original DeepTensor approach require a fixed, manually specified rank hyperparameter (e.g., $R=20$). Selecting this rank is often arbitrary or requires computationally expensive trial-and-error grid searches. Beyond rank selection, evaluating DeepTensor's capabilities under incomplete observations (tensor completion) and diverse noise statistical structures (Gaussian vs. Poisson vs. Mixed) is essential to understanding the scope and limits of deep network priors in hyperspectral tensor recovery.
+
+---
+
+## 3. Completed Extensions & Baseline Verification Summary
+
+| Stage / Extension | Scientific Focus / Name | Status | Primary Outcome / Finding |
+|---|---|---|---|
+| **Baseline** | Figure 9 Reproduction | COMPLETE / FROZEN | Reproduced Rank-20 baseline on ICVL (`46.45 dB` PSNR, Commit `a146cc7`). |
+| **Extension 1** | Self-Supervised Online Model Selection for Effective Rank | COMPLETE / FROZEN | Selected **Rank 8** dynamically (`46.37 dB` PSNR matching Rank-20 control, Commit `85ff484`). |
+| **Extension 2** | Factor Group-Sparsity (Group Lasso) Regularization | COMPLETE / FROZEN | **Negative/analytical result**: Top-down factor suppression produced severe quality degradation (`46.86 dB` $\to$ `42.49 dB` $\to$ `33.04 dB`). |
+| **Extension 3** | Missing-Data / Tensor Completion Capability | COMPLETE / FROZEN | Mask-aware loss imputed unobserved tensor entries cleanly (Missing PSNR `46.11 dB` at 20% missing, `45.17 dB` at 50%, `42.51 dB` at 80%). |
+| **Extension 4** | Noise-Type Robustness at Matched Input Corruption | COMPLETE / FROZEN | Fixed input PSNR `28.43 dB`: Gaussian `46.67 dB` PSNR vs Poisson `45.13 dB` PSNR vs Mixed `46.20 dB` PSNR (Commit `4961e52`). |
+| **Extension 5** | Ensemble-Based Uncertainty Estimation | DESIGN STAGE | Not implemented; awaiting multi-agent design review. |
+| **Extension 6** | Computational Efficiency Analysis | NOT STARTED | Future work. |
+| **Extension 7** | Factor / Component Interpretability | NOT STARTED | Future work. |
+
+---
+
+## 4. Mandatory Design Review & Research Workflow
+
+Every new extension design in this project must strictly adhere to the following 11-step process before completion:
+
+```
+1. Gemini Pro High (Antigravity): Independent codebase inspection + research/design review
+2. Claude Web 1: Skeptical independent critical review
+3. Claude Web 2: Final synthesis / design gate
+4. Only after approval: Implementation in Antigravity
+5. Smoke / sanity tests (e.g., reproducing baseline condition)
+6. Full experiments
+7. Scientific audit (empirical verification of logs, metrics, code integrity)
+8. Detailed extension documentation (created in documentation/extension_X_.../)
+9. Update PROJECT_CONTEXT.md
+10. Git checkpoint + push to origin/main
+11. Freeze extension
+```
+
+---
+
+## 5. Detailed Extension Descriptions
 
 ### A. Original Frozen Baseline (Full-Data)
 - **Commit:** `a146cc7` ("Baseline: reproduce DeepTensor Figure 9 on RTX 4060") on `main`
@@ -21,210 +60,139 @@ Classical low-rank tensor decomposition and the original DeepTensor approach req
   - Input Noisy PSNR: 28.43 dB
   - SVD Rank-20 PSNR: ~38.31 dB | SSIM: ~0.9169
   - DeepTensor Rank-20 PSNR: 46.45 dB | SSIM: 0.9872
-  - Runtime: ~159.57 sec
-  - Peak GPU VRAM: 640.37 MB
+  - Runtime: ~159.57 sec | Peak GPU VRAM: 640.37 MB
+
+---
 
 ### B. Extension 1: Adaptive Rank Selection — COMPLETED AND FROZEN
-- **Commit:** `85ff484` ("Fix adaptive rank reporting for incomplete cooldown") on `extension/adaptive-rank`
+- **Commit:** `85ff484` ("Fix adaptive rank reporting for incomplete cooldown") on `extension/adaptive-rank` (Merged into `main` at `8c84a0d`)
 - **Script:** `run_figure9_adaptive.py` (Frozen)
-- **Terminology:** **"Self-Supervised Online Model Selection for Effective Rank"**
-  *(Not theoretical tensor-rank discovery or mathematical rank recovery)*
+- **Scientific Name:** **Self-Supervised Online Model Selection for Effective Rank**
 - **Framework:**
   - Initial active rank $R_\text{start}=4$, max capacity $R_\text{max}=30$, step $R_\text{step}=2$.
   - Fixed 5% held-out binary mask for self-supervised validation (95% train / 5% val).
-  - Train & Val losses calculated strictly independently without ground truth leaks.
   - Directional plateau criterion (`0 <= rel_train_improvement < 1e-3`) triggers rank growth if validation EMA improved over previous plateau.
-  - PyTorch Adam handles newly unmasked parameter rows naturally (custom moment resetting removed).
-  - Unlocked end-of-run fallback reports `selected_rank = best_rank_at_best` at `best_epoch`.
-
-- **Adaptive Run #1 Results (5000 Epochs):**
-  - Runtime: 274.61 sec | Peak VRAM: 1006.66 MB
-  - Selected Rank: **Rank 8** (Best Val Epoch: 4841, Val L1: $2.991574 \times 10^{-2}$)
-  - Active Rank Trajectory: $4 \to 6$ (ep 2358) $\to 8$ (ep 3923) $\to 10$ (ep 4851, mid-cooldown)
-  - Reconstruction Quality: **PSNR 46.37 dB | SSIM 0.9872**
-
-- **Adaptive Run #2 Results (Reproducibility Run, 5000 Epochs):**
-  - Runtime: 273.97 sec | Peak VRAM: 1006.66 MB
-  - Selected Rank: **Rank 8** (Best Val Epoch: 4930, Val L1: $2.999883 \times 10^{-2}$)
-  - Active Rank Trajectory: $4 \to 6$ (ep 2090) $\to 8$ (ep 3735) $\to 10$ (ep 4938, mid-cooldown)
-  - Reconstruction Quality: **PSNR 45.95 dB | SSIM 0.9856**
-
-### C. Matched-Mask Fixed Rank-20 Control — COMPLETED
-- **Purpose:** Isolate the effect of the 5% blind-spot mask from adaptive rank selection.
-- **Setup:** Temporary run of `run_figure9_adaptive.py` with `R_START=20, R_MAX=20` (restored immediately afterward via `git checkout`).
-- **Control Results (5000 Epochs):**
-  - Runtime: 274.06 sec | Peak VRAM: 1007.31 MB
-  - Selected Rank: **Rank 20** (Best Val Epoch: 4915, Val L1: $3.001085 \times 10^{-2}$)
-  - Reconstruction Quality: **PSNR 46.14 dB | SSIM 0.9872 | RMSE ~0.00493**
-  - Code restored clean: `git diff -- run_figure9_adaptive.py` is completely empty.
-
-### D. Scientific Conclusion for Extension 1
-The self-supervised online model-selection mechanism consistently selected **Rank 8** across independent stochastic runs, achieving reconstruction quality matching the matched fixed Rank-20 control (46.37 dB vs. 46.14 dB). This proves that self-supervised validation can discover a compact effective rank without manually tuning Rank 20 or relying on clean ground truth.
+- **Adaptive Run Results (5000 Epochs):**
+  - **Run #1:** Selected **Rank 8** (PSNR **46.37 dB** | SSIM **0.9872**)
+  - **Run #2:** Selected **Rank 8** (PSNR **45.95 dB** | SSIM **0.9856**)
+- **Matched-Mask Fixed Rank-20 Control:**
+  - PSNR **46.14 dB** | SSIM **0.9872**
+- **Scientific Conclusion:** Bottom-up self-supervised online model-selection consistently discovers a compact effective rank ($R=8$) that matches fixed Rank-20 performance without ground-truth tuning.
 
 ---
 
-## 4. Extension 2: Factor Group-Sparsity (Group Lasso) Regularization — APPROVED DESIGN
-
-### Status
-**APPROVED — READY FOR IMPLEMENTATION.**
-This extension is an independent alternative to Adaptive Rank Selection. **Do NOT combine the two methods.**
-
-### Research Objective
-Investigate whether continuous joint factor group-sparsity regularization can suppress unnecessary rank components in an over-parameterized DeepTensor decomposition ($R_\text{max}=30$), allowing a compact effective rank to emerge without manually specifying the final rank.
-
-### Core Formulation & Architecture
-Uses the **ORIGINAL UNNORMALIZED DeepTensor architecture**:
-$$\hat{Y} = U V^T$$
-where:
-- $U \in \mathbb{R}^{1 \times HW \times R_\text{max}}$
-- $V \in \mathbb{R}^{1 \times R_\text{max} \times B}$
-- $R_\text{max} = 30$
-
-For each rank component $r \in \{1, \dots, R_\text{max}\}$, the joint factor norm is:
-$$g_r = \sqrt{\|U_r\|_2^2 + \|V_r\|_2^2}$$
-
-The regularization term is defined as:
-$$\mathcal{R}(U,V) = \sum_{r=1}^{R_\text{max}} g_r$$
-
-Training objective:
-$$\mathcal{L}_\text{total} = \frac{1}{|\Omega_\text{train}|} \left\| \mathcal{P}_{\Omega_\text{train}} \left( Y - \hat{Y} \right) \right\|_1 + \lambda \, \mathcal{R}(U,V)$$
-
-### Abandonment of Previous Formulation (Record of Failure)
-The previously considered normalized-gamma formulation ($\hat{Y} = \sum_r \gamma_r \hat{U}_r \hat{V}_r^T$ with unit-normalized factors and explicit $\gamma_r$ parameterization) was **abandoned**.
-- **Reason for Abandonment:** Unit-normalization combined with explicit $\gamma$ parameterization caused severe scale and optimization problems under Adam ($lr=1\text{e-}3$). Specifically, it caused a catastrophic failure of the mandatory $\lambda=0$ control run (achieving only ~25.1 dB PSNR vs. the baseline ~46.4 dB PSNR) because scale dynamics and optimization bounds were severely degraded.
-
-### Component Importance & Effective Rank Metrics
-- **Component Power:**
-  $$\text{power}_r = \|U_r\|_2 \cdot \|V_r\|_2$$
-- **Primary Effective Rank:**
-  $$R_\text{eff, primary} = \text{count of components satisfying } \text{power}_r > 0.01 \times \max_j(\text{power}_j)$$
-- **Secondary Effective Rank:**
-  Smallest number of components accounting for $\ge 99\%$ of total component power ($\frac{\sum_{i=1}^k \text{power}_{(i)}}{\sum_{j=1}^{R_\text{max}} \text{power}_{(j)}} \ge 0.99$).
-
-### Hyperparameter Selection ($\lambda$)
-- **Selection Criterion:** Selected **ONLY** by the lowest held-out 5% blind-spot validation loss ($\lambda^* = \arg\min_\lambda \mathcal{L}_\text{val}$).
-- **Rule:** Ground-truth PSNR, SSIM, or RMSE must **NEVER** be used to select $\lambda$.
-- **Predefined Grid:** $\lambda \in \{0, 10^{-4}, 10^{-3}, 10^{-2}\}$.
-  - $\lambda=0$ serves as the mandatory architecture-only control.
-
-### Fixed Settings
-- $R_\text{max} = 30$
-- $n_\text{inputs} = 20$
-- Optimizer: Adam ($\text{learning rate} = 1\text{e-}3$)
-- Epochs: 5000
-- Dataset / Noise: Same ICVL preprocessing and noise configuration (`noise_snr=2`, `tau=100`)
-- Validation Framework: Same 5% blind-spot validation framework with a fixed mask across all $\lambda$-grid runs (`seed=42`).
-
-### Pipeline Audit: BatchNorm Evaluation Bug & Corrected Control
-During Extension 2 evaluation, a critical pipeline discrepancy was identified and resolved:
-
-1. **Pipeline Bug Discovery**:
-   - `run_figure9_sparsity.py` previously executed `im_net.eval()` and `spec_net.eval()` prior to final reconstruction on the best validation checkpoint.
-   - The DIP skip networks contain ~60 `BatchNorm` layers (`BatchNorm2d` / `BatchNorm1d`).
-   - In a single-image unsupervised DIP setting with perturbed inputs, accumulated running statistics are unreliable, creating a severe train-vs-eval mode performance discrepancy.
-
-2. **Controlled BatchNorm Diagnostic Proof**:
-   - A controlled 500-epoch test evaluated the **EXACT SAME** checkpoint weights (`best_im_net_state`, `best_spec_net_state`) and **EXACT SAME** input tensors (`im_inp`, `spec_inp`):
-     - **TRAIN Mode (`im_net.train()`)**: PSNR **37.6465 dB** | SSIM **0.926632** | RMSE **0.013112**
-     - **EVAL Mode (`im_net.eval()`)**: PSNR **34.7731 dB** | SSIM **0.913607** | RMSE **0.018253**
-     - **Performance Gap**: **~2.87 dB** drop in eval mode on identical weights/inputs.
-     - **Tensor Difference**: Max absolute difference = `0.093265`, Mean absolute difference = `0.008068`.
-
-3. **Evaluation Pipeline Fix**:
-   - The evaluation section in `run_figure9_sparsity.py` now uses `im_net.train()` and `spec_net.train()`, matching the baseline (`run_figure9.py`) and adaptive (`run_figure9_adaptive.py`) pipeline behavior.
-   - All temporary diagnostic code was removed.
-
-4. **Corrected Definitive Control Experiment (`lambda=0`, `R_MAX=20`)**:
-   - Run configuration: `R_MAX=20`, `lambda=0`, `seed=42`, `epochs=5000` (`results_sparsity_diagnostic`).
-   - **Runtime**: 320.58 seconds
-   - **Best Validation Epoch**: 4705 (Best Val L1: `0.03005810`)
-   - **PSNR**: **46.4172 dB**
-   - **SSIM**: **0.989254**
-   - **RMSE**: **0.004774**
-   - **Primary Effective Rank**: 20
-   - **Secondary 99% Effective Rank**: 18
-   - **Peak VRAM**: 966.56 MB
-   - **Errors / Warnings**: None.
-
-5. **Invalidated / Superseded Historical Runs**:
-   - **SUPERSEDED**: The uncorrected `R_MAX=20, lambda=0` diagnostic run (**38.60 dB**) is marked **INVALID** (generated prior to the BatchNorm evaluation fix).
-   - **SUPERSEDED**: All previous `R_MAX=30` sparsity-grid runs ($\lambda \in \{0, 1\text{e-}4, 1\text{e-}3, 1\text{e-}2\}$) are marked **INVALID** for final scientific comparison (generated prior to the BatchNorm evaluation fix).
-
-### Final Verified Results (Corrected Definitive Grid)
-- **Dataset:** ICVL
-- **R_MAX:** 30
-- **Seed:** 42
-- **Epochs:** 5000
-- **n_inputs:** 20
-- **Mask:** Fixed 5% blind-spot mask
-- **Optimizer:** Adam, lr=1e-3
-- **Evaluation:** Corrected final evaluation uses `im_net.train()` and `spec_net.train()`
-
-| Parameter ($\lambda$) | Best Val Epoch | Best Val L1 Loss | PSNR (dB) | SSIM | RMSE | Primary $R_\text{eff}$ | Secondary 99% $R_\text{eff}$ | Runtime (s) | Peak VRAM (MB) |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **0.0** (Control) | 4977 | 0.03003683 | 46.8587 | 0.989582 | 0.004538 | 27 | 27 | 315.42 | 968.18 |
-| **1e-4** | 4974 | 0.03024783 | 42.4859 | 0.983794 | 0.007511 | 3 | 3 | 315.41 | 968.18 |
-| **1e-3** | 4832 | 0.03381762 | 33.0366 | 0.927514 | 0.022295 | 1 | 1 | 313.17 | 967.54 |
-| **1e-2** | 24 | 0.1022802 | 18.8475 | 0.029707 | 0.114113 | 30 | 30 | 310.52 | 967.32 |
-
-### Final Scientific Conclusion and Framing
-Extension 2 is a valid negative/analytical result. A well-motivated hypothesis about continuous rank regularization was experimentally tested with controlled self-supervised validation, yielding a negative but informative result: factor group-sparsity achieves mechanical rank sparsification but incurs a disproportionately large reconstruction-quality cost under the tested DeepTensor setting.
-
-The group-lasso factor penalty mechanically produces strong component sparsification (from effective rank 27 at $\lambda=0$ to effective rank 3 at $\lambda=10^{-4}$ and rank 1 at $\lambda=10^{-3}$). However, this sparsification causes a steep reconstruction-quality loss ($46.86\text{ dB} \to 42.49\text{ dB} \to 33.04\text{ dB}$). No favorable quality-compression tradeoff was found in the tested lambda grid. Self-supervised 5% held-out validation correctly selects $\lambda=0$, meaning the best tested regularization strength is no explicit regularization.
-
-**Contrast with Extension 1:**
-Extension 1 uses bottom-up adaptive rank growth and achieved a selected rank of 8 with a PSNR of 46.37 dB (SSIM 0.9872). Extension 2 uses top-down factor sparsification and produced rank 3 at 42.49 dB and rank 1 at 33.04 dB. Under the tested DeepTensor architecture and ICVL experimental setting, top-down factor suppression produced a substantially worse quality–sparsity tradeoff than bottom-up adaptive rank growth.
-
-### Research Terminology
-- Official Name: **Factor Group-Sparsity (Group Lasso) Regularization**
-- *Note:* Do NOT refer to this method as a nuclear-norm surrogate.
+### C. Extension 2: Factor Group-Sparsity (Group Lasso) Regularization — COMPLETED AND FROZEN
+- **Script:** `run_figure9_sparsity.py` (Frozen)
+- **Scientific Name:** **Factor Group-Sparsity (Group Lasso) Regularization**
+- **Formulation:** Joint factor norm $g_r = \sqrt{\|U_r\|_2^2 + \|V_r\|_2^2}$ for $R_\text{max}=30$, penalized with $\lambda \, \sum_r g_r$.
+- **Key Diagnostic Finding:** Resolved a ~2.87 dB evaluation discrepancy by fixing `im_net.train()` mode during evaluation (BatchNorm running statistics in single-image DIP settings are inaccurate in `eval()` mode).
+- **Final Corrected Grid Results (5000 Epochs, Seed 42, ICVL):**
+  - $\lambda=0.0$ (Control): PSNR **46.86 dB** | SSIM **0.9896** | $R_\text{eff}=27$
+  - $\lambda=1\text{e-}4$: PSNR **42.49 dB** | SSIM **0.9838** | $R_\text{eff}=3$
+  - $\lambda=1\text{e-}3$: PSNR **33.04 dB** | SSIM **0.9275** | $R_\text{eff}=1$
+  - $\lambda=1\text{e-}2$: PSNR **18.85 dB** | SSIM **0.0297** | $R_\text{eff}=30$
+- **Scientific Conclusion (Negative/Analytical Result):** Top-down group-lasso factor suppression mechanically prunes components but incurs a severe reconstruction quality drop. Self-supervised validation correctly selects $\lambda=0$, proving top-down factor suppression is inferior to Extension 1's bottom-up rank growth.
 
 ---
 
-## 5. Decision Log
+### D. Extension 3: Missing-Data / Tensor Completion Capability — COMPLETED AND FROZEN
+- **Script:** `run_figure9_completion.py` (Frozen)
+- **Documentation:** `documentation/extension_3_tensor_completion/EXTENSION_4_DOCUMENTATION.md`
+- **Formulation:** Mask-aware L1 reconstruction loss over observed entries $\Omega_\text{obs}$:
+  $$\mathcal{L} = \frac{1}{|\Omega_\text{train}|} \left\| \mathcal{P}_{\Omega_\text{train}} \left( Y - \hat{Y} \right) \right\|_1$$
+- **Verified Results (5000 Epochs, Fixed Rank-20, Seed 42):**
+  - **0% Missing (Sanity Check):** Missing PSNR N/A | Full PSNR **46.24 dB** | SSIM **0.9892**
+  - **20% Noisy Missingness:** Missing PSNR **46.11 dB** | Full PSNR **46.02 dB** | SSIM **0.9877**
+  - **50% Noisy Missingness:** Missing PSNR **45.17 dB** | Full PSNR **45.18 dB** | SSIM **0.9834**
+  - **80% Noisy Missingness:** Missing PSNR **42.51 dB** | Full PSNR **42.50 dB** | SSIM **0.9709**
+  - **50% Clean Control:** Missing PSNR **50.50 dB** | Full PSNR **50.47 dB** | SSIM **0.9975** (+5.33 dB over noisy missingness)
+- **Scientific Conclusion:** DeepTensor's DIP generators impute unobserved entries cleanly without architectural changes or explicit regularization.
 
-1. **[Verified]** Environment: RTX 4060 Laptop GPU, Windows 11, PyTorch 2.5.1+cu121.
-2. **[Verified]** Baseline Reproduction: Fixed Rank-20 full-data baseline reproduced and frozen (`main` branch, commit `a146cc7`).
-3. **[Verified]** Extension 1 Completed: Adaptive Rank Selection implemented, smoke-tested, evaluated across 2 independent runs ($R=8$ selected), matched control run ($R=20$), and frozen (`extension/adaptive-rank` branch, commit `85ff484`).
-4. **[Abandoned]** Normalized Gamma Formulation: Abandoned explicit $\gamma$ parameterization with unit-normalized factors after $\lambda=0$ control failed (~25.1 dB PSNR) due to severe scale/optimization issues under Adam.
-5. **[Approved]** Extension 2 Final Design: Factor Group-Sparsity (Group Lasso) Regularization using original unnormalized DeepTensor architecture ($\hat{Y} = U V^T$), $R_\text{max}=30$, $g_r = \sqrt{\|U_r\|_2^2 + \|V_r\|_2^2}$, $\text{power}_r = \|U_r\|_2 \|V_r\|_2$, $\lambda \in \{0, 10^{-4}, 10^{-3}, 10^{-2}\}$ evaluated strictly via 5% blind-spot validation loss.
-6. **[Resolved]** BatchNorm Evaluation Bug: Confirmed that `im_net.eval()` and `spec_net.eval()` caused a ~2.87 dB degradation due to DIP BatchNorm running statistics. Fixed by setting networks to `train()` mode during final evaluation.
-7. **[Verified]** Corrected Control Benchmark: `lambda=0, R_MAX=20` run achieved **46.42 dB PSNR** (matching the 46.14 dB baseline adaptive control). Previous buggy runs (38.60 dB diagnostic and pre-fix $R_\text{max}=30$ grid) are marked superseded.
-8. **[Completed]** Extension 2 Final Rerun: Completed the full corrected grid. Result is a negative but informative finding: top-down factor suppression yields a substantially worse quality-sparsity tradeoff than bottom-up adaptive rank growth. Extension 2 is now FROZEN.
+---
+
+### E. Extension 4: Noise-Type Robustness at Matched Input Corruption — COMPLETED AND FROZEN
+- **Script:** `run_figure9_robustness.py` (Frozen)
+- **Documentation:** `documentation/extension_4_noise_type_robustness/EXTENSION_4_DOCUMENTATION.md`
+- **Git Commit:** `4961e52` (Full SHA: `4961e5287e07caaaef8cdd3073998f8045ee33d3`) on `main`
+- **Research Question:** Does DeepTensor's reconstruction quality, at a fixed and matched input-corruption severity, transfer across noise families with different statistical structure (signal-independent Gaussian vs. signal-dependent Poisson) as well as it performs under the mixed noise model the baseline was originally evaluated on?
+
+#### Experimental Setup & Noise Parameters
+- **Dataset:** ICVL Hyperspectral (`data/icvl.mat`), shape `(174, 164, 260)`
+- **Common Settings:** Rank $R=20$, Adam $lr=1\text{e-}3$, 5000 epochs, seed=42, `im_net.train()` evaluation, unnormalized DeepTensor architecture.
+- **Target Noisy-Input PSNR:** `28.4321 dB` (Tolerance $\pm 0.05\text{ dB}$)
+- **Noise Parameter Calibration (via `utils.measure()`):**
+  1. **Mixed (Baseline Condition):** `noise_snr=2`, `tau=100` $\implies$ Input PSNR **28.4321 dB**
+  2. **Pure Gaussian:** `tau=inf` (removes Poisson), `noise_snr=0.037875` $\implies$ Input PSNR **28.4321 dB**
+  3. **Pure Poisson:** `noise_snr=0` (removes Gaussian), `tau=72.124592` $\implies$ Input PSNR **28.4294 dB**
+
+#### Experimental Results (5000 Epochs)
+
+| Metric / Condition | Mixed Poisson + Gaussian | Pure Gaussian | Pure Poisson |
+|---|---|---|---|
+| **Noise Configuration** | `noise_snr=2, tau=100` | `noise_snr=0.037875, tau=inf` | `noise_snr=0, tau=72.124592` |
+| **Input PSNR (dB)** | 28.4321 | 28.4321 | 28.4294 |
+| **Reconstruction PSNR (dB)** | **46.2035** | **46.6665** | **45.1343** |
+| **Reconstruction SSIM** | 0.987190 | 0.987765 | 0.986597 |
+| **Reconstruction RMSE** | 0.004896 | 0.004642 | 0.005537 |
+| **PSNR Gain (dB)** | +17.7714 | **+18.2344** | +16.7049 |
+| **Noise-Intensity Corr.** | 0.211393 | 0.000394 | 0.284420 |
+| **Runtime (sec)** | 168.57 | 163.59 | 168.57 |
+| **Peak VRAM (MB)** | 668.67 | 668.67 | 668.67 |
+
+#### Scientific Interpretation & Key Findings
+- **Gaussian Performance:** Gaussian noise produced the highest reconstruction quality (**46.67 dB** PSNR, +18.23 dB gain), confirming strong implicit regularizing capability against signal-independent homoscedastic noise.
+- **Poisson Sensitivity:** Poisson noise produced the lowest reconstruction quality (**45.13 dB** PSNR, +16.70 dB gain), demonstrating an absolute drop of **1.53 dB** relative to Gaussian noise at matched input corruption energy.
+- **Statistical Structure Impact:** DeepTensor is sensitive to noise statistical structure. Heteroscedastic, signal-dependent Poisson noise (noise-intensity correlation $0.284$) is harder for the unweighted L1 loss and CNN prior to denoise than homoscedastic Gaussian noise.
+- **Fair Framing Boundaries:** Results confirm noise-type sensitivity under strict input-PSNR matching, but do NOT claim universal noise robustness, universal regularizers, seed-independent generalization, or causal proof of an architectural flaw.
+- **Key Limitation:** Global PSNR matching equalizes total input corruption energy, but does not make Gaussian and Poisson noise statistically identical.
 
 ---
 
 ## 6. Current Status & Next Immediate Action
 
-| Task | Status |
-|---|---|
-| Baseline reproduction & verification | COMPLETE (Commit `a146cc7`) |
-| Adaptive-rank implementation & testing | COMPLETE (Commit `85ff484`) |
-| Adaptive-rank 5000-epoch runs & control | COMPLETE ($R=8$ selected) |
-| Adaptive-rank scientific review | COMPLETE & FROZEN |
-| Extension 2 design & failure review | COMPLETE (Normalized-gamma abandoned, Group Lasso approved) |
-| Extension 2 BatchNorm bug identification & fix | COMPLETE (`im_net.train()` restored, 46.42 dB control verified) |
-| Extension 2 full grid rerun & analysis | COMPLETE (Negative/analytical result documented) |
+| Extension / Task | Status | Output / Location |
+|---|---|---|
+| Baseline Reproduction | COMPLETE / FROZEN | `run_figure9.py` (Commit `a146cc7`) |
+| Extension 1: Adaptive Rank Selection | COMPLETE / FROZEN | `run_figure9_adaptive.py` (Commit `85ff484`) |
+| Extension 2: Factor Group-Sparsity | COMPLETE / FROZEN | `run_figure9_sparsity.py` |
+| Extension 3: Missing-Data Tensor Completion | COMPLETE / FROZEN | `run_figure9_completion.py` |
+| Extension 4: Noise-Type Robustness | COMPLETE / FROZEN | `run_figure9_robustness.py` (Commit `4961e52`) |
+| Extension 5: Ensemble Uncertainty Estimation | **DESIGN STAGE** | Initial design not finalized; awaiting workflow |
+| Extension 6: Computational Efficiency | NOT STARTED | Future work |
+| Extension 7: Factor Interpretability | NOT STARTED | Future work |
 
-**Immediate Next Step:** All planned extensions are completed and frozen. Await further project directions.
+**Immediate Next Step for Extension 5:**
+Execute the mandatory multi-agent research design review workflow:
+1. Gemini Pro High (Antigravity): Initial design & research formulation
+2. Claude Web 1: Critical methodology review
+3. Claude Web 2: Synthesis & design approval gate
+
+*Do NOT implement code or run experiments for Extension 5 until design approval is complete.*
 
 ---
 
 ## 7. Important Files Registry
-| File / Directory | Purpose | Status |
+
+| File / Directory | Description / Role | Status |
 |---|---|---|
 | `run_figure9.py` | Baseline DeepTensor script (Fixed Rank-20). | **FROZEN** (Commit `a146cc7`) |
 | `run_figure9_adaptive.py` | Extension 1: Adaptive Rank Selection. | **FROZEN** (Commit `85ff484`) |
 | `run_figure9_sparsity.py` | Extension 2: Factor Group-Sparsity (Group Lasso). | **FROZEN** |
-| `modules/` | Core network definitions & utilities. | **FROZEN** |
+| `run_figure9_completion.py` | Extension 3: Tensor Completion under missing data. | **FROZEN** |
+| `run_figure9_robustness.py` | Extension 4: Noise-Type Robustness at matched input PSNR. | **FROZEN** (Commit `4961e52`) |
+| `documentation/extension_3_tensor_completion/` | Detailed documentation for Extension 3. | **FROZEN** |
+| `documentation/extension_4_noise_type_robustness/` | Detailed documentation for Extension 4. | **FROZEN** |
+| `results_robustness/` | Final summary text files for Extension 4 runs. | **FROZEN** |
+| `modules/` | Core network definitions, DIP generators, & `utils.py`. | **FROZEN** |
 | `data/icvl.mat` | ICVL Hyperspectral Dataset. | **FROZEN** |
 | `PROJECT_CONTEXT.md` | Master handoff and research context document. | **UPDATED** |
 
 ---
 
-## 8. Research Integrity Rules
-- Clean ground truth must **NEVER** be used for training gradients, rank selection, stopping, or hyperparameter tuning.
-- Ground truth is reserved strictly for post-hoc evaluation (PSNR / SSIM / RMSE).
-- Do not claim theoretical tensor-rank recovery; distinguish mathematical rank from effective rank.
-- Always run matched-mask controls when introducing architectural or loss modifications.
-- Experimental evidence supersedes hypotheses.
+## 8. Research Integrity & Hardware Environment Rules
+
+1. **Hardware / Environment:** RTX 4060 Laptop GPU (8GB VRAM), Windows 11, PyTorch 2.5.1+cu121, CUDA 12.1.
+2. **Ground-Truth Data Usage:** Clean ground-truth target matrices must **NEVER** be used for gradient computation, model selection, early stopping, or hyperparameter tuning. Ground truth is reserved strictly for post-hoc metric computation (PSNR / SSIM / RMSE).
+3. **Evaluation Mode for DIP Networks:** DIP generator networks (`im_net`, `spec_net`) contain ~60 BatchNorm layers. Due to single-image DIP input perturbation, always keep networks in `.train()` mode during final inference/evaluation to avoid running-statistic degradation.
+4. **Matched-Mask Controls:** Always compare adaptive or missing-data mechanisms against matched-mask fixed controls to isolate masking effects from method effects.
+5. **No Claims Beyond Empirical Evidence:** Clearly distinguish mathematical rank from effective rank, and avoid framing bounded noise tests as universal robustness guarantees.
