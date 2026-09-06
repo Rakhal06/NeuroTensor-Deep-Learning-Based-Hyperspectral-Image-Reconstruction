@@ -1,0 +1,30 @@
+EXTENSION 3: MISSING-DATA / TENSOR COMPLETION RESULTS
+======================================================================
+condition:               noisy
+missing_ratio:           0.80
+seed:                    42
+epochs:                  5000
+rank:                    20
+runtime_sec:             168.81
+peak_vram_mb:           624.35
+best_val_epoch:         2786
+best_val_l1_loss:       3.036059e-02
+----------------------------------------------------------------------
+ELEMENT COUNTS:
+n_total:                 7419360
+n_obs:                   1483736
+n_train:                 1409622
+n_val:                   74114
+n_missing:               5935624
+----------------------------------------------------------------------
+METRICS (VS CLEAN GROUND TRUTH):
+psnr_full_db:            42.5042
+ssim_full:               0.970913
+rmse_full:               0.007495
+psnr_missing_db:         42.5086
+rmse_missing:            0.007492
+psnr_obs_db:             42.4866
+rmse_obs:                0.007511
+input_target_psnr:       28.4335
+svd_rank20_psnr:        38.3098
+svd_rank20_ssim:        0.917642

@@ -63,51 +63,121 @@ The self-supervised online model-selection mechanism consistently selected **Ran
 
 ---
 
-## 4. Extension 2: Sparsity-Regularized Rank Discovery — APPROVED DESIGN (NOT YET IMPLEMENTED)
+## 4. Extension 2: Factor Group-Sparsity (Group Lasso) Regularization — APPROVED DESIGN
 
 ### Status
-**APPROVED WITH MODIFICATIONS — NOT YET IMPLEMENTED.**
+**APPROVED — READY FOR IMPLEMENTATION.**
 This extension is an independent alternative to Adaptive Rank Selection. **Do NOT combine the two methods.**
 
 ### Research Objective
-Investigate whether continuous sparsity regularization can suppress unnecessary rank components in an over-parameterized DeepTensor decomposition ($R_\text{max}=30$), allowing a compact effective rank to emerge without manually specifying the final rank.
+Investigate whether continuous joint factor group-sparsity regularization can suppress unnecessary rank components in an over-parameterized DeepTensor decomposition ($R_\text{max}=30$), allowing a compact effective rank to emerge without manually specifying the final rank.
 
-### Critical Mathematical Decision: Scale Identifiability Flaw & Fix
-- **Rejected Formulation:** The original proposal used $\hat{Y} = \sum_{r} \gamma_r (U_r \otimes V_r)$ with free $\gamma_r \ge 0$ and $L_1$ penalty $\lambda \sum_r \gamma_r$.
-  *Flaw:* For any $c > 0$, scaling $\gamma_r \to \gamma_r / c$ and $U_r \to c U_r$ leaves the reconstruction unchanged while artificially shrinking the $L_1$ penalty. Free $\gamma$ cannot reliably represent component importance because $U$ and $V$ can absorb the scale.
-- **Final Approved Formulation:** Unit-normalize spatial and spectral factor components prior to scaling:
-  $$\hat{Y} = \sum_{r=1}^{R_\text{max}} \gamma_r \left( \hat{U}_{:,r} \otimes \hat{V}_{r,:} \right) \quad \text{where} \quad \|\hat{U}_{:,r}\|_2 = 1, \quad \|\hat{V}_{r,:}\|_2 = 1, \quad \gamma_r \ge 0$$
-  $$\mathcal{L}_\text{total} = \frac{1}{|\Omega_\text{train}|} \left\| \mathcal{P}_{\Omega_\text{train}} \left( Y - \hat{Y} \right) \right\|_1 + \lambda \sum_{r=1}^{R_\text{max}} \gamma_r$$
-  - Uses $\epsilon$-stabilized normalization ($\frac{U_{:,r}}{\|U_{:,r}\|_2 + \epsilon}$) to prevent zero-division.
-  - Honest interpretation: An interpretable reparameterization closely equivalent to Group Lasso.
+### Core Formulation & Architecture
+Uses the **ORIGINAL UNNORMALIZED DeepTensor architecture**:
+$$\hat{Y} = U V^T$$
+where:
+- $U \in \mathbb{R}^{1 \times HW \times R_\text{max}}$
+- $V \in \mathbb{R}^{1 \times R_\text{max} \times B}$
+- $R_\text{max} = 30$
 
-### Effective Rank Definition
-- **Primary Measure (Fixed Pre-experiment):**
-  $$R_\text{eff} = \text{count of components satisfying } \gamma_r > 0.01 \times \max_j(\gamma_j)$$
-- **Secondary Measure:** Smallest $k$ reaching $99\%$ cumulative $\gamma$ energy ($\frac{\sum_{i=1}^k \gamma_{(i)}}{\sum_{j=1}^{R_\text{max}} \gamma_{(j)}} \ge 0.99$).
-- *Rule:* Thresholds are fixed in advance and must NOT be adjusted after observing results.
+For each rank component $r \in \{1, \dots, R_\text{max}\}$, the joint factor norm is:
+$$g_r = \sqrt{\|U_r\|_2^2 + \|V_r\|_2^2}$$
+
+The regularization term is defined as:
+$$\mathcal{R}(U,V) = \sum_{r=1}^{R_\text{max}} g_r$$
+
+Training objective:
+$$\mathcal{L}_\text{total} = \frac{1}{|\Omega_\text{train}|} \left\| \mathcal{P}_{\Omega_\text{train}} \left( Y - \hat{Y} \right) \right\|_1 + \lambda \, \mathcal{R}(U,V)$$
+
+### Abandonment of Previous Formulation (Record of Failure)
+The previously considered normalized-gamma formulation ($\hat{Y} = \sum_r \gamma_r \hat{U}_r \hat{V}_r^T$ with unit-normalized factors and explicit $\gamma_r$ parameterization) was **abandoned**.
+- **Reason for Abandonment:** Unit-normalization combined with explicit $\gamma$ parameterization caused severe scale and optimization problems under Adam ($lr=1\text{e-}3$). Specifically, it caused a catastrophic failure of the mandatory $\lambda=0$ control run (achieving only ~25.1 dB PSNR vs. the baseline ~46.4 dB PSNR) because scale dynamics and optimization bounds were severely degraded.
+
+### Component Importance & Effective Rank Metrics
+- **Component Power:**
+  $$\text{power}_r = \|U_r\|_2 \cdot \|V_r\|_2$$
+- **Primary Effective Rank:**
+  $$R_\text{eff, primary} = \text{count of components satisfying } \text{power}_r > 0.01 \times \max_j(\text{power}_j)$$
+- **Secondary Effective Rank:**
+  Smallest number of components accounting for $\ge 99\%$ of total component power ($\frac{\sum_{i=1}^k \text{power}_{(i)}}{\sum_{j=1}^{R_\text{max}} \text{power}_{(j)}} \ge 0.99$).
 
 ### Hyperparameter Selection ($\lambda$)
-- Select $\lambda^*$ using **ONLY** the 5% blind-spot self-supervised validation framework ($\lambda^* = \arg\min_\lambda \mathcal{L}_\text{val}$).
-- **Predefined Grid:** $\lambda \in \{0, 10^{-4}, 10^{-3}, 10^{-2}\}$. ($\lambda=0$ is a mandatory control with normalized factors but no sparsity penalty).
-- Ground-truth PSNR/SSIM/RMSE must **NEVER** be used to select $\lambda$.
+- **Selection Criterion:** Selected **ONLY** by the lowest held-out 5% blind-spot validation loss ($\lambda^* = \arg\min_\lambda \mathcal{L}_\text{val}$).
+- **Rule:** Ground-truth PSNR, SSIM, or RMSE must **NEVER** be used to select $\lambda$.
+- **Predefined Grid:** $\lambda \in \{0, 10^{-4}, 10^{-3}, 10^{-2}\}$.
+  - $\lambda=0$ serves as the mandatory architecture-only control.
 
-### Execution & Script Isolation
-- Implementation script: `run_figure9_sparsity.py` (**Standalone script, NOT created yet**).
-- Candidate capacity $R_\text{max} = 30$, $n_\text{inputs} = 20$, Adam ($\text{lr}=1\text{e-}3$), 5000 epochs, RTX 4060 GPU.
-- Frozen baseline (`run_figure9.py`) and frozen adaptive (`run_figure9_adaptive.py`) remain completely untouched.
+### Fixed Settings
+- $R_\text{max} = 30$
+- $n_\text{inputs} = 20$
+- Optimizer: Adam ($\text{learning rate} = 1\text{e-}3$)
+- Epochs: 5000
+- Dataset / Noise: Same ICVL preprocessing and noise configuration (`noise_snr=2`, `tau=100`)
+- Validation Framework: Same 5% blind-spot validation framework with a fixed mask across all $\lambda$-grid runs (`seed=42`).
 
-### Planned Experimental Procedure
-1. Create and smoke-test `run_figure9_sparsity.py` (verify normalization, $\gamma$ non-negativity, gradients, GPU).
-2. Run single passes for each grid setting ($\lambda \in \{0, 10^{-4}, 10^{-3}, 10^{-2}\}$).
-3. Select $\lambda^*$ strictly via validation loss.
-4. Repeat the $\lambda^*$ configuration once with a second random seed for reproducibility.
-5. Compare against frozen baselines (Full-Data Rank 20, Matched-Mask Rank 20, Adaptive Rank 8).
+### Pipeline Audit: BatchNorm Evaluation Bug & Corrected Control
+During Extension 2 evaluation, a critical pipeline discrepancy was identified and resolved:
 
-### Scientific Framing & Expected Interpretation
-- **Scientific Distinctness:** Adaptive Rank (discrete temporal growth) and Sparsity (continuous spectral pruning) are mechanistically distinct alternatives for model selection. However, because both rely on the same 5% blind-spot validation framework, finding a similar rank should be framed as **"convergent evidence from two mechanistically distinct effective-rank selection strategies"**, NOT as completely independent validations.
-- **Allowed Claims:** Automatic selection of a compact effective rank matching fixed Rank 20 quality; interpretable component-scale signal via normalized $\gamma$.
-- **Disallowed Claims:** True mathematical tensor-rank recovery; theoretical rank discovery; superiority over Adaptive Rank; statistical significance from small sample size.
+1. **Pipeline Bug Discovery**:
+   - `run_figure9_sparsity.py` previously executed `im_net.eval()` and `spec_net.eval()` prior to final reconstruction on the best validation checkpoint.
+   - The DIP skip networks contain ~60 `BatchNorm` layers (`BatchNorm2d` / `BatchNorm1d`).
+   - In a single-image unsupervised DIP setting with perturbed inputs, accumulated running statistics are unreliable, creating a severe train-vs-eval mode performance discrepancy.
+
+2. **Controlled BatchNorm Diagnostic Proof**:
+   - A controlled 500-epoch test evaluated the **EXACT SAME** checkpoint weights (`best_im_net_state`, `best_spec_net_state`) and **EXACT SAME** input tensors (`im_inp`, `spec_inp`):
+     - **TRAIN Mode (`im_net.train()`)**: PSNR **37.6465 dB** | SSIM **0.926632** | RMSE **0.013112**
+     - **EVAL Mode (`im_net.eval()`)**: PSNR **34.7731 dB** | SSIM **0.913607** | RMSE **0.018253**
+     - **Performance Gap**: **~2.87 dB** drop in eval mode on identical weights/inputs.
+     - **Tensor Difference**: Max absolute difference = `0.093265`, Mean absolute difference = `0.008068`.
+
+3. **Evaluation Pipeline Fix**:
+   - The evaluation section in `run_figure9_sparsity.py` now uses `im_net.train()` and `spec_net.train()`, matching the baseline (`run_figure9.py`) and adaptive (`run_figure9_adaptive.py`) pipeline behavior.
+   - All temporary diagnostic code was removed.
+
+4. **Corrected Definitive Control Experiment (`lambda=0`, `R_MAX=20`)**:
+   - Run configuration: `R_MAX=20`, `lambda=0`, `seed=42`, `epochs=5000` (`results_sparsity_diagnostic`).
+   - **Runtime**: 320.58 seconds
+   - **Best Validation Epoch**: 4705 (Best Val L1: `0.03005810`)
+   - **PSNR**: **46.4172 dB**
+   - **SSIM**: **0.989254**
+   - **RMSE**: **0.004774**
+   - **Primary Effective Rank**: 20
+   - **Secondary 99% Effective Rank**: 18
+   - **Peak VRAM**: 966.56 MB
+   - **Errors / Warnings**: None.
+
+5. **Invalidated / Superseded Historical Runs**:
+   - **SUPERSEDED**: The uncorrected `R_MAX=20, lambda=0` diagnostic run (**38.60 dB**) is marked **INVALID** (generated prior to the BatchNorm evaluation fix).
+   - **SUPERSEDED**: All previous `R_MAX=30` sparsity-grid runs ($\lambda \in \{0, 1\text{e-}4, 1\text{e-}3, 1\text{e-}2\}$) are marked **INVALID** for final scientific comparison (generated prior to the BatchNorm evaluation fix).
+
+### Final Verified Results (Corrected Definitive Grid)
+- **Dataset:** ICVL
+- **R_MAX:** 30
+- **Seed:** 42
+- **Epochs:** 5000
+- **n_inputs:** 20
+- **Mask:** Fixed 5% blind-spot mask
+- **Optimizer:** Adam, lr=1e-3
+- **Evaluation:** Corrected final evaluation uses `im_net.train()` and `spec_net.train()`
+
+| Parameter ($\lambda$) | Best Val Epoch | Best Val L1 Loss | PSNR (dB) | SSIM | RMSE | Primary $R_\text{eff}$ | Secondary 99% $R_\text{eff}$ | Runtime (s) | Peak VRAM (MB) |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **0.0** (Control) | 4977 | 0.03003683 | 46.8587 | 0.989582 | 0.004538 | 27 | 27 | 315.42 | 968.18 |
+| **1e-4** | 4974 | 0.03024783 | 42.4859 | 0.983794 | 0.007511 | 3 | 3 | 315.41 | 968.18 |
+| **1e-3** | 4832 | 0.03381762 | 33.0366 | 0.927514 | 0.022295 | 1 | 1 | 313.17 | 967.54 |
+| **1e-2** | 24 | 0.1022802 | 18.8475 | 0.029707 | 0.114113 | 30 | 30 | 310.52 | 967.32 |
+
+### Final Scientific Conclusion and Framing
+Extension 2 is a valid negative/analytical result. A well-motivated hypothesis about continuous rank regularization was experimentally tested with controlled self-supervised validation, yielding a negative but informative result: factor group-sparsity achieves mechanical rank sparsification but incurs a disproportionately large reconstruction-quality cost under the tested DeepTensor setting.
+
+The group-lasso factor penalty mechanically produces strong component sparsification (from effective rank 27 at $\lambda=0$ to effective rank 3 at $\lambda=10^{-4}$ and rank 1 at $\lambda=10^{-3}$). However, this sparsification causes a steep reconstruction-quality loss ($46.86\text{ dB} \to 42.49\text{ dB} \to 33.04\text{ dB}$). No favorable quality-compression tradeoff was found in the tested lambda grid. Self-supervised 5% held-out validation correctly selects $\lambda=0$, meaning the best tested regularization strength is no explicit regularization.
+
+**Contrast with Extension 1:**
+Extension 1 uses bottom-up adaptive rank growth and achieved a selected rank of 8 with a PSNR of 46.37 dB (SSIM 0.9872). Extension 2 uses top-down factor sparsification and produced rank 3 at 42.49 dB and rank 1 at 33.04 dB. Under the tested DeepTensor architecture and ICVL experimental setting, top-down factor suppression produced a substantially worse quality–sparsity tradeoff than bottom-up adaptive rank growth.
+
+### Research Terminology
+- Official Name: **Factor Group-Sparsity (Group Lasso) Regularization**
+- *Note:* Do NOT refer to this method as a nuclear-norm surrogate.
 
 ---
 
@@ -116,8 +186,11 @@ Investigate whether continuous sparsity regularization can suppress unnecessary 
 1. **[Verified]** Environment: RTX 4060 Laptop GPU, Windows 11, PyTorch 2.5.1+cu121.
 2. **[Verified]** Baseline Reproduction: Fixed Rank-20 full-data baseline reproduced and frozen (`main` branch, commit `a146cc7`).
 3. **[Verified]** Extension 1 Completed: Adaptive Rank Selection implemented, smoke-tested, evaluated across 2 independent runs ($R=8$ selected), matched control run ($R=20$), and frozen (`extension/adaptive-rank` branch, commit `85ff484`).
-4. **[Approved]** Extension 2 Design: Multiplicative scaling $\boldsymbol{\gamma}$ with unit-normalized factors $\hat{U}, \hat{V}$ approved to eliminate scale identifiability. Free $\gamma$ formulation rejected.
-5. **[Approved]** Extension 2 Parameters: $R_\text{max}=30$, primary $R_\text{eff}$ threshold at $1\%$ of $\max(\gamma)$, $\lambda \in \{0, 10^{-4}, 10^{-3}, 10^{-2}\}$ selected via 5% blind-spot validation.
+4. **[Abandoned]** Normalized Gamma Formulation: Abandoned explicit $\gamma$ parameterization with unit-normalized factors after $\lambda=0$ control failed (~25.1 dB PSNR) due to severe scale/optimization issues under Adam.
+5. **[Approved]** Extension 2 Final Design: Factor Group-Sparsity (Group Lasso) Regularization using original unnormalized DeepTensor architecture ($\hat{Y} = U V^T$), $R_\text{max}=30$, $g_r = \sqrt{\|U_r\|_2^2 + \|V_r\|_2^2}$, $\text{power}_r = \|U_r\|_2 \|V_r\|_2$, $\lambda \in \{0, 10^{-4}, 10^{-3}, 10^{-2}\}$ evaluated strictly via 5% blind-spot validation loss.
+6. **[Resolved]** BatchNorm Evaluation Bug: Confirmed that `im_net.eval()` and `spec_net.eval()` caused a ~2.87 dB degradation due to DIP BatchNorm running statistics. Fixed by setting networks to `train()` mode during final evaluation.
+7. **[Verified]** Corrected Control Benchmark: `lambda=0, R_MAX=20` run achieved **46.42 dB PSNR** (matching the 46.14 dB baseline adaptive control). Previous buggy runs (38.60 dB diagnostic and pre-fix $R_\text{max}=30$ grid) are marked superseded.
+8. **[Completed]** Extension 2 Final Rerun: Completed the full corrected grid. Result is a negative but informative finding: top-down factor suppression yields a substantially worse quality-sparsity tradeoff than bottom-up adaptive rank growth. Extension 2 is now FROZEN.
 
 ---
 
@@ -129,10 +202,11 @@ Investigate whether continuous sparsity regularization can suppress unnecessary 
 | Adaptive-rank implementation & testing | COMPLETE (Commit `85ff484`) |
 | Adaptive-rank 5000-epoch runs & control | COMPLETE ($R=8$ selected) |
 | Adaptive-rank scientific review | COMPLETE & FROZEN |
-| Sparsity extension design & review | COMPLETE (Approved with modifications) |
-| **Sparsity extension implementation** | **NEXT STEP (Implementation Design & Smoke Test)** |
+| Extension 2 design & failure review | COMPLETE (Normalized-gamma abandoned, Group Lasso approved) |
+| Extension 2 BatchNorm bug identification & fix | COMPLETE (`im_net.train()` restored, 46.42 dB control verified) |
+| Extension 2 full grid rerun & analysis | COMPLETE (Negative/analytical result documented) |
 
-**Immediate Next Step:** Prepare implementation plan for standalone script `run_figure9_sparsity.py` strictly following the unit-normalized $\boldsymbol{\gamma}$ formulation.
+**Immediate Next Step:** All planned extensions are completed and frozen. Await further project directions.
 
 ---
 
@@ -141,7 +215,7 @@ Investigate whether continuous sparsity regularization can suppress unnecessary 
 |---|---|---|
 | `run_figure9.py` | Baseline DeepTensor script (Fixed Rank-20). | **FROZEN** (Commit `a146cc7`) |
 | `run_figure9_adaptive.py` | Extension 1: Adaptive Rank Selection. | **FROZEN** (Commit `85ff484`) |
-| `run_figure9_sparsity.py` | Extension 2: Sparsity-Regularized Rank Discovery. | **NOT YET CREATED** |
+| `run_figure9_sparsity.py` | Extension 2: Factor Group-Sparsity (Group Lasso). | **FROZEN** |
 | `modules/` | Core network definitions & utilities. | **FROZEN** |
 | `data/icvl.mat` | ICVL Hyperspectral Dataset. | **FROZEN** |
 | `PROJECT_CONTEXT.md` | Master handoff and research context document. | **UPDATED** |
