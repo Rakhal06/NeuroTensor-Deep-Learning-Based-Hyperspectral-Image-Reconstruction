@@ -1,0 +1,11 @@
+Noise Type: poisson
+Noise Parameters: tau=72.12459182739072, noise_snr=0 (tau=72.124592)
+Target Input PSNR: 28.4321 dB
+Actual Input PSNR: 28.4294 dB
+Reconstruction PSNR: 45.1343 dB
+Reconstruction SSIM: 0.986597
+Reconstruction RMSE: 0.005537
+PSNR Gain: 16.7049 dB
+Runtime: 168.57 sec
+Peak VRAM: 668.67 MB
+Noise-Intensity Correlation: 0.284420
