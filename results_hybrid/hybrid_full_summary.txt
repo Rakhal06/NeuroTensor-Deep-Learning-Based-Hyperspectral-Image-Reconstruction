@@ -1,0 +1,7 @@
+Variant: hybrid
+PSNR: 45.3893
+SSIM: 0.9841
+RMSE: 0.005377
+Runtime (s): 154.64
+Peak VRAM (MB): 643.67
+Total Params: 3137808

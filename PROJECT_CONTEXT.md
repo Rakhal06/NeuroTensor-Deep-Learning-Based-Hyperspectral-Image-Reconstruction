@@ -26,9 +26,10 @@ Classical low-rank tensor decomposition and the original DeepTensor approach req
 | **Extension 5** | Ensemble Disagreement as a Proxy for Reconstruction Uncertainty | COMPLETE / FROZEN | $N=5$ ensemble on fixed observation: Raw correlation ($r=0.342$, $r_s=0.347$) drops to partial correlation ($r=0.223$, $r_s=0.153$) when controlling for GT edge magnitude. |
 | **Extension 7** | Post-hoc Factor Analysis and Descriptive Visualization of DeepTensor Components | COMPLETE / FROZEN | Fresh extraction ($U \in \mathbb{R}^{28536 \times 20}, V \in \mathbb{R}^{20 \times 260}$): Full PSNR `46.16 dB`, $k^*=18$ (PSNR plateau point), spatial cosine `0.3458`, spectral cosine `0.3662` (Commit `fede681`). |
 | **Extension 6** | Computational Efficiency Analysis | NOT STARTED / PLANNED | Execution order adjusted; planned for future evaluation. |
-| **Extension 8** | Hybrid CNN–Transformer with Attention Mechanism | NOT STARTED / PLANNED | Execution order adjusted; planned for future evaluation. |
+| **Extension 8** | Hybrid CNN–Transformer with Attention Mechanism | COMPLETE / FROZEN | **Negative result**: Spectral self-attention degraded PSNR (-1.24 dB vs baseline, -0.33 dB vs control) due to lack of suitable inductive bias for low-rank recovery. |
+| **Extension 6** | Computational Efficiency Analysis | NOT STARTED / PLANNED | Execution order adjusted; planned for future evaluation. |
 
-*Note on Execution Order:* Execution order differs from original numbering. Extension 7 was executed before Extensions 6 and 8 so factor structure could be established before introducing architectural modifications.
+*Note on Execution Order:* Execution order differs from original numbering. Extension 7 and 8 were executed before Extension 6.
 
 ---
 
@@ -239,6 +240,42 @@ Every new extension design in this project strictly adheres to the following 11-
 
 ---
 
+### H. Extension 8: Hybrid CNN–Transformer / Spectral Self-Attention — COMPLETED AND FROZEN
+- **Script:** `run_figure9_hybrid.py`
+- **Documentation:** `documentation/extension_8_attention/EXTENSION_8_DOCUMENTATION.md`
+- **Scientific Name:** **Hybrid CNN–Transformer / Spectral Self-Attention**
+- **Research Question:** Can a lightweight self-attention mechanism added to the spectral branch of DeepTensor provide a beneficial structural prior for modeling global long-range spectral dependencies compared to the baseline 1D CNN?
+
+#### Experimental Protocol
+- **Architecture:** `spec_net` uses `skip1d` (Branch A representation `[1, 128, 260]`). Self-attention block inserted before the final `Conv1d(128->20)`. Attention uses `d_model=128`, sequence length=260, 2 heads, 1 layer, sinusoidal positional encoding, FFN 128→256→128, and Pre-norm.
+- **Control:** The parameter-matched pointwise control uses the identical outer structure but replaces the sequence-mixing self-attention with a pointwise MLP mapping 128→256→128.
+- **RNG Isolation:** Global seed 42 for identically matched noisy observation (PSNR `28.4321 dB`). `im_net` initialized with seed 100, `spec_net` initialized with seed 200 to guarantee absolute fairness across baseline, hybrid, and control variants.
+- **Matched Capacity:** Baseline parameters: 3,005,328. Hybrid parameters: 3,137,808. Control parameters: 3,137,680 (0.004% parameter difference vs hybrid).
+
+#### Verified Experimental Results (5000 Epochs)
+
+| Metric | Baseline | Hybrid | Control |
+|---|---|---|---|
+| **PSNR (dB)** | **46.6277** | 45.3893 | 45.7180 |
+| **SSIM** | **0.9875** | 0.9841 | 0.9851 |
+| **RMSE** | N/A | 0.005377 | 0.005177 |
+| **Runtime (s)** | ~150-160 | 154.64 | 152.89 |
+| **Peak VRAM (MB)** | 640.37 | 643.67 | 643.67 |
+
+- **PSNR Differences:** Hybrid is **-1.2384 dB** below Baseline, and **-0.3287 dB** below Control.
+
+#### Attention Diagnostic
+- A dedicated post-training extraction yielded attention weights of shape `(1, 260, 260)` with valid, finite values.
+- The minimum weight was 0.00045, maximum 0.0224, mean 0.00384, with row sums normalized to exactly ~1.0.
+- The trace ratio (sum of the diagonal / sum of all elements) was **0.003969**, practically identical to a mathematically perfectly uniform distribution across 260 tokens (1/260 = 0.003846).
+
+#### Scientific Interpretation & Safe Claims
+1. **Negative Result:** Under the tested DeepTensor configuration, the lightweight spectral self-attention hybrid degraded reconstruction quality relative to the frozen CNN baseline, and also performed slightly worse than the parameter-matched pointwise control.
+2. **Lack of Inductive Bias:** The highly diffuse, nearly uniform attention weights indicate the self-attention layer did not learn a sparse, local, or highly structured representation. In the Deep Image Prior / untrained network framework where architectural inductive bias guides the reconstruction, self-attention failed to provide a structural prior beneficial for low-rank spectral recovery on this dataset.
+3. **No Overfitting Claim:** Training-loss trajectories flattened smoothly without classical divergence; thus, the performance degradation is attributed to a weaker structural prior rather than standard generalization "overfitting."
+
+---
+
 ## 6. Current Status & Summary Table
 
 | Extension / Task | Status | Output / Location |
@@ -250,8 +287,8 @@ Every new extension design in this project strictly adheres to the following 11-
 | Extension 4: Noise-Type Robustness | COMPLETE / FROZEN | `run_figure9_robustness.py` (Commit `4961e52`) |
 | Extension 5: Ensemble Uncertainty Estimation | COMPLETE / FROZEN | `run_figure9_ensemble.py`, `documentation/extension_5_ensemble_uncertainty/` |
 | Extension 7: Factor Interpretability | COMPLETE / FROZEN | `run_figure9_interpretability.py` (Commit `fede681`), `documentation/extension_7_interpretability/` |
+| Extension 8: Hybrid CNN–Transformer | COMPLETE / FROZEN | `run_figure9_hybrid.py`, `documentation/extension_8_attention/` |
 | Extension 6: Computational Efficiency | NOT STARTED / PLANNED | Planned future extension |
-| Extension 8: Hybrid CNN–Transformer | NOT STARTED / PLANNED | Planned future extension |
 
 ---
 
@@ -266,12 +303,16 @@ Every new extension design in this project strictly adheres to the following 11-
 | `run_figure9_robustness.py` | Extension 4: Noise-Type Robustness at matched input PSNR. | **FROZEN** (Commit `4961e52`) |
 | `run_figure9_ensemble.py` | Extension 5: Ensemble Disagreement Uncertainty Estimation. | **FROZEN** |
 | `run_figure9_interpretability.py` | Extension 7: Post-hoc Factor Analysis & Visualization. | **FROZEN** (Commit `fede681`) |
+| `run_figure9_hybrid.py` | Extension 8: Hybrid CNN-Transformer Experiment. | **FROZEN** |
 | `documentation/extension_3_tensor_completion/` | Detailed documentation for Extension 3. | **FROZEN** |
 | `documentation/extension_4_noise_type_robustness/` | Detailed documentation for Extension 4. | **FROZEN** |
 | `documentation/extension_5_ensemble_uncertainty/` | Detailed documentation for Extension 5. | **FROZEN** |
 | `documentation/extension_7_interpretability/` | Detailed documentation for Extension 7. | **FROZEN** (Commit `fede681`) |
+| `documentation/extension_8_attention/` | Detailed documentation for Extension 8. | **FROZEN** |
+| `modules/attention_spectral.py` | Extension 8: Hybrid Spectral Attention Modules. | **FROZEN** |
 | `results_ensemble/` | Summary text and compressed `.npz` archive for Extension 5. | **FROZEN** |
 | `results_interpretability/` | Summary text, `.npz` archive, and 4 PNG plots for Extension 7. | **FROZEN** (Commit `fede681`) |
+| `results_hybrid/` | Result summaries, loss trajectories, and attention weights for Extension 8. | **FROZEN** |
 | `modules/` | Core network definitions, DIP generators, & `utils.py`. | **FROZEN** |
 | `data/icvl.mat` | ICVL Hyperspectral Dataset. | **FROZEN** |
 | `PROJECT_CONTEXT.md` | Master handoff and research context document. | **UPDATED** |

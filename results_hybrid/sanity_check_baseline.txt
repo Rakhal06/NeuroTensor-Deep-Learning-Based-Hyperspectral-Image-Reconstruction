@@ -1,0 +1,1 @@
+Baseline observation PSNR: 28.4321 dB

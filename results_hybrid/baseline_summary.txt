@@ -1,0 +1,10 @@
+Variant: baseline
+im_net params: 2206152
+spec_net params: 799176
+Total params: 3005328
+Max VRAM (MB): 640.37
+Final loss: 0.0869
+V shape: [1, 20, 260]
+hs_estim shape: [1, 28536, 260]
+Finite checks: Pass
+BatchNorms in train mode: True

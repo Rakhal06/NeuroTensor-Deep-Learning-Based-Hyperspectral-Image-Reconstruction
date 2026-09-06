@@ -1,0 +1,11 @@
+Variant: control
+im_net params: 2206152
+spec_net params: 931528
+Total params: 3137680
+Extra FLOPs estimated: 34977280
+Max VRAM (MB): 643.67
+Final loss: 0.1395
+V shape: [1, 20, 260]
+hs_estim shape: [1, 28536, 260]
+Finite checks: Pass
+BatchNorms in train mode: True
