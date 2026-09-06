@@ -5,12 +5,12 @@
 - **Faculty:** Dr. Sibasankar Padhy
 - **Students:** B. Rakhal Krishna (24BDS009), Dargupally Ashish (24BDS015)
 - **Research Topic:** DeepTensor: Low-Rank Tensor Decomposition with Deep Network Priors
-- **Main Objective:** Extend the baseline DeepTensor framework across multiple dimensions—including Adaptive Rank Selection, Sparsity-Regularized Rank Discovery, Tensor Completion under missing data, Noise-Type Robustness at matched input corruption, and Ensemble-Based Uncertainty Estimation—while keeping the baseline framework reproducible and scientifically audited.
+- **Main Objective:** Extend the baseline DeepTensor framework across multiple dimensions—including Adaptive Rank Selection, Sparsity-Regularized Rank Discovery, Tensor Completion under missing data, Noise-Type Robustness at matched input corruption, Ensemble-Based Uncertainty Estimation, and Post-hoc Factor Interpretability—while keeping the baseline framework reproducible and scientifically audited.
 
 ---
 
 ## 2. Research Problem & Project Overview
-Classical low-rank tensor decomposition and the original DeepTensor approach require a fixed, manually specified rank hyperparameter (e.g., $R=20$). Selecting this rank is often arbitrary or requires computationally expensive trial-and-error grid searches. Beyond rank selection, evaluating DeepTensor's capabilities under incomplete observations (tensor completion), diverse noise statistical structures (Gaussian vs. Poisson vs. Mixed), and empirical reconstruction uncertainty via ensemble disagreement is essential to understanding the scope and limits of deep network priors in hyperspectral tensor recovery.
+Classical low-rank tensor decomposition and the original DeepTensor approach require a fixed, manually specified rank hyperparameter (e.g., $R=20$). Selecting this rank is often arbitrary or requires computationally expensive trial-and-error grid searches. Beyond rank selection, evaluating DeepTensor's capabilities under incomplete observations (tensor completion), diverse noise statistical structures (Gaussian vs. Poisson vs. Mixed), empirical reconstruction uncertainty via ensemble disagreement, and post-hoc unconstrained factor representation structure is essential to understanding the scope and limits of deep network priors in hyperspectral tensor recovery.
 
 ---
 
@@ -23,9 +23,12 @@ Classical low-rank tensor decomposition and the original DeepTensor approach req
 | **Extension 2** | Factor Group-Sparsity (Group Lasso) Regularization | COMPLETE / FROZEN | **Negative/analytical result**: Top-down factor suppression produced severe quality degradation (`46.86 dB` $\to$ `42.49 dB` $\to$ `33.04 dB`). |
 | **Extension 3** | Missing-Data / Tensor Completion Capability | COMPLETE / FROZEN | Mask-aware loss imputed unobserved tensor entries cleanly (Missing PSNR `46.11 dB` at 20% missing, `45.17 dB` at 50%, `42.51 dB` at 80%). |
 | **Extension 4** | Noise-Type Robustness at Matched Input Corruption | COMPLETE / FROZEN | Fixed input PSNR `28.43 dB`: Gaussian `46.67 dB` PSNR vs Poisson `45.13 dB` PSNR vs Mixed `46.20 dB` PSNR (Commit `4961e52`). |
-| **Extension 5** | Ensemble Disagreement as a Proxy for Reconstruction Uncertainty | COMPLETE / FROZEN PENDING GIT CHECKPOINT | $N=5$ ensemble on fixed observation: Raw correlation ($r=0.342$, $r_s=0.347$) drops to partial correlation ($r=0.223$, $r_s=0.153$) when controlling for GT edge magnitude. |
-| **Extension 6** | Computational Efficiency Analysis | NOT STARTED | Future work. |
-| **Extension 7** | Factor / Component Interpretability | NOT STARTED | Future work. |
+| **Extension 5** | Ensemble Disagreement as a Proxy for Reconstruction Uncertainty | COMPLETE / FROZEN | $N=5$ ensemble on fixed observation: Raw correlation ($r=0.342$, $r_s=0.347$) drops to partial correlation ($r=0.223$, $r_s=0.153$) when controlling for GT edge magnitude. |
+| **Extension 7** | Post-hoc Factor Analysis and Descriptive Visualization of DeepTensor Components | COMPLETE / FROZEN | Fresh extraction ($U \in \mathbb{R}^{28536 \times 20}, V \in \mathbb{R}^{20 \times 260}$): Full PSNR `46.16 dB`, $k^*=18$ (PSNR plateau point), spatial cosine `0.3458`, spectral cosine `0.3662` (Commit `fede681`). |
+| **Extension 6** | Computational Efficiency Analysis | NOT STARTED / PLANNED | Execution order adjusted; planned for future evaluation. |
+| **Extension 8** | Hybrid CNN–Transformer with Attention Mechanism | NOT STARTED / PLANNED | Execution order adjusted; planned for future evaluation. |
+
+*Note on Execution Order:* Execution order differs from original numbering. Extension 7 was executed before Extensions 6 and 8 so factor structure could be established before introducing architectural modifications.
 
 ---
 
@@ -34,10 +37,10 @@ Classical low-rank tensor decomposition and the original DeepTensor approach req
 Every new extension design in this project strictly adheres to the following 11-step process:
 
 ```
-1. Gemini Pro High (Antigravity): Independent codebase inspection + research/design review
+1. Gemini 3.1 Pro High (Antigravity): Independent codebase inspection + research/design review
 2. Claude Web 1: Skeptical independent critical review
 3. Claude Web 2: Final synthesis / design gate
-4. Only after approval: Implementation in Antigravity
+4. Only after approval: Implementation in Antigravity (Gemini Flash for routine execution)
 5. Smoke / sanity tests (e.g., reproducing baseline condition)
 6. Full experiments
 7. Scientific audit (empirical verification of logs, metrics, code integrity)
@@ -137,7 +140,7 @@ Every new extension design in this project strictly adheres to the following 11-
 
 ---
 
-### F. Extension 5: Ensemble Disagreement as a Proxy for Reconstruction Uncertainty — COMPLETED AND FROZEN PENDING GIT CHECKPOINT
+### F. Extension 5: Ensemble Disagreement as a Proxy for Reconstruction Uncertainty — COMPLETED AND FROZEN
 - **Script:** `run_figure9_ensemble.py`
 - **Documentation:** `documentation/extension_5_ensemble_uncertainty/EXTENSION_5_DOCUMENTATION.md`
 - **Results Summary:** `results_ensemble/summary.txt`
@@ -196,7 +199,47 @@ Every new extension design in this project strictly adheres to the following 11-
 
 ---
 
-## 6. Current Status & Next Immediate Action
+### G. Extension 7: Post-hoc Factor Analysis and Descriptive Visualization of DeepTensor Components — COMPLETED AND FROZEN
+- **Git Commit:** `fede681` ("Extension 7: post-hoc factor analysis and component visualization") on `main`
+- **Script:** `run_figure9_interpretability.py`
+- **Documentation:** `documentation/extension_7_interpretability/EXTENSION_7_DOCUMENTATION.md`
+- **Results Summary:** `results_interpretability/summary.txt`
+- **Saved Data Archive:** `results_interpretability/interpretability_results.npz` (`U`, `V`, `E_r`, `sorted_indices`, `sorted_E_r`, `k_psnr`, `k_ssim`, `k_rmse`, `k_star`, `C_spatial`, `C_spectral`, `mean_abs_offdiag_spatial`, `mean_abs_offdiag_spectral`)
+- **Visualizations:** `results_interpretability/top5_components.png`, `progressive_topk_metrics.png`, `spatial_cosine_similarity.png`, `spectral_cosine_similarity.png`
+- **Scientific Name:** **Post-hoc Factor Analysis and Descriptive Visualization of DeepTensor Components**
+- **Research Question:** How is reconstruction energy distributed across the $R=20$ learned components of one converged DeepTensor solution, and what does progressive top-$k$ truncation together with pairwise component correlation structure reveal about that distribution—without claiming the components are canonically identifiable or semantically meaningful?
+
+#### Experimental Protocol & Fresh Extraction
+- **Observation & Setup:** ICVL benchmark cube, master seed `42`, mixed Poisson + Gaussian noise (`noise_snr=2`, `tau=100`), input PSNR `28.4321 dB`, $R=20$, 5000 epochs, Adam $\eta=10^{-3}$, `.train()` evaluation mode.
+- **Fresh Extraction Justification:** Original baseline artifact did not contain saved final $U/V$ factors. A fresh extraction run with the exact baseline configuration was performed, achieving **46.1629 dB** PSNR (within the frozen baseline stochastic range ~45.95–46.45 dB).
+- **Exact Reconstruction Sanity Check:** Spatial factor $U \in \mathbb{R}^{28536 \times 20}$ and spectral factor $V \in \mathbb{R}^{20 \times 260}$ yield direct tensor product $\hat{Y} = U V$ matching network output with max difference `0.0` and top-$k=20$ reconstruction difference `9.164796e-08`.
+
+#### Verified Experimental Results & Metrics
+
+| Metric / Parameter | Value |
+|---|---|
+| **Full Model PSNR** | **46.1629 dB** |
+| **Full Model SSIM** | **0.986746** |
+| **Full Model RMSE** | **0.004919** |
+| **Runtime / Peak VRAM** | **149.54 s** \| **642.86 MB** |
+| **Top 5 Component Energies ($E_r = \|U_r\|_F \cdot \|V_r\|_F$)** | Comp 11: **98.30** \| Comp 12: **97.02** \| Comp 15: **44.73** \| Comp 04: **38.44** \| Comp 06: **35.30** |
+| **Progressive Top-$k$ PSNR** | $k=1$: **21.46 dB** \| $k=5$: **34.30 dB** \| $k=10$: **42.31 dB** \| $k=15$: **45.32 dB** \| $k=18$: **46.12 dB** \| $k=20$: **46.16 dB** |
+| **Progressive Top-$k$ SSIM** | $k=1$: **0.5279** \| $k=5$: **0.9617** (diff vs full: 0.025049) \| $k=10$: **0.9817** \| $k=15$: **0.9859** \| $k=18$: **0.9867** \| $k=20$: **0.9867** |
+| **Descriptive Energy-Concentration Point $k^*$** | **18** ($\text{PSNR}(18) \ge \text{PSNR}(20) - 0.1 \text{ dB} = 46.0629 \text{ dB}$) |
+| **Mean Abs Off-Diagonal Spatial Cosine Sim.** | **0.345825** |
+| **Mean Abs Off-Diagonal Spectral Cosine Sim.** | **0.366159** |
+
+#### Scientific Interpretation & Non-Identifiability Limitations
+1. **$GL(R)$ Non-Identifiability:** For any invertible matrix $G \in \mathbb{R}^{20 \times 20}$, transformed factors $U' = U G$ and $V' = G^{-1} V$ produce the exact same reconstruction $U' V' = \hat{Y}$. Individual neural components are therefore non-identifiable and not canonically unique.
+2. **Post-hoc Scale-Invariant Energy Metric ($E_r$):** Component energy $E_r = \|U_r\|_F \cdot \|V_r\|_F$ is invariant under reciprocal component scaling. DeepTensor has no intrinsic component ordering; $E_r$ sorting is strictly post-hoc for visualization and ablation.
+3. **Interpretation of $k^*=18$:** $k^*=18$ is a pre-registered descriptive energy-concentration threshold, indicating that 18 of 20 components are needed to reach within 0.1 dB of full reconstruction. Lower-energy components continue to contribute to fine pixel-level fidelity. $k^*$ is NOT a true, intrinsic, or recovered rank.
+4. **Metric Trajectories at $k=5$:** SSIM reaches 0.961697 at $k=5$ (0.025049 below full SSIM 0.986746), while PSNR reaches 34.2985 dB (11.86 dB below full PSNR 46.1629 dB). Structural similarity improves substantially with early components, but neither metric is fully saturated at $k=5$.
+5. **Pairwise Component Correlation Structure:** Spatial (0.3458) and spectral (0.3662) cosine similarities describe pairwise correlation structure in this unconstrained solution; they do NOT constitute proof of redundancy or entanglement.
+6. **Comparison with Extension 1:** Extension 7 ($k^*=18$) and Extension 1 ($R_\text{eff}=8$) produce numerically different outcomes because they evaluate methodologically distinct quantities: Extension 1 performs online validation-driven rank growth during training, whereas Extension 7 performs post-hoc component truncation of an already-converged $R=20$ solution.
+
+---
+
+## 6. Current Status & Summary Table
 
 | Extension / Task | Status | Output / Location |
 |---|---|---|
@@ -205,12 +248,10 @@ Every new extension design in this project strictly adheres to the following 11-
 | Extension 2: Factor Group-Sparsity | COMPLETE / FROZEN | `run_figure9_sparsity.py` |
 | Extension 3: Missing-Data Tensor Completion | COMPLETE / FROZEN | `run_figure9_completion.py` |
 | Extension 4: Noise-Type Robustness | COMPLETE / FROZEN | `run_figure9_robustness.py` (Commit `4961e52`) |
-| Extension 5: Ensemble Uncertainty Estimation | **COMPLETE / FROZEN PENDING GIT CHECKPOINT** | `run_figure9_ensemble.py`, `documentation/extension_5_ensemble_uncertainty/` |
-| Extension 6: Computational Efficiency | NOT STARTED | Future work |
-| Extension 7: Factor Interpretability | NOT STARTED | Future work |
-
-**Immediate Next Step:**
-Perform Git Checkpoint commit and push for Extension 5 following project protocols.
+| Extension 5: Ensemble Uncertainty Estimation | COMPLETE / FROZEN | `run_figure9_ensemble.py`, `documentation/extension_5_ensemble_uncertainty/` |
+| Extension 7: Factor Interpretability | COMPLETE / FROZEN | `run_figure9_interpretability.py` (Commit `fede681`), `documentation/extension_7_interpretability/` |
+| Extension 6: Computational Efficiency | NOT STARTED / PLANNED | Planned future extension |
+| Extension 8: Hybrid CNN–Transformer | NOT STARTED / PLANNED | Planned future extension |
 
 ---
 
@@ -223,21 +264,29 @@ Perform Git Checkpoint commit and push for Extension 5 following project protoco
 | `run_figure9_sparsity.py` | Extension 2: Factor Group-Sparsity (Group Lasso). | **FROZEN** |
 | `run_figure9_completion.py` | Extension 3: Tensor Completion under missing data. | **FROZEN** |
 | `run_figure9_robustness.py` | Extension 4: Noise-Type Robustness at matched input PSNR. | **FROZEN** (Commit `4961e52`) |
-| `run_figure9_ensemble.py` | Extension 5: Ensemble Disagreement Uncertainty Estimation. | **COMPLETE / PENDING CHECKPOINT** |
+| `run_figure9_ensemble.py` | Extension 5: Ensemble Disagreement Uncertainty Estimation. | **FROZEN** |
+| `run_figure9_interpretability.py` | Extension 7: Post-hoc Factor Analysis & Visualization. | **FROZEN** (Commit `fede681`) |
 | `documentation/extension_3_tensor_completion/` | Detailed documentation for Extension 3. | **FROZEN** |
 | `documentation/extension_4_noise_type_robustness/` | Detailed documentation for Extension 4. | **FROZEN** |
-| `documentation/extension_5_ensemble_uncertainty/` | Detailed documentation for Extension 5. | **COMPLETE / PENDING CHECKPOINT** |
-| `results_ensemble/` | Summary text and compressed `.npz` archive for Extension 5. | **COMPLETE / PENDING CHECKPOINT** |
+| `documentation/extension_5_ensemble_uncertainty/` | Detailed documentation for Extension 5. | **FROZEN** |
+| `documentation/extension_7_interpretability/` | Detailed documentation for Extension 7. | **FROZEN** (Commit `fede681`) |
+| `results_ensemble/` | Summary text and compressed `.npz` archive for Extension 5. | **FROZEN** |
+| `results_interpretability/` | Summary text, `.npz` archive, and 4 PNG plots for Extension 7. | **FROZEN** (Commit `fede681`) |
 | `modules/` | Core network definitions, DIP generators, & `utils.py`. | **FROZEN** |
 | `data/icvl.mat` | ICVL Hyperspectral Dataset. | **FROZEN** |
 | `PROJECT_CONTEXT.md` | Master handoff and research context document. | **UPDATED** |
 
 ---
 
-## 8. Research Integrity & Hardware Environment Rules
+## 8. Research Integrity, Model Responsibilities & Hardware Environment Rules
 
-1. **Hardware / Environment:** RTX 4060 Laptop GPU (8GB VRAM), Windows 11, PyTorch 2.5.1+cu121, CUDA 12.1.
-2. **Ground-Truth Data Usage:** Clean ground-truth target matrices must **NEVER** be used for gradient computation, model selection, early stopping, member weighting, or hyperparameter tuning. Ground truth is reserved strictly for post-hoc metric computation (PSNR / SSIM / RMSE / Absolute Error / Edge Magnitude control).
-3. **Evaluation Mode for DIP Networks:** DIP generator networks (`im_net`, `spec_net`) contain ~60 BatchNorm layers. Always keep networks in `.train()` mode during final inference/evaluation to avoid running-statistic degradation.
-4. **Matched-Mask Controls:** Always compare adaptive, missing-data, or ensemble mechanisms against baseline matched controls to isolate structural effects.
-5. **No Claims Beyond Empirical Evidence:** Clearly distinguish mathematical rank from effective rank, avoid framing bounded noise tests as universal robustness guarantees, and treat ensemble disagreement strictly as an empirical optimization-sensitivity proxy rather than formal Bayesian uncertainty.
+1. **Hardware / Environment:** HP Omen Laptop, NVIDIA GeForce RTX 4060 Laptop GPU (8GB VRAM), Windows 11, Python 3.11.9, PyTorch 2.5.1+cu121, CUDA 12.1. Workspace: `E:\Rakhal_Tensor\`.
+2. **Model Responsibilities:**
+   - **Gemini 3.1 Pro High:** Codebase inspection, research/design reasoning, architecture decisions.
+   - **Claude Web 1:** Independent critical design review.
+   - **Claude Web 2:** Final design gate & synthesis.
+   - **Gemini 3.6 Flash Medium:** Implementation, debugging, post-hoc audit tasks.
+   - **Gemini 3.6 Flash Low:** Simple shell commands, Git operations, routine execution.
+3. **Ground-Truth Data Usage:** Clean ground-truth target matrices must **NEVER** be used for gradient computation, model selection, early stopping, member weighting, or hyperparameter tuning. Ground truth is reserved strictly for post-hoc metric computation (PSNR / SSIM / RMSE / Absolute Error / Edge Magnitude control).
+4. **Evaluation Mode for DIP Networks:** DIP generator networks (`im_net`, `spec_net`) contain ~60 BatchNorm layers. Always keep networks in `.train()` mode during final inference/evaluation to avoid running-statistic degradation.
+5. **Scientific Claim Discipline:** Experimental evidence is authoritative. Do not manufacture improvements, convert descriptive observations into causal claims, or claim superiority without empirical evidence. Clearly distinguish observed results, interpretations, limitations, and unsupported claims.
