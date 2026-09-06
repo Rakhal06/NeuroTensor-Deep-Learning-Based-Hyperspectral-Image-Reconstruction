@@ -1,0 +1,16 @@
+Variant: control
+im_net params: 2206152
+spec_net params: 798100
+Total params: 3004252
+im_inp sum: 28527.457031
+spec_inp sum: 258.771820
+ALiBi trainable params: 0
+spec_inp shape: torch.Size([1, 20, 260])
+PSNR: 10.3488 dB
+SSIM: 0.0078
+RMSE: 0.303782
+Runtime: 0.61 s
+Peak VRAM: 673.00 MB
+Final Loss: 0.240532
+V shape: torch.Size([1, 20, 260])
+hs_estim shape: torch.Size([1, 28536, 260])

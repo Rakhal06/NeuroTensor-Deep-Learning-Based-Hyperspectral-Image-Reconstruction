@@ -27,6 +27,7 @@ Classical low-rank tensor decomposition and the original DeepTensor approach req
 | **Extension 7** | Post-hoc Factor Analysis and Descriptive Visualization of DeepTensor Components | COMPLETE / FROZEN | Fresh extraction ($U \in \mathbb{R}^{28536 \times 20}, V \in \mathbb{R}^{20 \times 260}$): Full PSNR `46.16 dB`, $k^*=18$ (PSNR plateau point), spatial cosine `0.3458`, spectral cosine `0.3662` (Commit `fede681`). |
 | **Extension 6** | Computational Efficiency Analysis | NOT STARTED / PLANNED | Execution order adjusted; planned for future evaluation. |
 | **Extension 8** | Hybrid CNN–Transformer with Attention Mechanism | COMPLETE / FROZEN | **Negative result**: Spectral self-attention degraded PSNR (-1.24 dB vs baseline, -0.33 dB vs control) due to lack of suitable inductive bias for low-rank recovery. |
+| **Extension 9** | Transformer-Dominant Spectral Generator | COMPLETE / FROZEN | **Negative result**: Transformer outperformed matched control (+1.40 dB) but fell short of frozen CNN baseline (-2.55 dB). |
 | **Extension 6** | Computational Efficiency Analysis | NOT STARTED / PLANNED | Execution order adjusted; planned for future evaluation. |
 
 *Note on Execution Order:* Execution order differs from original numbering. Extension 7 and 8 were executed before Extension 6.
@@ -276,6 +277,36 @@ Every new extension design in this project strictly adheres to the following 11-
 
 ---
 
+### I. Extension 9: Transformer-Dominant Spectral Generator — COMPLETED AND FROZEN
+- **Script:** `run_figure9_spectral_transformer.py`
+- **Documentation:** `documentation/extension_9_spectral_transformer/EXTENSION_9_DOCUMENTATION.md`
+- **Scientific Name:** **Transformer-Dominant Spectral Generator**
+- **Research Question:** Can a full sequence-modeling Transformer (SpecViT) with fixed ALiBi positional biases provide a stronger structural prior for hyperspectral factor generation than local convolutions under a strict parameter-matched, latent-identical comparison?
+
+#### Experimental Protocol
+- **Architecture:** 4-layer Transformer Encoder (`d_model=128`, 4 heads, Pre-LN, GELU, no dropout, no final activation) + sinusoidal PE + ALiBi.
+- **Control:** Parameter-matched pointwise control replacing MHSA+ALiBi with an independent per-token linear operation (`Linear(128, 256) -> Linear(256, 128)`) to disable cross-token mixing.
+- **RNG & Latent Fairness:** Strict RNG ordering explicitly enforced before conditional spectral model construction, guaranteeing that all variants consumed the mathematically identical latent tensor `spec_inp`.
+- **Matched Capacity:** Original CNN parameters: 799,176. Transformer parameters: 798,612. Control parameters: 798,100.
+
+#### Verified Experimental Results (5000 Epochs)
+
+| Metric | Baseline | Transformer | Control |
+|---|---|---|---|
+| **PSNR (dB)** | **46.6277** | 44.0766 | 42.6737 |
+| **SSIM** | **0.9875** | 0.9793 | 0.9710 |
+| **RMSE** | N/A | 0.006254 | 0.007350 |
+| **Runtime (s)** | ~150-160 | 248.08 | 244.83 |
+| **Peak VRAM (MB)** | 640.37 | 681.51 | 673.00 |
+
+- **Derived Comparisons:** Transformer is **-2.5511 dB** below the CNN Baseline, but **+1.4029 dB** above the parameter-matched Control.
+
+#### Scientific Interpretation & Safe Claims
+1. **Valid Negative Result:** The Transformer-dominant spectral generator substantially outperformed the parameter-matched pointwise control but remained 2.5511 dB below the frozen CNN DeepTensor baseline under the tested ICVL, rank-20, mixed-noise configuration. This indicates that cross-token sequence modeling was useful relative to the control, but did not provide a stronger reconstruction prior than the original CNN spectral generator in this setting.
+2. **Claim Boundaries:** These results apply to the tested DeepTensor configuration. We do not claim Transformers generally perform worse than CNNs or assert causal superiority of one architectural component across all domains.
+
+---
+
 ## 6. Current Status & Summary Table
 
 | Extension / Task | Status | Output / Location |
@@ -288,6 +319,7 @@ Every new extension design in this project strictly adheres to the following 11-
 | Extension 5: Ensemble Uncertainty Estimation | COMPLETE / FROZEN | `run_figure9_ensemble.py`, `documentation/extension_5_ensemble_uncertainty/` |
 | Extension 7: Factor Interpretability | COMPLETE / FROZEN | `run_figure9_interpretability.py` (Commit `fede681`), `documentation/extension_7_interpretability/` |
 | Extension 8: Hybrid CNN–Transformer | COMPLETE / FROZEN | `run_figure9_hybrid.py`, `documentation/extension_8_attention/` |
+| Extension 9: Transformer-Dominant | COMPLETE / FROZEN | `run_figure9_spectral_transformer.py`, `documentation/extension_9_spectral_transformer/` |
 | Extension 6: Computational Efficiency | NOT STARTED / PLANNED | Planned future extension |
 
 ---
@@ -313,6 +345,10 @@ Every new extension design in this project strictly adheres to the following 11-
 | `results_ensemble/` | Summary text and compressed `.npz` archive for Extension 5. | **FROZEN** |
 | `results_interpretability/` | Summary text, `.npz` archive, and 4 PNG plots for Extension 7. | **FROZEN** (Commit `fede681`) |
 | `results_hybrid/` | Result summaries, loss trajectories, and attention weights for Extension 8. | **FROZEN** |
+| `run_figure9_spectral_transformer.py` | Extension 9: Transformer-Dominant Spectral Generator Experiment. | **FROZEN** |
+| `documentation/extension_9_spectral_transformer/` | Detailed documentation for Extension 9. | **FROZEN** |
+| `modules/spectral_transformer.py` | Extension 9: Transformer Architectures (Primary & Control). | **FROZEN** |
+| `results_spectral_transformer/` | Extension 9: Result summaries, loss trajectories, and attention weights. | **FROZEN** |
 | `modules/` | Core network definitions, DIP generators, & `utils.py`. | **FROZEN** |
 | `data/icvl.mat` | ICVL Hyperspectral Dataset. | **FROZEN** |
 | `PROJECT_CONTEXT.md` | Master handoff and research context document. | **UPDATED** |
