@@ -189,7 +189,7 @@ Let $Y_1, Y_2, Y_3, Y_4, Y_5 \in \mathbb{R}^{H \times W \times B}$ be the 5 memb
 - **Script:** [`run_figure9_ensemble.py`](file:///e:/Rakhal_Tensor/run_figure9_ensemble.py)
 - **Summary Text:** [`results_ensemble/summary.txt`](file:///e:/Rakhal_Tensor/results_ensemble/summary.txt)
 - **Compressed Arrays:** `results_ensemble/ensemble_results.npz` (contains `reconstructions`, `ensemble_mean`, `uncertainty`, `absolute_error`, `edge_magnitude`)
-- **Documentation:** [`documentation/extension_5_ensemble_uncertainty/EXTENSION_5_DOCUMENTATION.md`](file:///e:/Rakhal_Tensor/documentation/extension_5_ensemble_uncertainty/EXTENSION_5_DOCUMENTATION.md)
+- **Documentation:** [`documentation/extension_5_ensemble_uncertainty/ENSEMBLE_UNCERTAINTY_DOCUMENTATION.md`](file:///e:/Rakhal_Tensor/documentation/extension_5_ensemble_uncertainty/ENSEMBLE_UNCERTAINTY_DOCUMENTATION.md)
 
 ---
 

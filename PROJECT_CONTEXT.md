@@ -100,7 +100,7 @@ Every new extension design in this project strictly adheres to the following 11-
 
 ### D. Extension 3: Missing-Data / Tensor Completion Capability — COMPLETED AND FROZEN
 - **Script:** `run_figure9_completion.py` (Frozen)
-- **Documentation:** `documentation/extension_3_tensor_completion/EXTENSION_4_DOCUMENTATION.md`
+- **Documentation:** `documentation/extension_3_tensor_completion/TENSOR_COMPLETION_DOCUMENTATION.md`
 - **Formulation:** Mask-aware L1 reconstruction loss over observed entries $\Omega_\text{obs}$:
   $$\mathcal{L} = \frac{1}{|\Omega_\text{train}|} \left\| \mathcal{P}_{\Omega_\text{train}} \left( Y - \hat{Y} \right) \right\|_1$$
 - **Verified Results (5000 Epochs, Fixed Rank-20, Seed 42):**
@@ -115,7 +115,7 @@ Every new extension design in this project strictly adheres to the following 11-
 
 ### E. Extension 4: Noise-Type Robustness at Matched Input Corruption — COMPLETED AND FROZEN
 - **Script:** `run_figure9_robustness.py` (Frozen)
-- **Documentation:** `documentation/extension_4_noise_type_robustness/EXTENSION_4_DOCUMENTATION.md`
+- **Documentation:** `documentation/extension_4_noise_type_robustness/NOISE_TYPE_ROBUSTNESS_DOCUMENTATION.md`
 - **Git Commit:** `4961e52` (Full SHA: `4961e5287e07caaaef8cdd3073998f8045ee33d3`) on `main`
 - **Research Question:** Does DeepTensor's reconstruction quality, at a fixed and matched input-corruption severity, transfer across noise families with different statistical structure (signal-independent Gaussian vs. signal-dependent Poisson) as well as it performs under the mixed noise model the baseline was originally evaluated on?
 
@@ -142,7 +142,7 @@ Every new extension design in this project strictly adheres to the following 11-
 
 ### F. Extension 5: Ensemble Disagreement as a Proxy for Reconstruction Uncertainty — COMPLETED AND FROZEN
 - **Script:** `run_figure9_ensemble.py`
-- **Documentation:** `documentation/extension_5_ensemble_uncertainty/EXTENSION_5_DOCUMENTATION.md`
+- **Documentation:** `documentation/extension_5_ensemble_uncertainty/ENSEMBLE_UNCERTAINTY_DOCUMENTATION.md`
 - **Results Summary:** `results_ensemble/summary.txt`
 - **Saved Arrays:** `results_ensemble/ensemble_results.npz` (`reconstructions`, `ensemble_mean`, `uncertainty`, `absolute_error`, `edge_magnitude`)
 - **Scientific Name:** **Ensemble Disagreement as a Proxy for Reconstruction Uncertainty**
@@ -202,7 +202,7 @@ Every new extension design in this project strictly adheres to the following 11-
 ### G. Extension 7: Post-hoc Factor Analysis and Descriptive Visualization of DeepTensor Components — COMPLETED AND FROZEN
 - **Git Commit:** `fede681` ("Extension 7: post-hoc factor analysis and component visualization") on `main`
 - **Script:** `run_figure9_interpretability.py`
-- **Documentation:** `documentation/extension_7_interpretability/EXTENSION_7_DOCUMENTATION.md`
+- **Documentation:** `documentation/extension_7_interpretability/FACTOR_INTERPRETABILITY_DOCUMENTATION.md`
 - **Results Summary:** `results_interpretability/summary.txt`
 - **Saved Data Archive:** `results_interpretability/interpretability_results.npz` (`U`, `V`, `E_r`, `sorted_indices`, `sorted_E_r`, `k_psnr`, `k_ssim`, `k_rmse`, `k_star`, `C_spatial`, `C_spectral`, `mean_abs_offdiag_spatial`, `mean_abs_offdiag_spectral`)
 - **Visualizations:** `results_interpretability/top5_components.png`, `progressive_topk_metrics.png`, `spatial_cosine_similarity.png`, `spectral_cosine_similarity.png`
