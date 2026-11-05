@@ -1,0 +1,3 @@
+TEST/VALIDATION CHECKPOINT ONLY.
+This checkpoint was generated using a 10-epoch smoke test.
+It MUST NOT be presented as a final research result.

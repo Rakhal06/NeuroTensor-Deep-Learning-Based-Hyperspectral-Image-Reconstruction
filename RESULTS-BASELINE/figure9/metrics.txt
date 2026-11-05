@@ -1,0 +1,23 @@
+============================================================
+DEEPTENSOR BASELINE: FIGURE 9 METRICS SUMMARY
+============================================================
+Experiment: Figure 9 (Hyperspectral Denoising)
+Dataset: ICVL Hyperspectral Image (data/icvl.mat)
+Dimensions: 174 x 164 x 260
+Rank: 20
+Noise: Poisson (tau=100) + Gaussian readout (snr=2)
+Epochs: 5000 | Optimizer: Adam (lr=0.001)
+Device: cuda
+
+METHOD          PSNR (dB)     SSIM         RMSE         RUNTIME (s)
+--------------------------------------------------------------------
+Noisy Input     28.43         0.4538       0.0379       -
+Rank-20 SVD     38.31         0.9176       0.0122       0.59
+BM3D            40.50         0.9499       0.0094       157.80
+DeepTensor      46.28         0.9872       0.0049       148.15
+--------------------------------------------------------------------
+
+DeepTensor PSNR Gain over SVD:  +7.97 dB
+DeepTensor PSNR Gain over BM3D: +5.78 dB
+DeepTensor SSIM Gain over SVD:  +0.0696
+Final L1 Reconstruction Loss:   2.983139e-02

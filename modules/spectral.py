@@ -48,7 +48,7 @@ def tucker_decompose(cube, rank, max_iters=1000):
         Outputs:
             cube_lr: Low tucker rank decompositoin
     '''
-    cube_ten = torch.tensor(cube).cuda()
+    cube_ten = torch.tensor(cube).to('cpu')
     tucker_core, tucker_factors = decomposition.tucker(cube_ten,
                                                        (rank, rank, rank), 
                                                        n_iter_max=max_iters)

@@ -13,7 +13,7 @@ import argparse
 
 import numpy as np
 from scipy import io
-from scipy.sparse import linalg
+from scipy import linalg
 from skimage.metrics import structural_similarity as ssim_func
 
 from sklearn.model_selection import train_test_split
@@ -26,6 +26,7 @@ from sklearn.decomposition import PCA, FastICA
 from sklearn.svm import SVC
 
 import torch
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 import matplotlib.pyplot as plt
 plt.gray()
@@ -48,7 +49,8 @@ def do_pca_and_svm(X_train, y_train, X_test, n_components, param_grid):
     X_train_centered /= X_train_centered.std(1).reshape(-1, 1)
     
     covmat = X_train_centered.T.dot(X_train_centered)
-    _, eigenfaces = linalg.eigsh(covmat, k=n_components)
+    N = covmat.shape[0]
+    _, eigenfaces = linalg.eigh(covmat, subset_by_index=[N - n_components, N - 1])
     eigenfaces = eigenfaces.T   
     
     y_pred = do_svm(eigenfaces, X_train, y_train, X_test, param_grid)
@@ -151,8 +153,7 @@ if __name__ == '__main__':
         target_names = [name[0] for name in names]
         
         # Resize to avoid flooding GPU
-        data = np.transpose(utils.resize(np.transpose(faces, [1, 2, 0]), scale),
-                            [2, 0, 1])
+        data = faces
         n_samples, h, w = data.shape
         X = data.reshape(n_samples, h*w)
             
@@ -167,24 +168,24 @@ if __name__ == '__main__':
     # Generate networks
     if nettype == 'unet':
         eigen_net = models.UNetND(n_inputs, n_components, 2,
-                                  init_nconv).cuda()            
-        net_inp = utils.get_inp([1, n_inputs, h, w])
+                                  init_nconv).to(device)            
+        net_inp = utils.get_inp([1, n_inputs, h, w], device=device)
     elif nettype == 'dip':
         eigen_net = deep_prior.get_net(n_inputs, 'skip', 'reflection',
                                     upsample_mode='bilinear',
                                     skip_n33d=128,
                                     skip_n33u=128,
                                     num_scales=5,
-                                    n_channels=n_components).cuda()
-        net_inp = utils.get_inp([1, n_inputs, h, w])
+                                    n_channels=n_components).to(device)
+        net_inp = utils.get_inp([1, n_inputs, h, w], device=device)
     elif nettype == 'dd':
         nchans = [init_nconv]*num_channels_up
-        eigen_net = deep_decoder.decodernw(n_components).cuda()
+        eigen_net = deep_decoder.decodernw(n_components).to(device)
         
         H1 = h // pow(2, num_channels_up)
         W1 = w // pow(2, num_channels_up)
-        net_inp = utils.get_inp([1, init_nconv, H1, W1])
-    
+        net_inp = utils.get_inp([1, init_nconv, H1, W1], device=device)
+
     # Clean data
     print('Generating eigenfaces on clean data')
     eigenfaces_gt, y_gt = do_ica_and_svm(X_train, y_train, X_test, n_components,
@@ -204,7 +205,7 @@ if __name__ == '__main__':
     X_train_noisy_centered = X_train_noisy - X_train_noisy.mean(1).reshape(-1, 1)
     
     covmat = X_train_noisy_centered.T.dot(X_train_noisy_centered)
-    covmat_ten = torch.tensor(covmat)[None, ...].cuda()
+    covmat_ten = torch.tensor(covmat)[None, ...].to(device)
     
     net_params = list(eigen_net.parameters())
     inp_params = [net_inp]
@@ -255,11 +256,12 @@ if __name__ == '__main__':
         if sys.platform == 'win32':            
             img = utils.build_montage(eigenimg.squeeze().detach().cpu().numpy())
             
-            cv2.imshow('Eigenvector', utils.normalize(img, True))
-            cv2.waitKey(1)
+            # cv2.imshow('Eigenvector', utils.normalize(img, True))
+            # cv2.waitKey(1)
     
     covmat_dlrf = best_covmat.squeeze().cpu().numpy()
-    _, eigenface_dlrf = linalg.eigsh(covmat_dlrf, k=n_components)
+    N = covmat_dlrf.shape[0]
+    _, eigenface_dlrf = linalg.eigh(covmat_dlrf, subset_by_index=[N - n_components, N - 1])
     eigenface_dlrf = eigenface_dlrf.T
     
     # Now predict
@@ -270,18 +272,138 @@ if __name__ == '__main__':
     accuracy_pca = (y_test == y_pca).sum()/y_test.size
     accuracy_ica = (y_test == y_ica).sum()/y_test.size
     accuracy_dlrf = (y_test == y_dlrf).sum()/y_test.size
+    
+    map_gt = average_precision(y_test, y_gt, n_classes)
+    map_pca = average_precision(y_test, y_pca, n_classes)
+    map_ica = average_precision(y_test, y_ica, n_classes)
+    map_dlrf = average_precision(y_test, y_dlrf, n_classes)
         
-    print('Noiseless PCA accuracy: %.2f'%((y_test == y_gt).sum()/y_test.size))
-    print('Noiseless PCA mAP: %.2f'%average_precision(y_test, y_gt, n_classes))
-    print('')
+    print('============================================================')
+    print('FIGURE 2 EXPERIMENT RESULTS')
+    print('============================================================')
+    print('Noiseless PCA accuracy: %.4f | mAP: %.4f' % (accuracy_gt, map_gt))
+    print('PCA accuracy:           %.4f | mAP: %.4f' % (accuracy_pca, map_pca))
+    print('ICA accuracy:           %.4f | mAP: %.4f' % (accuracy_ica, map_ica))
+    print('DeepTensor accuracy:    %.4f | mAP: %.4f' % (accuracy_dlrf, map_dlrf))
+    print('============================================================')
     
-    print('PCA accuracy: %.2f'%((y_test == y_pca).sum()/y_test.size))
-    print('PCA mAP: %.2f'%average_precision(y_test, y_pca, n_classes))
-    print('')
+    # Save outputs to RESULTS-BASELINE/figure2
+    out_dir = 'RESULTS-BASELINE/figure2'
+    os.makedirs(f'{out_dir}/images', exist_ok=True)
+    os.makedirs(f'{out_dir}/plots', exist_ok=True)
     
-    print('ICA accuracy: %.2f'%((y_test == y_ica).sum()/y_test.size))
-    print('ICA mAP: %.2f'%average_precision(y_test, y_ica, n_classes))
-    print('')
+    # 1. Save configuration
+    import json
+    config = {
+        'experiment': 'Figure 2: DeepTensor Eigenfaces for Facial Classification',
+        'dataset': 'weizzman.mat',
+        'n_samples': int(n_samples),
+        'image_height': int(h),
+        'image_width': int(w),
+        'n_classes': int(n_classes),
+        'n_components': int(n_components),
+        'train_size': float(train_size),
+        'tau': float(tau),
+        'noise_snr': float(noise_snr),
+        'network_type': nettype,
+        'learning_rate': float(learning_rate),
+        'epochs': int(epochs),
+        'reg_noise_std': float(reg_noise_std),
+        'device': str(device)
+    }
+    with open(f'{out_dir}/configuration.json', 'w') as f:
+        json.dump(config, f, indent=4)
+        
+    # 2. Save numerical metrics
+    with open(f'{out_dir}/metrics.txt', 'w') as f:
+        f.write('============================================================\n')
+        f.write('DEEPTENSOR BASELINE: FIGURE 2 METRICS\n')
+        f.write('============================================================\n')
+        f.write('Experiment: Figure 2 (DeepTensor Eigenfaces)\n')
+        f.write('Dataset: Weizmann Face Database (data/weizzman.mat)\n')
+        f.write(f'Input shape: {n_samples} samples x {h}x{w}\n')
+        f.write(f'Basis rank (components): {n_components}\n')
+        f.write(f'Noise configuration: Poisson (tau={tau}) + Gaussian readout (snr={noise_snr})\n')
+        f.write(f'Input Noisy PSNR (approx): {utils.psnr(X_train, X_train_noisy):.2f} dB\n')
+        f.write(f'Training epochs: {epochs}\n')
+        f.write(f'Device: {device}\n\n')
+        f.write('METHOD                    ACCURACY       mAP\n')
+        f.write('------------------------------------------------------------\n')
+        f.write(f'Clean PCA (Oracle)        {accuracy_gt:.4f}         {map_gt:.4f}\n')
+        f.write(f'Noisy PCA                 {accuracy_pca:.4f}         {map_pca:.4f}\n')
+        f.write(f'Noisy ICA                 {accuracy_ica:.4f}         {map_ica:.4f}\n')
+        f.write(f'DeepTensor                {accuracy_dlrf:.4f}         {map_dlrf:.4f}\n')
+        f.write('------------------------------------------------------------\n\n')
+        f.write(f'DeepTensor Accuracy Gain over Noisy PCA: +{(accuracy_dlrf - accuracy_pca)*100:.2f}%\n')
+        f.write(f'DeepTensor mAP Gain over Noisy PCA:      +{(map_dlrf - map_pca)*100:.2f}%\n')
+        f.write(f'Final Covariance Reconstruction Loss:   {best_loss:.6e}\n')
+
+    # 3. Save basis images (top 12 eigenfaces comparison matching Fig. 2)
+    top_k = 12
+    fig, axes = plt.subplots(3, top_k, figsize=(20, 5))
+    for k in range(top_k):
+        # PCA
+        axes[0, k].imshow(eigenfaces_pca[k].reshape(h, w), cmap='gray')
+        axes[0, k].axis('off')
+        if k == 0:
+            axes[0, k].set_title('PCA', fontsize=12)
+        # ICA
+        axes[1, k].imshow(eigenfaces_ica[k].reshape(h, w), cmap='gray')
+        axes[1, k].axis('off')
+        if k == 0:
+            axes[1, k].set_title('ICA', fontsize=12)
+        # DeepTensor
+        axes[2, k].imshow(eigenface_dlrf[k].reshape(h, w), cmap='gray')
+        axes[2, k].axis('off')
+        if k == 0:
+            axes[2, k].set_title('DeepTensor', fontsize=12)
+            
+    plt.tight_layout()
+    fig.savefig(f'{out_dir}/images/figure2_eigenfaces_top12.png', dpi=300)
+    plt.close(fig)
     
-    print('DeepTensor accuracy: %.2f'%((y_test == y_dlrf).sum()/y_test.size))
-    print('DeepTensor mAP: %.2f'%average_precision(y_test, y_dlrf, n_classes))
+    # Save individual basis montages
+    plt.figure(figsize=(8, 8))
+    plt.imshow(utils.build_montage(eigenface_dlrf[:64].reshape(-1, h, w)), cmap='gray')
+    plt.title('DeepTensor Learned Eigenfaces Montage (Top 64)')
+    plt.axis('off')
+    plt.savefig(f'{out_dir}/images/deeptensor_eigenfaces_montage.png', dpi=300)
+    plt.close()
+    
+    # 4. Save training loss curve
+    plt.figure(figsize=(7, 4))
+    plt.plot(loss_array, label='Covariance Fitting L2 Loss', color='blue')
+    plt.yscale('log')
+    plt.xlabel('Epoch')
+    plt.ylabel('Loss')
+    plt.title('DeepTensor Figure 2 Covariance Loss')
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    plt.savefig(f'{out_dir}/plots/figure2_loss_curve.png', dpi=300)
+    plt.close()
+
+    # 5. Save classification performance comparison bar chart
+    plt.figure(figsize=(6, 4))
+    methods = ['Clean PCA', 'Noisy PCA', 'Noisy ICA', 'DeepTensor']
+    accs = [accuracy_gt, accuracy_pca, accuracy_ica, accuracy_dlrf]
+    colors = ['gray', 'crimson', 'darkorange', 'forestgreen']
+    plt.bar(methods, accs, color=colors, width=0.55)
+    plt.ylim(0, 1.0)
+    plt.ylabel('Classification Accuracy')
+    plt.title('Figure 2: Classification Accuracy under Poisson Noise')
+    for i, v in enumerate(accs):
+        plt.text(i, v + 0.02, f'{v:.2f}', ha='center', fontweight='bold')
+    plt.grid(axis='y', alpha=0.3)
+    plt.savefig(f'{out_dir}/plots/figure2_classification_accuracy.png', dpi=300)
+    plt.close()
+    
+    # 6. Save array checkpoint
+    np.savez_compressed(
+        f'{out_dir}/figure2_results.npz',
+        eigenfaces_pca=eigenfaces_pca,
+        eigenfaces_ica=eigenfaces_ica,
+        eigenface_dlrf=eigenface_dlrf,
+        loss_array=loss_array,
+        accuracies=[accuracy_gt, accuracy_pca, accuracy_ica, accuracy_dlrf]
+    )
+    print(f'All Figure 2 results successfully saved to: {out_dir}')

@@ -1,0 +1,20 @@
+=================================================================================================================================================================================
+DEEPTENSOR BASELINE EXPERIMENT SUITE: SUMMARY STATUS TABLE
+=================================================================================================================================================================================
+Experiment    Paper Figure   Script             Implementation Status       Execution Status    Dataset      Visual Outputs Generated                                 Metrics Generated        Checkpoint Saved    Reproduction Status     Important Differences
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Figure 2      Fig. 2 (p. 2)  run_figure2.py     IMPLEMENTED AND EXECUTED    SUCCESS (cuda)      weizzman     Top-12 Eigenfaces comparison, montage, accuracy chart    Accuracy, mAP, Loss      Yes (.npz)          REPRODUCED FAITHFULLY   Full grid SVM cross-validation, 100 epochs, Poisson noise (tau=20)
+Figure 6      Fig. 6 (p. 5)  run_figure6.py     IMPLEMENTED AND EXECUTED    SUCCESS (cuda)      Synthetic    PSNR vs Rank (3 regimes), rank-30 visual comparisons     PSNR vs Rank Table       Yes (.npz)          REPRODUCED FAITHFULLY   Sweeps ranks 10-60 over Gaussian, Poisson, Rician regimes
+Figure 7      Fig. 7 (p. 5)  run_figure7.py     IMPLEMENTED AND EXECUTED    SUCCESS (cuda)      Synthetic    PSNR vs Sample Size & Noise plots, Covariance panels     PSNR vs Sample & Sigma   Yes (.npz)          REPRODUCED FAITHFULLY   Sweeps M in [32, 1024] and sigma in [0.05, 1.0]
+Figure 9      Fig. 9 (p. 8)  run_figure9.py     IMPLEMENTED AND EXECUTED    SUCCESS (cuda)      icvl         9-panel visual comparison (RGB, GT, Noisy, SVD, BM3D, DT) PSNR, SSIM, RMSE, Loss  Yes (.pt + .npz)    REPRODUCED FAITHFULLY   5000 epochs, rank-20, spatial 2D DIP + spectral 1D DIP
+Figure 12     Fig. 12 (p. 9) run_figure12.py    IMPLEMENTED AND EXECUTED    SUCCESS (cuda)      pet          6-panel visual comparison (Sinogram, GT, Alg, TV, DT)   PSNR, SSIM, RMSE, Loss   Yes (.pt + .npz)    REPRODUCED FAITHFULLY   2000 epochs, rank-1000 PARAFAC, 40 Radon angles
+=================================================================================================================================================================================
+Summary Statistics:
+Total Experiments Requested:    5
+Total Implemented:              5
+Total Executed Successfully:    5
+Total Failed / Blocked:         0
+Total With Verified Outputs:    5
+Directory:                      RESULTS-BASELINE/
+Final Report:                   RESULTS-BASELINE/final_report.txt
+=================================================================================================================================================================================

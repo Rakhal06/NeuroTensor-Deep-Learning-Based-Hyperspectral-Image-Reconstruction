@@ -324,22 +324,25 @@ def get_pca(nrows, ndata, rank, noise_type, signal_type,
     
     return mat_noisy, mat, basis
 
-def get_inp(tensize, const=10.0):
+def get_inp(tensize, const=10.0, device=None):
     '''
         Wrapper to get a variable on graph
     '''
-    inp = torch.rand(tensize).cuda()/const
-    inp = torch.autograd.Variable(inp, requires_grad=True).cuda()
+    if device is None:
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    inp = torch.rand(tensize, device=device)/const
     inp = torch.nn.Parameter(inp)
     
     return inp
 
-def get_2d_posencode_inp(H, W, n_inputs):
+def get_2d_posencode_inp(H, W, n_inputs, device=None):
     '''
         Get positionally encoded inputs for inpainting tasks
         
         https://bmild.github.io/fourfeat/
     '''
+    if device is None:
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     X, Y = np.mgrid[:H, :W]
     coords = np.hstack(((10*X/H).reshape(-1, 1), (10*Y/W).reshape(-1, 1)))
     
@@ -353,17 +356,19 @@ def get_2d_posencode_inp(H, W, n_inputs):
     posencode_vals = np.hstack((sin_vals, cos_vals)).astype(np.float32)
     
     inp = posencode_vals.reshape(H, W, 2*n_inputs)
-    inp = torch.autograd.Variable(torch.tensor(inp), requires_grad=True).cuda()
+    inp = torch.tensor(inp, device=device)
     inp = torch.nn.Parameter(inp.permute(2, 0, 1)[None, ...])
     
     return inp
 
-def get_1d_posencode_inp(H, n_inputs):
+def get_1d_posencode_inp(H, n_inputs, device=None):
     '''
         Get positionally encoded inputs for inpainting tasks
         
         https://bmild.github.io/fourfeat/
     '''
+    if device is None:
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     X = 10*np.arange(H).reshape(-1, 1)/H
     
     freqs = np.random.randn(1, n_inputs)
@@ -376,7 +381,7 @@ def get_1d_posencode_inp(H, n_inputs):
     posencode_vals = np.hstack((sin_vals, cos_vals)).astype(np.float32)
     
     inp = posencode_vals.reshape(H, 2*n_inputs)
-    inp = torch.autograd.Variable(torch.tensor(inp), requires_grad=True).cuda()
+    inp = torch.tensor(inp, device=device)
     inp = torch.nn.Parameter(inp.permute(1, 0)[None, ...])
     
     return inp  

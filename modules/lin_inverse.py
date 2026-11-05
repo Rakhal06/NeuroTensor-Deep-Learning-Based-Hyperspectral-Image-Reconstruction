@@ -17,6 +17,10 @@ from scipy import signal
 import torch
 from torch import nn
 import kornia
+try:
+    from kornia.geometry.transform import rotate as kornia_rotate
+except (ImportError, AttributeError):
+    kornia_rotate = getattr(kornia, 'rotate', None)
 
 import matplotlib.pyplot as plt
 import cv2
@@ -36,7 +40,7 @@ def radon(imten, angles):
     nangles = len(angles)
     imten_rep = torch.repeat_interleave(imten, nangles, 0)
     
-    imten_rot = kornia.rotate(imten_rep, angles)
+    imten_rot = kornia_rotate(imten_rep, angles)
     
     sinogram = imten_rot.sum(2).squeeze()
     

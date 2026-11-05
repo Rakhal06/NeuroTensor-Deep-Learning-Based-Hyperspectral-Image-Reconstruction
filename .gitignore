@@ -127,3 +127,26 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Checkpoints and model weights
+*.pt
+*.pth
+*.ckpt
+
+# Temporary / backup files
+*.bak
+*_backup.py
+user_prompt.txt
+results_lambda_*.txt
+scratch_*.py
+fix_newlines.py
+modify_robustness.py
+
+# Temporary / smoke test runs
+*_smoke/
+*_debug/
+scratch/
+
+# Large binaries exceeding GitHub file size limit (100MB)
+RESULTS-BASELINE/figure9/figure9_results.npz
+
