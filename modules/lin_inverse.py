@@ -82,17 +82,12 @@ def video2codedvideo(video_ten, masks_ten, nframes):
             codedvideo_ten: (1, totalframems//nframes + 1, H, W) coded video
     '''     
     codedvideo_list = []
+    T = video_ten.shape[1]
     
-    for idx in range(0, video_ten.shape[1], nframes):
-        video_chunk = video_ten[:, idx:idx+nframes, :, :]
-        masks_chunk = masks_ten[:, idx:idx+nframes, :, :]
-        
-        codedvideo = (video_chunk*masks_chunk).sum(1, keepdim=True)
-        codedvideo_list.append(codedvideo)    
-    
-    if idx < video_ten.shape[1]:
-        video_chunk = video_ten[:, idx:, :, :]
-        masks_chunk = masks_ten[:, idx:, :, :]
+    for idx in range(0, T, nframes):
+        end_idx = min(idx + nframes, T)
+        video_chunk = video_ten[:, idx:end_idx, :, :]
+        masks_chunk = masks_ten[:, idx:end_idx, :, :]
         
         codedvideo = (video_chunk*masks_chunk).sum(1, keepdim=True)
         codedvideo_list.append(codedvideo)    

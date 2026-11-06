@@ -141,6 +141,7 @@ results_lambda_*.txt
 scratch_*.py
 fix_newlines.py
 modify_robustness.py
+paper_extracted_text.txt
 
 # Temporary / smoke test runs
 *_smoke/
