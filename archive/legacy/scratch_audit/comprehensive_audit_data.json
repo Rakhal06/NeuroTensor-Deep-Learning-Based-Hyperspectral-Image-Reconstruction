@@ -1,0 +1,3505 @@
+{
+  "total_py_files": 75,
+  "file_counts_by_ext": {
+    "": 31,
+    ".py": 75,
+    ".md": 71,
+    ".pdf": 2,
+    ".bak": 2,
+    ".pptx": 1,
+    ".txt": 87,
+    ".csv": 21,
+    ".bat": 2,
+    ".json": 39,
+    ".mat": 5,
+    ".gz": 6,
+    ".zip": 1,
+    ".meta": 1,
+    ".html": 1,
+    ".log": 37,
+    ".info": 26,
+    ".pgm": 1664,
+    ".bad": 26,
+    ".ds_store": 1,
+    ".wav": 105835,
+    ".yaml": 10,
+    ".png": 107,
+    ".pt": 31,
+    ".npy": 9,
+    ".npz": 13
+  },
+  "duplicates": {
+    "417eb0581ea6b0d58adb39613dbe2d37da47c23054a9ca34910ce4e0dfe9951d": [
+      "modules/attention_spectral.py",
+      "previous_neurotensor_experiments/08_icvl_hybrid_attention/modules/attention_spectral.py"
+    ],
+    "39a810754179b0a8abe374d845c31e379eeddd8f2398848da9485a985bd35767": [
+      "modules/spectral_transformer.py",
+      "previous_neurotensor_experiments/09_icvl_spectral_transformer/modules/spectral_transformer.py"
+    ],
+    "eef933a33580a3dca0fb4f38bf9fdfb6dafb7a7431235332a5aa50fa7048489d": [
+      "previous_neurotensor_experiments/01_icvl_cnn_baseline/run_figure9.py",
+      "run_figure9.py"
+    ],
+    "da1287c6f3c8c2e5ad3779e8e0a69c1445ce665eedf7e444697069d555a5b8b8": [
+      "previous_neurotensor_experiments/02_icvl_adaptive_rank/run_figure9_adaptive.py",
+      "run_figure9_adaptive.py"
+    ],
+    "a274c154c63cf504fae5965834f4a15bbccfe3dda113912bb30cea41cf95612e": [
+      "previous_neurotensor_experiments/03_icvl_factor_group_sparsity/run_figure9_sparsity.py",
+      "run_figure9_sparsity.py"
+    ],
+    "346cb299861f3f25821b33d90b70d358ea3c2636eafffd2e60e86b93ea7b9dae": [
+      "previous_neurotensor_experiments/04_icvl_tensor_completion/run_figure9_completion.py",
+      "run_figure9_completion.py"
+    ],
+    "09ac13882a7cc646a920e4327e29af032485efbad0fbd17360eac338dc6b663c": [
+      "previous_neurotensor_experiments/05_icvl_noise_robustness/run_figure9_robustness.py",
+      "run_figure9_robustness.py"
+    ],
+    "0e343a35391b7c3f595b58fb3f0b8561a07b01a4dd9d1cf8ad29a8c0c7383cca": [
+      "previous_neurotensor_experiments/06_icvl_ensemble_uncertainty/run_figure9_ensemble.py",
+      "run_figure9_ensemble.py"
+    ],
+    "91faab6cb64c99bc6d5070b6729551d1c0c842b545372bd9919ac0080a0559dd": [
+      "previous_neurotensor_experiments/07_icvl_factor_interpretability/run_figure9_interpretability.py",
+      "run_figure9_interpretability.py"
+    ],
+    "a2959c7aa2eccf775dec70ec00e125468e4d839c3f1ae02d89843a1e9695289c": [
+      "previous_neurotensor_experiments/08_icvl_hybrid_attention/run_figure9_hybrid.py",
+      "run_figure9_hybrid.py"
+    ],
+    "283768c66d918e14a5aabbc7dc194151adda74799bbefbd63b7497d9e215eb83": [
+      "previous_neurotensor_experiments/09_icvl_spectral_transformer/run_figure9_spectral_transformer.py",
+      "run_figure9_spectral_transformer.py"
+    ]
+  },
+  "python_files": [
+    {
+      "path": "check_attn.py",
+      "size_bytes": 345,
+      "lines": 9,
+      "classes": [],
+      "functions": [],
+      "imports": [
+        "numpy"
+      ],
+      "doc": "",
+      "sha256": "f7677a781e62d2591084f62074df29d2a2945103078381806b4b0040d3d42ec2"
+    },
+    {
+      "path": "demo.py",
+      "size_bytes": 12326,
+      "lines": 330,
+      "classes": [],
+      "functions": [
+        "display_factors",
+        "display_metrics",
+        "display_network",
+        "display_optimization",
+        "display_preprocessing",
+        "display_reconstruction",
+        "main_menu",
+        "print_header",
+        "print_section",
+        "run_comparison",
+        "run_method",
+        "save_visuals"
+      ],
+      "imports": [
+        "argparse",
+        "csv",
+        "demo_backend.DemoBackend",
+        "json",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "numpy",
+        "os",
+        "sys",
+        "time",
+        "torch"
+      ],
+      "doc": "",
+      "sha256": "7e650f1b1ae60aeefd7f574242a0d196816dfe9e52d7f324b031e457b700ad47"
+    },
+    {
+      "path": "demo_backend.py",
+      "size_bytes": 26062,
+      "lines": 569,
+      "classes": [
+        "DemoBackend"
+      ],
+      "functions": [
+        "__init__",
+        "_compute_metrics",
+        "_init_networks",
+        "compute_effective_ranks",
+        "compute_group_regularizer",
+        "load_data",
+        "print_preprocessing",
+        "run_adaptive",
+        "run_baseline",
+        "run_sparsity"
+      ],
+      "imports": [
+        "copy",
+        "deep_prior",
+        "json",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "spectral",
+        "sys",
+        "time",
+        "torch",
+        "utils"
+      ],
+      "doc": "",
+      "sha256": "aedefdec78bddf74fbe39cbbdf43dd0d4678ea4421858daf0b222fdf5423aa4d"
+    },
+    {
+      "path": "demo_backend_backup.py",
+      "size_bytes": 24499,
+      "lines": 539,
+      "classes": [
+        "DemoBackend"
+      ],
+      "functions": [
+        "__init__",
+        "_compute_metrics",
+        "_init_networks",
+        "compute_effective_ranks",
+        "compute_group_regularizer",
+        "load_data",
+        "print_preprocessing",
+        "run_adaptive",
+        "run_baseline",
+        "run_sparsity"
+      ],
+      "imports": [
+        "copy",
+        "deep_prior",
+        "json",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "spectral",
+        "sys",
+        "time",
+        "torch",
+        "utils"
+      ],
+      "doc": "",
+      "sha256": "8460b31144e05076fe29a4d87d17dc2770d857ee0bd37e79cd64f48105498f59"
+    },
+    {
+      "path": "demo_backup.py",
+      "size_bytes": 11765,
+      "lines": 317,
+      "classes": [],
+      "functions": [
+        "display_factors",
+        "display_metrics",
+        "display_network",
+        "display_optimization",
+        "display_preprocessing",
+        "display_reconstruction",
+        "main_menu",
+        "print_header",
+        "print_section",
+        "run_comparison",
+        "run_method",
+        "save_visuals"
+      ],
+      "imports": [
+        "argparse",
+        "csv",
+        "demo_backend.DemoBackend",
+        "json",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "numpy",
+        "os",
+        "sys",
+        "time",
+        "torch"
+      ],
+      "doc": "",
+      "sha256": "46d1e2f2f9b956bd2951230312b904372f845d5bef449c203983111ac9745548"
+    },
+    {
+      "path": "fix_newlines.py",
+      "size_bytes": 1519,
+      "lines": 19,
+      "classes": [],
+      "functions": [],
+      "imports": [
+        "sys"
+      ],
+      "doc": "",
+      "sha256": "8044eee8129e182b172999b403a537e837ef3ff08f063318e96e54e3336fc2df"
+    },
+    {
+      "path": "generate_pdf.py",
+      "size_bytes": 30987,
+      "lines": 576,
+      "classes": [
+        "NumberedCanvas"
+      ],
+      "functions": [
+        "__init__",
+        "build_pdf",
+        "draw_page_decorations",
+        "save",
+        "showPage"
+      ],
+      "imports": [
+        "os",
+        "reportlab.lib.colors",
+        "reportlab.lib.pagesizes.letter",
+        "reportlab.lib.styles.ParagraphStyle",
+        "reportlab.lib.styles.getSampleStyleSheet",
+        "reportlab.pdfgen.canvas",
+        "reportlab.platypus.HRFlowable",
+        "reportlab.platypus.KeepTogether",
+        "reportlab.platypus.PageBreak",
+        "reportlab.platypus.Paragraph",
+        "reportlab.platypus.SimpleDocTemplate",
+        "reportlab.platypus.Spacer",
+        "reportlab.platypus.Table",
+        "reportlab.platypus.TableStyle",
+        "sys"
+      ],
+      "doc": "",
+      "sha256": "eed26623ad9ec36f1114816e3df103619de87ac5fa50e78d2ec8a8b9b9c4778b"
+    },
+    {
+      "path": "matrix_decomp.py",
+      "size_bytes": 5331,
+      "lines": 156,
+      "classes": [],
+      "functions": [],
+      "imports": [
+        "argparse",
+        "cv2",
+        "deep_decoder",
+        "deep_prior",
+        "glob",
+        "importlib",
+        "losses",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "sys",
+        "torch",
+        "tqdm",
+        "utils"
+      ],
+      "doc": "This script replicates instances of results in figure 4 in the main paper.\nTo obtain the plots, please sweep the relevant parameters.",
+      "sha256": "ea5ccd0ad2afe599f55339720e5aaa0cca6971b8c438aa78d95c597ff0590701"
+    },
+    {
+      "path": "modify_robustness.py",
+      "size_bytes": 5202,
+      "lines": 157,
+      "classes": [],
+      "functions": [],
+      "imports": [
+        "os",
+        "re"
+      ],
+      "doc": "",
+      "sha256": "5c1ba260f5478d016710c78a8417ea766fdea3ec3c4777379b36772323fb9a75"
+    },
+    {
+      "path": "modules/attention_spectral.py",
+      "size_bytes": 7070,
+      "lines": 207,
+      "classes": [
+        "HybridSpectralNet",
+        "SpectralPointwiseControl",
+        "SpectralSelfAttention"
+      ],
+      "functions": [
+        "__init__",
+        "count_parameters",
+        "estimate_flops",
+        "forward"
+      ],
+      "imports": [
+        "math",
+        "torch",
+        "torch.nn",
+        "torch.nn.functional"
+      ],
+      "doc": "",
+      "sha256": "417eb0581ea6b0d58adb39613dbe2d37da47c23054a9ca34910ce4e0dfe9951d"
+    },
+    {
+      "path": "modules/cosine_annealing_with_warmup.py",
+      "size_bytes": 4304,
+      "lines": 92,
+      "classes": [
+        "CosineAnnealingWarmupRestarts"
+      ],
+      "functions": [
+        "__init__",
+        "get_lr",
+        "init_lr",
+        "step"
+      ],
+      "imports": [
+        "math",
+        "torch",
+        "torch.optim.lr_scheduler._LRScheduler"
+      ],
+      "doc": "",
+      "sha256": "569fc57013a2c257afc7285628edeeee65543e43c14968af5cc5064d16f7dd8d"
+    },
+    {
+      "path": "modules/deep_decoder.py",
+      "size_bytes": 9517,
+      "lines": 257,
+      "classes": [
+        "ResidualBlock"
+      ],
+      "functions": [
+        "__init__",
+        "add_module",
+        "conv",
+        "conv1d",
+        "conv3d",
+        "decodernw",
+        "decodernw1d",
+        "decodernw3d",
+        "forward",
+        "resdecoder"
+      ],
+      "imports": [
+        "torch",
+        "torch.nn"
+      ],
+      "doc": "This is a modified version of the original code hosted at https://github.com/reinhardh/supplement_deep_decoder\n\nSpecifically:\n    - 1d and 3d versions of deep decoder are added\n    - The final sigmoid layer is turned off by default",
+      "sha256": "bbb18d5e9352c00454d39e9483fd91c174879cf70a4cb546691d825674d4e110"
+    },
+    {
+      "path": "modules/deep_models/__init__.py",
+      "size_bytes": 1670,
+      "lines": 32,
+      "classes": [],
+      "functions": [
+        "get_net"
+      ],
+      "imports": [
+        "resnet.ResNet",
+        "skip.skip",
+        "texture_nets.get_texture_nets",
+        "torch.nn",
+        "unet.UNet"
+      ],
+      "doc": "",
+      "sha256": "75754b65255db56871544268f8fee8f1df20fb46124f07e42cadf934bcf296d7"
+    },
+    {
+      "path": "modules/deep_models/common.py",
+      "size_bytes": 5815,
+      "lines": 197,
+      "classes": [
+        "Concat",
+        "Concat1d",
+        "GenNoise",
+        "Sine",
+        "Swish"
+      ],
+      "functions": [
+        "__init__",
+        "__len__",
+        "act",
+        "add_module",
+        "bn",
+        "bn1d",
+        "conv",
+        "conv1d",
+        "forward"
+      ],
+      "imports": [
+        "downsampler.Downsampler",
+        "numpy",
+        "pdb",
+        "torch",
+        "torch.nn"
+      ],
+      "doc": "",
+      "sha256": "38f13003cca5d0820d1f3c7e2f276a278df79ef54ef1adebcc899d939c16e4c6"
+    },
+    {
+      "path": "modules/deep_models/dcgan.py",
+      "size_bytes": 1277,
+      "lines": 34,
+      "classes": [],
+      "functions": [
+        "dcgan"
+      ],
+      "imports": [
+        "torch",
+        "torch.nn"
+      ],
+      "doc": "",
+      "sha256": "d557010ac433062fc012765750a8aa0b0835cdfc5a1288ac2c4520930401b9a6"
+    },
+    {
+      "path": "modules/deep_models/downsampler.py",
+      "size_bytes": 5547,
+      "lines": 168,
+      "classes": [
+        "Downsampler"
+      ],
+      "functions": [
+        "__init__",
+        "forward",
+        "get_kernel"
+      ],
+      "imports": [
+        "numpy",
+        "torch",
+        "torch.nn"
+      ],
+      "doc": "",
+      "sha256": "8d55e2caca3f258f5a2a602b25dfb5f0b3fa387a86bb875cbffed2cfebab9cf9"
+    },
+    {
+      "path": "modules/deep_models/resnet.py",
+      "size_bytes": 3039,
+      "lines": 96,
+      "classes": [
+        "ResNet",
+        "ResidualSequential"
+      ],
+      "functions": [
+        "__init__",
+        "eval",
+        "forward",
+        "get_block"
+      ],
+      "imports": [
+        "common.*",
+        "math.sqrt",
+        "numpy.linalg.svd",
+        "numpy.random.normal",
+        "torch",
+        "torch.nn",
+        "torch.nn.init"
+      ],
+      "doc": "",
+      "sha256": "5e8ee612aaf41901139eb0c4a12d939f09b47dfa747c51806b3276478250fee5"
+    },
+    {
+      "path": "modules/deep_models/skip.py",
+      "size_bytes": 7654,
+      "lines": 197,
+      "classes": [],
+      "functions": [
+        "skip",
+        "skip1d"
+      ],
+      "imports": [
+        "common.*",
+        "torch",
+        "torch.nn"
+      ],
+      "doc": "",
+      "sha256": "61dd185949959ea60bc1d7c49acd137fb671e2321d1e472ef7f10b41d700c6e7"
+    },
+    {
+      "path": "modules/deep_models/texture_nets.py",
+      "size_bytes": 2394,
+      "lines": 79,
+      "classes": [],
+      "functions": [
+        "conv",
+        "get_texture_nets"
+      ],
+      "imports": [
+        "common.*",
+        "torch",
+        "torch.nn"
+      ],
+      "doc": "",
+      "sha256": "c7186dca98b04228d3b0ea78526b437ea3f5053311861872e07f4be910e2f670"
+    },
+    {
+      "path": "modules/deep_models/unet.py",
+      "size_bytes": 7516,
+      "lines": 192,
+      "classes": [
+        "ListModule",
+        "UNet",
+        "unetConv2",
+        "unetDown",
+        "unetUp"
+      ],
+      "functions": [
+        "__getitem__",
+        "__init__",
+        "__iter__",
+        "__len__",
+        "forward"
+      ],
+      "imports": [
+        "common.*",
+        "torch",
+        "torch.nn",
+        "torch.nn.functional"
+      ],
+      "doc": "",
+      "sha256": "235c95cfe1d0b6956f9c61b40cb9934349a65176838ac57db6ce539b506cdd13"
+    },
+    {
+      "path": "modules/deep_prior.py",
+      "size_bytes": 10354,
+      "lines": 266,
+      "classes": [
+        "Downsampler"
+      ],
+      "functions": [
+        "__init__",
+        "fill_noise",
+        "forward",
+        "get_image_grid",
+        "get_kernel",
+        "get_net",
+        "get_noise",
+        "np_to_torch",
+        "torch_to_np"
+      ],
+      "imports": [
+        "cv2",
+        "deep_models.resnet.ResNet",
+        "deep_models.skip.skip",
+        "deep_models.skip.skip1d",
+        "deep_models.texture_nets.get_texture_nets",
+        "deep_models.unet.UNet",
+        "numpy",
+        "os",
+        "pdb",
+        "sys",
+        "torch",
+        "torch.nn",
+        "torchvision",
+        "tqdm"
+      ],
+      "doc": "This is a modified version of the original code hosted at https://github.com/DmitryUlyanov/deep-image-prior\n\nSpecifically\n    - 1D version is added\n    - The final sigmoid layer is turned off by default",
+      "sha256": "3a8e9391b61f95830717b6be50a2d331de6e657126c9f0fd39f4d6e45b6d47e2"
+    },
+    {
+      "path": "modules/lin_inverse.py",
+      "size_bytes": 2684,
+      "lines": 97,
+      "classes": [],
+      "functions": [
+        "get_video_coding_frames",
+        "radon",
+        "video2codedvideo"
+      ],
+      "imports": [
+        "cv2",
+        "glob",
+        "kornia",
+        "kornia.geometry.transform.rotate",
+        "matplotlib.pyplot",
+        "numpy",
+        "os",
+        "pdb",
+        "scipy.signal",
+        "sys",
+        "torch",
+        "torch.nn",
+        "tqdm"
+      ],
+      "doc": "This script contains functions pertaining to linear inverse problems \nin section 4.",
+      "sha256": "6c735ddecef6a90fc66153c9d9f9b674f5dc7f4c76e2c6dc0a23a812c625d578"
+    },
+    {
+      "path": "modules/losses.py",
+      "size_bytes": 929,
+      "lines": 35,
+      "classes": [
+        "L1Norm",
+        "L2Norm",
+        "TVNorm"
+      ],
+      "functions": [
+        "__call__",
+        "__init__"
+      ],
+      "imports": [
+        "torch"
+      ],
+      "doc": "This script implements all loss functions utilized in our experiments \nincluding L1 loss, L2 loss, and TV norm.",
+      "sha256": "b5add88b47dc2596248bbe08a68d45179b59c95f029581a661c4cdb70d633b27"
+    },
+    {
+      "path": "modules/models.py",
+      "size_bytes": 7946,
+      "lines": 230,
+      "classes": [
+        "SimpleForward1D",
+        "SimpleForward2D",
+        "SimpleForwardMLP",
+        "UNetND"
+      ],
+      "functions": [
+        "__init__",
+        "forward"
+      ],
+      "imports": [
+        "torch"
+      ],
+      "doc": "This script implements models other than the one proposed by [Ulyanov et al. 2018],\nand [Heckel et al. 2018].",
+      "sha256": "c3c34e84e366f03f5f9c682f8d98d48870e9fd9fdf3c0c2a324b5c0438f9f946"
+    },
+    {
+      "path": "modules/spectral.py",
+      "size_bytes": 1757,
+      "lines": 61,
+      "classes": [],
+      "functions": [
+        "lr_decompose",
+        "tucker_decompose"
+      ],
+      "imports": [
+        "numpy",
+        "scipy.sparse.linalg",
+        "tensorly",
+        "tensorly.decomposition",
+        "torch"
+      ],
+      "doc": "This module implements functions required for hyperspectral image experiments\nin section 4.",
+      "sha256": "eea342f65b539e60e1257ebf644089f2e30e2f95f9a384f0820340288b0fce81"
+    },
+    {
+      "path": "modules/spectral_transformer.py",
+      "size_bytes": 5750,
+      "lines": 155,
+      "classes": [
+        "ControlSpectralTransformer",
+        "SpectralTransformer"
+      ],
+      "functions": [
+        "__init__",
+        "count_parameters",
+        "forward",
+        "get_alibi_bias",
+        "get_sinusoidal_pe",
+        "get_slopes",
+        "get_slopes_power_of_2"
+      ],
+      "imports": [
+        "math",
+        "torch",
+        "torch.nn"
+      ],
+      "doc": "",
+      "sha256": "39a810754179b0a8abe374d845c31e379eeddd8f2398848da9485a985bd35767"
+    },
+    {
+      "path": "modules/utils.py",
+      "size_bytes": 12825,
+      "lines": 431,
+      "classes": [],
+      "functions": [
+        "build_montage",
+        "get_1d_posencode_inp",
+        "get_2d_posencode_inp",
+        "get_inp",
+        "get_matrix",
+        "get_pca",
+        "get_scheduler",
+        "implay",
+        "lr_decompose",
+        "measure",
+        "moduloclip",
+        "nextpow2",
+        "normalize",
+        "psnr",
+        "resize",
+        "rician",
+        "rsnr"
+      ],
+      "imports": [
+        "cosine_annealing_with_warmup.CosineAnnealingWarmupRestarts",
+        "cv2",
+        "matplotlib.lines.Line2D",
+        "matplotlib.pyplot",
+        "numpy",
+        "pickle",
+        "scipy.io",
+        "scipy.linalg",
+        "scipy.signal",
+        "scipy.sparse.linalg",
+        "torch"
+      ],
+      "doc": "Miscellaneous utilities that are required in all experiments.",
+      "sha256": "1546b5d2cd08a1ed5343f1ee3bcaf3969734a9edfd28f3203130e07bb221e5d5"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/01_synthetic_decomposition/benchmark_figure4_separable_speedup.py",
+      "size_bytes": 9324,
+      "lines": 200,
+      "classes": [
+        "Conv3D_DIP"
+      ],
+      "functions": [
+        "__init__",
+        "forward",
+        "run_benchmark"
+      ],
+      "imports": [
+        "deep_prior",
+        "json",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "numpy",
+        "os",
+        "sys",
+        "time",
+        "torch",
+        "torch.nn",
+        "utils"
+      ],
+      "doc": "Figure 4: Separable Convolutions Speedup on 3D Volume\nPaper: \"DeepTensor: Low-Rank Tensor Decomposition with Deep Network Priors\" (Section 3.2, Page 4)\n\nCompares:\n1. Three 1D DIP networks: f_U(z_U) (x) f_V(z_V) (x) f_W(z_W)\n2. One 2D DIP + One 1D DIP network: f_UV(z_UV) (x) f_W(z_W)\n3. One full 3D ConvNet DIP network: f_UVW(z_UVW)\n\nPlots MSE vs Wall-Clock Training Time (seconds) to empirically demonstrate\nthe ~2 orders of magnitude speedup offered by dimensionality splitting.",
+      "sha256": "7374b0da8a1f7b63f10eeab49b04dab1e2876bf84fc90fe8a7fc4ea7e91e4ee4"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/01_synthetic_decomposition/benchmark_figure4_separable_speedup_improved.py",
+      "size_bytes": 14320,
+      "lines": 307,
+      "classes": [
+        "Conv3D_DIP"
+      ],
+      "functions": [
+        "__init__",
+        "forward",
+        "generate_mri_phantom_volume",
+        "run_benchmark"
+      ],
+      "imports": [
+        "argparse",
+        "deep_prior",
+        "json",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "numpy",
+        "os",
+        "sys",
+        "time",
+        "torch",
+        "torch.nn",
+        "utils"
+      ],
+      "doc": "Figure 4 Improved Benchmark: Separable Convolutions Speedup on 3D Volume\nPaper: \"DeepTensor: Low-Rank Tensor Decomposition with Deep Network Priors\" (Section 3.2, Page 4 & Figure 4)\n\nTarget Specifications:\n- Volume: 3D MRI volume size: 128 x 128 x 150 (2,457,600 voxels), correcting previous 64 x 64 x 32 toy volume.\n- Compares:\n  1. Three 1D DIP networks: f_U(z_U) (x) f_V(z_V) (x) f_W(z_W)\n  2. One 2D DIP + One 1D DIP network: f_UV(z_UV) (x) f_W(z_W)\n  3. One full 3D ConvNet DIP network: f_UVW(z_UVW)\n- Rationale for Speedup:\n  Separable dimensionality splitting reduces convolutional FLOPs from O(H W D K^3 C^2)\n  down to O((H + W + D) K C^2), achieving ~2 orders of magnitude speedup on standard GPU hardware.\n- Outputs:\n  - figure4_improved_benchmark_metrics.json\n  - plots/figure4_separable_convolutions_speedup_improved.png\n  - progression_time_vs_mse.csv",
+      "sha256": "5c47d963d6ee331985a0956f01a60c2385a4ce82019e837b7fba73574cba5a3f"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/01_synthetic_decomposition/run_synthetic_suite.py",
+      "size_bytes": 16592,
+      "lines": 377,
+      "classes": [],
+      "functions": [
+        "main",
+        "run_figure3",
+        "run_figure4",
+        "run_figure8",
+        "run_table1"
+      ],
+      "imports": [
+        "argparse",
+        "deep_decoder",
+        "deep_prior",
+        "json",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "sys",
+        "time",
+        "torch",
+        "utils"
+      ],
+      "doc": "Synthetic Experiments Suite: Figures 3, 4, 8 and Table 1\nPaper: \"DeepTensor: Low-Rank Tensor Decomposition with Deep Network Priors\"\n- Figure 3: Inductive bias rejects noise (Signal vs. Noise fit convergence)\n- Figure 4: Separable convolutions speedup (2D+1D vs. 3D DIP)\n- Figure 8: Stopping criterion analysis (DIP vs. Deep Decoder across noise levels)\n- Table 1: Learning rate schedule grid (Fixed, Step, Exp, Cosine across LRs)",
+      "sha256": "2e51f3e8abeeb15d24bbfe2c5c5eb1a407f2ab3eff493a1e175985ef6fe01087"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/03_nmf/run_table2_nmf.py",
+      "size_bytes": 11262,
+      "lines": 264,
+      "classes": [],
+      "functions": [
+        "get_data",
+        "main",
+        "run_deeptensor_nmf",
+        "run_standard_nmf"
+      ],
+      "imports": [
+        "argparse",
+        "deep_decoder",
+        "deep_prior",
+        "json",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "sklearn.decomposition.NMF",
+        "sys",
+        "time",
+        "torch",
+        "torch.utils.data.DataLoader",
+        "torchvision",
+        "torchvision.datasets",
+        "torchvision.transforms",
+        "utils"
+      ],
+      "doc": "Table 2: DeepTensor NMF on MNIST & CIFAR-10\nPaper: \"DeepTensor: Low-Rank Tensor Decomposition with Deep Network Priors\" (Section 3.3, Page 7)\n\nEvaluates DeepTensor Nonnegative Matrix Factorization against standard NMF (Lee & Seung, 2001)\nunder severe Rician noise (input PSNR ~ 4.8 dB) across three nonnegativity activations:\n1. Softplus\n2. Absolute Value\n3. ReLU",
+      "sha256": "2062d2d6701af3569c86da7a76697e4b6002a0db45b1b6fba5c1c0b507863619"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/05_hyperspectral_denoising/run_figure13_rank_sweep.py",
+      "size_bytes": 6940,
+      "lines": 175,
+      "classes": [],
+      "functions": [
+        "main",
+        "run_deeptensor_rank"
+      ],
+      "imports": [
+        "argparse",
+        "deep_decoder",
+        "deep_prior",
+        "json",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "scipy.io",
+        "sys",
+        "time",
+        "torch",
+        "utils"
+      ],
+      "doc": "Figure 13(a): Effect of Rank Choice on Hyperspectral Image Decomposition\nPaper: \"DeepTensor: Low-Rank Tensor Decomposition with Deep Network Priors\" (Section 4.4, Page 9-10)\n\nExperiment:\n- ICVL Hyperspectral Image truncated to Rank-20 ground truth (174, 164, 260)\n- Measurement Noise: Poisson (tau=100) + Gaussian (snr=2) -> Input PSNR ~ 25 dB\n- Decomposition Rank swept from 1 to 30: [1, 5, 10, 15, 20, 25, 30]\n- Evaluates DeepTensor vs Truncated SVD to demonstrate that DeepTensor is insensitive\n  to rank over-estimation due to its deep network prior.",
+      "sha256": "dee13a3bd7960312996ba9f6e4eb79e27639f95d064fcf6c38e2e93bff37b9ae"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/generate_improved_panel.py",
+      "size_bytes": 9244,
+      "lines": 191,
+      "classes": [],
+      "functions": [
+        "main"
+      ],
+      "imports": [
+        "json",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "numpy",
+        "os",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "sys",
+        "utils"
+      ],
+      "doc": "Generates the comprehensive Figure 10 visual comparison panel and summary tables\ncombining both 30% and 60% Salt & Pepper noise improved runs.",
+      "sha256": "0a4dcb1979d01398dde022cca7e10f7f1561db0bb42cbb9eb35c273973635fe8"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/run_figure10_yale_tensor.py",
+      "size_bytes": 17691,
+      "lines": 365,
+      "classes": [],
+      "functions": [
+        "add_salt_and_pepper_noise",
+        "main",
+        "run_parafac_deeptensor"
+      ],
+      "imports": [
+        "argparse",
+        "deep_decoder",
+        "deep_prior",
+        "json",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "sys",
+        "time",
+        "torch",
+        "utils"
+      ],
+      "doc": "Figure 10: 3-Way PARAFAC Tensor Denoising on Extended Yale Face Database B\nPaper: \"DeepTensor: Low-Rank Tensor Decomposition with Deep Network Priors\" (Section 4.1, Page 7-8)\n\nDataset: Extended Yale Face B (data/yale_b.mat) -> (192, 168, 160)\nCorruption: 30% and 60% Salt-and-Pepper impulse noise\nModel: 3-Way PARAFAC Decomposition with Deep Network Priors (Rank R=2000)\n       Mode 1 (Height H=192): 1D Deep Image Prior U_net\n       Mode 2 (Width W=168): 1D Deep Image Prior V_net\n       Mode 3 (Images/Slices T=160): 1D Deep Image Prior W_net\n       Core tensor lambda of size (R,)\nLoss: L1 norm penalty (robust to spatially sparse impulse noise)\nBaselines: Truncated SVD, Classical PARAFAC, KDRSDL comparison",
+      "sha256": "3cb333e80c5a0901835989eb174a46409a8bb14592788f69c02d6d4cc96b3d3a"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/run_figure10_yale_tensor_improved.py",
+      "size_bytes": 19510,
+      "lines": 434,
+      "classes": [],
+      "functions": [
+        "generate_salt_and_pepper_noise",
+        "main",
+        "run_parafac_deeptensor_improved"
+      ],
+      "imports": [
+        "argparse",
+        "deep_prior",
+        "json",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "numpy",
+        "os",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "sys",
+        "time",
+        "torch",
+        "torch.nn",
+        "utils"
+      ],
+      "doc": "Figure 10 Improved Rerun: 3-Way PARAFAC Tensor Denoising on Extended Yale Face Database B\nPaper: \"DeepTensor: Low-Rank Tensor Decomposition with Deep Network Priors\" (Section 4.1, Page 7-8)\n\nImprovements Implemented:\n1. Exact Noise Protocol: Vectorized exact fixed corruption percentage (and Bernoulli option)\n   eliminating coordinate collisions that corrupted only ~25.8% and ~44.9% in the old run.\n2. Architecture Scaling: 128 channels per scale (skip_n33d=128, skip_n33u=128) across 5 scales,\n   providing full paper-specified capacity (1.82M params per 1D U-Net vs 0.46M in 64-channel baseline).\n3. Convergence Budget: Extended training up to 5,000 epochs with Cosine Annealing scheduler.\n4. Independent Execution: Strict separation between 30% and 60% noise regimes.\n5. Rigorous Telemetry: Full tracking of peak GPU VRAM, wall-clock time, loss history, and PSNR progression.",
+      "sha256": "fc54e6f582baeff069860ddca9c68812b2decf31650bf623b928899bf3cea293"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/run_figure13b_yale_rank_sweep.py",
+      "size_bytes": 7740,
+      "lines": 179,
+      "classes": [],
+      "functions": [
+        "main",
+        "run_deeptensor_parafac_rank"
+      ],
+      "imports": [
+        "argparse",
+        "deep_decoder",
+        "deep_prior",
+        "json",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "scipy.io",
+        "sys",
+        "time",
+        "torch",
+        "utils"
+      ],
+      "doc": "Figure 13(b): Effect of Rank Choice on PARAFAC Tensor Decomposition (Yale Face B)\nPaper: \"DeepTensor: Low-Rank Tensor Decomposition with Deep Network Priors\" (Section 4.4, Page 9-10)\n\nExperiment:\n- Yale Face B tensor (192, 168, 160) truncated to Rank-1000 PARAFAC ground truth.\n- Measurement Noise: Poisson (tau=100) + Gaussian (snr=2) -> Input PSNR ~ 25 dB\n- Decomposition Rank swept from 10 to 4000: [10, 50, 100, 500, 1000, 2000, 4000]\n- Evaluates DeepTensor vs Truncated Tensor Decomposition (PARAFAC/SVD) to demonstrate that\n  DeepTensor reaches a plateau above the true rank, while classical PARAFAC degrades sharply.",
+      "sha256": "38c82700b80c8fb6fc70013c85d08eb646a6886efa7b3d82b111ac8c2861f613"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/run_figure13b_yale_rank_sweep_improved.py",
+      "size_bytes": 17636,
+      "lines": 388,
+      "classes": [],
+      "functions": [
+        "calculate_ssim",
+        "main",
+        "run_classical_parafac_als",
+        "run_deeptensor_parafac_rank"
+      ],
+      "imports": [
+        "argparse",
+        "deep_prior",
+        "json",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "numpy",
+        "os",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "sys",
+        "time",
+        "torch",
+        "torch.nn",
+        "utils"
+      ],
+      "doc": "Figure 13(b) Improved Rerun: Effect of Rank Choice on PARAFAC Tensor Decomposition (Yale Face B)\nPaper: \"DeepTensor: Low-Rank Tensor Decomposition with Deep Network Priors\" (Section 4.4, Page 9-10)\n\nKey Improvements Implemented:\n1. True 3-Way PARAFAC Alternating Least Squares (ALS) Baseline:\n   Mathematically exact, vectorized PyTorch CUDA implementation of classical unregularized PARAFAC ALS.\n   Eliminates the matricized SVD proxy and the artificial logarithm penalty from the previous script.\n2. Extended Convergence Budget:\n   Trained for 1,500 epochs per rank (increased from under-converged 500 epochs), allowing DeepTensor\n   to reach its genuine asymptotic reconstruction plateau (~26 dB).\n3. Strict Ground-Truth Isolation:\n   Checkpoints and best reconstructions are selected strictly by minimum training loss (Rule 9).\n   Ground-truth tensor is used strictly for post-hoc evaluation.\n4. Comprehensive Artifact Generation:\n   Saves rank-wise progression CSV, visual panels across key ranks (10, 500, 1000, 4000),\n   intermediate checkpoints, and publication-ready comparative plots.",
+      "sha256": "6ef030a1135f4d0a292e18f1663f432208057479b299462d6f779646659b53da"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/07_video_compressive_sensing/run_figure11.py",
+      "size_bytes": 16880,
+      "lines": 415,
+      "classes": [],
+      "functions": [
+        "calculate_ssim",
+        "main",
+        "run_deeptensor",
+        "run_tv"
+      ],
+      "imports": [
+        "argparse",
+        "deep_decoder",
+        "deep_prior",
+        "json",
+        "lin_inverse",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "sys",
+        "time",
+        "torch",
+        "utils"
+      ],
+      "doc": "Figure 11: Video Compressive Sensing Replication\nPaper: \"DeepTensor: Low-Rank Tensor Decomposition with Deep Network Priors\" (Section 4.3, Page 7 & 9)\n\nDataset: Cat Video (data/cat_video.mat) -> (128, 128, 64)\nForward Model: Random pixel-wise spatial-multiplexing coded aperture (Hitomi et al., ICCV 2011)\nCombining nframes=8 frames into 1 coded image snapshot.\nMethods: DeepTensor (DIP 2D spatial + 1D temporal) vs. 2D Total Variation (TV).",
+      "sha256": "95e8bc2c0ec8a21291000df0e0df9092468c3df5bc21657de13e8909820e9f70"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/07_video_compressive_sensing/run_figure11_improved.py",
+      "size_bytes": 21453,
+      "lines": 497,
+      "classes": [],
+      "functions": [
+        "calculate_ssim",
+        "main",
+        "run_deeptensor_improved",
+        "run_tv_calibrated"
+      ],
+      "imports": [
+        "argparse",
+        "deep_prior",
+        "json",
+        "lin_inverse",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "numpy",
+        "os",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "sys",
+        "time",
+        "torch",
+        "torch.nn",
+        "utils"
+      ],
+      "doc": "Figure 11 Improved Rerun: Video Compressive Sensing\nPaper: \"DeepTensor: Low-Rank Tensor Decomposition with Deep Network Priors\" (Section 4.3, Page 7 & 9)\n\nDataset: Cat Video (data/cat_video.mat) -> (128, 128, 64)\nForward Model: Random pixel-wise spatial-multiplexing coded aperture (Hitomi et al., ICCV 2011)\nCombining nframes=8 frames into 1 coded image snapshot (8 total snapshots).\n\nImprovements over Previous Baseline:\n1. Rank Scaling: Set to full-rank R=64 (previous baseline was bottlenecked at R=32).\n2. Convergence Budget: Extended to full paper-specified 10,000 epochs (previous baseline stopped at 3,000).\n3. Network Capacity: 128 channels per scale in 2D spatial DIP and 1D temporal DIP (previous baseline had 64).\n4. TV Baseline Calibration: 2D TV baseline calibrated with 1,000 epochs to match paper's 24.10 dB reference.\n5. Strict Separation & Telemetry: Preserves original baseline, tracks full loss & PSNR progression, VRAM, and runtime.",
+      "sha256": "e74d22cd274ace1a6e2619ca5c8a2022ab221190e6b9998c5bbb763a8edda12a"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/08_ct_reconstruction/run_figure12_improved.py",
+      "size_bytes": 22808,
+      "lines": 463,
+      "classes": [],
+      "functions": [
+        "compute_metrics",
+        "main"
+      ],
+      "imports": [
+        "argparse",
+        "copy",
+        "deep_prior",
+        "json",
+        "lin_inverse",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "sys",
+        "tensorly",
+        "time",
+        "torch",
+        "utils"
+      ],
+      "doc": "Figure 12 Improved Rerun: 3D PET CT Volume Reconstruction from Limited, Noisy Tomography\nPaper: \"DeepTensor: Low-Rank Tensor Decomposition with Deep Network Priors\" (Section 4.1, Page 8-9)\n\nTarget Paper Element: Figure 12 & Section 4.1\n- Volume: data/pet.mat (128 x 128 x 56)\n- Measurements: Radon transform along 40 angles (0 to 180 degrees)\n- Decomposition: Rank-1000 PARAFAC tensor (3x 1D DIP networks with positional encoding)\n- Measurement Noise: Poisson (tau=100, paper-aligned) + Gaussian readout (snr=2)\n- Training Budget: 4,000 epochs (extended from 2,000 for asymptotic convergence)\n- Checkpoint Selection: Strictly by minimum measurement loss (Rule 9 / GT isolation)\n- Baselines:\n  1. Algorithmic Inversion (Linear gradient descent, no prior)\n  2. 2D Total Variation (TV) Regularization\n  3. DeepTensor (Rank-1000 PARAFAC with deep network priors)",
+      "sha256": "828f4f1cf72c037b6518565c80b7cbc575e7c13fe8fcd4ffc7eef605f3570c56"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/09_speech_time_frequency/run_table3_speech_nmf.py",
+      "size_bytes": 15078,
+      "lines": 344,
+      "classes": [],
+      "functions": [
+        "get_speech_spectrograms",
+        "main",
+        "run_deeptensor_speech",
+        "run_standard_nmf"
+      ],
+      "imports": [
+        "argparse",
+        "deep_decoder",
+        "deep_prior",
+        "glob",
+        "json",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "scipy.io.wavfile",
+        "sklearn.decomposition.NMF",
+        "sys",
+        "time",
+        "torch",
+        "torchaudio",
+        "utils",
+        "warnings"
+      ],
+      "doc": "Table 3: DeepTensor NMF & Semi-NMF on Speech Spectrograms\nPaper: \"DeepTensor: Low-Rank Tensor Decomposition with Deep Network Priors\" (Section 4.3, Page 10)\n\nEvaluates DeepTensor Nonnegative Matrix Factorization (NMF) and Semi-NMF on Speech Spectrograms\n(Google Speech Commands STFT, 512 x 512) under Rician noise (input SNR ~ 4.6 dB) across:\n- NMF Mode: Softplus, Abs. value, ReLU\n- Semi-NMF Mode: Softplus, Abs. value, ReLU\nAgainst:\n- Baseline NMF (Lee & Seung 2001)\n- Baseline Semi-NMF (Ding et al. 2010)",
+      "sha256": "36d36b3e961e5c7bec475d11732eb81ab962fd4ffb14e6c27656735f8b4d1fa1"
+    },
+    {
+      "path": "paper_reproduction/consolidated_results/generate_consolidated_report.py",
+      "size_bytes": 10176,
+      "lines": 119,
+      "classes": [],
+      "functions": [
+        "load_json_safe",
+        "main"
+      ],
+      "imports": [
+        "json",
+        "numpy",
+        "os"
+      ],
+      "doc": "Consolidated Baseline Aggregator and Report Generator\nCompiles all executed DeepTensor CNN baseline experimental metrics across the 9 applications\nand produces unified comparison tables against published paper figures and tables.",
+      "sha256": "29cdd1ca879673659afac338588e59516f0803fb11fedbd62336ff6706b4ea02"
+    },
+    {
+      "path": "previous_neurotensor_experiments/01_icvl_cnn_baseline/run_figure9.py",
+      "size_bytes": 14765,
+      "lines": 339,
+      "classes": [],
+      "functions": [
+        "compute_metrics"
+      ],
+      "imports": [
+        "argparse",
+        "bm3d",
+        "copy",
+        "deep_prior",
+        "json",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "spectral",
+        "sys",
+        "time",
+        "torch",
+        "utils"
+      ],
+      "doc": "This script replicates the DeepTensor, SVD, and BM3D results in Figure 9 of the paper:\n\"DeepTensor: Low-Rank Tensor Decomposition With Deep Network Priors\" (Section 4.1, Page 8)\n\nExperiment:\n- Hyperspectral Image Denoising on ICVL dataset (data/icvl.mat)\n- Downsampled to (174, 164, 260)\n- Noise: Poisson (tau=100) + Gaussian readout (snr=2) -> Input PSNR ~ 28.43 dB\n- Baselines:\n  1. Rank-20 SVD (Truncated Singular Value Decomposition)\n  2. BM3D Hyperspectral Denoising\n  3. Rank-20 DeepTensor (2D DIP spatial + 1D DIP spectral, 5000 epochs)\n\nOutputs faithfully saved in: RESULTS-BASELINE/figure9/",
+      "sha256": "eef933a33580a3dca0fb4f38bf9fdfb6dafb7a7431235332a5aa50fa7048489d"
+    },
+    {
+      "path": "previous_neurotensor_experiments/02_icvl_adaptive_rank/run_figure9_adaptive.py",
+      "size_bytes": 21593,
+      "lines": 481,
+      "classes": [],
+      "functions": [],
+      "imports": [
+        "copy",
+        "deep_prior",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "spectral",
+        "sys",
+        "time",
+        "torch",
+        "tqdm",
+        "utils"
+      ],
+      "doc": "Research Extension 1: Adaptive Rank Selection \u2014 Plateau-Based\n\nBased on the validated DeepTensor baseline (commit a146cc7).\nThis script implements adaptive rank selection using a plateau-based\nmechanism. Instead of fixing rank=20, the effective rank starts small\nand grows when the reconstruction loss plateaus.\n\nCore approach:\n- Networks are initialized with R_MAX output channels (over-parameterization)\n- During reconstruction, only the first 'current_rank' channels are used\n  via tensor slicing after the full forward pass\n- Inactive output channels are excluded from the reconstruction, so the\n  final output-layer weights for those channels receive zero gradient.\n  Internal/shared network layers still receive gradients from the active\n  channels and continue to be trained normally.\n- When the EMA-smoothed L1 loss improvement plateaus, active rank increases\n- At rank growth, Adam optimizer state (exp_avg, exp_avg_sq) is explicitly\n  reset for the newly activated final-layer output parameters to ensure\n  a clean learning start\n- All previously learned parameters and optimizer states for existing\n  active channels are fully preserved\n- No network rebuilding or architecture changes occur at rank growth\n\nRank-growth decisions depend ONLY on the self-supervised L1 reconstruction\nloss against the noisy observation. No clean ground-truth information is\nused in any training or rank-selection decision.\n\nReproducibility note: No random seed is set, matching the baseline protocol.\nResults are stochastic due to random noise generation, network initialization,\nand input perturbation. Multiple runs are needed for statistical significance.\n\nBranch: extension/adaptive-rank\nBaseline: main / commit a146cc7",
+      "sha256": "da1287c6f3c8c2e5ad3779e8e0a69c1445ce665eedf7e444697069d555a5b8b8"
+    },
+    {
+      "path": "previous_neurotensor_experiments/03_icvl_factor_group_sparsity/run_figure9_sparsity.py",
+      "size_bytes": 17062,
+      "lines": 448,
+      "classes": [],
+      "functions": [
+        "compute_effective_ranks",
+        "compute_group_regularizer",
+        "parse_args"
+      ],
+      "imports": [
+        "argparse",
+        "copy",
+        "deep_prior",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "spectral",
+        "sys",
+        "time",
+        "torch",
+        "tqdm",
+        "utils"
+      ],
+      "doc": "Research Extension 2: Factor Group-Sparsity (Group Lasso) Regularization\n\nBased on the validated DeepTensor baseline (commit a146cc7) and PROJECT_CONTEXT.md.\nThis script implements Factor Group-Sparsity (Group Lasso) regularization on the\noriginal unnormalized DeepTensor factor matrices U and V.\n\nCore approach:\n- Original unnormalized DeepTensor architecture: Y_hat = U V^T\n- Over-parameterized capacity: R_MAX = 30\n- Joint factor norm for component r: g_r = sqrt(||U_r||_2^2 + ||V_r||_2^2)\n- Group-sparsity regularizer: R(U,V) = sum_{r=1}^{R_MAX} g_r\n- Objective: L = (95% visible L1 reconstruction loss) + lambda * R(U,V)\n- Held-out 5% validation framework (fixed mask, seed 42) for hyperparameter selection\n- Ground-truth PSNR/SSIM/RMSE used strictly for post-hoc evaluation after model selection",
+      "sha256": "a274c154c63cf504fae5965834f4a15bbccfe3dda113912bb30cea41cf95612e"
+    },
+    {
+      "path": "previous_neurotensor_experiments/04_icvl_tensor_completion/run_figure9_completion.py",
+      "size_bytes": 17476,
+      "lines": 439,
+      "classes": [],
+      "functions": [
+        "compute_subset_metrics",
+        "generate_completion_masks",
+        "parse_args"
+      ],
+      "imports": [
+        "argparse",
+        "copy",
+        "deep_prior",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "spectral",
+        "sys",
+        "time",
+        "torch",
+        "tqdm",
+        "utils"
+      ],
+      "doc": "Extension 3: Missing-Data / Tensor Completion Capability for DeepTensor\n\nFROZEN DESIGN:\n- Adds mask-aware reconstruction loss to evaluate DeepTensor on tensor completion.\n- DeepTensor architecture is unchanged (Fixed R = 20, DIP generators).\n- Data: ICVL hyperspectral image cube (1000x1000x31 or downsampled).\n- Network input: Latent noise grids (im_inp, spec_inp) ONLY. The observation tensor\n  is used solely as the target in loss computation.\n- Missingness Masking:\n  - Uses scoped NumPy RNG (default_rng(seed)) to generate nested missing masks:\n    mask_missing = u < missing_ratio (80% missing superset of 50%, superset of 20%).\n  - Observed entries (1 - mask_missing) are split into 95% training and 5% validation.\n  - Missing entries contribute ZERO to training and validation losses.\n- Checkpoint Selection: Strictly based on self-supervised validation L1 loss (mask_val).\n- Final Evaluation: Restores best checkpoint in train mode (im_net.train(), spec_net.train())\n  and computes Full, Missing-only, and Observed-only PSNR/RMSE against clean ground truth.",
+      "sha256": "346cb299861f3f25821b33d90b70d358ea3c2636eafffd2e60e86b93ea7b9dae"
+    },
+    {
+      "path": "previous_neurotensor_experiments/05_icvl_noise_robustness/run_figure9_robustness.py",
+      "size_bytes": 8997,
+      "lines": 269,
+      "classes": [],
+      "functions": [],
+      "imports": [
+        "argparse",
+        "copy",
+        "cv2",
+        "deep_decoder",
+        "deep_prior",
+        "losses",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "spectral",
+        "sys",
+        "time",
+        "torch",
+        "tqdm",
+        "utils"
+      ],
+      "doc": "This script replicates the DeepTensor results in Figure 6. The accuracy is\ndifferent from the paper as hyperspectral image was downsampled.",
+      "sha256": "09ac13882a7cc646a920e4327e29af032485efbad0fbd17360eac338dc6b663c"
+    },
+    {
+      "path": "previous_neurotensor_experiments/06_icvl_ensemble_uncertainty/run_figure9_ensemble.py",
+      "size_bytes": 12574,
+      "lines": 365,
+      "classes": [],
+      "functions": [
+        "compute_edge_magnitude",
+        "main",
+        "set_seed"
+      ],
+      "imports": [
+        "argparse",
+        "copy",
+        "deep_decoder",
+        "deep_prior",
+        "losses",
+        "models",
+        "numpy",
+        "os",
+        "random",
+        "scipy.io",
+        "scipy.stats.pearsonr",
+        "scipy.stats.spearmanr",
+        "skimage.metrics.structural_similarity",
+        "spectral",
+        "sys",
+        "time",
+        "torch",
+        "utils"
+      ],
+      "doc": "Extension 5: Ensemble Disagreement as a Proxy for Reconstruction Uncertainty.\n\nPerforms N=5 ensemble training of DeepTensor under fixed noisy observation (seed 42).\nEvaluates empirical ensemble disagreement (std dev across members) vs true reconstruction error,\ncontrolling for ground-truth edge magnitude.",
+      "sha256": "0e343a35391b7c3f595b58fb3f0b8561a07b01a4dd9d1cf8ad29a8c0c7383cca"
+    },
+    {
+      "path": "previous_neurotensor_experiments/07_icvl_factor_interpretability/run_figure9_interpretability.py",
+      "size_bytes": 17110,
+      "lines": 400,
+      "classes": [],
+      "functions": [
+        "run_experiment"
+      ],
+      "imports": [
+        "argparse",
+        "copy",
+        "deep_decoder",
+        "deep_prior",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "spectral",
+        "sys",
+        "time",
+        "torch",
+        "utils"
+      ],
+      "doc": "Extension 7: Post-hoc Factor Analysis and Descriptive Visualization of DeepTensor Components.\n\nExtracts spatial factors U and spectral factors V from frozen baseline R=20 DeepTensor on ICVL (seed 42, mixed noise).\nPerforms post-hoc energy-norm component ordering, progressive top-k ablation, spatial/spectral cosine similarity,\nand generates four required descriptive visualizations.",
+      "sha256": "91faab6cb64c99bc6d5070b6729551d1c0c842b545372bd9919ac0080a0559dd"
+    },
+    {
+      "path": "previous_neurotensor_experiments/08_icvl_hybrid_attention/modules/attention_spectral.py",
+      "size_bytes": 7070,
+      "lines": 207,
+      "classes": [
+        "HybridSpectralNet",
+        "SpectralPointwiseControl",
+        "SpectralSelfAttention"
+      ],
+      "functions": [
+        "__init__",
+        "count_parameters",
+        "estimate_flops",
+        "forward"
+      ],
+      "imports": [
+        "math",
+        "torch",
+        "torch.nn",
+        "torch.nn.functional"
+      ],
+      "doc": "",
+      "sha256": "417eb0581ea6b0d58adb39613dbe2d37da47c23054a9ca34910ce4e0dfe9951d"
+    },
+    {
+      "path": "previous_neurotensor_experiments/08_icvl_hybrid_attention/run_figure9_hybrid.py",
+      "size_bytes": 9047,
+      "lines": 241,
+      "classes": [],
+      "functions": [
+        "main",
+        "set_seed"
+      ],
+      "imports": [
+        "argparse",
+        "attention_spectral.HybridSpectralNet",
+        "attention_spectral.count_parameters",
+        "attention_spectral.estimate_flops",
+        "copy",
+        "deep_prior",
+        "losses",
+        "numpy",
+        "os",
+        "random",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "spectral",
+        "sys",
+        "time",
+        "torch",
+        "utils"
+      ],
+      "doc": "",
+      "sha256": "a2959c7aa2eccf775dec70ec00e125468e4d839c3f1ae02d89843a1e9695289c"
+    },
+    {
+      "path": "previous_neurotensor_experiments/09_icvl_spectral_transformer/modules/spectral_transformer.py",
+      "size_bytes": 5750,
+      "lines": 155,
+      "classes": [
+        "ControlSpectralTransformer",
+        "SpectralTransformer"
+      ],
+      "functions": [
+        "__init__",
+        "count_parameters",
+        "forward",
+        "get_alibi_bias",
+        "get_sinusoidal_pe",
+        "get_slopes",
+        "get_slopes_power_of_2"
+      ],
+      "imports": [
+        "math",
+        "torch",
+        "torch.nn"
+      ],
+      "doc": "",
+      "sha256": "39a810754179b0a8abe374d845c31e379eeddd8f2398848da9485a985bd35767"
+    },
+    {
+      "path": "previous_neurotensor_experiments/09_icvl_spectral_transformer/run_figure9_spectral_transformer.py",
+      "size_bytes": 9882,
+      "lines": 258,
+      "classes": [],
+      "functions": [
+        "main",
+        "set_seed"
+      ],
+      "imports": [
+        "argparse",
+        "copy",
+        "deep_prior",
+        "losses",
+        "numpy",
+        "os",
+        "random",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "spectral",
+        "spectral_transformer.ControlSpectralTransformer",
+        "spectral_transformer.SpectralTransformer",
+        "spectral_transformer.count_parameters",
+        "sys",
+        "time",
+        "torch",
+        "utils"
+      ],
+      "doc": "",
+      "sha256": "283768c66d918e14a5aabbc7dc194151adda74799bbefbd63b7497d9e215eb83"
+    },
+    {
+      "path": "run_figure11.py",
+      "size_bytes": 6926,
+      "lines": 205,
+      "classes": [],
+      "functions": [],
+      "imports": [
+        "copy",
+        "cv2",
+        "deep_decoder",
+        "deep_prior",
+        "lin_inverse",
+        "losses",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "sys",
+        "time",
+        "torch",
+        "tqdm",
+        "utils"
+      ],
+      "doc": "This script replicates the DeepTensor results in Figure 7. The accuracy is\ndifferent from the paper as the video has been downsampled and clipped to\nfit supplementary material requirements.",
+      "sha256": "cdb52d94097e7b9c22eb5894b0b2439719cfb4f02c1df8d9920485a4aec2053e"
+    },
+    {
+      "path": "run_figure11_TV.py",
+      "size_bytes": 4069,
+      "lines": 136,
+      "classes": [],
+      "functions": [],
+      "imports": [
+        "cv2",
+        "lin_inverse",
+        "losses",
+        "matplotlib.pyplot",
+        "numpy",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "sys",
+        "torch",
+        "tqdm",
+        "utils"
+      ],
+      "doc": "This script replicates the TV results in Figure 7. The accuracy is\ndifferent from the paper as the video has been downsampled and clipped to\nfit supplementary material requirements.",
+      "sha256": "b8262ba43ece4f25e79fce1825b3ea7d4cbe8313fe230a918d6877b82af9dcc3"
+    },
+    {
+      "path": "run_figure12.py",
+      "size_bytes": 15575,
+      "lines": 371,
+      "classes": [],
+      "functions": [
+        "compute_metrics"
+      ],
+      "imports": [
+        "argparse",
+        "copy",
+        "deep_prior",
+        "json",
+        "lin_inverse",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "sys",
+        "tensorly",
+        "time",
+        "torch",
+        "utils"
+      ],
+      "doc": "This script replicates the DeepTensor, 2D TV, and Algorithmic Reconstruction results\nin Figure 12 of the paper:\n\"DeepTensor: Low-Rank Tensor Decomposition With Deep Network Priors\" (Section 4.1, Page 8-9)\n\nExperiment:\n- 3D PET CT Volume Reconstruction from Limited, Noisy Tomographic Measurements\n- Dataset: data/pet.mat (H=128, W=128, T=56)\n- Model: Rank-1000 PARAFAC (CP) Decomposition\n- Forward Model: 40 Tomographic Angles via Radon Transform\n- Noise: Poisson (tau=1000) + Gaussian readout (snr=2)\n- Baselines:\n  1. Algorithmic Reconstruction (Linear Inversion without priors)\n  2. 2D Total Variation (TV) Regularization\n  3. Rank-1000 DeepTensor (3 x 1D DIP networks with positional encoding)\n\nOutputs faithfully saved in: RESULTS-BASELINE/figure12/",
+      "sha256": "a62449718cd41453d7a37a6b858aabdaa2594f3aabbd8cb6b1ad13d89d05ba64"
+    },
+    {
+      "path": "run_figure12_TV.py",
+      "size_bytes": 3874,
+      "lines": 131,
+      "classes": [],
+      "functions": [],
+      "imports": [
+        "cv2",
+        "lin_inverse",
+        "losses",
+        "matplotlib.pyplot",
+        "numpy",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "sys",
+        "tensorly",
+        "torch",
+        "tqdm",
+        "utils"
+      ],
+      "doc": "This script replicates the TV results in Figure 8. The accuracy is\ndifferent from the paper as PET scan was downsampled.",
+      "sha256": "0fd62712eff242c06aea3aa1ce2cda8897452307454aa743d6c93877dcb2641d"
+    },
+    {
+      "path": "run_figure2.py",
+      "size_bytes": 15703,
+      "lines": 409,
+      "classes": [],
+      "functions": [
+        "average_precision",
+        "do_ica_and_svm",
+        "do_pca_and_svm",
+        "do_svm"
+      ],
+      "imports": [
+        "argparse",
+        "copy",
+        "cv2",
+        "deep_decoder",
+        "deep_prior",
+        "importlib",
+        "json",
+        "losses",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "scipy.io",
+        "scipy.linalg",
+        "skimage.metrics.structural_similarity",
+        "sklearn.datasets.fetch_lfw_people",
+        "sklearn.datasets.fetch_olivetti_faces",
+        "sklearn.decomposition.FastICA",
+        "sklearn.decomposition.PCA",
+        "sklearn.metrics.average_precision_score",
+        "sklearn.metrics.classification_report",
+        "sklearn.metrics.confusion_matrix",
+        "sklearn.model_selection.GridSearchCV",
+        "sklearn.model_selection.train_test_split",
+        "sklearn.svm.SVC",
+        "sys",
+        "torch",
+        "tqdm",
+        "utils"
+      ],
+      "doc": "This script replicates results in Figure 2 of our main paper.",
+      "sha256": "8728efd20aaeedf1c4eca07511b9f4b8e8e16033321be9360a88275288949be2"
+    },
+    {
+      "path": "run_figure6.py",
+      "size_bytes": 10685,
+      "lines": 299,
+      "classes": [],
+      "functions": [
+        "train_deeptensor_matrix"
+      ],
+      "imports": [
+        "argparse",
+        "deep_prior",
+        "json",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "sys",
+        "time",
+        "torch",
+        "utils"
+      ],
+      "doc": "This script replicates results in Figure 6 of the DeepTensor research paper:\n\"DeepTensor: Low-Rank Tensor Decomposition With Deep Network Priors\" (Section 3.2, Page 5)\n\nExperiment:\nLow-rank matrix decomposition robustness across signal and noise distributions:\n1. Gaussian signal + Gaussian noise (std = 0.1)\n2. Piecewise constant signal + Poisson noise (mean in [0, 1000], tau=1000)\n3. Piecewise constant signal + Rician noise (std = 0.02)\n\nAcross ranks: [10, 20, 30, 40, 50, 60]\nModels: DeepTensor (1D DIP network for U and V) vs Truncated SVD.\nOutputs saved to: RESULTS-BASELINE/figure6/",
+      "sha256": "534bb92005c48493bf1ee782bcb71fcd0580465429e6e73844319ff9c78d713b"
+    },
+    {
+      "path": "run_figure7.py",
+      "size_bytes": 12340,
+      "lines": 314,
+      "classes": [],
+      "functions": [
+        "train_deeptensor_pca"
+      ],
+      "imports": [
+        "argparse",
+        "deep_prior",
+        "json",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "sys",
+        "time",
+        "torch",
+        "utils"
+      ],
+      "doc": "This script replicates results in Figure 7 of the DeepTensor research paper:\n\"DeepTensor: Low-Rank Tensor Decomposition With Deep Network Priors\" (Section 3.2, Page 5)\n\nExperiment:\nPrincipal Component Analysis (PCA) under varying sample sizes and noise levels:\n- Feature dimension: 64, Intrinsic dimension (rank): 10\n- Sample sizes: [32, 64, 128, 256, 512, 1024]\n- Noise standard deviations (sigma): [0.05, 0.1, 0.2, 0.5, 1.0]\n\nEvaluation:\n- SVD vs DeepTensor on Sample Covariance Matrix\n- Reconstruction PSNR against Clean Ground-Truth Covariance Matrix\n\nOutputs saved to: RESULTS-BASELINE/figure7/",
+      "sha256": "db898a48eb437290127f7992c2a48988867b06c9ae8fedb8fb017389588e5d3f"
+    },
+    {
+      "path": "run_figure9.py",
+      "size_bytes": 14765,
+      "lines": 339,
+      "classes": [],
+      "functions": [
+        "compute_metrics"
+      ],
+      "imports": [
+        "argparse",
+        "bm3d",
+        "copy",
+        "deep_prior",
+        "json",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "spectral",
+        "sys",
+        "time",
+        "torch",
+        "utils"
+      ],
+      "doc": "This script replicates the DeepTensor, SVD, and BM3D results in Figure 9 of the paper:\n\"DeepTensor: Low-Rank Tensor Decomposition With Deep Network Priors\" (Section 4.1, Page 8)\n\nExperiment:\n- Hyperspectral Image Denoising on ICVL dataset (data/icvl.mat)\n- Downsampled to (174, 164, 260)\n- Noise: Poisson (tau=100) + Gaussian readout (snr=2) -> Input PSNR ~ 28.43 dB\n- Baselines:\n  1. Rank-20 SVD (Truncated Singular Value Decomposition)\n  2. BM3D Hyperspectral Denoising\n  3. Rank-20 DeepTensor (2D DIP spatial + 1D DIP spectral, 5000 epochs)\n\nOutputs faithfully saved in: RESULTS-BASELINE/figure9/",
+      "sha256": "eef933a33580a3dca0fb4f38bf9fdfb6dafb7a7431235332a5aa50fa7048489d"
+    },
+    {
+      "path": "run_figure9_adaptive.py",
+      "size_bytes": 21593,
+      "lines": 481,
+      "classes": [],
+      "functions": [],
+      "imports": [
+        "copy",
+        "deep_prior",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "spectral",
+        "sys",
+        "time",
+        "torch",
+        "tqdm",
+        "utils"
+      ],
+      "doc": "Research Extension 1: Adaptive Rank Selection \u2014 Plateau-Based\n\nBased on the validated DeepTensor baseline (commit a146cc7).\nThis script implements adaptive rank selection using a plateau-based\nmechanism. Instead of fixing rank=20, the effective rank starts small\nand grows when the reconstruction loss plateaus.\n\nCore approach:\n- Networks are initialized with R_MAX output channels (over-parameterization)\n- During reconstruction, only the first 'current_rank' channels are used\n  via tensor slicing after the full forward pass\n- Inactive output channels are excluded from the reconstruction, so the\n  final output-layer weights for those channels receive zero gradient.\n  Internal/shared network layers still receive gradients from the active\n  channels and continue to be trained normally.\n- When the EMA-smoothed L1 loss improvement plateaus, active rank increases\n- At rank growth, Adam optimizer state (exp_avg, exp_avg_sq) is explicitly\n  reset for the newly activated final-layer output parameters to ensure\n  a clean learning start\n- All previously learned parameters and optimizer states for existing\n  active channels are fully preserved\n- No network rebuilding or architecture changes occur at rank growth\n\nRank-growth decisions depend ONLY on the self-supervised L1 reconstruction\nloss against the noisy observation. No clean ground-truth information is\nused in any training or rank-selection decision.\n\nReproducibility note: No random seed is set, matching the baseline protocol.\nResults are stochastic due to random noise generation, network initialization,\nand input perturbation. Multiple runs are needed for statistical significance.\n\nBranch: extension/adaptive-rank\nBaseline: main / commit a146cc7",
+      "sha256": "da1287c6f3c8c2e5ad3779e8e0a69c1445ce665eedf7e444697069d555a5b8b8"
+    },
+    {
+      "path": "run_figure9_bm3d.py",
+      "size_bytes": 1789,
+      "lines": 70,
+      "classes": [],
+      "functions": [],
+      "imports": [
+        "bm3d",
+        "matplotlib.pyplot",
+        "numpy",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "sys",
+        "tqdm",
+        "utils"
+      ],
+      "doc": "This script replicates the BM3D results in Figure 6. The accuracy is\ndifferent from the paper as the hyperspectral image has been downsampled.",
+      "sha256": "45d42e5d1cb34579ee3f858dd590ec095cb744533a4de962075ac7efc20ac9e3"
+    },
+    {
+      "path": "run_figure9_completion.py",
+      "size_bytes": 17476,
+      "lines": 439,
+      "classes": [],
+      "functions": [
+        "compute_subset_metrics",
+        "generate_completion_masks",
+        "parse_args"
+      ],
+      "imports": [
+        "argparse",
+        "copy",
+        "deep_prior",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "spectral",
+        "sys",
+        "time",
+        "torch",
+        "tqdm",
+        "utils"
+      ],
+      "doc": "Extension 3: Missing-Data / Tensor Completion Capability for DeepTensor\n\nFROZEN DESIGN:\n- Adds mask-aware reconstruction loss to evaluate DeepTensor on tensor completion.\n- DeepTensor architecture is unchanged (Fixed R = 20, DIP generators).\n- Data: ICVL hyperspectral image cube (1000x1000x31 or downsampled).\n- Network input: Latent noise grids (im_inp, spec_inp) ONLY. The observation tensor\n  is used solely as the target in loss computation.\n- Missingness Masking:\n  - Uses scoped NumPy RNG (default_rng(seed)) to generate nested missing masks:\n    mask_missing = u < missing_ratio (80% missing superset of 50%, superset of 20%).\n  - Observed entries (1 - mask_missing) are split into 95% training and 5% validation.\n  - Missing entries contribute ZERO to training and validation losses.\n- Checkpoint Selection: Strictly based on self-supervised validation L1 loss (mask_val).\n- Final Evaluation: Restores best checkpoint in train mode (im_net.train(), spec_net.train())\n  and computes Full, Missing-only, and Observed-only PSNR/RMSE against clean ground truth.",
+      "sha256": "346cb299861f3f25821b33d90b70d358ea3c2636eafffd2e60e86b93ea7b9dae"
+    },
+    {
+      "path": "run_figure9_ensemble.py",
+      "size_bytes": 12574,
+      "lines": 365,
+      "classes": [],
+      "functions": [
+        "compute_edge_magnitude",
+        "main",
+        "set_seed"
+      ],
+      "imports": [
+        "argparse",
+        "copy",
+        "deep_decoder",
+        "deep_prior",
+        "losses",
+        "models",
+        "numpy",
+        "os",
+        "random",
+        "scipy.io",
+        "scipy.stats.pearsonr",
+        "scipy.stats.spearmanr",
+        "skimage.metrics.structural_similarity",
+        "spectral",
+        "sys",
+        "time",
+        "torch",
+        "utils"
+      ],
+      "doc": "Extension 5: Ensemble Disagreement as a Proxy for Reconstruction Uncertainty.\n\nPerforms N=5 ensemble training of DeepTensor under fixed noisy observation (seed 42).\nEvaluates empirical ensemble disagreement (std dev across members) vs true reconstruction error,\ncontrolling for ground-truth edge magnitude.",
+      "sha256": "0e343a35391b7c3f595b58fb3f0b8561a07b01a4dd9d1cf8ad29a8c0c7383cca"
+    },
+    {
+      "path": "run_figure9_hybrid.py",
+      "size_bytes": 9047,
+      "lines": 241,
+      "classes": [],
+      "functions": [
+        "main",
+        "set_seed"
+      ],
+      "imports": [
+        "argparse",
+        "attention_spectral.HybridSpectralNet",
+        "attention_spectral.count_parameters",
+        "attention_spectral.estimate_flops",
+        "copy",
+        "deep_prior",
+        "losses",
+        "numpy",
+        "os",
+        "random",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "spectral",
+        "sys",
+        "time",
+        "torch",
+        "utils"
+      ],
+      "doc": "",
+      "sha256": "a2959c7aa2eccf775dec70ec00e125468e4d839c3f1ae02d89843a1e9695289c"
+    },
+    {
+      "path": "run_figure9_interpretability.py",
+      "size_bytes": 17110,
+      "lines": 400,
+      "classes": [],
+      "functions": [
+        "run_experiment"
+      ],
+      "imports": [
+        "argparse",
+        "copy",
+        "deep_decoder",
+        "deep_prior",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "spectral",
+        "sys",
+        "time",
+        "torch",
+        "utils"
+      ],
+      "doc": "Extension 7: Post-hoc Factor Analysis and Descriptive Visualization of DeepTensor Components.\n\nExtracts spatial factors U and spectral factors V from frozen baseline R=20 DeepTensor on ICVL (seed 42, mixed noise).\nPerforms post-hoc energy-norm component ordering, progressive top-k ablation, spatial/spectral cosine similarity,\nand generates four required descriptive visualizations.",
+      "sha256": "91faab6cb64c99bc6d5070b6729551d1c0c842b545372bd9919ac0080a0559dd"
+    },
+    {
+      "path": "run_figure9_robustness.py",
+      "size_bytes": 8997,
+      "lines": 269,
+      "classes": [],
+      "functions": [],
+      "imports": [
+        "argparse",
+        "copy",
+        "cv2",
+        "deep_decoder",
+        "deep_prior",
+        "losses",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "spectral",
+        "sys",
+        "time",
+        "torch",
+        "tqdm",
+        "utils"
+      ],
+      "doc": "This script replicates the DeepTensor results in Figure 6. The accuracy is\ndifferent from the paper as hyperspectral image was downsampled.",
+      "sha256": "09ac13882a7cc646a920e4327e29af032485efbad0fbd17360eac338dc6b663c"
+    },
+    {
+      "path": "run_figure9_sparsity.py",
+      "size_bytes": 17062,
+      "lines": 448,
+      "classes": [],
+      "functions": [
+        "compute_effective_ranks",
+        "compute_group_regularizer",
+        "parse_args"
+      ],
+      "imports": [
+        "argparse",
+        "copy",
+        "deep_prior",
+        "losses",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "os",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "spectral",
+        "sys",
+        "time",
+        "torch",
+        "tqdm",
+        "utils"
+      ],
+      "doc": "Research Extension 2: Factor Group-Sparsity (Group Lasso) Regularization\n\nBased on the validated DeepTensor baseline (commit a146cc7) and PROJECT_CONTEXT.md.\nThis script implements Factor Group-Sparsity (Group Lasso) regularization on the\noriginal unnormalized DeepTensor factor matrices U and V.\n\nCore approach:\n- Original unnormalized DeepTensor architecture: Y_hat = U V^T\n- Over-parameterized capacity: R_MAX = 30\n- Joint factor norm for component r: g_r = sqrt(||U_r||_2^2 + ||V_r||_2^2)\n- Group-sparsity regularizer: R(U,V) = sum_{r=1}^{R_MAX} g_r\n- Objective: L = (95% visible L1 reconstruction loss) + lambda * R(U,V)\n- Held-out 5% validation framework (fixed mask, seed 42) for hyperparameter selection\n- Ground-truth PSNR/SSIM/RMSE used strictly for post-hoc evaluation after model selection",
+      "sha256": "a274c154c63cf504fae5965834f4a15bbccfe3dda113912bb30cea41cf95612e"
+    },
+    {
+      "path": "run_figure9_spectral_transformer.py",
+      "size_bytes": 9882,
+      "lines": 258,
+      "classes": [],
+      "functions": [
+        "main",
+        "set_seed"
+      ],
+      "imports": [
+        "argparse",
+        "copy",
+        "deep_prior",
+        "losses",
+        "numpy",
+        "os",
+        "random",
+        "scipy.io",
+        "skimage.metrics.structural_similarity",
+        "spectral",
+        "spectral_transformer.ControlSpectralTransformer",
+        "spectral_transformer.SpectralTransformer",
+        "spectral_transformer.count_parameters",
+        "sys",
+        "time",
+        "torch",
+        "utils"
+      ],
+      "doc": "",
+      "sha256": "283768c66d918e14a5aabbc7dc194151adda74799bbefbd63b7497d9e215eb83"
+    },
+    {
+      "path": "run_table1.py",
+      "size_bytes": 19412,
+      "lines": 610,
+      "classes": [
+        "PyMFBase",
+        "SNMF"
+      ],
+      "functions": [
+        "__init__",
+        "_converged",
+        "_init_h",
+        "_init_w",
+        "_update_h",
+        "_update_w",
+        "cmdet",
+        "eighk",
+        "factorize",
+        "frobenius_norm",
+        "get_nmf",
+        "residual",
+        "runner",
+        "separate_negative",
+        "separate_positive",
+        "setup_logging",
+        "simplex"
+      ],
+      "imports": [
+        "argparse",
+        "deep_decoder",
+        "deep_prior",
+        "logging",
+        "logging.config",
+        "losses",
+        "matplotlib.pyplot",
+        "models",
+        "numpy",
+        "numpy.linalg.eigh",
+        "scipy.sparse",
+        "sklearn.decomposition.NMF",
+        "sys",
+        "torch",
+        "torch.utils.data.DataLoader",
+        "torchaudio",
+        "torchvision.datasets",
+        "torchvision.transforms",
+        "tqdm",
+        "utils"
+      ],
+      "doc": "This script replicates results in table 1 in the main paper.\n\nNote: Running this script downloads datasets that can be up to 2.5GB in size.\nMake sure you have enough disk space before running this script.",
+      "sha256": "ba8c5f37db25bb36485914b2f6b565d9609d011cc6043cc9b69260533d162102"
+    },
+    {
+      "path": "scratch/audit_experiments.py",
+      "size_bytes": 15968,
+      "lines": 257,
+      "classes": [],
+      "functions": [],
+      "imports": [
+        "json",
+        "os",
+        "scipy.io"
+      ],
+      "doc": "",
+      "sha256": "0f0e550973ed959cf1865771ca50a20a901a59502715e448929a5acfa35dbf88"
+    },
+    {
+      "path": "scratch/audit_helper.py",
+      "size_bytes": 432,
+      "lines": 17,
+      "classes": [],
+      "functions": [],
+      "imports": [
+        "json",
+        "os"
+      ],
+      "doc": "",
+      "sha256": "57033c582b3ccb180827f3a98481653ca7e5188147a06329ccea1f8e9ef349af"
+    },
+    {
+      "path": "scratch/build_audit_data.py",
+      "size_bytes": 3960,
+      "lines": 117,
+      "classes": [],
+      "functions": [
+        "analyze_python_file",
+        "get_hash"
+      ],
+      "imports": [
+        "ast",
+        "hashlib",
+        "json",
+        "os"
+      ],
+      "doc": "",
+      "sha256": "e91f2125a23a8dd9b2799394c88e58aaed612ccbdaa9f3c6f8c0ea82a779a883"
+    },
+    {
+      "path": "scratch_calibrate.py",
+      "size_bytes": 1546,
+      "lines": 49,
+      "classes": [],
+      "functions": [
+        "calibrate_gaussian",
+        "calibrate_poisson"
+      ],
+      "imports": [
+        "numpy",
+        "scipy.io",
+        "sys",
+        "utils"
+      ],
+      "doc": "",
+      "sha256": "6691d729f3950d5b58a6c90ce9aeda5e324bad52c434a355b88bdb7b9dff22d3"
+    }
+  ],
+  "checkpoints": [
+    {
+      "path": "paper_reproduction/cnn_baseline/05_hyperspectral_denoising/checkpoint/figure9_deeptensor_checkpoint.pt",
+      "size": 12219098,
+      "filename": "figure9_deeptensor_checkpoint.pt"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/checkpoint/deeptensor_noise_30_checkpoint.pt",
+      "size": 8954137,
+      "filename": "deeptensor_noise_30_checkpoint.pt"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/checkpoint/deeptensor_noise_60_checkpoint.pt",
+      "size": 8954137,
+      "filename": "deeptensor_noise_60_checkpoint.pt"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run/checkpoint/deeptensor_noise_30_improved_checkpoint.pt",
+      "size": 22184788,
+      "filename": "deeptensor_noise_30_improved_checkpoint.pt"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run/checkpoint/deeptensor_noise_60_improved_checkpoint.pt",
+      "size": 22184788,
+      "filename": "deeptensor_noise_60_improved_checkpoint.pt"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run_fig13b/checkpoint/deeptensor_rank_1000_checkpoint.pt",
+      "size": 5249964,
+      "filename": "deeptensor_rank_1000_checkpoint.pt"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run_fig13b/checkpoint/deeptensor_rank_100_checkpoint.pt",
+      "size": 2427137,
+      "filename": "deeptensor_rank_100_checkpoint.pt"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run_fig13b/checkpoint/deeptensor_rank_10_checkpoint.pt",
+      "size": 2144214,
+      "filename": "deeptensor_rank_10_checkpoint.pt"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run_fig13b/checkpoint/deeptensor_rank_2000_checkpoint.pt",
+      "size": 8386156,
+      "filename": "deeptensor_rank_2000_checkpoint.pt"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run_fig13b/checkpoint/deeptensor_rank_4000_checkpoint.pt",
+      "size": 14658156,
+      "filename": "deeptensor_rank_4000_checkpoint.pt"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run_fig13b/checkpoint/deeptensor_rank_500_checkpoint.pt",
+      "size": 3681537,
+      "filename": "deeptensor_rank_500_checkpoint.pt"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run_fig13b/checkpoint/deeptensor_rank_50_checkpoint.pt",
+      "size": 2269782,
+      "filename": "deeptensor_rank_50_checkpoint.pt"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/original_baseline/checkpoint/deeptensor_noise_30_checkpoint.pt",
+      "size": 8954137,
+      "filename": "deeptensor_noise_30_checkpoint.pt"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/original_baseline/checkpoint/deeptensor_noise_60_checkpoint.pt",
+      "size": 8954137,
+      "filename": "deeptensor_noise_60_checkpoint.pt"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/07_video_compressive_sensing/checkpoint/figure11_deeptensor_checkpoint.pt",
+      "size": 5417052,
+      "filename": "figure11_deeptensor_checkpoint.pt"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/07_video_compressive_sensing/improved_run/checkpoint/figure11_deeptensor_improved_checkpoint.pt",
+      "size": 16751750,
+      "filename": "figure11_deeptensor_improved_checkpoint.pt"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/07_video_compressive_sensing/original_baseline/checkpoint/figure11_deeptensor_checkpoint.pt",
+      "size": 5417052,
+      "filename": "figure11_deeptensor_checkpoint.pt"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/08_ct_reconstruction/checkpoint/figure12_deeptensor_checkpoint.pt",
+      "size": 15971161,
+      "filename": "figure12_deeptensor_checkpoint.pt"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/08_ct_reconstruction/improved_run/checkpoint/figure12_deeptensor_improved_checkpoint.pt",
+      "size": 15976916,
+      "filename": "figure12_deeptensor_improved_checkpoint.pt"
+    },
+    {
+      "path": "results/adaptive/checkpoint/checkpoint.pt",
+      "size": 44203669,
+      "filename": "checkpoint.pt"
+    },
+    {
+      "path": "results/adaptive_fixed/checkpoint/checkpoint.pt",
+      "size": 44203605,
+      "filename": "checkpoint.pt"
+    },
+    {
+      "path": "results/baseline/checkpoint/checkpoint.pt",
+      "size": 44193301,
+      "filename": "checkpoint.pt"
+    },
+    {
+      "path": "results/baseline_fixed/checkpoint/checkpoint.pt",
+      "size": 44193301,
+      "filename": "checkpoint.pt"
+    },
+    {
+      "path": "results/sparsity/checkpoint/checkpoint.pt",
+      "size": 14525844,
+      "filename": "checkpoint.pt"
+    },
+    {
+      "path": "results/sparsity/checkpoint/checkpoint_l0.001.pt",
+      "size": 14528778,
+      "filename": "checkpoint_l0.001.pt"
+    },
+    {
+      "path": "results/_archived_diagnostic_l0.001/checkpoint_l0.001.pt",
+      "size": 14528778,
+      "filename": "checkpoint_l0.001.pt"
+    },
+    {
+      "path": "results/_validation_10_epoch/adaptive/checkpoint.pt",
+      "size": 14525844,
+      "filename": "checkpoint.pt"
+    },
+    {
+      "path": "results/_validation_10_epoch/baseline/checkpoint.pt",
+      "size": 14515540,
+      "filename": "checkpoint.pt"
+    },
+    {
+      "path": "results/_validation_10_epoch/sparsity/checkpoint_l0.001.pt",
+      "size": 14528842,
+      "filename": "checkpoint_l0.001.pt"
+    },
+    {
+      "path": "RESULTS-BASELINE/figure12/checkpoint/figure12_deeptensor_checkpoint.pt",
+      "size": 15971161,
+      "filename": "figure12_deeptensor_checkpoint.pt"
+    },
+    {
+      "path": "RESULTS-BASELINE/figure9/checkpoint/figure9_deeptensor_checkpoint.pt",
+      "size": 12219098,
+      "filename": "figure9_deeptensor_checkpoint.pt"
+    }
+  ],
+  "metrics_json": [
+    {
+      "path": "paper_reproduction/cnn_baseline/01_synthetic_decomposition/figure4_benchmark_metrics.json",
+      "size": 416,
+      "filename": "figure4_benchmark_metrics.json"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/01_synthetic_decomposition/metrics.json",
+      "size": 2425,
+      "filename": "metrics.json"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/01_synthetic_decomposition/synthetic_suite_metrics.json",
+      "size": 3202,
+      "filename": "synthetic_suite_metrics.json"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/02_pca/metrics.json",
+      "size": 1458,
+      "filename": "metrics.json"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/03_nmf/metrics.json",
+      "size": 1456,
+      "filename": "metrics.json"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/04_eigenfaces_classification/metrics.json",
+      "size": 1010,
+      "filename": "metrics.json"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/05_hyperspectral_denoising/figure13a_metrics.json",
+      "size": 541,
+      "filename": "figure13a_metrics.json"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/05_hyperspectral_denoising/metrics.json",
+      "size": 579,
+      "filename": "metrics.json"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/figure13b_metrics.json",
+      "size": 560,
+      "filename": "figure13b_metrics.json"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/metrics.json",
+      "size": 830,
+      "filename": "metrics.json"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run/metrics_noise_30.json",
+      "size": 2085,
+      "filename": "metrics_noise_30.json"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run/metrics_noise_60.json",
+      "size": 2082,
+      "filename": "metrics_noise_60.json"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run_fig13b/figure13b_improved_metrics.json",
+      "size": 3614,
+      "filename": "figure13b_improved_metrics.json"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/original_baseline/figure13b_metrics.json",
+      "size": 560,
+      "filename": "figure13b_metrics.json"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/original_baseline/metrics.json",
+      "size": 830,
+      "filename": "metrics.json"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/07_video_compressive_sensing/metrics.json",
+      "size": 495,
+      "filename": "metrics.json"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/07_video_compressive_sensing/improved_run/metrics.json",
+      "size": 1249,
+      "filename": "metrics.json"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/07_video_compressive_sensing/original_baseline/metrics.json",
+      "size": 495,
+      "filename": "metrics.json"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/08_ct_reconstruction/metrics.json",
+      "size": 468,
+      "filename": "metrics.json"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/08_ct_reconstruction/improved_run/figure12_improved_metrics.json",
+      "size": 1958,
+      "filename": "figure12_improved_metrics.json"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/09_speech_time_frequency/metrics.json",
+      "size": 1262,
+      "filename": "metrics.json"
+    },
+    {
+      "path": "paper_reproduction/consolidated_results/cnn_baseline_summary.json",
+      "size": 13333,
+      "filename": "cnn_baseline_summary.json"
+    },
+    {
+      "path": "paper_reproduction/consolidated_results/PHASE1_VALIDATION_SUMMARY.json",
+      "size": 3359,
+      "filename": "PHASE1_VALIDATION_SUMMARY.json"
+    },
+    {
+      "path": "previous_neurotensor_experiments/01_icvl_cnn_baseline/baseline_metrics.json",
+      "size": 103,
+      "filename": "baseline_metrics.json"
+    },
+    {
+      "path": "previous_neurotensor_experiments/01_icvl_cnn_baseline/configuration.json",
+      "size": 1185,
+      "filename": "configuration.json"
+    },
+    {
+      "path": "previous_neurotensor_experiments/02_icvl_adaptive_rank/metrics.json",
+      "size": 102,
+      "filename": "metrics.json"
+    },
+    {
+      "path": "previous_neurotensor_experiments/03_icvl_factor_group_sparsity/metrics.json",
+      "size": 104,
+      "filename": "metrics.json"
+    },
+    {
+      "path": "results/adaptive_rank_selection/metrics.json",
+      "size": 102,
+      "filename": "metrics.json"
+    },
+    {
+      "path": "results/baseline/metrics.json",
+      "size": 103,
+      "filename": "metrics.json"
+    },
+    {
+      "path": "results/factor_group-sparsity/metrics.json",
+      "size": 104,
+      "filename": "metrics.json"
+    },
+    {
+      "path": "results/_archived_diagnostic_l0.001/factor_group-sparsity/metrics.json",
+      "size": 101,
+      "filename": "metrics.json"
+    },
+    {
+      "path": "RESULTS-BASELINE/figure12/configuration.json",
+      "size": 1100,
+      "filename": "configuration.json"
+    },
+    {
+      "path": "RESULTS-BASELINE/figure2/configuration.json",
+      "size": 444,
+      "filename": "configuration.json"
+    },
+    {
+      "path": "RESULTS-BASELINE/figure6/configuration.json",
+      "size": 1148,
+      "filename": "configuration.json"
+    },
+    {
+      "path": "RESULTS-BASELINE/figure7/configuration.json",
+      "size": 490,
+      "filename": "configuration.json"
+    },
+    {
+      "path": "RESULTS-BASELINE/figure9/configuration.json",
+      "size": 1185,
+      "filename": "configuration.json"
+    }
+  ],
+  "metrics_csv": [
+    {
+      "path": "PHASE1_EXPERIMENT_CONFIG_AUDIT.csv",
+      "size": 4211,
+      "filename": "PHASE1_EXPERIMENT_CONFIG_AUDIT.csv"
+    },
+    {
+      "path": "PHASE1_RERUN_PRIORITY.csv",
+      "size": 4015,
+      "filename": "PHASE1_RERUN_PRIORITY.csv"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run/progression_noise_30.csv",
+      "size": 717,
+      "filename": "progression_noise_30.csv"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run/progression_noise_60.csv",
+      "size": 717,
+      "filename": "progression_noise_60.csv"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run_fig13b/figure13b_rank_metrics.csv",
+      "size": 525,
+      "filename": "figure13b_rank_metrics.csv"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/07_video_compressive_sensing/improved_run/progression_deeptensor.csv",
+      "size": 458,
+      "filename": "progression_deeptensor.csv"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/07_video_compressive_sensing/improved_run/progression_tv.csv",
+      "size": 121,
+      "filename": "progression_tv.csv"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/08_ct_reconstruction/improved_run/progression_deeptensor.csv",
+      "size": 2510,
+      "filename": "progression_deeptensor.csv"
+    },
+    {
+      "path": "paper_reproduction/consolidated_results/PHASE1_EXPERIMENT_CONFIG_AUDIT.csv",
+      "size": 4210,
+      "filename": "PHASE1_EXPERIMENT_CONFIG_AUDIT.csv"
+    },
+    {
+      "path": "paper_reproduction/consolidated_results/PHASE1_RERUN_PRIORITY.csv",
+      "size": 4014,
+      "filename": "PHASE1_RERUN_PRIORITY.csv"
+    },
+    {
+      "path": "previous_neurotensor_experiments/02_icvl_adaptive_rank/metrics.csv",
+      "size": 89,
+      "filename": "metrics.csv"
+    },
+    {
+      "path": "previous_neurotensor_experiments/03_icvl_factor_group_sparsity/metrics.csv",
+      "size": 91,
+      "filename": "metrics.csv"
+    },
+    {
+      "path": "results/adaptive_rank_selection/metrics.csv",
+      "size": 89,
+      "filename": "metrics.csv"
+    },
+    {
+      "path": "results/baseline/metrics.csv",
+      "size": 90,
+      "filename": "metrics.csv"
+    },
+    {
+      "path": "results/factor_group-sparsity/metrics.csv",
+      "size": 91,
+      "filename": "metrics.csv"
+    },
+    {
+      "path": "results/_archived_diagnostic_l0.001/factor_group-sparsity/metrics.csv",
+      "size": 88,
+      "filename": "metrics.csv"
+    },
+    {
+      "path": "results_hybrid/loss_baseline.csv",
+      "size": 130000,
+      "filename": "loss_baseline.csv"
+    },
+    {
+      "path": "results_hybrid/loss_control.csv",
+      "size": 130000,
+      "filename": "loss_control.csv"
+    },
+    {
+      "path": "results_hybrid/loss_hybrid.csv",
+      "size": 130000,
+      "filename": "loss_hybrid.csv"
+    },
+    {
+      "path": "results_spectral_transformer/loss_control.csv",
+      "size": 130000,
+      "filename": "loss_control.csv"
+    },
+    {
+      "path": "results_spectral_transformer/loss_transformer.csv",
+      "size": 130000,
+      "filename": "loss_transformer.csv"
+    }
+  ],
+  "plots_png": [
+    {
+      "path": "paper_reproduction/cnn_baseline/01_synthetic_decomposition/images/figure6_visual_comparisons_rank30.png",
+      "size": 366973,
+      "filename": "figure6_visual_comparisons_rank30.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/01_synthetic_decomposition/plots/figure3_inductive_bias.png",
+      "size": 66908,
+      "filename": "figure3_inductive_bias.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/01_synthetic_decomposition/plots/figure4_separable_convolutions_speedup.png",
+      "size": 103888,
+      "filename": "figure4_separable_convolutions_speedup.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/01_synthetic_decomposition/plots/figure6_psnr_vs_rank.png",
+      "size": 356716,
+      "filename": "figure6_psnr_vs_rank.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/01_synthetic_decomposition/plots/figure8_stopping_criterion.png",
+      "size": 72387,
+      "filename": "figure8_stopping_criterion.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/02_pca/images/figure7_covariance_visual_comparison.png",
+      "size": 276748,
+      "filename": "figure7_covariance_visual_comparison.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/02_pca/plots/figure7_pca_sample_size_and_noise.png",
+      "size": 279037,
+      "filename": "figure7_pca_sample_size_and_noise.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/04_eigenfaces_classification/images/deeptensor_eigenfaces_montage.png",
+      "size": 1998455,
+      "filename": "deeptensor_eigenfaces_montage.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/04_eigenfaces_classification/images/figure2_eigenfaces_top12.png",
+      "size": 804879,
+      "filename": "figure2_eigenfaces_top12.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/04_eigenfaces_classification/plots/figure2_classification_accuracy.png",
+      "size": 78815,
+      "filename": "figure2_classification_accuracy.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/04_eigenfaces_classification/plots/figure2_loss_curve.png",
+      "size": 76633,
+      "filename": "figure2_loss_curve.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/05_hyperspectral_denoising/images/figure9_hyperspectral_denoising_panel.png",
+      "size": 899743,
+      "filename": "figure9_hyperspectral_denoising_panel.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/05_hyperspectral_denoising/plots/figure13a_rank_sweep.png",
+      "size": 99013,
+      "filename": "figure13a_rank_sweep.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/05_hyperspectral_denoising/plots/figure9_convergence_curves.png",
+      "size": 146283,
+      "filename": "figure9_convergence_curves.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/images/figure10_yale_tensor_denoising_panel.png",
+      "size": 1661229,
+      "filename": "figure10_yale_tensor_denoising_panel.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run/images/figure10_noise_30_reconstruction_sample.png",
+      "size": 196288,
+      "filename": "figure10_noise_30_reconstruction_sample.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run/images/figure10_noise_60_reconstruction_sample.png",
+      "size": 191239,
+      "filename": "figure10_noise_60_reconstruction_sample.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run/images/figure10_yale_tensor_denoising_improved_panel.png",
+      "size": 1972552,
+      "filename": "figure10_yale_tensor_denoising_improved_panel.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run/plots/figure10_combined_convergence_curves.png",
+      "size": 153623,
+      "filename": "figure10_combined_convergence_curves.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run/plots/figure10_noise_30_convergence_curves.png",
+      "size": 117840,
+      "filename": "figure10_noise_30_convergence_curves.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run/plots/figure10_noise_60_convergence_curves.png",
+      "size": 114730,
+      "filename": "figure10_noise_60_convergence_curves.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run_fig13b/images/figure13b_reconstruction_panel.png",
+      "size": 1197896,
+      "filename": "figure13b_reconstruction_panel.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run_fig13b/plots/figure13b_yale_rank_sweep_improved.png",
+      "size": 157396,
+      "filename": "figure13b_yale_rank_sweep_improved.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/original_baseline/images/figure10_yale_tensor_denoising_panel.png",
+      "size": 1661229,
+      "filename": "figure10_yale_tensor_denoising_panel.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/original_baseline/plots/figure10_loss_curves.png",
+      "size": 73078,
+      "filename": "figure10_loss_curves.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/original_baseline/plots/figure13b_yale_rank_sweep.png",
+      "size": 97907,
+      "filename": "figure13b_yale_rank_sweep.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/plots/figure10_loss_curves.png",
+      "size": 73078,
+      "filename": "figure10_loss_curves.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/plots/figure13b_yale_rank_sweep.png",
+      "size": 97907,
+      "filename": "figure13b_yale_rank_sweep.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/07_video_compressive_sensing/images/figure11_video_cs_panel.png",
+      "size": 1447009,
+      "filename": "figure11_video_cs_panel.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/07_video_compressive_sensing/improved_run/images/figure11_video_cs_improved_panel.png",
+      "size": 1816843,
+      "filename": "figure11_video_cs_improved_panel.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/07_video_compressive_sensing/improved_run/plots/figure11_improved_convergence_curves.png",
+      "size": 127632,
+      "filename": "figure11_improved_convergence_curves.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/07_video_compressive_sensing/original_baseline/images/figure11_video_cs_panel.png",
+      "size": 1447009,
+      "filename": "figure11_video_cs_panel.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/07_video_compressive_sensing/original_baseline/plots/figure11_convergence_curves.png",
+      "size": 71064,
+      "filename": "figure11_convergence_curves.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/07_video_compressive_sensing/plots/figure11_convergence_curves.png",
+      "size": 71064,
+      "filename": "figure11_convergence_curves.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/08_ct_reconstruction/images/figure12_reconstruction_panel.png",
+      "size": 377999,
+      "filename": "figure12_reconstruction_panel.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/08_ct_reconstruction/improved_run/images/figure12_reconstruction_panel.png",
+      "size": 498092,
+      "filename": "figure12_reconstruction_panel.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/08_ct_reconstruction/improved_run/plots/figure12_convergence_curves.png",
+      "size": 142908,
+      "filename": "figure12_convergence_curves.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/08_ct_reconstruction/plots/figure12_convergence_curves.png",
+      "size": 173832,
+      "filename": "figure12_convergence_curves.png"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/09_speech_time_frequency/images/figure_speech_nmf_panel.png",
+      "size": 1689760,
+      "filename": "figure_speech_nmf_panel.png"
+    },
+    {
+      "path": "PAPER_RESULTS/figure10_yale_tensor_denoising_improved_panel.png",
+      "size": 1972552,
+      "filename": "figure10_yale_tensor_denoising_improved_panel.png"
+    },
+    {
+      "path": "PAPER_RESULTS/figure11_video_cs_panel.png",
+      "size": 1447009,
+      "filename": "figure11_video_cs_panel.png"
+    },
+    {
+      "path": "PAPER_RESULTS/figure12_convergence_curves_improved.png",
+      "size": 142908,
+      "filename": "figure12_convergence_curves_improved.png"
+    },
+    {
+      "path": "PAPER_RESULTS/figure12_reconstruction_panel.png",
+      "size": 377999,
+      "filename": "figure12_reconstruction_panel.png"
+    },
+    {
+      "path": "PAPER_RESULTS/figure12_reconstruction_panel_improved.png",
+      "size": 498092,
+      "filename": "figure12_reconstruction_panel_improved.png"
+    },
+    {
+      "path": "PAPER_RESULTS/figure13a_rank_sweep.png",
+      "size": 99013,
+      "filename": "figure13a_rank_sweep.png"
+    },
+    {
+      "path": "PAPER_RESULTS/figure13b_reconstruction_panel.png",
+      "size": 1197896,
+      "filename": "figure13b_reconstruction_panel.png"
+    },
+    {
+      "path": "PAPER_RESULTS/figure13b_yale_rank_sweep_improved.png",
+      "size": 157396,
+      "filename": "figure13b_yale_rank_sweep_improved.png"
+    },
+    {
+      "path": "PAPER_RESULTS/figure2_eigenfaces_top12.png",
+      "size": 804879,
+      "filename": "figure2_eigenfaces_top12.png"
+    },
+    {
+      "path": "PAPER_RESULTS/figure3_inductive_bias.png",
+      "size": 66908,
+      "filename": "figure3_inductive_bias.png"
+    },
+    {
+      "path": "PAPER_RESULTS/figure4_separable_convolutions_speedup.png",
+      "size": 103888,
+      "filename": "figure4_separable_convolutions_speedup.png"
+    },
+    {
+      "path": "PAPER_RESULTS/figure6_psnr_vs_rank.png",
+      "size": 356716,
+      "filename": "figure6_psnr_vs_rank.png"
+    },
+    {
+      "path": "PAPER_RESULTS/figure7_pca_sample_size_and_noise.png",
+      "size": 279037,
+      "filename": "figure7_pca_sample_size_and_noise.png"
+    },
+    {
+      "path": "PAPER_RESULTS/figure8_stopping_criterion.png",
+      "size": 72387,
+      "filename": "figure8_stopping_criterion.png"
+    },
+    {
+      "path": "PAPER_RESULTS/figure9_hyperspectral_denoising_panel.png",
+      "size": 899743,
+      "filename": "figure9_hyperspectral_denoising_panel.png"
+    },
+    {
+      "path": "PAPER_RESULTS/figure_speech_nmf_panel.png",
+      "size": 1689760,
+      "filename": "figure_speech_nmf_panel.png"
+    },
+    {
+      "path": "previous_neurotensor_experiments/01_icvl_cnn_baseline/images/figure9_hyperspectral_denoising_panel.png",
+      "size": 899743,
+      "filename": "figure9_hyperspectral_denoising_panel.png"
+    },
+    {
+      "path": "previous_neurotensor_experiments/01_icvl_cnn_baseline/plots/figure9_convergence_curves.png",
+      "size": 146283,
+      "filename": "figure9_convergence_curves.png"
+    },
+    {
+      "path": "previous_neurotensor_experiments/02_icvl_adaptive_rank/error_map.png",
+      "size": 393874,
+      "filename": "error_map.png"
+    },
+    {
+      "path": "previous_neurotensor_experiments/02_icvl_adaptive_rank/rank_history.png",
+      "size": 18205,
+      "filename": "rank_history.png"
+    },
+    {
+      "path": "previous_neurotensor_experiments/02_icvl_adaptive_rank/reconstruction_comparison.png",
+      "size": 194042,
+      "filename": "reconstruction_comparison.png"
+    },
+    {
+      "path": "previous_neurotensor_experiments/03_icvl_factor_group_sparsity/error_map.png",
+      "size": 437421,
+      "filename": "error_map.png"
+    },
+    {
+      "path": "previous_neurotensor_experiments/03_icvl_factor_group_sparsity/reconstruction_comparison.png",
+      "size": 195453,
+      "filename": "reconstruction_comparison.png"
+    },
+    {
+      "path": "previous_neurotensor_experiments/07_icvl_factor_interpretability/progressive_topk_metrics.png",
+      "size": 116408,
+      "filename": "progressive_topk_metrics.png"
+    },
+    {
+      "path": "previous_neurotensor_experiments/07_icvl_factor_interpretability/spatial_cosine_similarity.png",
+      "size": 72110,
+      "filename": "spatial_cosine_similarity.png"
+    },
+    {
+      "path": "previous_neurotensor_experiments/07_icvl_factor_interpretability/spectral_cosine_similarity.png",
+      "size": 72642,
+      "filename": "spectral_cosine_similarity.png"
+    },
+    {
+      "path": "previous_neurotensor_experiments/07_icvl_factor_interpretability/top5_components.png",
+      "size": 1600226,
+      "filename": "top5_components.png"
+    },
+    {
+      "path": "results/adaptive_rank_results.png",
+      "size": 290232,
+      "filename": "adaptive_rank_results.png"
+    },
+    {
+      "path": "results/sparsity_rank_results.png",
+      "size": 283976,
+      "filename": "sparsity_rank_results.png"
+    },
+    {
+      "path": "results/adaptive_rank_selection/error_map.png",
+      "size": 393874,
+      "filename": "error_map.png"
+    },
+    {
+      "path": "results/adaptive_rank_selection/rank_history.png",
+      "size": 18205,
+      "filename": "rank_history.png"
+    },
+    {
+      "path": "results/adaptive_rank_selection/reconstruction_comparison.png",
+      "size": 194042,
+      "filename": "reconstruction_comparison.png"
+    },
+    {
+      "path": "results/baseline/error_map.png",
+      "size": 426649,
+      "filename": "error_map.png"
+    },
+    {
+      "path": "results/baseline/reconstruction_comparison.png",
+      "size": 193092,
+      "filename": "reconstruction_comparison.png"
+    },
+    {
+      "path": "results/comparison/all_methods_comparison.png",
+      "size": 292238,
+      "filename": "all_methods_comparison.png"
+    },
+    {
+      "path": "results/factor_group-sparsity/error_map.png",
+      "size": 437421,
+      "filename": "error_map.png"
+    },
+    {
+      "path": "results/factor_group-sparsity/reconstruction_comparison.png",
+      "size": 195453,
+      "filename": "reconstruction_comparison.png"
+    },
+    {
+      "path": "results/_archived_diagnostic_l0.001/factor_group-sparsity/error_map.png",
+      "size": 324013,
+      "filename": "error_map.png"
+    },
+    {
+      "path": "results/_archived_diagnostic_l0.001/factor_group-sparsity/reconstruction_comparison.png",
+      "size": 191750,
+      "filename": "reconstruction_comparison.png"
+    },
+    {
+      "path": "RESULTS-BASELINE/figure12/images/figure12_reconstruction_panel.png",
+      "size": 377999,
+      "filename": "figure12_reconstruction_panel.png"
+    },
+    {
+      "path": "RESULTS-BASELINE/figure12/plots/figure12_convergence_curves.png",
+      "size": 173832,
+      "filename": "figure12_convergence_curves.png"
+    },
+    {
+      "path": "RESULTS-BASELINE/figure2/images/deeptensor_eigenfaces_montage.png",
+      "size": 1998455,
+      "filename": "deeptensor_eigenfaces_montage.png"
+    },
+    {
+      "path": "RESULTS-BASELINE/figure2/images/figure2_eigenfaces_top12.png",
+      "size": 804879,
+      "filename": "figure2_eigenfaces_top12.png"
+    },
+    {
+      "path": "RESULTS-BASELINE/figure2/plots/figure2_classification_accuracy.png",
+      "size": 78815,
+      "filename": "figure2_classification_accuracy.png"
+    },
+    {
+      "path": "RESULTS-BASELINE/figure2/plots/figure2_loss_curve.png",
+      "size": 76633,
+      "filename": "figure2_loss_curve.png"
+    },
+    {
+      "path": "RESULTS-BASELINE/figure6/images/figure6_visual_comparisons_rank30.png",
+      "size": 366973,
+      "filename": "figure6_visual_comparisons_rank30.png"
+    },
+    {
+      "path": "RESULTS-BASELINE/figure6/plots/figure6_psnr_vs_rank.png",
+      "size": 356716,
+      "filename": "figure6_psnr_vs_rank.png"
+    },
+    {
+      "path": "RESULTS-BASELINE/figure7/images/figure7_covariance_visual_comparison.png",
+      "size": 276748,
+      "filename": "figure7_covariance_visual_comparison.png"
+    },
+    {
+      "path": "RESULTS-BASELINE/figure7/plots/figure7_pca_sample_size_and_noise.png",
+      "size": 279037,
+      "filename": "figure7_pca_sample_size_and_noise.png"
+    },
+    {
+      "path": "RESULTS-BASELINE/figure9/images/figure9_hyperspectral_denoising_panel.png",
+      "size": 899743,
+      "filename": "figure9_hyperspectral_denoising_panel.png"
+    },
+    {
+      "path": "RESULTS-BASELINE/figure9/plots/figure9_convergence_curves.png",
+      "size": 146283,
+      "filename": "figure9_convergence_curves.png"
+    },
+    {
+      "path": "results_interpretability/progressive_topk_metrics.png",
+      "size": 116408,
+      "filename": "progressive_topk_metrics.png"
+    },
+    {
+      "path": "results_interpretability/spatial_cosine_similarity.png",
+      "size": 72110,
+      "filename": "spatial_cosine_similarity.png"
+    },
+    {
+      "path": "results_interpretability/spectral_cosine_similarity.png",
+      "size": 72642,
+      "filename": "spectral_cosine_similarity.png"
+    },
+    {
+      "path": "results_interpretability/top5_components.png",
+      "size": 1600226,
+      "filename": "top5_components.png"
+    },
+    {
+      "path": "results_interpretability_smoke/progressive_topk_metrics.png",
+      "size": 138915,
+      "filename": "progressive_topk_metrics.png"
+    },
+    {
+      "path": "results_interpretability_smoke/spatial_cosine_similarity.png",
+      "size": 72104,
+      "filename": "spatial_cosine_similarity.png"
+    },
+    {
+      "path": "results_interpretability_smoke/spectral_cosine_similarity.png",
+      "size": 72615,
+      "filename": "spectral_cosine_similarity.png"
+    },
+    {
+      "path": "results_interpretability_smoke/top5_components.png",
+      "size": 1679518,
+      "filename": "top5_components.png"
+    },
+    {
+      "path": "results_sparsity/plot_lambda_0.0001_seed_42.png",
+      "size": 282216,
+      "filename": "plot_lambda_0.0001_seed_42.png"
+    },
+    {
+      "path": "results_sparsity/plot_lambda_0.001_seed_42.png",
+      "size": 272051,
+      "filename": "plot_lambda_0.001_seed_42.png"
+    },
+    {
+      "path": "results_sparsity/plot_lambda_0.01_seed_42.png",
+      "size": 281009,
+      "filename": "plot_lambda_0.01_seed_42.png"
+    },
+    {
+      "path": "results_sparsity/plot_lambda_0.0_seed_42.png",
+      "size": 346127,
+      "filename": "plot_lambda_0.0_seed_42.png"
+    },
+    {
+      "path": "results_sparsity_corrected/plot_lambda_0.0001_seed_42.png",
+      "size": 282775,
+      "filename": "plot_lambda_0.0001_seed_42.png"
+    },
+    {
+      "path": "results_sparsity_corrected/plot_lambda_0.001_seed_42.png",
+      "size": 277499,
+      "filename": "plot_lambda_0.001_seed_42.png"
+    },
+    {
+      "path": "results_sparsity_corrected/plot_lambda_0.01_seed_42.png",
+      "size": 293341,
+      "filename": "plot_lambda_0.01_seed_42.png"
+    },
+    {
+      "path": "results_sparsity_corrected/plot_lambda_0.0_seed_42.png",
+      "size": 292924,
+      "filename": "plot_lambda_0.0_seed_42.png"
+    },
+    {
+      "path": "results_sparsity_diagnostic/plot_lambda_0.0_seed_42.png",
+      "size": 292003,
+      "filename": "plot_lambda_0.0_seed_42.png"
+    }
+  ],
+  "datasets_mat": [
+    {
+      "path": "data/cat_video.mat",
+      "size": 819033,
+      "filename": "cat_video.mat"
+    },
+    {
+      "path": "data/icvl.mat",
+      "size": 11910383,
+      "filename": "icvl.mat"
+    },
+    {
+      "path": "data/pet.mat",
+      "size": 1356021,
+      "filename": "pet.mat"
+    },
+    {
+      "path": "data/weizzman.mat",
+      "size": 5635593,
+      "filename": "weizzman.mat"
+    },
+    {
+      "path": "data/yale_b.mat",
+      "size": 5165072,
+      "filename": "yale_b.mat"
+    }
+  ],
+  "reports_md": [
+    {
+      "path": "DATASET_REGISTER.md",
+      "size": 5082,
+      "filename": "DATASET_REGISTER.md"
+    },
+    {
+      "path": "DATA_DIMENSION_TRACE.md",
+      "size": 18463,
+      "filename": "DATA_DIMENSION_TRACE.md"
+    },
+    {
+      "path": "DEMO_IMPLEMENTATION_PLAN.md",
+      "size": 3812,
+      "filename": "DEMO_IMPLEMENTATION_PLAN.md"
+    },
+    {
+      "path": "EXPERIMENT_TRACKER.md",
+      "size": 2833,
+      "filename": "EXPERIMENT_TRACKER.md"
+    },
+    {
+      "path": "FIGURE_TRACKER.md",
+      "size": 5790,
+      "filename": "FIGURE_TRACKER.md"
+    },
+    {
+      "path": "IMPLEMENTATION_DOCUMENTATION.md",
+      "size": 31682,
+      "filename": "IMPLEMENTATION_DOCUMENTATION.md"
+    },
+    {
+      "path": "IMPLEMENTATION_STATUS.md",
+      "size": 5565,
+      "filename": "IMPLEMENTATION_STATUS.md"
+    },
+    {
+      "path": "PAPER_EXPERIMENT_REGISTER.md",
+      "size": 18662,
+      "filename": "PAPER_EXPERIMENT_REGISTER.md"
+    },
+    {
+      "path": "PHASE1_IMPROVEMENT_PLAN.md",
+      "size": 8796,
+      "filename": "PHASE1_IMPROVEMENT_PLAN.md"
+    },
+    {
+      "path": "PHASE1_PERFORMANCE_GAP_AUDIT.md",
+      "size": 25921,
+      "filename": "PHASE1_PERFORMANCE_GAP_AUDIT.md"
+    },
+    {
+      "path": "PROJECT_CONTEXT.md",
+      "size": 32572,
+      "filename": "PROJECT_CONTEXT.md"
+    },
+    {
+      "path": "PROJECT_ROADMAP.md",
+      "size": 2767,
+      "filename": "PROJECT_ROADMAP.md"
+    },
+    {
+      "path": "README.md",
+      "size": 2273,
+      "filename": "README.md"
+    },
+    {
+      "path": "REPRODUCIBILITY.md",
+      "size": 2841,
+      "filename": "REPRODUCIBILITY.md"
+    },
+    {
+      "path": "RESEARCH_NOTES.md",
+      "size": 5068,
+      "filename": "RESEARCH_NOTES.md"
+    },
+    {
+      "path": "data/SpeechCommands/speech_commands_v0.02/README.md",
+      "size": 8093,
+      "filename": "README.md"
+    },
+    {
+      "path": "data/SpeechCommands/speech_commands_v0.02/_background_noise_/README.md",
+      "size": 821,
+      "filename": "README.md"
+    },
+    {
+      "path": "documentation/extension_1_adaptive_rank/ADAPTIVE_RANK_SELECTION_DOCUMENTATION.md",
+      "size": 12673,
+      "filename": "ADAPTIVE_RANK_SELECTION_DOCUMENTATION.md"
+    },
+    {
+      "path": "documentation/extension_2_factor_group_sparsity/FACTOR_GROUP_SPARSITY_DOCUMENTATION.md",
+      "size": 11091,
+      "filename": "FACTOR_GROUP_SPARSITY_DOCUMENTATION.md"
+    },
+    {
+      "path": "documentation/extension_3_tensor_completion/TENSOR_COMPLETION_DOCUMENTATION.md",
+      "size": 12101,
+      "filename": "TENSOR_COMPLETION_DOCUMENTATION.md"
+    },
+    {
+      "path": "documentation/extension_4_noise_type_robustness/NOISE_TYPE_ROBUSTNESS_DOCUMENTATION.md",
+      "size": 11853,
+      "filename": "NOISE_TYPE_ROBUSTNESS_DOCUMENTATION.md"
+    },
+    {
+      "path": "documentation/extension_5_ensemble_uncertainty/ENSEMBLE_UNCERTAINTY_DOCUMENTATION.md",
+      "size": 12545,
+      "filename": "ENSEMBLE_UNCERTAINTY_DOCUMENTATION.md"
+    },
+    {
+      "path": "documentation/extension_7_interpretability/FACTOR_INTERPRETABILITY_DOCUMENTATION.md",
+      "size": 11473,
+      "filename": "FACTOR_INTERPRETABILITY_DOCUMENTATION.md"
+    },
+    {
+      "path": "documentation/extension_8_attention/EXTENSION_8_DOCUMENTATION.md",
+      "size": 6218,
+      "filename": "EXTENSION_8_DOCUMENTATION.md"
+    },
+    {
+      "path": "documentation/extension_9_spectral_transformer/EXTENSION_9_DOCUMENTATION.md",
+      "size": 3700,
+      "filename": "EXTENSION_9_DOCUMENTATION.md"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/01_synthetic_decomposition/experiment_notes.md",
+      "size": 535,
+      "filename": "experiment_notes.md"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/02_pca/experiment_notes.md",
+      "size": 511,
+      "filename": "experiment_notes.md"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/04_eigenfaces_classification/experiment_notes.md",
+      "size": 541,
+      "filename": "experiment_notes.md"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/05_hyperspectral_denoising/experiment_notes.md",
+      "size": 525,
+      "filename": "experiment_notes.md"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/experiment_notes.md",
+      "size": 1736,
+      "filename": "experiment_notes.md"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/FIGURE10_IMPROVEMENT_REPORT.md",
+      "size": 7583,
+      "filename": "FIGURE10_IMPROVEMENT_REPORT.md"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/FIGURE13B_IMPROVEMENT_REPORT.md",
+      "size": 9247,
+      "filename": "FIGURE13B_IMPROVEMENT_REPORT.md"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/original_baseline/experiment_notes.md",
+      "size": 1736,
+      "filename": "experiment_notes.md"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/07_video_compressive_sensing/experiment_notes.md",
+      "size": 829,
+      "filename": "experiment_notes.md"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/07_video_compressive_sensing/FIGURE11_IMPROVEMENT_REPORT.md",
+      "size": 8360,
+      "filename": "FIGURE11_IMPROVEMENT_REPORT.md"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/07_video_compressive_sensing/original_baseline/experiment_notes.md",
+      "size": 829,
+      "filename": "experiment_notes.md"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/08_ct_reconstruction/experiment_notes.md",
+      "size": 529,
+      "filename": "experiment_notes.md"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/08_ct_reconstruction/FIGURE12_IMPROVEMENT_REPORT.md",
+      "size": 8064,
+      "filename": "FIGURE12_IMPROVEMENT_REPORT.md"
+    },
+    {
+      "path": "paper_reproduction/cnn_baseline/09_speech_time_frequency/experiment_notes.md",
+      "size": 2309,
+      "filename": "experiment_notes.md"
+    },
+    {
+      "path": "paper_reproduction/consolidated_results/CNN_BASELINE_CONSOLIDATED_REPORT.md",
+      "size": 7183,
+      "filename": "CNN_BASELINE_CONSOLIDATED_REPORT.md"
+    },
+    {
+      "path": "paper_reproduction/consolidated_results/FIGURE10_IMPROVEMENT_REPORT.md",
+      "size": 7582,
+      "filename": "FIGURE10_IMPROVEMENT_REPORT.md"
+    },
+    {
+      "path": "paper_reproduction/consolidated_results/FIGURE11_IMPROVEMENT_REPORT.md",
+      "size": 8359,
+      "filename": "FIGURE11_IMPROVEMENT_REPORT.md"
+    },
+    {
+      "path": "paper_reproduction/consolidated_results/PHASE1_IMPROVEMENT_PLAN.md",
+      "size": 8795,
+      "filename": "PHASE1_IMPROVEMENT_PLAN.md"
+    },
+    {
+      "path": "paper_reproduction/consolidated_results/PHASE1_PERFORMANCE_GAP_AUDIT.md",
+      "size": 25920,
+      "filename": "PHASE1_PERFORMANCE_GAP_AUDIT.md"
+    },
+    {
+      "path": "paper_reproduction/consolidated_results/PHASE1_VALIDATION_REPORT.md",
+      "size": 12168,
+      "filename": "PHASE1_VALIDATION_REPORT.md"
+    },
+    {
+      "path": "paper_reproduction/datasets/DATASET_AUDIT.md",
+      "size": 2116,
+      "filename": "DATASET_AUDIT.md"
+    },
+    {
+      "path": "paper_reproduction/datasets/01_synthetic/README.md",
+      "size": 109,
+      "filename": "README.md"
+    },
+    {
+      "path": "paper_reproduction/datasets/02_pca/README.md",
+      "size": 103,
+      "filename": "README.md"
+    },
+    {
+      "path": "paper_reproduction/datasets/03_nmf/README.md",
+      "size": 103,
+      "filename": "README.md"
+    },
+    {
+      "path": "paper_reproduction/datasets/04_weizmann/README.md",
+      "size": 108,
+      "filename": "README.md"
+    },
+    {
+      "path": "paper_reproduction/datasets/05_icvl/README.md",
+      "size": 104,
+      "filename": "README.md"
+    },
+    {
+      "path": "paper_reproduction/datasets/06_yale_b/README.md",
+      "size": 106,
+      "filename": "README.md"
+    },
+    {
+      "path": "paper_reproduction/datasets/07_cat_video/README.md",
+      "size": 109,
+      "filename": "README.md"
+    },
+    {
+      "path": "paper_reproduction/datasets/08_pet_ct/README.md",
+      "size": 106,
+      "filename": "README.md"
+    },
+    {
+      "path": "paper_reproduction/datasets/09_speech_commands/README.md",
+      "size": 115,
+      "filename": "README.md"
+    },
+    {
+      "path": "paper_reproduction/original_paper/EXPERIMENT_SETTINGS.md",
+      "size": 2908,
+      "filename": "EXPERIMENT_SETTINGS.md"
+    },
+    {
+      "path": "paper_reproduction/original_paper/FIGURE_TO_EXPERIMENT_MAPPING.md",
+      "size": 2386,
+      "filename": "FIGURE_TO_EXPERIMENT_MAPPING.md"
+    },
+    {
+      "path": "paper_reproduction/original_paper/FIGURE_TRACKER.md",
+      "size": 8621,
+      "filename": "FIGURE_TRACKER.md"
+    },
+    {
+      "path": "paper_reproduction/original_paper/REPORTED_METRICS.md",
+      "size": 6884,
+      "filename": "REPORTED_METRICS.md"
+    },
+    {
+      "path": "previous_neurotensor_experiments/MANIFEST.md",
+      "size": 8576,
+      "filename": "MANIFEST.md"
+    },
+    {
+      "path": "previous_neurotensor_experiments/01_icvl_cnn_baseline/baseline_figure9_report.md",
+      "size": 2480,
+      "filename": "baseline_figure9_report.md"
+    },
+    {
+      "path": "previous_neurotensor_experiments/02_icvl_adaptive_rank/ADAPTIVE_RANK_SELECTION_DOCUMENTATION.md",
+      "size": 12673,
+      "filename": "ADAPTIVE_RANK_SELECTION_DOCUMENTATION.md"
+    },
+    {
+      "path": "previous_neurotensor_experiments/04_icvl_tensor_completion/TENSOR_COMPLETION_DOCUMENTATION.md",
+      "size": 12101,
+      "filename": "TENSOR_COMPLETION_DOCUMENTATION.md"
+    },
+    {
+      "path": "previous_neurotensor_experiments/05_icvl_noise_robustness/NOISE_TYPE_ROBUSTNESS_DOCUMENTATION.md",
+      "size": 11853,
+      "filename": "NOISE_TYPE_ROBUSTNESS_DOCUMENTATION.md"
+    },
+    {
+      "path": "previous_neurotensor_experiments/06_icvl_ensemble_uncertainty/ENSEMBLE_UNCERTAINTY_DOCUMENTATION.md",
+      "size": 12545,
+      "filename": "ENSEMBLE_UNCERTAINTY_DOCUMENTATION.md"
+    },
+    {
+      "path": "previous_neurotensor_experiments/07_icvl_factor_interpretability/FACTOR_INTERPRETABILITY_DOCUMENTATION.md",
+      "size": 11473,
+      "filename": "FACTOR_INTERPRETABILITY_DOCUMENTATION.md"
+    },
+    {
+      "path": "previous_neurotensor_experiments/08_icvl_hybrid_attention/EXTENSION_8_DOCUMENTATION.md",
+      "size": 6218,
+      "filename": "EXTENSION_8_DOCUMENTATION.md"
+    },
+    {
+      "path": "previous_neurotensor_experiments/09_icvl_spectral_transformer/EXTENSION_9_DOCUMENTATION.md",
+      "size": 3700,
+      "filename": "EXTENSION_9_DOCUMENTATION.md"
+    },
+    {
+      "path": "results/baseline_figure9_metrics.md",
+      "size": 1094,
+      "filename": "baseline_figure9_metrics.md"
+    },
+    {
+      "path": "results/baseline_figure9_report.md",
+      "size": 2480,
+      "filename": "baseline_figure9_report.md"
+    },
+    {
+      "path": "RESULTS-BASELINE/README.md",
+      "size": 3700,
+      "filename": "README.md"
+    }
+  ]
+}

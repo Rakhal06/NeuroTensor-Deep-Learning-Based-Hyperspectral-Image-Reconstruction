@@ -1,0 +1,28 @@
+{
+  "noise_30": {
+    "input_noisy_psnr": 10.442326654474165,
+    "input_noisy_ssim": 0.058782435953617096,
+    "svd_psnr": 10.442327012741417,
+    "svd_ssim": 0.05878245085477829,
+    "deeptensor_psnr": 26.54409734622089,
+    "deeptensor_ssim": 0.8264070749282837,
+    "deeptensor_runtime": 119.42365217208862,
+    "paper_reported": {
+      "deeptensor_psnr": 28.9,
+      "kdrsdl_psnr": 27.9
+    }
+  },
+  "noise_60": {
+    "input_noisy_psnr": 8.03964576628918,
+    "input_noisy_ssim": 0.027994152158498764,
+    "svd_psnr": 8.03964576628918,
+    "svd_ssim": 0.027994174510240555,
+    "deeptensor_psnr": 26.45746221997927,
+    "deeptensor_ssim": 0.8248237371444702,
+    "deeptensor_runtime": 116.63401675224304,
+    "paper_reported": {
+      "deeptensor_psnr": 29.7,
+      "kdrsdl_psnr": 20.8
+    }
+  }
+}

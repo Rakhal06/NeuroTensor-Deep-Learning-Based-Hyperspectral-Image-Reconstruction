@@ -1,0 +1,44 @@
+==================================================
+EXTENSION 5: ENSEMBLE UNCERTAINTY ESTIMATION SUMMARY
+==================================================
+
+Mode: SMOKE TEST
+Observation Master Seed: 42
+Member Seeds: [43, 44, 45, 46, 47]
+Epochs per Member: 5
+Noise Config: tau=100, noise_snr=2 (Poisson + Gaussian mixed)
+Observation PSNR: 28.4321 dB
+Total Runtime: 3.35 s
+Peak VRAM: 640.37 MB
+
+--- INDIVIDUAL MEMBER METRICS ---
+Member 1 (Seed 43): PSNR=11.1602 dB, SSIM=0.030900, RMSE=0.276687, Time=0.85s
+Member 2 (Seed 44): PSNR=8.0199 dB, SSIM=0.023043, RMSE=0.397194, Time=0.17s
+Member 3 (Seed 45): PSNR=9.0065 dB, SSIM=0.022372, RMSE=0.354549, Time=0.18s
+Member 4 (Seed 46): PSNR=10.5773 dB, SSIM=0.039623, RMSE=0.295892, Time=0.17s
+Member 5 (Seed 47): PSNR=9.1965 dB, SSIM=0.007159, RMSE=0.346875, Time=0.18s
+Mean Individual PSNR: 9.5921 +/- 1.2650 dB
+Mean Individual SSIM: 0.024619 +/- 0.012010
+Mean Individual RMSE: 0.334239 +/- 0.048266
+
+--- ENSEMBLE MEAN RECONSTRUCTION METRICS (SECONDARY) ---
+Ensemble Mean PSNR: 16.2018 dB
+Ensemble Mean SSIM: 0.142992
+Ensemble Mean RMSE: 0.154850
+PSNR Improvement vs Mean Individual: +6.6097 dB (Cost: ~5x compute)
+
+--- PRIMARY UNCERTAINTY ANALYSIS (FULL HxWxB TENSOR) ---
+Global Mean Uncertainty (Std Dev): 3.014602e-01
+Pearson Correlation (Uncertainty vs Abs Error): 0.224053
+Spearman Correlation (Uncertainty vs Abs Error): 0.177455
+
+--- EDGE-MAGNITUDE CONTROL ANALYSIS ---
+Pearson Correlation (GT Edge Mag vs Abs Error): 0.069959
+Spearman Correlation (GT Edge Mag vs Abs Error): 0.097628
+Pearson Correlation (GT Edge Mag vs Uncertainty): 0.013376
+Spearman Correlation (GT Edge Mag vs Uncertainty): 0.052253
+
+--- QUANTILE ANALYSIS ---
+Top 10% Most Uncertain MAE: 0.168876
+Bottom 10% Most Certain MAE: 0.097563
+Ratio (Top 10% / Bottom 10% MAE): 1.7309

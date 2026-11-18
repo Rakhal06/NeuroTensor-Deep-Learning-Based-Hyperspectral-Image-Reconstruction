@@ -1,0 +1,44 @@
+{
+  "deeptensor_improved": {
+    "PSNR": 23.98676238261647,
+    "SSIM": 0.705659806728363,
+    "RMSE": 0.0631919652223587,
+    "runtime_seconds": 665.7566254138947,
+    "peak_vram_mb": 236.72509765625,
+    "best_epoch": 9519,
+    "total_epochs": 10000,
+    "rank": 64,
+    "channels": 128,
+    "param_count": 3084616
+  },
+  "tv_calibrated": {
+    "PSNR": 23.47348459971122,
+    "SSIM": 0.6872934103012085,
+    "RMSE": 0.06703872978687286,
+    "runtime_seconds": 8.422608613967896,
+    "epochs": 1000,
+    "lambda_tv": 0.01
+  },
+  "old_baseline": {
+    "deeptensor_psnr": 25.14,
+    "deeptensor_ssim": 0.7239,
+    "tv_psnr": 23.47,
+    "tv_ssim": 0.6873
+  },
+  "paper_reported": {
+    "deeptensor_psnr": 27.1,
+    "deeptensor_ssim": 0.81,
+    "tv_psnr": 24.1,
+    "tv_ssim": 0.69,
+    "advantage_psnr": 3.0,
+    "advantage_ssim": 0.12
+  },
+  "comparison": {
+    "deeptensor_gain_over_old_db": -1.1532376173835317,
+    "deeptensor_gain_over_old_ssim": -0.01824019327163695,
+    "deeptensor_gap_to_paper_db": -3.1132376173835326,
+    "deeptensor_gap_to_paper_ssim": -0.10434019327163702,
+    "improved_advantage_over_tv_db": 0.5132777829052486,
+    "improved_advantage_over_tv_ssim": 0.01836639642715454
+  }
+}

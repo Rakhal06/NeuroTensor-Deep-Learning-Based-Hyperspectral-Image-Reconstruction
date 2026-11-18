@@ -1,0 +1,602 @@
+[
+  {
+    "epoch": 1,
+    "meas_loss": 0.36453360319137573,
+    "total_loss": 0.36453360319137573,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.0012365961447358131,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 50,
+    "meas_loss": 0.21337343752384186,
+    "total_loss": 0.21337343752384186,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.0030508835334330797,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 100,
+    "meas_loss": 0.19706586003303528,
+    "total_loss": 0.19706586003303528,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.006159358657896519,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 150,
+    "meas_loss": 0.18737059831619263,
+    "total_loss": 0.18737059831619263,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.007957926020026207,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 200,
+    "meas_loss": 0.1818893402814865,
+    "total_loss": 0.1818893402814865,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.015527634881436825,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 250,
+    "meas_loss": 0.1781396120786667,
+    "total_loss": 0.1781396120786667,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.018651140853762627,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 300,
+    "meas_loss": 0.17511241137981415,
+    "total_loss": 0.17511241137981415,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.015651673078536987,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 350,
+    "meas_loss": 0.17375680804252625,
+    "total_loss": 0.17375680804252625,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.02074137143790722,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 400,
+    "meas_loss": 0.1727227419614792,
+    "total_loss": 0.1727227419614792,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.023586319759488106,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 450,
+    "meas_loss": 0.17103852331638336,
+    "total_loss": 0.17103852331638336,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.010047072544693947,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 500,
+    "meas_loss": 0.17002031207084656,
+    "total_loss": 0.17002031207084656,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.014145414344966412,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 550,
+    "meas_loss": 0.1696295440196991,
+    "total_loss": 0.1696295440196991,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.024197528138756752,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 600,
+    "meas_loss": 0.1689252108335495,
+    "total_loss": 0.1689252108335495,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.023015739396214485,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 650,
+    "meas_loss": 0.16824708878993988,
+    "total_loss": 0.16824708878993988,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.0209734495729208,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 700,
+    "meas_loss": 0.16797900199890137,
+    "total_loss": 0.16797900199890137,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.018429305404424667,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 750,
+    "meas_loss": 0.1672893762588501,
+    "total_loss": 0.1672893762588501,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.011658047325909138,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 800,
+    "meas_loss": 0.16675834357738495,
+    "total_loss": 0.16675834357738495,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.012721936218440533,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 850,
+    "meas_loss": 0.1664910465478897,
+    "total_loss": 0.1664910465478897,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.009092203341424465,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 900,
+    "meas_loss": 0.16616155207157135,
+    "total_loss": 0.16616155207157135,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.012450463138520718,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 950,
+    "meas_loss": 0.16599801182746887,
+    "total_loss": 0.16599801182746887,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.015052291564643383,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 1000,
+    "meas_loss": 0.16576629877090454,
+    "total_loss": 0.16576629877090454,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.018837103620171547,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 1050,
+    "meas_loss": 0.16545769572257996,
+    "total_loss": 0.16545769572257996,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.02760276198387146,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 1100,
+    "meas_loss": 0.16541042923927307,
+    "total_loss": 0.16541042923927307,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.031353410333395004,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 1150,
+    "meas_loss": 0.1649537831544876,
+    "total_loss": 0.1649537831544876,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.018015649169683456,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  },
+  {
+    "epoch": 1200,
+    "meas_loss": 0.1646890640258789,
+    "total_loss": 0.1646890640258789,
+    "tau": 1.0,
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "gradient_norms": {
+      "cnn": 0.018421854823827744,
+      "pointwise": 0.0,
+      "attention": 0.0,
+      "router": 0.0
+    }
+  }
+]

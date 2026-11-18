@@ -1,0 +1,32 @@
+experiment: 'Figure 12: Reconstruction from 3D CT Measurements'
+dataset: 'data/pet.mat'
+volume_dimensions:
+  - 128
+  - 128
+  - 56
+decomposition_rank: 1000
+tomographic_angles: 40
+noise_configuration:
+  noise_snr: 2
+  tau: 1000
+  model: 'Poisson + Gaussian readout'
+optimizer: 'Adam'
+learning_rate: 0.001
+epochs: 2000
+device: 'cuda'
+metrics:
+  algorithmic:
+    PSNR: 26.863340602910398
+    SSIM: 0.5841035842895508
+    RMSE: 0.04537670686841011
+    time: 2.274313449859619
+  tv_2d:
+    PSNR: 31.511624524240528
+    SSIM: 0.807528555393219
+    RMSE: 0.026571664959192276
+    time: 2.250131368637085
+  deeptensor:
+    PSNR: 29.960790205222892
+    SSIM: 0.8226428031921387
+    RMSE: 0.03176585212349892
+    time: 102.25650215148926

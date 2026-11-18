@@ -1,0 +1,120 @@
+% Title Page matching IIIT Dharwad CS376 Project Report Template
+\begin{titlepage}
+\begin{center}
+{\large \textbf{Mini Project Report}}\\
+\vspace{0.15cm}
+{\normalsize on}\\
+\vspace{0.25cm}
+{\Large \textbf{NeuroTensor: Deep Learning-Based Hyperspectral Image Reconstruction and Analysis}}\\
+\vspace{0.25cm}
+{\normalsize \textbf{Course: Tensor Methods for Multimodal Data Analysis}}\\
+\end{center}
+
+\vspace{0.6cm}
+
+\begin{center}
+{\small Submitted by}\\
+\vspace{0.2cm}
+\begin{tabular}{cc}
+\textbf{Student Names} & \textbf{Reg. Numbers} \\
+\midrule
+B. Rakhal Krishna & 24BDS009 \\
+Dargupally Ashish & 24BDS015 \\
+Soham Nalage & 24BEC029 \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.8cm}
+{\small Under the guidance of}\\
+\vspace{0.1cm}
+\textbf{\large Dr. Sibasankar Padhy}\\
+{\small Assistant Professor}
+\end{center}
+
+\vfill
+
+\begin{center}
+\includegraphics[height=0.9in]{figures/iiIT-Dharwad-Logo.png}\\
+\vspace{0.3cm}
+\textbf{\small INDIAN INSTITUTE OF INFORMATION TECHNOLOGY DHARWAD}\\
+{\small November 2026}
+\end{center}
+\end{titlepage}
+
+% Certificate Page matching Template Page 3
+\newpage
+\thispagestyle{empty}
+\begin{center}
+{\Large \textbf{Certificate}}
+\end{center}
+\vspace{0.6cm}
+
+\noindent This is to certify that the project entitled \textbf{``NeuroTensor: Deep Learning-Based Hyperspectral Image Reconstruction and Analysis''} is a bonafide record of the Mini Project coursework presented by the students whose names are given below during the academic year 2025--2026 in partial fulfilment of the requirements for the course \textit{Tensor Methods for Multimodal Data Analysis} at the \textbf{Indian Institute of Information Technology Dharwad}.
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tabularx}{0.85\textwidth}{X c}
+\toprule
+\textbf{Names of Students} & \textbf{Roll No.} \\
+\midrule
+B. Rakhal Krishna & 24BDS009 \\
+Dargupally Ashish & 24BDS015 \\
+Soham Nalage & 24BEC029 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\vspace{1.8cm}
+
+\begin{flushright}
+\textbf{Dr. Sibasankar Padhy}\\
+(Project Supervisor / Faculty Guide)\\
+Assistant Professor\\
+Indian Institute of Information Technology Dharwad
+\end{flushright}
+
+\newpage
+% Abstract & Acknowledgments on single page
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+\section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
+{\small
+Hyperspectral imaging (HSI) acquires contiguous narrow spectral bands across spatial dimensions, providing rich diagnostic information at the expense of high noise vulnerability, extreme volume sizes, and sensor physical constraints. While classical low-rank tensor decomposition (e.g., Canonical Polyadic / PARAFAC and Tucker) offers principled multilinear dimension reduction, it suffers from severe rank sensitivity and lacks spatial semantic priors. Conversely, untrained deep neural networks act as implicit structural regularizers (Deep Image Prior), yet direct 3D volumetric convolutions incur prohibitive computational and memory footprints. The \textbf{DeepTensor} framework bridges this divide by generating low-rank tensor factors through independent, untrained 1D and 2D deep convolutional neural networks, completely eliminating explicit matrix rank constraints and offline pre-training.
+
+In this research project, entitled \textbf{NeuroTensor}, we systematically investigate the theoretical boundaries, architectural inductive biases, and multimodal extensions of the DeepTensor paradigm. Grounded on the benchmark ICVL hyperspectral dataset ($174 \times 164 \times 260$ voxels), we implement, verify, and empirically benchmark nine major research extensions: (1) self-supervised adaptive rank growth, (2) factor group-sparsity regularization via joint Group Lasso, (3) mask-aware tensor completion across $20\%$, $50\%$, and $80\%$ unobserved entries, (4) noise-type robustness under strictly matched homoscedastic Gaussian versus heteroscedastic Poisson corruptions, (5) empirical ensemble disagreement as a spatial proxy for reconstruction uncertainty, (6) computational profiling and execution planning, (7) post-hoc factor interpretability and component ablation, (8) a hybrid CNN--Transformer architecture with spectral self-attention, and (9) a pure Spectral Transformer with Attention with Linear Biases (ALiBi). Furthermore, we evaluate five distinct architectural paradigms across four diverse multimodal inverse problems: Hyperspectral Denoising (ICVL), Yale Face B Tensor Denoising, Video Compressive Sensing, and Dynamic PET/CT Image Reconstruction. Our empirical findings demonstrate that while adaptive rank growth successfully discovers optimal rank capacity ($R=8$ matching $R=20$ performance with $60\%$ fewer components), top-down group sparsity induces catastrophic quality collapse. Crucially, we present an honest analysis of architectural inductive bias: local convolutional priors fundamentally outperform global self-attention mechanisms in high-dimensional continuous hyperspectral denoising ($46.63\text{ dB}$ vs.\ $44.08\text{ dB}$), whereas self-attention demonstrates superior representational capacity in structured, lower-dimensional photometric tasks ($28.56\text{ dB}$ on Yale Face B). All code, configuration files, and quantitative telemetry have been made fully reproducible within the research repository.
+}
+
+\vspace{0.4cm}
+\section*{Acknowledgments}
+\addcontentsline{toc}{section}{Acknowledgments}
+{\small
+We express our deepest gratitude to our project guide, \textbf{Dr. Sibasankar Padhy}, Assistant Professor at the Indian Institute of Information Technology Dharwad, for his invaluable guidance, continuous intellectual mentorship, rigorous feedback, and scholarly encouragement throughout the course of this project. His deep insights into tensor algebra, inverse problems, and multimodal signal analysis were instrumental in formulating the research questions and navigating complex methodological challenges. We also thank the administration of IIIT Dharwad for providing the high-performance computing infrastructure essential for conducting extensive numerical simulations.
+}
+
+\newpage
+% Table of Contents
+\setcounter{tocdepth}{2}
+\begingroup
+\small
+\setstretch{0.84}
+\setlength{\parskip}{0pt}
+\tableofcontents
+\endgroup
+
+\newpage
+% List of Figures and Tables combined on single page
+\begingroup
+\small
+\setstretch{0.86}
+\let\oldclearpage\clearpage
+\renewcommand{\clearpage}{}
+\listoffigures
+\vspace{0.25cm}
+\listoftables
+\let\clearpage\oldclearpage
+\endgroup
+
+\newpage

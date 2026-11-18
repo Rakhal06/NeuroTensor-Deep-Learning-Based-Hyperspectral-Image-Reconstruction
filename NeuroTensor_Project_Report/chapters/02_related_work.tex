@@ -1,0 +1,32 @@
+\section{Related Work}
+\label{sec:related_work}
+
+This section reviews the theoretical and empirical literature underpinning the NeuroTensor framework across multilinear tensor algebra, deep image priors, hyperspectral restoration, structured sparsity, and Transformer architectures.
+
+\subsection{Multilinear Algebra and Low-Rank Tensor Decompositions}
+Tensors generalize matrices to $N$-way arrays ($N \ge 3$) \citep{kolda2009tensor}. For a 3-way tensor $\mathcal{Y} \in \mathbb{R}^{I_1 \times I_2 \times I_3}$, low-rank approximations exploit redundant correlations across spatial and spectral modalities.
+
+\textbf{Canonical Polyadic (CP) / PARAFAC Decomposition:} The CP decomposition \citep{harshman1970foundations} expresses $\mathcal{Y}$ as a sum of $R$ rank-one outer products:
+\begin{equation}
+\label{eq:cp_decomposition}
+\mathcal{Y} \approx \sum_{r=1}^R \mathbf{u}_r \circ \mathbf{v}_r \circ \mathbf{w}_r = \llbracket \mathbf{U}, \mathbf{V}, \mathbf{W} \rrbracket, \quad \mathbf{U} \in \mathbb{R}^{I_1 \times R}, \; \mathbf{V} \in \mathbb{R}^{I_2 \times R}, \; \mathbf{W} \in \mathbb{R}^{I_3 \times R}
+\end{equation}
+The CP rank, $\text{rank}_\text{CP}(\mathcal{Y})$, is the minimal $R$ achieving exact equality. Under Kruskal's condition ($k_{\mathbf{U}} + k_{\mathbf{V}} + k_{\mathbf{W}} \ge 2R + 2$), CP decomposition is unique up to permutation and scaling without requiring factor orthogonality \citep{kolda2009tensor}. However, determining CP rank is NP-hard, and classical Alternating Least Squares (ALS) optimization suffers from diverging components (swamping) and local minima.
+
+\textbf{Tucker Decomposition and Tensor Completion:} The Tucker model \citep{tucker1966some} decomposes $\mathcal{Y}$ into a core tensor $\mathcal{G} \in \mathbb{R}^{R_1 \times R_2 \times R_3}$ multiplied by factor matrices along each mode: $\mathcal{Y} \approx \mathcal{G} \times_1 \mathbf{U} \times_2 \mathbf{V} \times_3 \mathbf{W}$. While computable via Higher-Order SVD, the core tensor scales exponentially with tensor order ($O(R^N)$). In tensor completion, nuclear norm minimization \citep{liu2013tensor} recovers missing entries $\mathcal{Y}_\Omega^c$, but treats neighboring pixels and spectral bands purely as algebraic indices, ignoring localized spatial textures and physical spectral continuity.
+
+\subsection{Deep Image Prior and Untrained Neural Networks}
+Supervised convolutional networks achieve high restoration, yet rely on massive paired training corpora that are unavailable in specialized remote sensing and clinical imaging. To bypass this, \citet{ulyanov2018deep} introduced the \textit{Deep Image Prior} (DIP), demonstrating that an untrained network's architecture $f_\theta(\mathbf{z})$ acts as an implicit regularizer: $\min_\theta \|f_\theta(\mathbf{z}) - \mathbf{y}_0\|_2^2$. Under gradient descent, convolutional layers fit low-frequency structural features (edges, contours) rapidly while exhibiting high impedance to uncorrelated high-frequency noise. \citet{heckel2019deep} showed that non-convolutional networks composed of $1 \times 1$ convolutions and bilinear upsamplers (the \textit{Deep Decoder}) provide similar regularization. However, extending DIP to 3D tensors $\mathcal{Y} \in \mathbb{R}^{H \times W \times B}$ via 3D convolutions incurs cubic memory complexity, making 3D DIP computationally prohibitive.
+
+\subsection{Hyperspectral Image Restoration and Denoising}
+Hyperspectral sensors collect radiance across contiguous narrow wavelength channels \citep{bioucas2012hyperspectral}. The signal recorded at coordinate $(h, w)$ and band $b$ follows a mixed noise model:
+\begin{equation}
+Y(h, w, b) = \frac{\mathcal{P}\big(X(h, w, b) \cdot \tau\big)}{\tau} + \mathcal{N}\big(0, \sigma^2\big)
+\end{equation}
+where $\mathcal{P}(\cdot)$ represents Poisson photon shot noise governed by flux $\tau$, and $\mathcal{N}(0, \sigma^2)$ denotes Gaussian electronic noise. Classical methods (BM4D, FastHyDe, LRTV) combine spatial total variation with low-rank constraints but require delicate per-band parameter tuning. \textbf{DeepTensor} \citep{heckel2020deeptensor} addresses this by generating low-rank spatial and spectral factors via independent 2D and 1D untrained networks ($\hat{Y} = \mathbf{U} \mathbf{V}^T$), merging multilinear dimensionality reduction with deep image priors.
+
+\subsection{Structured Sparsity and Factor Parsimony}
+In factorized inverse problems, overparameterizing rank $R$ allows excess capacity to fit residual sensor noise over extended training. To enforce parsimony, the \textbf{Group Lasso} estimator \citep{yuan2006model} minimizes an objective with an $\ell_{2,1}$ group penalty: $\mathcal{R}(\mathbf{A}) = \sum_{r=1}^R \|\mathbf{a}_r\|_2 = \sum_{r=1}^R \sqrt{\sum_{i=1}^M A_{i, r}^2}$. The non-differentiable singularity at zero drives entire column vectors $\mathbf{a}_r$ exactly to zero, presenting a potential mechanism for automated rank pruning during gradient backpropagation.
+
+\subsection{Transformers and Attention with Linear Biases (ALiBi)}
+Multi-Head Self-Attention (MHSA) \citep{vaswani2017attention} computes pairwise correlations: $\text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}_\text{val}) = \text{softmax}(\frac{\mathbf{Q} \mathbf{K}^T}{\sqrt{d_k}}) \mathbf{V}_\text{val}$, capturing long-range contextual relationships without local receptive field limits. In spectral processing, capturing long-range dependencies across distant atmospheric windows motivates self-attention. To avoid the out-of-distribution extrapolation failures of fixed positional embeddings, \citet{press2022train} proposed \textbf{Attention with Linear Biases (ALiBi)}, which injects a static distance penalty directly into query-key attention matrices: $\text{Attention}_h(\mathbf{Q}, \mathbf{K}, \mathbf{V}_\text{val}) = \text{softmax}(\frac{\mathbf{Q} \mathbf{K}^T}{\sqrt{d_k}} - m_h \cdot |i - j|) \mathbf{V}_\text{val}$, where $m_h = 2^{-8h/H}$ denotes a head-specific slope scalar, enforcing continuous inductive bias that decays smoothly with sequence distance.

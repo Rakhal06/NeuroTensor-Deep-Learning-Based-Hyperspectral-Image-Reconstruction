@@ -1,0 +1,21 @@
+experiment: 'Figure 7: DeepTensor PCA under Low SNR and Small Sample Sizes'
+nrows: 64
+intrinsic_rank: 10
+sample_sizes:
+  - 32
+  - 64
+  - 128
+  - 256
+  - 512
+  - 1024
+fixed_sigma: 0.5
+noise_sigmas:
+  - 0.05
+  - 0.1
+  - 0.2
+  - 0.5
+  - 1.0
+epochs: 400
+learning_rate: 0.0001
+total_time_seconds: 58.87363052368164
+device: 'cuda'

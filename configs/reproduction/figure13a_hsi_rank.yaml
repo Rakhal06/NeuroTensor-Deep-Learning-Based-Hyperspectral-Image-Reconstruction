@@ -1,0 +1,35 @@
+experiment: 'Figure 9: Hyperspectral Image Denoising'
+dataset: 'data/icvl.mat'
+image_shape:
+  - 174
+  - 164
+  - 260
+rank: 20
+noise_configuration:
+  noise_snr: 2
+  tau: 100
+  model: 'Poisson + Gaussian readout'
+optimizer: 'Adam'
+learning_rate: 0.001
+epochs: 5000
+device: 'cuda'
+metrics:
+  noisy:
+    PSNR: 28.432062443362263
+    SSIM: 0.45378077030181885
+    RMSE: 0.03787885805103852
+  svd:
+    PSNR: 38.30696366615646
+    SSIM: 0.9175834059715271
+    RMSE: 0.012152113445829402
+    time: 0.5944671630859375
+  bm3d:
+    PSNR: 40.50159081624075
+    SSIM: 0.9498500227928162
+    RMSE: 0.009438879825551718
+    time: 157.79585647583008
+  deeptensor:
+    PSNR: 46.2783103191814
+    SSIM: 0.9872068166732788
+    RMSE: 0.004853828810155392
+    time: 148.1538896560669

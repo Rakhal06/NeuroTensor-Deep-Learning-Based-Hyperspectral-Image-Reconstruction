@@ -1,0 +1,33 @@
+\section{Conclusion and Future Scope}
+\label{sec:conclusion}
+
+This section synthesizes the empirical and theoretical findings of the NeuroTensor research project, articulates key implications for architectural design in multilinear inverse problems, acknowledges methodological limitations, and outlines future research trajectories.
+
+\subsection{Synthesis of Research Discoveries}
+\label{subsec:synthesis}
+In this project, we designed, implemented, and empirically audited \textbf{NeuroTensor}, extending the DeepTensor framework \citep{heckel2020deeptensor} across nine research extensions and four multimodal inverse problems. Grounded on the benchmark ICVL hyperspectral dataset ($174 \times 164 \times 260$ voxels), our investigations yielded several key findings:
+\begin{enumerate}
+    \item \textbf{Authoritative Baseline Reproduction:} DeepTensor achieved an outstanding restoration quality of \textbf{$46.63\text{ dB}$ PSNR} and \textbf{$0.9875$ SSIM} from a severely corrupted observation of $28.43\text{ dB}$, demonstrating $+18.20\text{ dB}$ noise suppression without external pre-training.
+    \item \textbf{Adaptive Rank Discovery:} In Extension 1, self-supervised validation plateau monitoring automatically expanded rank from $R=4$ to an optimal \textbf{$R=8$}, achieving $46.37\text{ dB}$ PSNR and matching fixed $R=20$ performance ($46.14\text{ dB}$) with \textbf{$60\%$ fewer multilinear components}.
+    \item \textbf{Catastrophic Group Sparsity Collapse:} In Extension 2, applying top-down Group Lasso regularization caused immediate quality collapse: even $\lambda = 10^{-4}$ degraded PSNR by $-4.37\text{ dB}$ ($42.49\text{ dB}$) and collapsed effective rank from 27 to 3, proving that factor shrinkage starves gradient flow in non-convex DIP loss landscapes.
+    \item \textbf{High-Fidelity Incomplete Data Imputation:} In Extension 3, the mask-aware objective achieved $46.11\text{ dB}$ at $20\%$ missingness, $42.51\text{ dB}$ at $80\%$ extreme missingness, and an outstanding \textbf{$50.50\text{ dB}$} on clean data with $50\%$ missingness ($+5.33\text{ dB}$ over noisy completion).
+    \item \textbf{Sensitivity to Heteroscedastic Noise:} In Extension 4, controlling input corruption strictly to $28.43\text{ dB}$ revealed a \textbf{$-1.53\text{ dB}$ penalty} under Poisson noise ($45.13\text{ dB}$) relative to Gaussian noise ($46.67\text{ dB}$), stemming from signal-dependent gradient variance.
+    \item \textbf{Ensemble Uncertainty Quantification:} In Extension 5, ensembling $N=5$ models yielded a \textbf{$+2.37\text{ dB}$ gain} ($48.53\text{ dB}$), with empirical disagreement correlating significantly with true spatial error ($r = 0.3422, r_s = 0.3472$; partial correlation $r_{ue \cdot g} = 0.2235$ controlling for edges).
+    \item \textbf{Component Energy Concentration:} In Extension 7, Frobenius factor energy analysis established empirical threshold \textbf{$k^* = 18$} components achieving full-quality parity ($\Delta \le 0.044\text{ dB}$). Low off-diagonal cosine similarities ($0.346$ spatial, $0.366$ spectral) confirmed non-redundant representation learning.
+    \item \textbf{Inductive Bias Mismatch of Self-Attention:} In Extensions 8 and 9, spectral self-attention mechanisms underperformed convolutional backbones on hyperspectral data. Hybrid Attention ($45.39\text{ dB}$) trailed the CNN baseline by \textbf{$-1.24\text{ dB}$}, and the pure Transformer ($44.08\text{ dB}$) trailed by \textbf{$-2.55\text{ dB}$}, revealing that unconstrained token routing lacks local spectral smoothness priors.
+\end{enumerate}
+
+\subsection{Modality-Dependent Inductive Bias Optimality}
+\label{subsec:inductive_bias_insights}
+Our cross-application evaluations prove that \textbf{no single neural architecture is universally optimal for untrained inverse problems}. Efficacy is governed by the match between architectural inductive bias and the underlying physical data modality:
+\begin{itemize}
+    \item \textbf{Continuous Modalities (Hyperspectral \& Video):} Convolutional kernels, with fixed local receptive fields and translation equivariance, enforce the smoothness necessary to reconstruct molecular absorption and continuous video motion, dominating ICVL ($46.07\text{ dB}$) and Video CS ($25.16\text{ dB}$).
+    \item \textbf{Discrete Coordinate Modalities (Yale Face B):} Mode 3 represents discrete, non-contiguous lighting angles. Here, global query-key token mixing allowed the \textbf{Pure Transformer to achieve the highest PSNR ($28.56\text{ dB}$)}, surpassing the baseline CNN by \textbf{$+0.77\text{ dB}$}.
+    \item \textbf{Volumetric Cross-Attenuation (Dynamic PET/CT):} In clinical emission tomography, localized radioactive tracer distributions favored the \textbf{Pointwise Control ($30.62\text{ dB}$)}, preventing artificial cross-slice spatial blurring.
+\end{itemize}
+
+\subsection{Methodological Limitations and Future Work}
+\label{subsec:limitations_future}
+Minimizing DIP loss over 5000 Adam iterations requires $\sim 2.5\text{--}6$ minutes per volume, precluding real-time triage. Furthermore, unconstrained neural factors are non-unique up to scaling and permutation, requiring post-hoc unmixing for physical endmember identification.
+
+Future work will explore: (1) \textit{Physics-Informed Neural Operators (PINOs)} integrating optical radiative transfer equations; (2) \textit{Implicit Neural Representations (INRs)} for continuous resolution querying; (3) \textit{Accelerated Mixed-Precision (FP16) Inference} and TensorRT kernel fusion to realize sub-second execution (executing deferred Extension 6); and (4) \textit{Single-Pass Spatial Uncertainty Estimation} via Monte Carlo Dropout to avoid the $5\times$ computational multiplier of full ensembling.

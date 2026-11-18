@@ -1,0 +1,7 @@
+Variant: control
+PSNR: 45.7180
+SSIM: 0.9851
+RMSE: 0.005177
+Runtime (s): 152.89
+Peak VRAM (MB): 643.67
+Total Params: 3137680

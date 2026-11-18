@@ -1,0 +1,17 @@
+{
+    "experiment": "Figure 2: DeepTensor Eigenfaces for Facial Classification",
+    "dataset": "weizzman.mat",
+    "n_samples": 840,
+    "image_height": 103,
+    "image_width": 71,
+    "n_classes": 28,
+    "n_components": 84,
+    "train_size": 0.25,
+    "tau": 20.0,
+    "noise_snr": 2.0,
+    "network_type": "dip",
+    "learning_rate": 0.001,
+    "epochs": 100,
+    "reg_noise_std": 0.03333333333333333,
+    "device": "cuda"
+}

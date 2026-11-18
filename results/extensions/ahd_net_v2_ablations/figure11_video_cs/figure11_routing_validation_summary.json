@@ -1,0 +1,132 @@
+{
+  "experiment": "ahd_net_v2_figure11_routing_validation",
+  "dataset": "Cat Video (128x128x64)",
+  "rank": 32,
+  "epochs": 3000,
+  "conditions": {
+    "cond_a_static_equal": {
+      "cond_id": "cond_a_static_equal",
+      "condition_id": "Condition A",
+      "name": "Static Equal Ensemble",
+      "router_type": "static",
+      "tau": 1.0,
+      "total_params": 832384,
+      "block_params": 47736,
+      "runtime_sec": 249.17015480995178,
+      "peak_vram_mb": 133.34521484375,
+      "best_epoch": 2986,
+      "best_loss": 0.004209702170059188,
+      "metrics_inloop": {
+        "psnr": 25.220179238944674,
+        "ssim": 0.7260012626647949,
+        "rmse": 0.05482657253742218,
+        "mae": 0.03627867251634598,
+        "rel_error": 0.1732775717973709
+      },
+      "metrics_dip": {
+        "psnr": 25.489538493226604,
+        "ssim": 0.7524120807647705,
+        "rmse": 0.0531524233520031,
+        "mae": 0.03453265503048897,
+        "rel_error": 0.16798649728298187
+      },
+      "final_router_telem": {
+        "mean_weights": {
+          "cnn": 0.3333333432674408,
+          "pointwise": 0.3333333432674408,
+          "attention": 0.3333333432674408
+        },
+        "router_entropy": 1.0986123085021973,
+        "channel_entropy": 1.0986123085021973,
+        "current_tau": 1.0,
+        "dominant_counts": {
+          "cnn": 64,
+          "pointwise": 0,
+          "attention": 0
+        },
+        "channel_distribution": {
+          "cnn": {
+            "mean": 0.3333333134651184,
+            "std": 2.9802322387695312e-08,
+            "min": 0.3333333432674408,
+            "max": 0.3333333432674408
+          },
+          "pointwise": {
+            "mean": 0.3333333134651184,
+            "std": 2.9802322387695312e-08,
+            "min": 0.3333333432674408,
+            "max": 0.3333333432674408
+          },
+          "attention": {
+            "mean": 0.3333333134651184,
+            "std": 2.9802322387695312e-08,
+            "min": 0.3333333432674408,
+            "max": 0.3333333432674408
+          }
+        }
+      }
+    },
+    "cond_b_constant_tau1": {
+      "cond_id": "cond_b_constant_tau1",
+      "condition_id": "Condition B",
+      "name": "Constant Temperature CAGC",
+      "router_type": "cagc",
+      "tau": 1.0,
+      "total_params": 834632,
+      "block_params": 49984,
+      "runtime_sec": 250.46777153015137,
+      "peak_vram_mb": 133.0556640625,
+      "best_epoch": 2972,
+      "best_loss": 0.004286819919295423,
+      "metrics_inloop": {
+        "psnr": 25.157669716757933,
+        "ssim": 0.731097936630249,
+        "rmse": 0.05522255226969719,
+        "mae": 0.03636112064123154,
+        "rel_error": 0.17452910542488098
+      },
+      "metrics_dip": {
+        "psnr": 25.37319247296079,
+        "ssim": 0.7555640935897827,
+        "rmse": 0.053869180381298065,
+        "mae": 0.034878209233284,
+        "rel_error": 0.17025180160999298
+      },
+      "final_router_telem": {
+        "mean_weights": {
+          "cnn": 0.355493426322937,
+          "pointwise": 0.3253360390663147,
+          "attention": 0.3191705346107483
+        },
+        "router_entropy": 1.097489595413208,
+        "channel_entropy": 1.0819084644317627,
+        "current_tau": 1.0,
+        "dominant_counts": {
+          "cnn": 27,
+          "pointwise": 18,
+          "attention": 19
+        },
+        "channel_distribution": {
+          "cnn": {
+            "mean": 0.355493426322937,
+            "std": 0.0641385093331337,
+            "min": 0.25278976559638977,
+            "max": 0.5020893812179565
+          },
+          "pointwise": {
+            "mean": 0.3253360390663147,
+            "std": 0.061256710439920425,
+            "min": 0.21926739811897278,
+            "max": 0.4697689712047577
+          },
+          "attention": {
+            "mean": 0.3191705346107483,
+            "std": 0.0518033541738987,
+            "min": 0.22754907608032227,
+            "max": 0.4605625569820404
+          }
+        }
+      }
+    }
+  }
+}

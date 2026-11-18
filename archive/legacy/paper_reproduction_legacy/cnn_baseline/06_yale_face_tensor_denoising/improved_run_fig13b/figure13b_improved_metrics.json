@@ -1,0 +1,104 @@
+{
+  "ranks": [
+    10,
+    50,
+    100,
+    500,
+    1000,
+    2000,
+    4000
+  ],
+  "input_noisy_psnr": 24.605138176907715,
+  "input_noisy_ssim": 0.5425305366516113,
+  "paper_reported_plateau_psnr": 26.0,
+  "total_runtime_seconds": 888.8121819496155,
+  "peak_vram_mb": 1704.73291015625,
+  "epochs_per_rank": 1500,
+  "als_iterations": 30,
+  "results_by_rank": {
+    "10": {
+      "deeptensor_psnr": 20.36602166286571,
+      "deeptensor_ssim": 0.5955377221107483,
+      "parafac_als_psnr": 20.56063153606469,
+      "parafac_als_ssim": 0.5379045605659485,
+      "old_deeptensor_psnr": 20.278972686176303,
+      "gain_over_old_db": 0.08704897668940603,
+      "dt_runtime_sec": 114.19169545173645,
+      "als_runtime_sec": 0.09146595001220703,
+      "best_epoch": 1453,
+      "best_loss": 0.07823420315980911
+    },
+    "50": {
+      "deeptensor_psnr": 24.81832633781287,
+      "deeptensor_ssim": 0.7329479455947876,
+      "parafac_als_psnr": 25.326962138341656,
+      "parafac_als_ssim": 0.6821717023849487,
+      "old_deeptensor_psnr": 22.083314626582826,
+      "gain_over_old_db": 2.735011711230044,
+      "dt_runtime_sec": 113.10774302482605,
+      "als_runtime_sec": 0.28442835807800293,
+      "best_epoch": 1484,
+      "best_loss": 0.05807185918092728
+    },
+    "100": {
+      "deeptensor_psnr": 26.284789456156957,
+      "deeptensor_ssim": 0.7745130658149719,
+      "parafac_als_psnr": 27.924239837818522,
+      "parafac_als_ssim": 0.7577978372573853,
+      "old_deeptensor_psnr": 22.509134101056183,
+      "gain_over_old_db": 3.775655355100774,
+      "dt_runtime_sec": 112.60237669944763,
+      "als_runtime_sec": 0.3185417652130127,
+      "best_epoch": 1486,
+      "best_loss": 0.054462313652038574
+    },
+    "500": {
+      "deeptensor_psnr": 28.020427089395795,
+      "deeptensor_ssim": 0.8259674310684204,
+      "parafac_als_psnr": 33.35304708482559,
+      "parafac_als_ssim": 0.8664476275444031,
+      "old_deeptensor_psnr": 23.067771365165587,
+      "gain_over_old_db": 4.952655724230208,
+      "dt_runtime_sec": 116.2401533126831,
+      "als_runtime_sec": 0.5793259143829346,
+      "best_epoch": 1496,
+      "best_loss": 0.05100616067647934
+    },
+    "1000": {
+      "deeptensor_psnr": 28.50451584523109,
+      "deeptensor_ssim": 0.837950587272644,
+      "parafac_als_psnr": 31.80944636700108,
+      "parafac_als_ssim": 0.8192272186279297,
+      "old_deeptensor_psnr": 23.219978578172018,
+      "gain_over_old_db": 5.284537267059072,
+      "dt_runtime_sec": 120.86366438865662,
+      "als_runtime_sec": 0.9218449592590332,
+      "best_epoch": 1476,
+      "best_loss": 0.05031812936067581
+    },
+    "2000": {
+      "deeptensor_psnr": 28.827243550559615,
+      "deeptensor_ssim": 0.8466043472290039,
+      "parafac_als_psnr": 28.670770052986725,
+      "parafac_als_ssim": 0.7111268043518066,
+      "old_deeptensor_psnr": 23.375626860324456,
+      "gain_over_old_db": 5.451616690235159,
+      "dt_runtime_sec": 121.71178579330444,
+      "als_runtime_sec": 1.8266360759735107,
+      "best_epoch": 1500,
+      "best_loss": 0.04979204386472702
+    },
+    "4000": {
+      "deeptensor_psnr": 28.965683390983624,
+      "deeptensor_ssim": 0.8495794534683228,
+      "parafac_als_psnr": 26.19376249433174,
+      "parafac_als_ssim": 0.6091152429580688,
+      "old_deeptensor_psnr": 23.21937289432432,
+      "gain_over_old_db": 5.746310496659305,
+      "dt_runtime_sec": 172.52157473564148,
+      "als_runtime_sec": 6.858120441436768,
+      "best_epoch": 1490,
+      "best_loss": 0.04959627985954285
+    }
+  }
+}

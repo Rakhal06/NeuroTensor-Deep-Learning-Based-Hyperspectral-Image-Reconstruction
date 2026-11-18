@@ -149,5 +149,27 @@ paper_extracted_text.txt
 scratch/
 
 # Large binaries exceeding GitHub file size limit (100MB)
-RESULTS-BASELINE/figure9/figure9_results.npz
+results/baseline/figure09_hyperspectral/figure9_results.npz
+results/extensions/ensemble/smoke/ensemble_results.npz
+results/extensions/ensemble/standard/ensemble_results.npz
+data/*.tar.gz
+data/*.zip
+data/SpeechCommands/
+data/cifar-10-batches-py/
+data/MNIST/
+data/CroppedYale/
+
+# LaTeX auxiliary build files (keep compiled PDF)
+*.aux
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.lof
+*.lot
+*.toc
+*.out
+NeuroTensor_Project_Report/*.log
+NeuroTensor_Project_Report/*_preview.png
 

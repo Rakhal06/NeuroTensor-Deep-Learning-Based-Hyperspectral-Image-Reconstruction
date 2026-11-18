@@ -1,0 +1,48 @@
+\section*{Appendix A: Detailed Layer-by-Layer Architectural Specifications}
+\label{app:architectures}
+\addcontentsline{toc}{section}{Appendix A: Detailed Architectural Specifications}
+
+This appendix provides the precise layer-by-layer architectural specifications, channel dimensions, kernel sizes, and parameter breakdowns for the spatial factor generator and the five investigated spectral factor architectures in NeuroTensor.
+
+\subsection*{A.1 Spatial Factor Generator Network $f_U(\mathbf{z}_U; \boldsymbol{\theta}_U)$}
+The spatial factor network is implemented as a 5-scale 2D U-Net / Skip architecture \citep{ulyanov2018deep, ronneberger2015u} accepting a fixed random latent tensor $\mathbf{z}_U \in \mathbb{R}^{R \times H \times W}$ ($R=20, H=174, W=164$):
+\begin{itemize}[noitemsep, topsep=1pt]
+    \item \textbf{Input Layer:} $20$ channels $\to$ Conv2D ($3 \times 3$, 128 filters, Reflection Padding, LeakyReLU $\alpha = 0.2$, BatchNorm2D).
+    \item \textbf{Encoder Scales (5 Levels):} Strided Conv2D ($3 \times 3$, stride 2, 128 channels) followed by non-strided Conv2D ($3 \times 3$, 128 channels, Reflection Padding, LeakyReLU, BatchNorm2D).
+    \item \textbf{Skip Connections \& Decoder Scales (5 Levels):} Direct identity skip connection concatenated with bilinear 2D upsampling (scale 2.0, 256 channels), followed by Conv2D ($3 \times 3$, 128 channels) and Conv2D ($1 \times 1$, 128 channels).
+    \item \textbf{Output Layer:} Conv2D ($1 \times 1$, 128 channels $\to R=20$ channels, Sigmoid activation). \textbf{Total Spatial Params: 2,206,152}.
+\end{itemize}
+
+\subsection*{A.2 Five Spectral Generator Architectures ($f_V(\mathbf{z}_V; \boldsymbol{\theta}_V)$)}
+The spectral networks operate on a fixed random latent tensor $\mathbf{z}_V \in \mathbb{R}^{R \times B}$ ($R=20, B=260$):
+\begin{itemize}[noitemsep, topsep=1pt]
+    \item \textbf{Model 1: Baseline 1D CNN (\texttt{skip1d}):} 5-scale symmetric 1D U-Net. Input Conv1D ($3 \times 1$, 128 channels, LeakyReLU, BatchNorm1D). Downsampling: $260 \to 130 \to 65 \to 33 \to 17$. Linear 1D upsampling + multi-scale $1 \times 1$ skip concatenation ($132$ channels) + Conv1D ($3 \times 1$, 128 channels) + Conv1D ($1 \times 1$, 128 channels). Output Conv1D ($1 \times 1 \to 20$). \textbf{Spectral: 799,176 params; Total: 3,005,328}.
+    \item \textbf{Model 2: Hybrid CNN--Attention (\texttt{hybrid}):} 5-scale U-Net body producing $[1, 128, 260]$, spliced with 2-head Pre-LN Multi-Head Self-Attention ($d_\text{model}=128, d_k=64$, 2 heads) and FFN ($128 \to 256 \to 128$, GELU) across all $260$ spectral bands: $\mathbf{X}' = \mathbf{X} + \text{MHSA}(\text{LN}(\mathbf{X}))$, $\mathbf{X}_\text{out} = \mathbf{X}' + \text{FFN}(\text{LN}(\mathbf{X}'))$. Output Conv1D ($1 \times 1 \to 20$). \textbf{Spectral: 931,656 params; Total: 3,137,808} ($+132,480$ over Baseline).
+    \item \textbf{Model 3: Conv Control (\texttt{cnn\_control}):} Replaces MHSA with parameter-matched 1D conv residual block (\texttt{Conv1d(128, 172, k=3)} + \texttt{GELU} + \texttt{Conv1d(172, 128, k=3)}) and LayerNorm, analytically calibrated to match Model 2 capacity within $172$ parameters. \textbf{Spectral: 931,828 params; Total: 3,137,980}.
+    \item \textbf{Model 4: Pointwise Control (\texttt{pointwise\_control}):} Replaces MHSA with dual $1 \times 1$ pointwise linear projection layers (\texttt{Linear(128, 256)} + \texttt{GELU} + \texttt{Linear(256, 128)}), isolating channel mixing from cross-token spatial/temporal receptive fields ($k=1$). \textbf{Spectral: 931,528 params; Total: 3,137,680}.
+    \item \textbf{Model 5: Pure Spectral Transformer (\texttt{transformer}):} Operates directly on spectral sequence ($L=260$) without convolutional downsampling. Linear embedding ($20 \to 128$), 4 Pre-LN Transformer layers ($d=128, H=4, d_\text{ffn}=512$) with ALiBi relative distance biases ($m_h \in \{2^{-2}, 2^{-4}, 2^{-6}, 2^{-8}\}$), and linear output projection ($128 \to 20$). \textbf{Spectral: 798,612 params; Total: 3,004,764}.
+\end{itemize}
+
+\subsection*{A.3 Cross-Architecture Synthesis and Parameter Calibration}
+Table~\ref{tab:architecture_synthesis_appendix} provides the complete comparative synthesis of the five investigated factor generator paradigms across their operational mechanisms, parameter counts, and best-performing empirical modalities.
+
+\begin{table}[htbp]
+\centering
+\caption{Comprehensive Synthesis of the Five Investigated Neural Factor Generator Architectures.}
+\label{tab:architecture_synthesis_appendix}
+\begin{adjustbox}{width=\textwidth}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Model Architecture} & \textbf{Primary Backbone} & \textbf{Bottleneck Mechanism} & \textbf{Receptive Field ($k$)} & \textbf{Spectral Params} & \textbf{Total Params} & \textbf{Optimal Modality} \\
+\midrule
+\textbf{1. Baseline CNN} & 5-Scale 1D U-Net / Skip & Direct Convolutional Skip & Local Multi-Scale ($k=3$) & $799,176$ & $3,005,328$ & ICVL HSI ($46.07\text{ dB}$) \\
+\textbf{2. Hybrid Attention} & 5-Scale 1D U-Net / Skip & 4-Head MHSA + FFN & Global ($k=\infty$) at Bottleneck & $931,656$ & $3,137,808$ & Intermediate Routing \\
+\textbf{3. Conv Control} & 5-Scale 1D U-Net / Skip & $3 \times 1$ Conv Block + FFN & Local Multi-Scale ($k=3$) & $931,828$ & $3,137,980$ & Capacity Calibration \\
+\textbf{4. Pointwise Control} & 5-Scale 1D U-Net / Skip & $1 \times 1$ Linear Proj + FFN & Pointwise Isolated ($k=1$) & $931,528$ & $3,137,680$ & PET/CT ($30.62\text{ dB}$) \\
+\textbf{5. Pure Transformer} & 4-Layer Pre-LN Transformer & Stacked ALiBi Attention & Non-Local Distance Decay & $798,612$ & $3,004,764$ & Yale Face B ($28.56\text{ dB}$) \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+The parameter overhead of Model 2 ($+132,480$ parameters) is matched in Model 3 by calibrating the hidden channel dimension of the two $3 \times 1$ convolutions: $\Delta \text{Params} = 2 \times (128 \times 172 \times 3) + 172 + 128 = 132,396 \approx 132,480$. This strict matching guarantees that differences in empirical performance reflect architectural inductive biases rather than parameter capacity.

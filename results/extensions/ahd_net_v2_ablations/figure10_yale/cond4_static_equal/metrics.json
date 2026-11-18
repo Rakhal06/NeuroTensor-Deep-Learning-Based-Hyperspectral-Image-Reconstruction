@@ -1,0 +1,79 @@
+{
+  "cond_id": "cond4_static_equal",
+  "name": "Static Equal Tri-Branch",
+  "phase": 1,
+  "router_type": "static",
+  "gating_floor": 0.0,
+  "tau_schedule": "constant",
+  "entropy_reg": 0.0,
+  "total_params": 5594396,
+  "block_params": 123888,
+  "runtime_sec": 160.31023693084717,
+  "peak_vram_mb": 919.8271484375,
+  "best_epoch": 1191,
+  "best_loss": 0.16458645462989807,
+  "tau_at_best": 1.0,
+  "metrics_inloop": {
+    "psnr": 27.90276992238195,
+    "ssim": 0.8557182550430298,
+    "rmse": 0.04025886580348015,
+    "mae": 0.021100573241710663,
+    "rel_error": 0.10242714732885361
+  },
+  "metrics_dip": {
+    "psnr": 27.90276992238195,
+    "ssim": 0.8557182550430298,
+    "rmse": 0.04025886580348015,
+    "mae": 0.021100573241710663,
+    "rel_error": 0.10242714732885361
+  },
+  "metrics_tau1": {
+    "psnr": 27.90276992238195,
+    "ssim": 0.8557182550430298,
+    "rmse": 0.04025886580348015,
+    "mae": 0.021100573241710663,
+    "rel_error": 0.10242714732885361
+  },
+  "metrics_eval": {
+    "psnr": 15.884142080410932,
+    "ssim": 0.611855149269104,
+    "rmse": 0.16061758995056152,
+    "mae": 0.11652550846338272,
+    "rel_error": 0.40865063667297363
+  },
+  "final_router_telem": {
+    "mean_weights": {
+      "cnn": 0.333333283662796,
+      "pointwise": 0.333333283662796,
+      "attention": 0.333333283662796
+    },
+    "router_entropy": 1.0986123085021973,
+    "channel_entropy": 1.0986123085021973,
+    "current_tau": 1.0,
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "channel_distribution": {
+      "cnn": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "pointwise": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "attention": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      }
+    }
+  }
+}

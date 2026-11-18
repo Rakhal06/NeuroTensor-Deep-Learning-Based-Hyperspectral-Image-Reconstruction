@@ -1,0 +1,132 @@
+{
+  "experiment": "ahd_net_v2_figure12_routing_validation",
+  "dataset": "PET/CT (128x128x56)",
+  "rank": 1000,
+  "epochs": 4000,
+  "conditions": {
+    "cond_a_static_equal": {
+      "cond_id": "cond_a_static_equal",
+      "condition_id": "Condition A",
+      "name": "Static Equal Fusion",
+      "router_type": "static",
+      "tau": 1.0,
+      "total_params": 4042396,
+      "block_params": 123888,
+      "runtime_sec": 554.6388916969299,
+      "peak_vram_mb": 598.90087890625,
+      "best_epoch": 3959,
+      "best_loss": 0.24941378831863403,
+      "metrics_inloop": {
+        "psnr": 30.242181311614942,
+        "ssim": 0.8560043228461285,
+        "rmse": 0.03075324185192585,
+        "mae": 0.018182964995503426,
+        "rel_error": 0.16745583713054657
+      },
+      "metrics_dip": {
+        "psnr": 30.242355394224965,
+        "ssim": 0.8561579614895521,
+        "rmse": 0.030752627179026604,
+        "mae": 0.018190817907452583,
+        "rel_error": 0.16745248436927795
+      },
+      "final_router_telem": {
+        "mean_weights": {
+          "cnn": 0.333333283662796,
+          "pointwise": 0.333333283662796,
+          "attention": 0.333333283662796
+        },
+        "router_entropy": 1.0986123085021973,
+        "channel_entropy": 1.0986123085021973,
+        "current_tau": 1.0,
+        "dominant_counts": {
+          "cnn": 128,
+          "pointwise": 0,
+          "attention": 0
+        },
+        "channel_distribution": {
+          "cnn": {
+            "mean": 0.3333333432674408,
+            "std": 0.0,
+            "min": 0.3333333432674408,
+            "max": 0.3333333432674408
+          },
+          "pointwise": {
+            "mean": 0.3333333432674408,
+            "std": 0.0,
+            "min": 0.3333333432674408,
+            "max": 0.3333333432674408
+          },
+          "attention": {
+            "mean": 0.3333333432674408,
+            "std": 0.0,
+            "min": 0.3333333432674408,
+            "max": 0.3333333432674408
+          }
+        }
+      }
+    },
+    "cond_b_constant_tau1": {
+      "cond_id": "cond_b_constant_tau1",
+      "condition_id": "Condition B",
+      "name": "Constant Temperature CAGC",
+      "router_type": "cagc",
+      "tau": 1.0,
+      "total_params": 4050988,
+      "block_params": 132480,
+      "runtime_sec": 561.8845872879028,
+      "peak_vram_mb": 599.31640625,
+      "best_epoch": 3963,
+      "best_loss": 0.24678963422775269,
+      "metrics_inloop": {
+        "psnr": 30.161798031894456,
+        "ssim": 0.8497024799691745,
+        "rmse": 0.031039170920848846,
+        "mae": 0.01864388957619667,
+        "rel_error": 0.16901275515556335
+      },
+      "metrics_dip": {
+        "psnr": 30.164755199489107,
+        "ssim": 0.8498323580262258,
+        "rmse": 0.03102860413491726,
+        "mae": 0.018647408112883568,
+        "rel_error": 0.1689552515745163
+      },
+      "final_router_telem": {
+        "mean_weights": {
+          "cnn": 0.3335784375667572,
+          "pointwise": 0.3497205972671509,
+          "attention": 0.3167009651660919
+        },
+        "router_entropy": 1.0977938175201416,
+        "channel_entropy": 1.0820767879486084,
+        "current_tau": 1.0,
+        "dominant_counts": {
+          "cnn": 40,
+          "pointwise": 53,
+          "attention": 35
+        },
+        "channel_distribution": {
+          "cnn": {
+            "mean": 0.3335784673690796,
+            "std": 0.05695103108882904,
+            "min": 0.15863293409347534,
+            "max": 0.4648762345314026
+          },
+          "pointwise": {
+            "mean": 0.3497205972671509,
+            "std": 0.06597132980823517,
+            "min": 0.23069897294044495,
+            "max": 0.6368837356567383
+          },
+          "attention": {
+            "mean": 0.31670093536376953,
+            "std": 0.054922230541706085,
+            "min": 0.19756315648555756,
+            "max": 0.4269205629825592
+          }
+        }
+      }
+    }
+  }
+}

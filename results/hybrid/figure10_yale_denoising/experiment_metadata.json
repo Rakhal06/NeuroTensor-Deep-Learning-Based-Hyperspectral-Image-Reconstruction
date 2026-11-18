@@ -1,0 +1,147 @@
+{
+  "experiment": "figure10_yale_b",
+  "timestamp": "2026-11-08T16:08:00+05:30",
+  "dataset": {
+    "file": "data/yale_b.mat",
+    "raw_tensor_shape": [192, 168, 160],
+    "evaluated_shape": [192, 168, 160],
+    "height": 192,
+    "width": 168,
+    "illumination_slices": 160,
+    "subjects": ["yaleB01 (64)", "yaleB02 (64)", "yaleB03 (32)"],
+    "normalization": "faces.astype(float32) / 255.0 -> [0.0, 1.0]",
+    "noise_type": "salt_and_pepper",
+    "noise_ratio": 0.30,
+    "seed_observation": 42
+  },
+  "forward_model": {
+    "decomposition": "3-Way CANDECOMP/PARAFAC (CP)",
+    "rank": 2000,
+    "formula": "X_ijk = sum_r (lambda_r / R) * U_ir * V_jr * W_kr",
+    "mode1_height": "1D Skip CNN (U_net)",
+    "mode2_width": "1D Skip CNN (V_net)",
+    "mode3_illumination": "Evaluated architecture variant (W_net)"
+  },
+  "optimization": {
+    "optimizer": "Adam",
+    "lr": 0.001,
+    "epochs": 1200,
+    "loss_function": "L1Norm (unsupervised measurement residual)",
+    "checkpoint_selection_criterion": "Minimum unsupervised training loss (zero ground-truth leakage)"
+  },
+  "hardware": {
+    "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "total_vram_mb": 8188.0,
+    "cuda_version": "12.1",
+    "torch_version": "2.5.1+cu121",
+    "python_version": "3.11.9"
+  },
+  "models": {
+    "baseline": {
+      "type": "Standard 1D Skip CNN for Mode 3",
+      "parameters": 5470508,
+      "psnr_db": 27.7808,
+      "verified_psnr_db": 27.7829,
+      "ssim": 0.8528,
+      "rmse": 0.040828,
+      "mae": 0.021452,
+      "rel_error": 0.103875,
+      "runtime_sec": 149.98,
+      "peak_vram_mb": 915.53,
+      "best_loss": 0.164831,
+      "checkpoint": "results/hybrid/figure10_yale_denoising/baseline_checkpoint.pth"
+    },
+    "cnn_control": {
+      "type": "Parameter-Matched Pure 1D CNN (Conv1d residual blocks)",
+      "parameters": 5603160,
+      "parameter_delta_vs_hybrid": "+172 (+0.0031%)",
+      "psnr_db": 28.3521,
+      "verified_psnr_db": 28.3494,
+      "ssim": 0.8612,
+      "rmse": 0.038229,
+      "mae": 0.020051,
+      "rel_error": 0.097263,
+      "runtime_sec": 153.34,
+      "peak_vram_mb": 918.35,
+      "best_loss": 0.163823,
+      "checkpoint": "results/hybrid/figure10_yale_denoising/cnn_control_checkpoint.pth"
+    },
+    "pointwise_control": {
+      "type": "Parameter-Matched Pointwise Linear MLP Control",
+      "parameters": 5602860,
+      "parameter_delta_vs_hybrid": "-128 (-0.0023%)",
+      "psnr_db": 28.1703,
+      "verified_psnr_db": 28.1756,
+      "ssim": 0.8601,
+      "rmse": 0.039038,
+      "mae": 0.020540,
+      "rel_error": 0.099321,
+      "runtime_sec": 150.40,
+      "peak_vram_mb": 919.21,
+      "best_loss": 0.164182,
+      "checkpoint": "results/hybrid/figure10_yale_denoising/pointwise_control_checkpoint.pth"
+    },
+    "hybrid": {
+      "type": "1D Skip CNN + Pre-LN Multi-Head Self-Attention + FFN",
+      "parameters": 5602988,
+      "parameter_delta_vs_baseline": "+132480 (+2.42%)",
+      "psnr_db": 28.0392,
+      "verified_psnr_db": 28.0464,
+      "ssim": 0.8592,
+      "rmse": 0.039632,
+      "mae": 0.020699,
+      "rel_error": 0.100831,
+      "runtime_sec": 152.09,
+      "peak_vram_mb": 919.11,
+      "best_loss": 0.164296,
+      "checkpoint": "results/hybrid/figure10_yale_denoising/hybrid_checkpoint.pth"
+    },
+    "transformer": {
+      "type": "Pure Pre-LN Spectral Transformer with ALiBi relative position bias",
+      "parameters": 4955144,
+      "parameter_delta_vs_baseline": "-515364 (-9.42%)",
+      "psnr_db": 28.5552,
+      "verified_psnr_db": 28.5377,
+      "ssim": 0.8655,
+      "rmse": 0.037346,
+      "mae": 0.019528,
+      "rel_error": 0.095015,
+      "runtime_sec": 123.08,
+      "peak_vram_mb": 908.41,
+      "best_loss": 0.163455,
+      "checkpoint": "results/hybrid/figure10_yale_denoising/transformer_checkpoint.pth"
+    }
+  },
+  "comparisons": {
+    "transformer_vs_baseline": {
+      "delta_psnr_db": +0.7744,
+      "delta_ssim": +0.0127,
+      "delta_rmse": -0.003483
+    },
+    "cnn_control_vs_baseline": {
+      "delta_psnr_db": +0.5713,
+      "delta_ssim": +0.0084,
+      "delta_rmse": -0.002599
+    },
+    "pointwise_control_vs_baseline": {
+      "delta_psnr_db": +0.3894,
+      "delta_ssim": +0.0073,
+      "delta_rmse": -0.001790
+    },
+    "hybrid_vs_baseline": {
+      "delta_psnr_db": +0.2584,
+      "delta_ssim": +0.0064,
+      "delta_rmse": -0.001197
+    },
+    "cnn_control_vs_hybrid": {
+      "delta_psnr_db": +0.3129,
+      "delta_ssim": +0.0020,
+      "delta_rmse": -0.001403
+    },
+    "transformer_vs_hybrid": {
+      "delta_psnr_db": +0.5160,
+      "delta_ssim": +0.0063,
+      "delta_rmse": -0.002286
+    }
+  }
+}

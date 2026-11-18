@@ -1,0 +1,4 @@
+Spatial network parameters: ~1.2M
+Spectral network parameters: ~1.2M
+Input dims: [1, n_inputs, H, W] and [1, n_inputs, nwvl]
+Output dims: [1, R_MAX, H, W] and [1, R_MAX, nwvl]

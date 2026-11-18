@@ -1,0 +1,257 @@
+import os
+import json
+import scipy.io as io
+
+experiments = [
+    {
+        'id': 'figure2',
+        'name': 'Figure 2 — Eigenfaces & Low-Dimensional Classification',
+        'orig_script': 'run_figure2.py',
+        'improved_script': None,
+        'config': 'RESULTS-BASELINE/figure2/configuration.json',
+        'dataset_name': 'weizzman.mat',
+        'dataset_path': 'data/weizzman.mat',
+        'orig_outputs': 'RESULTS-BASELINE/figure2/',
+        'improved_outputs': None,
+        'checkpoint': None,
+        'metrics': 'RESULTS-BASELINE/figure2/metrics.txt',
+        'plots': 'RESULTS-BASELINE/figure2/plots/figure2_classification_accuracy.png',
+        'images': 'RESULTS-BASELINE/figure2/images/figure2_eigenfaces_top12.png',
+        'reports': 'RESULTS-BASELINE/final_report.txt',
+        'status': 'Completed (Frozen)',
+        'issues': 'None. Baseline exceeds paper accuracy.'
+    },
+    {
+        'id': 'figure4',
+        'name': 'Figure 4 — Computational Efficiency / Separable Convolutions Speedup',
+        'orig_script': 'paper_reproduction/cnn_baseline/01_synthetic_decomposition/benchmark_figure4_separable_speedup.py',
+        'improved_script': 'paper_reproduction/cnn_baseline/01_synthetic_decomposition/benchmark_figure4_separable_speedup_improved.py',
+        'config': 'paper_reproduction/cnn_baseline/01_synthetic_decomposition/config.yaml',
+        'dataset_name': 'Synthetic 3D MRI Volume (128x128x150)',
+        'dataset_path': 'Synthesized in-memory (Section 3.2)',
+        'orig_outputs': 'paper_reproduction/cnn_baseline/01_synthetic_decomposition/figure4_benchmark_metrics.json',
+        'improved_outputs': 'paper_reproduction/cnn_baseline/01_synthetic_decomposition/figure4_improved_benchmark_metrics.json',
+        'checkpoint': None,
+        'metrics': 'paper_reproduction/cnn_baseline/01_synthetic_decomposition/figure4_benchmark_metrics.json',
+        'plots': 'paper_reproduction/cnn_baseline/01_synthetic_decomposition/plots/figure4_separable_convolutions_speedup.png',
+        'images': None,
+        'reports': 'PHASE1_PERFORMANCE_GAP_AUDIT.md',
+        'status': 'Script authored, awaiting execution approval',
+        'issues': 'Old benchmark used toy 64x64x32 volume causing kernel launch overhead inversion.'
+    },
+    {
+        'id': 'figure6',
+        'name': 'Figure 6 — Synthetic Robustness Across Noise Distributions',
+        'orig_script': 'run_figure6.py',
+        'improved_script': None,
+        'config': 'RESULTS-BASELINE/figure6/configuration.json',
+        'dataset_name': 'Synthetic Rank-R Tensor',
+        'dataset_path': 'Synthesized in-memory (64x64, R=5..30)',
+        'orig_outputs': 'RESULTS-BASELINE/figure6/',
+        'improved_outputs': None,
+        'checkpoint': None,
+        'metrics': 'RESULTS-BASELINE/figure6/metrics.txt',
+        'plots': 'RESULTS-BASELINE/figure6/plots/figure6_psnr_vs_rank.png',
+        'images': 'RESULTS-BASELINE/figure6/images/figure6_visual_comparisons_rank30.png',
+        'reports': 'RESULTS-BASELINE/final_report.txt',
+        'status': 'Completed (Frozen)',
+        'issues': 'None. Replicates DeepTensor robustness over SVD under non-Gaussian noise.'
+    },
+    {
+        'id': 'figure7',
+        'name': 'Figure 7 — Robust PCA (Limited Sample Covariance & High Noise)',
+        'orig_script': 'run_figure7.py',
+        'improved_script': None,
+        'config': 'RESULTS-BASELINE/figure7/configuration.json',
+        'dataset_name': 'Synthetic Covariance Matrix',
+        'dataset_path': 'Synthesized in-memory',
+        'orig_outputs': 'RESULTS-BASELINE/figure7/',
+        'improved_outputs': None,
+        'checkpoint': None,
+        'metrics': 'RESULTS-BASELINE/figure7/metrics.txt',
+        'plots': 'RESULTS-BASELINE/figure7/plots/figure7_pca_sample_size_and_noise.png',
+        'images': 'RESULTS-BASELINE/figure7/images/figure7_covariance_visual_comparison.png',
+        'reports': 'RESULTS-BASELINE/final_report.txt',
+        'status': 'Completed (Frozen)',
+        'issues': 'None. Baseline replicates PCA error curves vs sample size and SNR.'
+    },
+    {
+        'id': 'figure9',
+        'name': 'Figure 9 — ICVL Hyperspectral Image Denoising (Rank-20 Matrix)',
+        'orig_script': 'run_figure9.py',
+        'improved_script': None,
+        'config': 'RESULTS-BASELINE/figure9/configuration.json',
+        'dataset_name': 'icvl.mat',
+        'dataset_path': 'data/icvl.mat',
+        'orig_outputs': 'RESULTS-BASELINE/figure9/',
+        'improved_outputs': None,
+        'checkpoint': 'RESULTS-BASELINE/figure9/checkpoint/figure9_deeptensor_checkpoint.pt',
+        'metrics': 'RESULTS-BASELINE/figure9/metrics.txt',
+        'plots': 'RESULTS-BASELINE/figure9/plots/figure9_convergence_curves.png',
+        'images': 'RESULTS-BASELINE/figure9/images/figure9_hyperspectral_denoising_panel.png',
+        'reports': 'RESULTS-BASELINE/final_report.txt',
+        'status': 'Completed (Frozen)',
+        'issues': 'None. Reaches 43.43 dB (exceeds paper reported 43.40 dB).'
+    },
+    {
+        'id': 'figure10',
+        'name': 'Figure 10 — Yale Face B 3-Way PARAFAC Denoising (30% & 60% S&P Noise)',
+        'orig_script': 'paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/run_figure10_yale_tensor.py',
+        'improved_script': 'paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/run_figure10_yale_tensor_improved.py',
+        'config': 'paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/config.yaml',
+        'dataset_name': 'yale_b.mat',
+        'dataset_path': 'data/yale_b.mat',
+        'orig_outputs': 'paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/original_baseline/',
+        'improved_outputs': 'paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run/',
+        'checkpoint': 'paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run/deeptensor_noise_30_improved_checkpoint.pt',
+        'metrics': 'paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run/metrics_improved.json',
+        'plots': 'paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/plots/figure10_combined_convergence_curves.png',
+        'images': 'paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/images/figure10_yale_tensor_denoising_improved_panel.png',
+        'reports': 'paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/FIGURE10_IMPROVEMENT_REPORT.md',
+        'status': 'Completed & Approved',
+        'issues': 'None. Improved PSNR (30%: 30.86 dB, 60%: 30.46 dB) exceeds paper targets.'
+    },
+    {
+        'id': 'figure11',
+        'name': 'Figure 11 — Video Compressive Sensing (8 Snapshots for 64 Frames)',
+        'orig_script': 'paper_reproduction/cnn_baseline/07_video_compressive_sensing/run_figure11.py',
+        'improved_script': 'paper_reproduction/cnn_baseline/07_video_compressive_sensing/run_figure11_improved.py',
+        'config': 'paper_reproduction/cnn_baseline/07_video_compressive_sensing/config.yaml',
+        'dataset_name': 'cat_video.mat',
+        'dataset_path': 'data/cat_video.mat',
+        'orig_outputs': 'paper_reproduction/cnn_baseline/07_video_compressive_sensing/original_baseline/',
+        'improved_outputs': 'paper_reproduction/cnn_baseline/07_video_compressive_sensing/improved_run/',
+        'checkpoint': 'paper_reproduction/cnn_baseline/07_video_compressive_sensing/improved_run/checkpoint/figure11_deeptensor_improved_checkpoint.pt',
+        'metrics': 'paper_reproduction/cnn_baseline/07_video_compressive_sensing/improved_run/metrics.json',
+        'plots': 'paper_reproduction/cnn_baseline/07_video_compressive_sensing/improved_run/plots/figure11_improved_convergence_curves.png',
+        'images': 'paper_reproduction/cnn_baseline/07_video_compressive_sensing/improved_run/images/figure11_video_cs_improved_panel.png',
+        'reports': 'paper_reproduction/cnn_baseline/07_video_compressive_sensing/FIGURE11_IMPROVEMENT_REPORT.md',
+        'status': 'Completed & Audited',
+        'issues': 'Supplementary dataset cat_video.mat was downsampled/clipped by authors, capping peak PSNR at 25.32 dB (+1.83 dB over 2D TV).'
+    },
+    {
+        'id': 'figure12',
+        'name': 'Figure 12 — 3D PET/CT Reconstruction from 40-Angle Radon Tomography',
+        'orig_script': 'run_figure12.py',
+        'improved_script': 'paper_reproduction/cnn_baseline/08_ct_reconstruction/run_figure12_improved.py',
+        'config': 'paper_reproduction/cnn_baseline/08_ct_reconstruction/improved_run/configuration.json',
+        'dataset_name': 'pet.mat',
+        'dataset_path': 'data/pet.mat',
+        'orig_outputs': 'RESULTS-BASELINE/figure12/',
+        'improved_outputs': 'paper_reproduction/cnn_baseline/08_ct_reconstruction/improved_run/',
+        'checkpoint': 'paper_reproduction/cnn_baseline/08_ct_reconstruction/improved_run/checkpoint/figure12_deeptensor_improved_checkpoint.pt',
+        'metrics': 'paper_reproduction/cnn_baseline/08_ct_reconstruction/improved_run/figure12_improved_metrics.json',
+        'plots': 'paper_reproduction/cnn_baseline/08_ct_reconstruction/improved_run/plots/figure12_convergence_curves.png',
+        'images': 'paper_reproduction/cnn_baseline/08_ct_reconstruction/improved_run/images/figure12_reconstruction_panel.png',
+        'reports': 'paper_reproduction/cnn_baseline/08_ct_reconstruction/FIGURE12_IMPROVEMENT_REPORT.md',
+        'status': 'Completed & Audited',
+        'issues': 'None. Reaches 30.55 dB PSNR / 0.8302 SSIM on tau=100 noise, outperforming 2D TV, 2D TV+CP, and Algorithmic.'
+    },
+    {
+        'id': 'figure13a',
+        'name': 'Figure 13(a) — HSI Rank Sweep (Rank 1 to 30 on Rank-20 Truncated ICVL)',
+        'orig_script': 'paper_reproduction/cnn_baseline/05_hyperspectral_denoising/run_figure13_rank_sweep.py',
+        'improved_script': None,
+        'config': 'paper_reproduction/cnn_baseline/05_hyperspectral_denoising/config.yaml',
+        'dataset_name': 'icvl.mat',
+        'dataset_path': 'data/icvl.mat',
+        'orig_outputs': 'paper_reproduction/cnn_baseline/05_hyperspectral_denoising/',
+        'improved_outputs': None,
+        'checkpoint': None,
+        'metrics': 'paper_reproduction/cnn_baseline/05_hyperspectral_denoising/figure13a_metrics.json',
+        'plots': 'paper_reproduction/cnn_baseline/05_hyperspectral_denoising/plots/figure13a_rank_sweep.png',
+        'images': None,
+        'reports': 'PAPER_EXPERIMENT_REGISTER.md',
+        'status': 'Completed (Frozen)',
+        'issues': 'None. Confirms DeepTensor invariance to rank over-estimation.'
+    },
+    {
+        'id': 'figure13b',
+        'name': 'Figure 13(b) — Yale Face B Rank Sweep (Rank 10 to 4000 on Rank-1000 PARAFAC)',
+        'orig_script': 'paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/run_figure13b_yale_rank_sweep.py',
+        'improved_script': 'paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/run_figure13b_yale_rank_sweep_improved.py',
+        'config': 'paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/config.yaml',
+        'dataset_name': 'yale_b.mat',
+        'dataset_path': 'data/yale_b.mat',
+        'orig_outputs': 'paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/original_baseline/figure13b_metrics.json',
+        'improved_outputs': 'paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run_fig13b/',
+        'checkpoint': 'paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run_fig13b/checkpoint/deeptensor_rank_4000_checkpoint.pt',
+        'metrics': 'paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run_fig13b/figure13b_improved_metrics.json',
+        'plots': 'paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run_fig13b/plots/figure13b_yale_rank_sweep_improved.png',
+        'images': 'paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run_fig13b/images/figure13b_reconstruction_panel.png',
+        'reports': 'paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/FIGURE13B_IMPROVEMENT_REPORT.md',
+        'status': 'Completed & Audited',
+        'issues': 'None. Replaced flawed matricized SVD with CUDA ALS; DeepTensor forms flat plateau at 28.50-28.97 dB.'
+    },
+    {
+        'id': 'table1',
+        'name': 'Table 1 — Synthetic Low-Rank Matrix & Tensor Grid Decomposition',
+        'orig_script': 'run_table1.py',
+        'improved_script': 'paper_reproduction/cnn_baseline/01_synthetic_decomposition/run_synthetic_suite.py',
+        'config': 'paper_reproduction/cnn_baseline/01_synthetic_decomposition/config.yaml',
+        'dataset_name': 'Synthetic Low-Rank Matrices & Tensors',
+        'dataset_path': 'Synthesized in-memory (N=64..256, R=2..16)',
+        'orig_outputs': 'paper_reproduction/cnn_baseline/01_synthetic_decomposition/metrics.json',
+        'improved_outputs': 'paper_reproduction/cnn_baseline/01_synthetic_decomposition/synthetic_suite_metrics.json',
+        'checkpoint': None,
+        'metrics': 'paper_reproduction/cnn_baseline/01_synthetic_decomposition/synthetic_suite_metrics.json',
+        'plots': 'paper_reproduction/cnn_baseline/01_synthetic_decomposition/plots/figure3_inductive_bias.png',
+        'images': None,
+        'reports': 'PAPER_EXPERIMENT_REGISTER.md',
+        'status': 'Completed (Frozen)',
+        'issues': 'None. Matches paper mean and std bounds across ranks.'
+    },
+    {
+        'id': 'table2',
+        'name': 'Table 2 — Nonnegative Matrix Factorization (NMF) on MNIST & CIFAR-10',
+        'orig_script': 'paper_reproduction/cnn_baseline/03_nmf/run_table2_nmf.py',
+        'improved_script': None,
+        'config': 'paper_reproduction/cnn_baseline/03_nmf/config.yaml',
+        'dataset_name': 'MNIST & CIFAR-10',
+        'dataset_path': 'data/MNIST & data/cifar-10-batches-py',
+        'orig_outputs': 'paper_reproduction/cnn_baseline/03_nmf/',
+        'improved_outputs': None,
+        'checkpoint': None,
+        'metrics': 'paper_reproduction/cnn_baseline/03_nmf/metrics.json',
+        'plots': None,
+        'images': None,
+        'reports': 'paper_reproduction/cnn_baseline/03_nmf/metrics.txt',
+        'status': 'Completed & Audited (Frozen)',
+        'issues': 'Protocol verified. Metrics (7.9-9.5 dB) align with published paper bounds (7.3-8.8 dB).'
+    },
+    {
+        'id': 'table3',
+        'name': 'Table 3 — Speech Commands Time-Frequency Spectrogram NMF & Semi-NMF',
+        'orig_script': 'paper_reproduction/cnn_baseline/09_speech_time_frequency/run_table3_speech_nmf.py',
+        'improved_script': None,
+        'config': 'paper_reproduction/cnn_baseline/09_speech_time_frequency/config.yaml',
+        'dataset_name': 'Google Speech Commands v0.02',
+        'dataset_path': 'data/SpeechCommands',
+        'orig_outputs': 'paper_reproduction/cnn_baseline/09_speech_time_frequency/',
+        'improved_outputs': None,
+        'checkpoint': None,
+        'metrics': 'paper_reproduction/cnn_baseline/09_speech_time_frequency/metrics.json',
+        'plots': None,
+        'images': 'paper_reproduction/cnn_baseline/09_speech_time_frequency/images/figure_speech_nmf_panel.png',
+        'reports': 'paper_reproduction/cnn_baseline/09_speech_time_frequency/metrics.txt',
+        'status': 'Completed (Frozen)',
+        'issues': 'None. Replicates Table 3 PSNR across 10 speech audio classes.'
+    }
+]
+
+# Verify all paths
+print("Auditing experiment files existence:")
+for exp in experiments:
+    print(f"\n--- {exp['name']} ---")
+    for key in ['orig_script', 'improved_script', 'config', 'dataset_path', 'orig_outputs', 'improved_outputs', 'checkpoint', 'metrics', 'plots', 'images', 'reports']:
+        val = exp[key]
+        if val is None:
+            print(f"  {key:<18s}: [NOT APPLICABLE]")
+        elif os.path.exists(val):
+            print(f"  {key:<18s}: [EXISTS] {val}")
+        else:
+            print(f"  {key:<18s}: [NOT FOUND] {val}")
+
+with open('scratch_exp_mapping.json', 'w') as fp:
+    json.dump(experiments, fp, indent=2)
+

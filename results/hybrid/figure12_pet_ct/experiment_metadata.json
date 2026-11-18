@@ -1,0 +1,45 @@
+{
+  "experiment": "Figure 12 3D PET/CT Radon CS",
+  "dataset": "data/pet.mat",
+  "tensor_shape": [
+    128,
+    128,
+    56
+  ],
+  "tomography_angles": 40,
+  "rank": 1000,
+  "epochs": 4000,
+  "device": "cuda",
+  "gpu_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "torch_version": "2.5.1+cu121",
+  "loss_criterion": "losses.L2Norm",
+  "timestamp": "2026-11-08 17:59:59",
+  "variants": [
+    "baseline",
+    "hybrid",
+    "cnn_control",
+    "pointwise_control",
+    "transformer"
+  ],
+  "parameter_counts": {
+    "baseline": 3918508,
+    "hybrid": 4050988,
+    "cnn_control": 4051160,
+    "pointwise_control": 4050860,
+    "transformer": 3663144
+  },
+  "runtimes_sec": {
+    "baseline": 465.7666003704071,
+    "hybrid": 507.94992995262146,
+    "cnn_control": 509.358323097229,
+    "pointwise_control": 509.2673599720001,
+    "transformer": 398.75910687446594
+  },
+  "peak_vram_mb": {
+    "baseline": 610.10986328125,
+    "hybrid": 612.6845703125,
+    "cnn_control": 612.31982421875,
+    "pointwise_control": 612.54150390625,
+    "transformer": 607.62109375
+  }
+}

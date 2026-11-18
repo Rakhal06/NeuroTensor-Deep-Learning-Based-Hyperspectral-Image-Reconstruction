@@ -1,0 +1,15 @@
+======================================================================
+TABLE 3: SPEECH NMF & SEMI-NMF REPRODUCTION RESULTS (Mean ± Std over 2 runs)
+======================================================================
+MODE        ACTIVATION FUNCTION    REPRODUCED (OURS)       PAPER REPORTED
+----------------------------------------------------------------------
+NMF         Softplus               8.94 ± 0.01 dB       9.00 ± 0.03 dB
+NMF         Abs. value             8.92 ± 0.01 dB       8.70 ± 0.01 dB
+NMF         ReLU                   8.90 ± 0.00 dB       8.70 ± 0.03 dB
+NMF         Baseline NMF           7.39 dB                 4.60 dB
+----------------------------------------------------------------------
+Semi-NMF    Softplus               8.84 ± 0.00 dB       8.70 ± 0.09 dB
+Semi-NMF    Abs. value             8.92 ± 0.01 dB       8.80 ± 0.02 dB
+Semi-NMF    ReLU                   8.90 ± 0.00 dB       8.80 ± 0.02 dB
+Semi-NMF    Baseline Semi-NMF      7.38 dB                 4.70 dB
+======================================================================

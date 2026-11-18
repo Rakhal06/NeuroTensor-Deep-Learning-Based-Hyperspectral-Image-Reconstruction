@@ -1,0 +1,17 @@
+================================================================================
+RUNNING FIGURE 11 ROUTING VALIDATION: cond_a_static_equal — Static Equal Ensemble
+Condition: Condition A | Description: Fixed uniform ensemble (w = [1/3, 1/3, 1/3]) without learned router
+Router Type: static | Fixed Tau: 1.0
+Epochs: 3000 | Rank: 32 | Device: cuda
+================================================================================
+--> Trainable Parameters: Model=832,384 | AdaptiveBlock=47,736
+  [Epoch    1/3000] Loss: 1.06060e+00 | Best Loss: inf (Ep -1) | H: 1.0986 | Gates: CNN=0.333, PW=0.333, Attn=0.333 | Dominance: CNN=64, PW=0, Attn=0
+  [Epoch  500/3000] Loss: 8.83985e-03 | Best Loss: 8.84694e-03 (Ep 499) | H: 1.0986 | Gates: CNN=0.333, PW=0.333, Attn=0.333 | Dominance: CNN=64, PW=0, Attn=0
+  [Epoch 1000/3000] Loss: 6.68676e-03 | Best Loss: 6.67726e-03 (Ep 988) | H: 1.0986 | Gates: CNN=0.333, PW=0.333, Attn=0.333 | Dominance: CNN=64, PW=0, Attn=0
+  [Epoch 1500/3000] Loss: 5.82951e-03 | Best Loss: 5.74523e-03 (Ep 1495) | H: 1.0986 | Gates: CNN=0.333, PW=0.333, Attn=0.333 | Dominance: CNN=64, PW=0, Attn=0
+  [Epoch 2000/3000] Loss: 5.19576e-03 | Best Loss: 5.14704e-03 (Ep 1985) | H: 1.0986 | Gates: CNN=0.333, PW=0.333, Attn=0.333 | Dominance: CNN=64, PW=0, Attn=0
+  [Epoch 2500/3000] Loss: 4.68985e-03 | Best Loss: 4.69310e-03 (Ep 2493) | H: 1.0986 | Gates: CNN=0.333, PW=0.333, Attn=0.333 | Dominance: CNN=64, PW=0, Attn=0
+  [Epoch 3000/3000] Loss: 4.23274e-03 | Best Loss: 4.20970e-03 (Ep 2986) | H: 1.0986 | Gates: CNN=0.333, PW=0.333, Attn=0.333 | Dominance: CNN=64, PW=0, Attn=0
+--> Optimization Complete: Runtime=249.2s | Best Meas Loss=4.209702e-03 at Ep 2986
+--> RESULTS: PSNR (In-Loop)=25.2202 dB | SSIM=0.7260
+--> RESULTS: PSNR (Clean DIP)=25.4895 dB | SSIM=0.7524

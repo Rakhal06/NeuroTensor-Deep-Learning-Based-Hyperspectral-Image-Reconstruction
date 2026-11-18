@@ -1,0 +1,15 @@
+======================================================================
+TABLE 2: NMF REPRODUCTION RESULTS (Mean ± Std over 2 runs)
+======================================================================
+DATASET       ACTIVATION FUNCTION    REPRODUCED (OURS)       PAPER REPORTED
+----------------------------------------------------------------------
+MNIST         Softplus               7.95 ± 0.00 dB       7.40 ± 0.03 dB
+MNIST         Abs. value             8.55 ± 0.01 dB       7.30 ± 0.01 dB
+MNIST         ReLU                   8.40 ± 0.02 dB       7.60 ± 0.15 dB
+MNIST         Standard NMF           8.69 dB                 7.50 dB
+----------------------------------------------------------------------
+CIFAR-10      Softplus               8.79 ± 0.02 dB       5.70 ± 0.03 dB
+CIFAR-10      Abs. value             9.34 ± 0.01 dB       5.70 ± 0.02 dB
+CIFAR-10      ReLU                   9.32 ± 0.04 dB       6.30 ± 0.04 dB
+CIFAR-10      Standard NMF           9.54 dB                 5.60 dB
+======================================================================

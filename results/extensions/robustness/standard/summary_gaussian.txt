@@ -1,0 +1,11 @@
+Noise Type: gaussian
+Noise Parameters: tau=inf, noise_snr=0.037874819941396964 (snr=0.037875)
+Target Input PSNR: 28.4321 dB
+Actual Input PSNR: 28.4321 dB
+Reconstruction PSNR: 46.6665 dB
+Reconstruction SSIM: 0.987765
+Reconstruction RMSE: 0.004642
+PSNR Gain: 18.2344 dB
+Runtime: 163.59 sec
+Peak VRAM: 668.67 MB
+Noise-Intensity Correlation: 0.000394

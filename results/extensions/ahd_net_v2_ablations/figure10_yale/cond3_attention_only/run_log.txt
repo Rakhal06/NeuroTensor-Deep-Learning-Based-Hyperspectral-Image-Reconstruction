@@ -1,0 +1,19 @@
+================================================================================
+RUNNING ABLATION CONDITION: cond3_attention_only — Attention-Only Tri-Branch
+Description: Clamped Attention branch (w = [0, 0, 1]) inside tri-branch block
+Router Type: attention_only | Gating Floor: 0.0
+Temperature Schedule: constant (1.0 -> 1.0)
+Entropy Regularization: lambda = 0.0
+Epochs: 1200 | Rank: 2000 | Device: cuda
+================================================================================
+--> Trainable Parameters: Model=5,594,396 | AdaptiveBlock=123,888
+  [Epoch    1/1200] Loss: 0.364590 | tau: 1.00 | H_chan: 0.0000 | Gates: CNN=0.000, PW=0.000, Attn=1.000
+  [Epoch  200/1200] Loss: 0.183352 | tau: 1.00 | H_chan: 0.0000 | Gates: CNN=0.000, PW=0.000, Attn=1.000
+  [Epoch  400/1200] Loss: 0.172412 | tau: 1.00 | H_chan: 0.0000 | Gates: CNN=0.000, PW=0.000, Attn=1.000
+  [Epoch  600/1200] Loss: 0.169623 | tau: 1.00 | H_chan: 0.0000 | Gates: CNN=0.000, PW=0.000, Attn=1.000
+  [Epoch  800/1200] Loss: 0.167529 | tau: 1.00 | H_chan: 0.0000 | Gates: CNN=0.000, PW=0.000, Attn=1.000
+  [Epoch 1000/1200] Loss: 0.166437 | tau: 1.00 | H_chan: 0.0000 | Gates: CNN=0.000, PW=0.000, Attn=1.000
+  [Epoch 1200/1200] Loss: 0.165275 | tau: 1.00 | H_chan: 0.0000 | Gates: CNN=0.000, PW=0.000, Attn=1.000
+--> Optimization Complete: Runtime=155.0s | Best Meas Loss=0.165010 at Ep 1181
+--> RESULTS: PSNR (In-Loop)=27.6338 dB | SSIM=0.8495
+--> RESULTS: PSNR (Clean DIP)=27.6338 dB | SSIM=0.8495

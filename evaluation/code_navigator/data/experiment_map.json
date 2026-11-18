@@ -1,0 +1,303 @@
+{
+  "figure09": {
+    "id": "figure09",
+    "title": "Figure 09 \u2014 ICVL Hyperspectral Image Denoising",
+    "topic_id": "DT-17",
+    "dataset": "data/icvl.mat",
+    "dimensions": "174 x 164 x 260",
+    "application": "Hyperspectral Denoising",
+    "model_type": "DeepTensor (2D Spatial + 1D Spectral)",
+    "rank": 20,
+    "noise_model": "Poisson (tau=100) + Gaussian (SNR=2.0) -> Input PSNR: 28.43 dB",
+    "epochs": 5000,
+    "loss_function": "L1 Norm",
+    "runner_script": "experiments/reproduction/figure09_hyperspectral/run_figure9.py",
+    "comparison_file": "results/hybrid/figure09_hyperspectral/figure09_icvl_hsi_comparison.json",
+    "winning_model": "baseline",
+    "winning_margin": "+0.48 dB over CNN Control, +1.21 dB over Hybrid",
+    "inductive_bias_rationale": "Empirical finding: Baseline CNN achieved highest PSNR (46.07 dB). Hypothesis: Continuous spectral wavelengths favor local convolutional inductive biases over unconstrained global attention.",
+    "models": {
+      "baseline": {
+        "psnr": 46.0653,
+        "ssim": 0.9874,
+        "rmse": 0.00478,
+        "mae": 0.00335,
+        "params": 3005328,
+        "runtime_sec": 349.6,
+        "vram_mb": 452.9,
+        "winner": true
+      },
+      "cnn_control": {
+        "psnr": 45.5844,
+        "ssim": 0.9857,
+        "rmse": 0.00506,
+        "mae": 0.00344,
+        "params": 3137980,
+        "runtime_sec": 353.9,
+        "vram_mb": 455.4,
+        "winner": false
+      },
+      "pointwise_control": {
+        "psnr": 45.4229,
+        "ssim": 0.9852,
+        "rmse": 0.00515,
+        "mae": 0.0035,
+        "params": 3137680,
+        "runtime_sec": 386.9,
+        "vram_mb": 456.4,
+        "winner": false
+      },
+      "hybrid": {
+        "psnr": 44.8526,
+        "ssim": 0.9842,
+        "rmse": 0.0055,
+        "mae": 0.00376,
+        "params": 3137808,
+        "runtime_sec": 362.9,
+        "vram_mb": 456.4,
+        "winner": false
+      },
+      "transformer": {
+        "psnr": 43.4026,
+        "ssim": 0.9766,
+        "rmse": 0.0065,
+        "mae": 0.00418,
+        "params": 3004764,
+        "runtime_sec": 264.3,
+        "vram_mb": 467.7,
+        "winner": false
+      }
+    },
+    "image_assets": {
+      "panel": "results/hybrid/figure09_hyperspectral/figure09_icvl_hsi_comparison_panel.png",
+      "annotated_panel": "results/hybrid/figure09_hyperspectral/figure09_icvl_hsi_comparison_panel_annotated.png",
+      "diff_map": "results/hybrid/figure09_hyperspectral/figure09_icvl_hsi_diff_map.png"
+    }
+  },
+  "figure10": {
+    "id": "figure10",
+    "title": "Figure 10 \u2014 Extended Yale Face B Photometric Denoising",
+    "topic_id": "DT-18",
+    "dataset": "data/yale_b.mat",
+    "dimensions": "192 x 168 x 160",
+    "application": "Photometric Illumination Tensor Denoising",
+    "model_type": "DeepTensorCP (Three 1D CP Generators)",
+    "rank": 2000,
+    "noise_model": "30% Salt & Pepper Impulse Noise",
+    "epochs": 1200,
+    "loss_function": "L1 Norm",
+    "runner_script": "experiments/reproduction/figure10_yale_denoising/run_figure10_yale_tensor.py",
+    "comparison_file": "results/hybrid/figure10_yale_denoising/figure10_yale_b_comparison.json",
+    "winning_model": "transformer",
+    "winning_margin": "+0.20 dB over CNN Control, +0.77 dB over Baseline CNN",
+    "inductive_bias_rationale": "Empirical finding: Pure Transformer achieved highest PSNR (28.56 dB). Hypothesis: The 160 lighting angles represent discrete photometric directions without metric translation smoothness; global attention matches non-local shadow and highlight couplings.",
+    "models": {
+      "transformer": {
+        "psnr": 28.5552,
+        "ssim": 0.8655,
+        "rmse": 0.03735,
+        "mae": 0.01953,
+        "params": 4955144,
+        "runtime_sec": 123.1,
+        "vram_mb": 917.9,
+        "winner": true
+      },
+      "cnn_control": {
+        "psnr": 28.3521,
+        "ssim": 0.8612,
+        "rmse": 0.03823,
+        "mae": 0.02005,
+        "params": 5603160,
+        "runtime_sec": 153.3,
+        "vram_mb": 918.4,
+        "winner": false
+      },
+      "pointwise_control": {
+        "psnr": 28.1703,
+        "ssim": 0.8601,
+        "rmse": 0.03904,
+        "mae": 0.02054,
+        "params": 5602860,
+        "runtime_sec": 150.4,
+        "vram_mb": 919.2,
+        "winner": false
+      },
+      "hybrid": {
+        "psnr": 28.0392,
+        "ssim": 0.8592,
+        "rmse": 0.03963,
+        "mae": 0.0207,
+        "params": 5602988,
+        "runtime_sec": 152.1,
+        "vram_mb": 919.1,
+        "winner": false
+      },
+      "baseline": {
+        "psnr": 27.7808,
+        "ssim": 0.8528,
+        "rmse": 0.04083,
+        "mae": 0.02145,
+        "params": 5470508,
+        "runtime_sec": 150.0,
+        "vram_mb": 915.5,
+        "winner": false
+      }
+    },
+    "image_assets": {
+      "panel": "results/hybrid/figure10_yale_denoising/figure10_yale_b_comparison_panel.png",
+      "annotated_panel": "results/hybrid/figure10_yale_denoising/figure10_yale_b_comparison_panel_annotated.png",
+      "diff_map": "results/hybrid/figure10_yale_denoising/figure10_yale_b_diff_map.png"
+    }
+  },
+  "figure11": {
+    "id": "figure11",
+    "title": "Figure 11 \u2014 Video Compressive Sensing (CACTI)",
+    "topic_id": "DT-19",
+    "dataset": "data/cat_video.mat",
+    "dimensions": "128 x 128 x 64",
+    "application": "CACTI 8x Temporal Compressive Multiplexing",
+    "model_type": "DeepTensor (2D Spatial + 1D Temporal)",
+    "rank": 32,
+    "noise_model": "Poisson (tau=100) + Gaussian (SNR=2.0) + 8x Multiplexing",
+    "epochs": 3000,
+    "loss_function": "L2 / Frobenius Norm",
+    "runner_script": "experiments/hybrid_prototypes/run_hybrid_figure11_video.py",
+    "comparison_file": "results/hybrid/figure11_video_cs/figure11_video_cs_comparison.json",
+    "winning_model": "baseline",
+    "winning_margin": "+0.12 dB over CNN Control, +0.41 dB over Hybrid",
+    "inductive_bias_rationale": "Empirical finding: Baseline CNN achieved highest PSNR (25.16 dB). Hypothesis: Video frame motion possesses high temporal locality; 1D convolutions enforce motion continuity, whereas attention allows non-adjacent frames to cross-talk without distance constraints under 8x compression.",
+    "models": {
+      "baseline": {
+        "psnr": 25.1577,
+        "ssim": 0.7223,
+        "rmse": 0.05522,
+        "mae": 0.03645,
+        "params": 784648,
+        "runtime_sec": 225.7,
+        "vram_mb": 133.5,
+        "winner": true
+      },
+      "cnn_control": {
+        "psnr": 25.0395,
+        "ssim": 0.7101,
+        "rmse": 0.05598,
+        "mae": 0.03722,
+        "params": 834505,
+        "runtime_sec": 229.0,
+        "vram_mb": 133.4,
+        "winner": false
+      },
+      "pointwise_control": {
+        "psnr": 24.8147,
+        "ssim": 0.6885,
+        "rmse": 0.05745,
+        "mae": 0.03838,
+        "params": 834568,
+        "runtime_sec": 232.8,
+        "vram_mb": 133.4,
+        "winner": false
+      },
+      "hybrid": {
+        "psnr": 24.744,
+        "ssim": 0.6865,
+        "rmse": 0.05792,
+        "mae": 0.03868,
+        "params": 834632,
+        "runtime_sec": 235.0,
+        "vram_mb": 133.5,
+        "winner": false
+      },
+      "transformer": {
+        "psnr": 24.0502,
+        "ssim": 0.6531,
+        "rmse": 0.06273,
+        "mae": 0.04152,
+        "params": 1376036,
+        "runtime_sec": 167.1,
+        "vram_mb": 143.1,
+        "winner": false
+      }
+    },
+    "image_assets": {
+      "panel": "results/hybrid/figure11_video_cs/figure11_video_cs_comparison_panel.png",
+      "annotated_panel": "results/hybrid/figure11_video_cs/figure11_video_cs_comparison_panel_annotated.png",
+      "diff_map": "results/hybrid/figure11_video_cs/figure11_video_cs_diff_map.png"
+    }
+  },
+  "figure12": {
+    "id": "figure12",
+    "title": "Figure 12 \u2014 PET/CT Radon Compressive Sensing",
+    "topic_id": "DT-20",
+    "dataset": "data/pet.mat",
+    "dimensions": "128 x 128 x 56",
+    "application": "40-Angle Radon Projection Compressive Tomography",
+    "model_type": "DeepTensorCP (Three 1D CP Generators)",
+    "rank": 1000,
+    "noise_model": "Poisson (tau=100) + Gaussian (SNR=2.0) + 40-Angle Radon",
+    "epochs": 4000,
+    "loss_function": "L2 / Frobenius Norm",
+    "runner_script": "experiments/hybrid_prototypes/run_hybrid_figure12_pet.py",
+    "comparison_file": "results/hybrid/figure12_pet_ct/figure12_pet_ct_comparison.json",
+    "winning_model": "pointwise_control",
+    "winning_margin": "+0.22 dB over Transformer, +0.62 dB over Baseline CNN",
+    "inductive_bias_rationale": "Empirical finding: Pointwise Control achieved highest PSNR (30.62 dB). Hypothesis: Adjacent CT/PET slices represent distinct anatomical cross-sections from TCIA; pointwise mixing decouples slice representations without enforcing cross-slice translational smoothing.",
+    "models": {
+      "pointwise_control": {
+        "psnr": 30.6212,
+        "ssim": 0.8621,
+        "rmse": 0.02944,
+        "mae": 0.01766,
+        "params": 4050860,
+        "runtime_sec": 509.3,
+        "vram_mb": 612.5,
+        "winner": true
+      },
+      "transformer": {
+        "psnr": 30.4056,
+        "ssim": 0.8585,
+        "rmse": 0.03018,
+        "mae": 0.01805,
+        "params": 3663144,
+        "runtime_sec": 398.8,
+        "vram_mb": 607.6,
+        "winner": false
+      },
+      "cnn_control": {
+        "psnr": 30.3128,
+        "ssim": 0.8579,
+        "rmse": 0.0305,
+        "mae": 0.01807,
+        "params": 4051160,
+        "runtime_sec": 509.4,
+        "vram_mb": 612.3,
+        "winner": false
+      },
+      "hybrid": {
+        "psnr": 30.2947,
+        "ssim": 0.8566,
+        "rmse": 0.03057,
+        "mae": 0.01824,
+        "params": 4050988,
+        "runtime_sec": 507.9,
+        "vram_mb": 612.7,
+        "winner": false
+      },
+      "baseline": {
+        "psnr": 30.0023,
+        "ssim": 0.8472,
+        "rmse": 0.03161,
+        "mae": 0.01881,
+        "params": 3918508,
+        "runtime_sec": 465.8,
+        "vram_mb": 610.1,
+        "winner": false
+      }
+    },
+    "image_assets": {
+      "panel": "results/hybrid/figure12_pet_ct/figure12_pet_ct_comparison_panel.png",
+      "annotated_panel": "results/hybrid/figure12_pet_ct/figure12_pet_ct_comparison_panel_annotated.png",
+      "diff_map": "results/hybrid/figure12_pet_ct/figure12_pet_ct_diff_map.png",
+      "slice_strip": "results/hybrid/figure12_pet_ct/figure12_pet_ct_slice_strip.png"
+    }
+  }
+}

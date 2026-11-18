@@ -1,0 +1,69 @@
+{
+  "experiment": "figure12_pet_ct_routing_validation",
+  "models": {
+    "Baseline CNN": {
+      "inloop_psnr": 30.0023,
+      "dip_psnr": 30.0023,
+      "ssim": 0.8472,
+      "params": 3918508,
+      "source": "historical",
+      "delta_vs_baseline_dip": 0.0
+    },
+    "Serial Hybrid": {
+      "inloop_psnr": 30.2947,
+      "dip_psnr": 30.2947,
+      "ssim": 0.8566,
+      "params": 4050988,
+      "source": "historical",
+      "delta_vs_baseline_dip": 0.2923999999999971
+    },
+    "CNN Control": {
+      "inloop_psnr": 30.3128,
+      "dip_psnr": 30.3128,
+      "ssim": 0.8579,
+      "params": 4051160,
+      "source": "historical",
+      "delta_vs_baseline_dip": 0.31049999999999756
+    },
+    "Pointwise Control (Winner)": {
+      "inloop_psnr": 30.6212,
+      "dip_psnr": 30.6212,
+      "ssim": 0.8621,
+      "params": 4050860,
+      "source": "historical",
+      "delta_vs_baseline_dip": 0.6189
+    },
+    "Pure Transformer": {
+      "inloop_psnr": 30.4056,
+      "dip_psnr": 30.4056,
+      "ssim": 0.8585,
+      "params": 3663144,
+      "source": "historical",
+      "delta_vs_baseline_dip": 0.403299999999998
+    },
+    "Standard AHD-Net v1": {
+      "inloop_psnr": 30.2491,
+      "dip_psnr": 30.25,
+      "ssim": 0.8558,
+      "params": 4050988,
+      "source": "historical",
+      "delta_vs_baseline_dip": 0.24769999999999825
+    },
+    "Condition A: Static Equal Fusion": {
+      "inloop_psnr": 30.242181311614942,
+      "dip_psnr": 30.145348503390004,
+      "ssim": 0.8523918438479364,
+      "params": 4042396,
+      "source": "stage3_validation",
+      "delta_vs_baseline_dip": 0.14304850339000197
+    },
+    "Condition B: Constant Temp (tau=1.0) CAGC": {
+      "inloop_psnr": 30.161798031894456,
+      "dip_psnr": 30.168451018834503,
+      "ssim": 0.8500878103482078,
+      "params": 4050988,
+      "source": "stage3_validation",
+      "delta_vs_baseline_dip": 0.16615101883450123
+    }
+  }
+}

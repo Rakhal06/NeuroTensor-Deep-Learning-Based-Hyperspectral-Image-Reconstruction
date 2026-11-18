@@ -1,0 +1,96 @@
+{
+  "audited_records": [
+    {
+      "cond_id": "cond_a_static_equal",
+      "condition_id": "Condition A",
+      "name": "Static Equal Ensemble",
+      "router_type": "static",
+      "tau": 1.0,
+      "params": 832384,
+      "best_epoch": 2986,
+      "best_loss": 0.004209702170059188,
+      "inloop_psnr": 25.220179238944674,
+      "inloop_ssim": 0.7260012626647949,
+      "dip_psnr": 25.45389746530401,
+      "dip_ssim": 0.7485790848731995,
+      "dip_rmse": 0.05337097495794296,
+      "best_sha256": "2f6ef05b7876f4dd522725ae2357a036d1f9fcd2ce670c3675fe91bfb9d1cadf",
+      "gates": {
+        "cnn": 0.3333333432674408,
+        "pointwise": 0.3333333432674408,
+        "attention": 0.3333333432674408
+      },
+      "entropy": 1.0986123085021973,
+      "dominant_counts": {
+        "cnn": 64,
+        "pointwise": 0,
+        "attention": 0
+      }
+    },
+    {
+      "cond_id": "cond_b_constant_tau1",
+      "condition_id": "Condition B",
+      "name": "Constant Temperature CAGC",
+      "router_type": "cagc",
+      "tau": 1.0,
+      "params": 834632,
+      "best_epoch": 2972,
+      "best_loss": 0.004286819919295423,
+      "inloop_psnr": 25.157669716757933,
+      "inloop_ssim": 0.731097936630249,
+      "dip_psnr": 25.356698077114082,
+      "dip_ssim": 0.7499743700027466,
+      "dip_rmse": 0.05397157371044159,
+      "best_sha256": "d94f2f6164a3b7b01a7ab530e83aca6a8fb60b7ef619ccb729f3232cefa98450",
+      "gates": {
+        "cnn": 0.35549700260162354,
+        "pointwise": 0.3253731429576874,
+        "attention": 0.3191298544406891
+      },
+      "entropy": 1.0974884033203125,
+      "dominant_counts": {
+        "cnn": 27,
+        "pointwise": 18,
+        "attention": 19
+      }
+    }
+  ],
+  "historical_reference": {
+    "Baseline CNN": {
+      "inloop_psnr": 25.1577,
+      "dip_psnr": 25.3341,
+      "ssim": 0.7223,
+      "params": 784648
+    },
+    "Serial Hybrid": {
+      "inloop_psnr": 24.744,
+      "dip_psnr": 25.1054,
+      "ssim": 0.6865,
+      "params": 834632
+    },
+    "CNN Control": {
+      "inloop_psnr": 25.0395,
+      "dip_psnr": 25.2185,
+      "ssim": 0.7101,
+      "params": 834505
+    },
+    "Pointwise Control": {
+      "inloop_psnr": 24.8147,
+      "dip_psnr": 25.0768,
+      "ssim": 0.6885,
+      "params": 834568
+    },
+    "Pure Transformer": {
+      "inloop_psnr": 24.0502,
+      "dip_psnr": 24.2312,
+      "ssim": 0.6531,
+      "params": 1376036
+    },
+    "Standard AHD-Net v1": {
+      "inloop_psnr": 25.1548,
+      "dip_psnr": 25.3641,
+      "ssim": 0.7438,
+      "params": 834632
+    }
+  }
+}

@@ -1,0 +1,59 @@
+experiment: Figure 12 3D PET/CT Radon Tomographic Reconstruction
+dataset: data/pet.mat
+tensor_shape: [128, 128, 56]
+tomography_angles: 40
+rank: 1000
+n_inputs: 1000
+learning_rate: 0.001
+reg_noise_std: 0.03333333333333333
+epochs: 4000
+smoke_epochs: 1
+device: cuda
+output_dir: results/hybrid/figure12_pet_ct
+
+noise:
+  tau: 100
+  noise_snr: 2.0
+  model: "Poisson + Gaussian readout"
+
+loss:
+  criterion: l2
+
+architectures:
+  baseline:
+    u_type: skip1d
+    v_type: skip1d
+    w_type: skip1d
+    rank: 1000
+  hybrid:
+    u_type: skip1d
+    v_type: skip1d
+    w_type: hybrid_attention
+    rank: 1000
+    d_model: 128
+    heads: 2
+    seq_len: 56
+  cnn_control:
+    u_type: skip1d
+    v_type: skip1d
+    w_type: cnn_control
+    rank: 1000
+    d_model: 128
+    seq_len: 56
+  pointwise_control:
+    u_type: skip1d
+    v_type: skip1d
+    w_type: hybrid_control
+    rank: 1000
+    d_model: 128
+    seq_len: 56
+  transformer:
+    u_type: skip1d
+    v_type: skip1d
+    w_type: spectral_transformer
+    rank: 1000
+    d_model: 128
+    n_heads: 4
+    n_layers: 4
+    d_ffn: 512
+    seq_len: 56

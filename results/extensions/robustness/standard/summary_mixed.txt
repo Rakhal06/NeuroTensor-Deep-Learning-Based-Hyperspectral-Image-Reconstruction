@@ -1,0 +1,11 @@
+Noise Type: mixed
+Noise Parameters: tau=100, noise_snr=2 (N/A)
+Target Input PSNR: 28.4321 dB
+Actual Input PSNR: 28.4321 dB
+Reconstruction PSNR: 46.2035 dB
+Reconstruction SSIM: 0.987190
+Reconstruction RMSE: 0.004896
+PSNR Gain: 17.7714 dB
+Runtime: 169.91 sec
+Peak VRAM: 668.67 MB
+Noise-Intensity Correlation: 0.211393

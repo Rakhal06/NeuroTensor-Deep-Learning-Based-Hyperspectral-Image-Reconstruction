@@ -1,0 +1,72 @@
+\section*{Appendix C: Complete Experimental Configurations and Telemetry}
+\label{app:configs}
+\addcontentsline{toc}{section}{Appendix C: Complete Configurations and Telemetry}
+
+This appendix provides the complete record of configuration parameters, software dependencies, and hardware execution telemetry for all experiments in the NeuroTensor project.
+
+\subsection*{C.1 Software Environment and Dependencies}
+\begin{table}[htbp]
+\centering
+\caption{Verified Software Environment and Library Versions.}
+\label{tab:software_env}
+\begin{adjustbox}{width=0.88\textwidth}
+\begin{tabular}{ll|ll}
+\toprule
+\textbf{Software / Library} & \textbf{Version Specification} & \textbf{Software / Library} & \textbf{Version Specification} \\
+\midrule
+Operating System & Windows 11 Home (64-bit) & PyTorch & 2.4.0+cu121 \\
+CUDA Runtime & CUDA Version 12.4 & cuDNN & 8.9.2 \\
+Python Runtime & Python 3.10.x / 3.11.x & NumPy & 1.26.4 \\
+SciPy & 1.13.1 & Scikit-Image & 0.22.0 \\
+Matplotlib & 3.8.4 & TensorLy & 0.8.1 \\
+MiKTeX & 25.12 (pdfTeX 3.141592653) & Hardware GPU & NVIDIA RTX 3060 Laptop (6GB VRAM) \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\subsection*{C.2 Multi-Dataset Hyperparameter Specifications}
+\begin{table}[htbp]
+\centering
+\caption{Multi-Dataset Training Configurations across Inverse Problem Applications.}
+\label{tab:multi_dataset_hyperparams}
+\begin{adjustbox}{width=\textwidth}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Parameter} & \textbf{ICVL Benchmark} & \textbf{Yale Face B} & \textbf{Video Compressive Sensing} & \textbf{Dynamic PET/CT} \\
+\midrule
+Tensor Dimensions & $174 \times 164 \times 260$ & $192 \times 168 \times 64$ & $32 \times 32 \times 16$ & $128 \times 128 \times 56$ \\
+Factorization Type & Matrix $\mathbf{U} \mathbf{V}^T$ & 3-Way CP: $\mathbf{U} \circ \mathbf{V} \circ \mathbf{W}$ & 3-Way CP: $\mathbf{U} \circ \mathbf{V} \circ \mathbf{W}$ & 3-Way CP: $\mathbf{U} \circ \mathbf{V} \circ \mathbf{W}$ \\
+Decomposition Rank $R$ & $20$ & $20$ & $8$ & $16$ \\
+Total Iterations & $5000$ & $5000$ & $3000$ & $4000$ \\
+Optimizer & Adam ($\eta = 0.001$) & Adam ($\eta = 0.001$) & Adam ($\eta = 0.001$) & Adam ($\eta = 0.001$) \\
+Loss Objective & $\ell_1$ Norm & $\ell_1$ Norm & Coded Mask Projection $\ell_1$ & Radon Projection $\ell_1$ \\
+Average Runtime / VRAM & $\approx 350\text{ s}$ / $456\text{ MB}$ & $\approx 150\text{ s}$ / $919\text{ MB}$ & $\approx 230\text{ s}$ / $133\text{ MB}$ & $\approx 500\text{ s}$ / $612\text{ MB}$ \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\subsection*{C.3 Master Random Number Generator (RNG) Seed Table}
+\begin{table}[htbp]
+\centering
+\caption{Deterministic Master RNG Seeds across Experimental Protocols.}
+\label{tab:rng_seeds}
+\begin{adjustbox}{width=0.95\textwidth}
+\begin{tabular}{lcl}
+\toprule
+\textbf{Experiment / Extension} & \textbf{Master Seed} & \textbf{Protocol Role} \\
+\midrule
+Baseline Denoising Reproduction & Seed 42 & Primary reference baseline \\
+Adaptive Rank Selection & Seed 42 (Run 1), Seed 43 (Run 2) & Verification of rank convergence \\
+Group-Sparsity Parameter Sweep & Seed 42 & Grid sweep $\lambda \in \{0, 10^{-4}, 10^{-3}, 10^{-2}\}$ \\
+Tensor Completion Sweeps & Seed 42 & Nested mask generation ($20\%, 50\%, 80\%$) \\
+Noise-Type Robustness Sweep & Seed 42 & Calibration of Gaussian, Poisson, and Mixed noise \\
+Ensemble Uncertainty Analysis & Seeds 101, 102, 103, 104, 105 & Independent initializations on fixed observation \\
+Factor Interpretability Analysis & Seed 42 & Factor extraction from converged baseline \\
+Hybrid Attention \& Transformer Benchmarks & Seed 42 & Comparative runs with parameter-matched controls \\
+Cross-Application 5-Model Benchmark & Seed 42 & Unified evaluation across all 4 benchmark datasets \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}

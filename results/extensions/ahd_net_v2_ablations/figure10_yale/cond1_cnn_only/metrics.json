@@ -1,0 +1,79 @@
+{
+  "cond_id": "cond1_cnn_only",
+  "name": "CNN-Only Tri-Branch",
+  "phase": 1,
+  "router_type": "cnn_only",
+  "gating_floor": 0.0,
+  "tau_schedule": "constant",
+  "entropy_reg": 0.0,
+  "total_params": 5594396,
+  "block_params": 123888,
+  "runtime_sec": 163.85007071495056,
+  "peak_vram_mb": 917.37353515625,
+  "best_epoch": 1200,
+  "best_loss": 0.1646890640258789,
+  "tau_at_best": 1.0,
+  "metrics_inloop": {
+    "psnr": 27.838325354253296,
+    "ssim": 0.8533172607421875,
+    "rmse": 0.04055868834257126,
+    "mae": 0.02124776318669319,
+    "rel_error": 0.10318996757268906
+  },
+  "metrics_dip": {
+    "psnr": 27.838325354253296,
+    "ssim": 0.8533172607421875,
+    "rmse": 0.04055868834257126,
+    "mae": 0.02124776318669319,
+    "rel_error": 0.10318996757268906
+  },
+  "metrics_tau1": {
+    "psnr": 27.838325354253296,
+    "ssim": 0.8533172607421875,
+    "rmse": 0.04055868834257126,
+    "mae": 0.02124776318669319,
+    "rel_error": 0.10318996757268906
+  },
+  "metrics_eval": {
+    "psnr": 15.877115153522341,
+    "ssim": 0.624747097492218,
+    "rmse": 0.16074754297733307,
+    "mae": 0.12090706080198288,
+    "rel_error": 0.40898266434669495
+  },
+  "final_router_telem": {
+    "mean_weights": {
+      "cnn": 1.0,
+      "pointwise": 0.0,
+      "attention": 0.0
+    },
+    "router_entropy": -0.0,
+    "channel_entropy": 0.0,
+    "current_tau": 1.0,
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "channel_distribution": {
+      "cnn": {
+        "mean": 1.0,
+        "std": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "pointwise": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "attention": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    }
+  }
+}

@@ -1,0 +1,110 @@
+\documentclass[12pt]{article}
+\usepackage{setspace}
+\usepackage{a4}
+\usepackage{amssymb,amsmath,amsthm,latexsym}
+\usepackage{amsfonts}
+\usepackage{array}
+\usepackage[numbers]{natbib}
+\bibliographystyle{plainnat}
+\setlength{\bibsep}{2.0pt}
+\usepackage{float}
+\usepackage[nottoc]{tocbibind}
+
+\setlength{\parindent}{0.6cm} 
+\setlength{\evensidemargin}{-0.4cm}
+\setlength{\oddsidemargin}{-0.4cm} 
+\setlength{\topmargin}{-1.2cm}
+\textwidth 17.5cm 
+\textheight 24.2cm
+\setstretch{1.10}
+
+\renewcommand{\topfraction}{0.90}
+\renewcommand{\bottomfraction}{0.90}
+\renewcommand{\textfraction}{0.10}
+\renewcommand{\floatpagefraction}{0.85}
+\setlength{\floatsep}{6pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{8pt plus 2pt minus 2pt}
+\setlength{\intextsep}{6pt plus 2pt minus 2pt}
+
+\usepackage{microtype}
+\usepackage{threeparttable}  
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{bm}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{enumitem}
+\setlist{noitemsep, topsep=2pt, parsep=1pt, partopsep=1pt}
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{url}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\captionsetup[table]{labelsep=newline, justification=centering}
+\captionsetup[figure]{labelsep=period, justification=centering}
+\captionsetup[subfigure]{font=footnotesize, justification=centering}
+
+\providecommand{\llbracket}{[\![}
+\providecommand{\rrbracket}{]\!]}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=2mm,
+  belowskip=2mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+}
+
+\begin{document}
+
+% Frontmatter: Title Page, Certificate, Abstract & Ack, TOC, LOF & LOT
+\input{chapters/00_frontmatter.tex}
+
+% Main Content Sections matching template numbering
+\input{chapters/01_introduction.tex}
+\clearpage
+
+\input{chapters/02_related_work.tex}
+\clearpage
+
+\input{chapters/03_data_methods.tex}
+\clearpage
+
+\input{chapters/04_results_discussion.tex}
+\clearpage
+
+\input{chapters/05_conclusion.tex}
+\clearpage
+
+% References
+\settocbibname{References}
+\begingroup
+\small
+\setlength{\bibsep}{1.2pt}
+\bibliography{references}
+\endgroup
+\clearpage
+
+% Appendices
+\appendix
+\input{appendices/appendix_a_architectures.tex}
+\clearpage
+\input{appendices/appendix_b_derivations.tex}
+\clearpage
+\input{appendices/appendix_c_extended_tables.tex}
+
+\end{document}

@@ -1,0 +1,72 @@
+{
+  "baseline": {
+    "checkpoint_epoch": 1200,
+    "checkpoint_best_loss": 0.1648312509059906,
+    "saved_report_psnr": 27.780820039011576,
+    "ind_verified_psnr": 27.782890991685846,
+    "saved_report_ssim": 0.8528189659118652,
+    "ind_verified_ssim": 0.853237509727478,
+    "ind_verified_rmse": 0.04081835225224495,
+    "ind_verified_mae": 0.021511653438210487,
+    "ind_verified_rel_frob": 0.10385063290596008,
+    "delta_psnr": 0.0020709526742699325,
+    "delta_ssim": 0.00041854381561279297,
+    "match_status": "DIFF (+0.0021 dB)"
+  },
+  "hybrid": {
+    "checkpoint_epoch": 1200,
+    "checkpoint_best_loss": 0.16429606080055237,
+    "saved_report_psnr": 28.03917097488454,
+    "ind_verified_psnr": 28.046442133038063,
+    "saved_report_ssim": 0.8591915965080261,
+    "ind_verified_ssim": 0.8613208532333374,
+    "ind_verified_rmse": 0.03959842026233673,
+    "ind_verified_mae": 0.020788932219147682,
+    "ind_verified_rel_frob": 0.10074692219495773,
+    "delta_psnr": 0.00727115815352164,
+    "delta_ssim": 0.0021292567253112793,
+    "match_status": "DIFF (+0.0073 dB)"
+  },
+  "cnn_control": {
+    "checkpoint_epoch": 1200,
+    "checkpoint_best_loss": 0.16382300853729248,
+    "saved_report_psnr": 28.35214555729639,
+    "ind_verified_psnr": 28.34935085966389,
+    "saved_report_ssim": 0.8612009882926941,
+    "ind_verified_ssim": 0.8628132939338684,
+    "ind_verified_rmse": 0.038241274654865265,
+    "ind_verified_mae": 0.0201112087816,
+    "ind_verified_rel_frob": 0.09729409962892532,
+    "delta_psnr": -0.0027946976324990658,
+    "delta_ssim": 0.0016123056411743164,
+    "match_status": "DIFF (-0.0028 dB)"
+  },
+  "pointwise_control": {
+    "checkpoint_epoch": 1200,
+    "checkpoint_best_loss": 0.16418209671974182,
+    "saved_report_psnr": 28.17025047467688,
+    "ind_verified_psnr": 28.175601645632476,
+    "saved_report_ssim": 0.8601135015487671,
+    "ind_verified_ssim": 0.8619301915168762,
+    "ind_verified_rmse": 0.039013952016830444,
+    "ind_verified_mae": 0.020593050867319107,
+    "ind_verified_rel_frob": 0.09925990551710129,
+    "delta_psnr": 0.005351170955595563,
+    "delta_ssim": 0.0018166899681091309,
+    "match_status": "DIFF (+0.0054 dB)"
+  },
+  "transformer": {
+    "checkpoint_epoch": 1200,
+    "checkpoint_best_loss": 0.16345474123954773,
+    "saved_report_psnr": 28.555228232061435,
+    "ind_verified_psnr": 28.53771656288265,
+    "saved_report_ssim": 0.8655216097831726,
+    "ind_verified_ssim": 0.8661220669746399,
+    "ind_verified_rmse": 0.03742089867591858,
+    "ind_verified_mae": 0.019614355638623238,
+    "ind_verified_rel_frob": 0.09520678222179413,
+    "delta_psnr": -0.017511669178784217,
+    "delta_ssim": 0.0006004571914672852,
+    "match_status": "DIFF (-0.0175 dB)"
+  }
+}

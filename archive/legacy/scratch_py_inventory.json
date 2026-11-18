@@ -1,0 +1,1828 @@
+[
+  {
+    "path": "check_attn.py",
+    "classes": [],
+    "functions": [],
+    "imports": [
+      "numpy"
+    ],
+    "doc": "",
+    "lines": 9,
+    "size": 345
+  },
+  {
+    "path": "demo.py",
+    "classes": [],
+    "functions": [
+      "print_header",
+      "print_section",
+      "display_preprocessing",
+      "display_network",
+      "display_factors",
+      "display_reconstruction",
+      "display_optimization",
+      "display_metrics",
+      "save_visuals",
+      "run_method",
+      "run_comparison",
+      "main_menu"
+    ],
+    "imports": [
+      "argparse",
+      "csv",
+      "demo_backend",
+      "json",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "numpy",
+      "os",
+      "sys",
+      "time",
+      "torch"
+    ],
+    "doc": "",
+    "lines": 330,
+    "size": 12326
+  },
+  {
+    "path": "demo_backend.py",
+    "classes": [
+      "DemoBackend"
+    ],
+    "functions": [],
+    "imports": [
+      "copy",
+      "deep_prior",
+      "json",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "scipy",
+      "skimage.metrics",
+      "spectral",
+      "sys",
+      "time",
+      "torch",
+      "utils"
+    ],
+    "doc": "",
+    "lines": 569,
+    "size": 26062
+  },
+  {
+    "path": "demo_backend_backup.py",
+    "classes": [
+      "DemoBackend"
+    ],
+    "functions": [],
+    "imports": [
+      "copy",
+      "deep_prior",
+      "json",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "scipy",
+      "skimage.metrics",
+      "spectral",
+      "sys",
+      "time",
+      "torch",
+      "utils"
+    ],
+    "doc": "",
+    "lines": 539,
+    "size": 24499
+  },
+  {
+    "path": "demo_backup.py",
+    "classes": [],
+    "functions": [
+      "print_header",
+      "print_section",
+      "display_preprocessing",
+      "display_network",
+      "display_factors",
+      "display_reconstruction",
+      "display_optimization",
+      "display_metrics",
+      "save_visuals",
+      "run_method",
+      "run_comparison",
+      "main_menu"
+    ],
+    "imports": [
+      "argparse",
+      "csv",
+      "demo_backend",
+      "json",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "numpy",
+      "os",
+      "sys",
+      "time",
+      "torch"
+    ],
+    "doc": "",
+    "lines": 317,
+    "size": 11765
+  },
+  {
+    "path": "fix_newlines.py",
+    "classes": [],
+    "functions": [],
+    "imports": [
+      "sys"
+    ],
+    "doc": "",
+    "lines": 19,
+    "size": 1519
+  },
+  {
+    "path": "generate_pdf.py",
+    "classes": [
+      "NumberedCanvas"
+    ],
+    "functions": [
+      "build_pdf"
+    ],
+    "imports": [
+      "os",
+      "reportlab.lib",
+      "reportlab.lib.pagesizes",
+      "reportlab.lib.styles",
+      "reportlab.pdfgen",
+      "reportlab.platypus",
+      "sys"
+    ],
+    "doc": "",
+    "lines": 576,
+    "size": 30987
+  },
+  {
+    "path": "matrix_decomp.py",
+    "classes": [],
+    "functions": [],
+    "imports": [
+      "argparse",
+      "cv2",
+      "deep_decoder",
+      "deep_prior",
+      "glob",
+      "importlib",
+      "losses",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "scipy",
+      "skimage.metrics",
+      "sys",
+      "torch",
+      "tqdm",
+      "utils"
+    ],
+    "doc": "This script replicates instances of results in figure 4 in the main paper.",
+    "lines": 156,
+    "size": 5331
+  },
+  {
+    "path": "modify_robustness.py",
+    "classes": [],
+    "functions": [],
+    "imports": [
+      "os",
+      "re"
+    ],
+    "doc": "",
+    "lines": 157,
+    "size": 5202
+  },
+  {
+    "path": "run_figure11.py",
+    "classes": [],
+    "functions": [],
+    "imports": [
+      "copy",
+      "cv2",
+      "deep_decoder",
+      "deep_prior",
+      "lin_inverse",
+      "losses",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "scipy",
+      "skimage.metrics",
+      "sys",
+      "time",
+      "torch",
+      "tqdm",
+      "utils"
+    ],
+    "doc": "This script replicates the DeepTensor results in Figure 7. The accuracy is",
+    "lines": 205,
+    "size": 6926
+  },
+  {
+    "path": "run_figure11_TV.py",
+    "classes": [],
+    "functions": [],
+    "imports": [
+      "cv2",
+      "lin_inverse",
+      "losses",
+      "matplotlib.pyplot",
+      "numpy",
+      "scipy",
+      "skimage.metrics",
+      "sys",
+      "torch",
+      "tqdm",
+      "utils"
+    ],
+    "doc": "This script replicates the TV results in Figure 7. The accuracy is",
+    "lines": 136,
+    "size": 4069
+  },
+  {
+    "path": "run_figure12.py",
+    "classes": [],
+    "functions": [
+      "compute_metrics"
+    ],
+    "imports": [
+      "argparse",
+      "copy",
+      "deep_prior",
+      "json",
+      "lin_inverse",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "scipy",
+      "skimage.metrics",
+      "sys",
+      "tensorly",
+      "time",
+      "torch",
+      "utils"
+    ],
+    "doc": "This script replicates the DeepTensor, 2D TV, and Algorithmic Reconstruction results",
+    "lines": 371,
+    "size": 15575
+  },
+  {
+    "path": "run_figure12_TV.py",
+    "classes": [],
+    "functions": [],
+    "imports": [
+      "cv2",
+      "lin_inverse",
+      "losses",
+      "matplotlib.pyplot",
+      "numpy",
+      "scipy",
+      "skimage.metrics",
+      "sys",
+      "tensorly",
+      "torch",
+      "tqdm",
+      "utils"
+    ],
+    "doc": "This script replicates the TV results in Figure 8. The accuracy is",
+    "lines": 131,
+    "size": 3874
+  },
+  {
+    "path": "run_figure2.py",
+    "classes": [],
+    "functions": [
+      "do_pca_and_svm",
+      "do_svm",
+      "do_ica_and_svm",
+      "average_precision"
+    ],
+    "imports": [
+      "argparse",
+      "copy",
+      "cv2",
+      "deep_decoder",
+      "deep_prior",
+      "importlib",
+      "json",
+      "losses",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "scipy",
+      "skimage.metrics",
+      "sklearn.datasets",
+      "sklearn.decomposition",
+      "sklearn.metrics",
+      "sklearn.model_selection",
+      "sklearn.svm",
+      "sys",
+      "torch",
+      "tqdm",
+      "utils"
+    ],
+    "doc": "This script replicates results in Figure 2 of our main paper.",
+    "lines": 409,
+    "size": 15703
+  },
+  {
+    "path": "run_figure6.py",
+    "classes": [],
+    "functions": [
+      "train_deeptensor_matrix"
+    ],
+    "imports": [
+      "argparse",
+      "deep_prior",
+      "json",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "sys",
+      "time",
+      "torch",
+      "utils"
+    ],
+    "doc": "This script replicates results in Figure 6 of the DeepTensor research paper:",
+    "lines": 299,
+    "size": 10685
+  },
+  {
+    "path": "run_figure7.py",
+    "classes": [],
+    "functions": [
+      "train_deeptensor_pca"
+    ],
+    "imports": [
+      "argparse",
+      "deep_prior",
+      "json",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "sys",
+      "time",
+      "torch",
+      "utils"
+    ],
+    "doc": "This script replicates results in Figure 7 of the DeepTensor research paper:",
+    "lines": 314,
+    "size": 12340
+  },
+  {
+    "path": "run_figure9.py",
+    "classes": [],
+    "functions": [
+      "compute_metrics"
+    ],
+    "imports": [
+      "argparse",
+      "bm3d",
+      "copy",
+      "deep_prior",
+      "json",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "scipy",
+      "skimage.metrics",
+      "spectral",
+      "sys",
+      "time",
+      "torch",
+      "utils"
+    ],
+    "doc": "This script replicates the DeepTensor, SVD, and BM3D results in Figure 9 of the paper:",
+    "lines": 339,
+    "size": 14765
+  },
+  {
+    "path": "run_figure9_adaptive.py",
+    "classes": [],
+    "functions": [],
+    "imports": [
+      "copy",
+      "deep_prior",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "scipy",
+      "skimage.metrics",
+      "spectral",
+      "sys",
+      "time",
+      "torch",
+      "tqdm",
+      "utils"
+    ],
+    "doc": "Research Extension 1: Adaptive Rank Selection \u2014 Plateau-Based",
+    "lines": 481,
+    "size": 21593
+  },
+  {
+    "path": "run_figure9_bm3d.py",
+    "classes": [],
+    "functions": [],
+    "imports": [
+      "bm3d",
+      "matplotlib.pyplot",
+      "numpy",
+      "scipy",
+      "skimage.metrics",
+      "sys",
+      "tqdm",
+      "utils"
+    ],
+    "doc": "This script replicates the BM3D results in Figure 6. The accuracy is",
+    "lines": 70,
+    "size": 1789
+  },
+  {
+    "path": "run_figure9_completion.py",
+    "classes": [],
+    "functions": [
+      "parse_args",
+      "generate_completion_masks",
+      "compute_subset_metrics"
+    ],
+    "imports": [
+      "argparse",
+      "copy",
+      "deep_prior",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "scipy",
+      "skimage.metrics",
+      "spectral",
+      "sys",
+      "time",
+      "torch",
+      "tqdm",
+      "utils"
+    ],
+    "doc": "Extension 3: Missing-Data / Tensor Completion Capability for DeepTensor",
+    "lines": 439,
+    "size": 17476
+  },
+  {
+    "path": "run_figure9_ensemble.py",
+    "classes": [],
+    "functions": [
+      "set_seed",
+      "compute_edge_magnitude",
+      "main"
+    ],
+    "imports": [
+      "argparse",
+      "copy",
+      "deep_decoder",
+      "deep_prior",
+      "losses",
+      "models",
+      "numpy",
+      "os",
+      "random",
+      "scipy",
+      "scipy.stats",
+      "skimage.metrics",
+      "spectral",
+      "sys",
+      "time",
+      "torch",
+      "utils"
+    ],
+    "doc": "Extension 5: Ensemble Disagreement as a Proxy for Reconstruction Uncertainty.",
+    "lines": 365,
+    "size": 12574
+  },
+  {
+    "path": "run_figure9_hybrid.py",
+    "classes": [],
+    "functions": [
+      "set_seed",
+      "main"
+    ],
+    "imports": [
+      "argparse",
+      "attention_spectral",
+      "copy",
+      "deep_prior",
+      "losses",
+      "numpy",
+      "os",
+      "random",
+      "scipy",
+      "skimage.metrics",
+      "spectral",
+      "sys",
+      "time",
+      "torch",
+      "utils"
+    ],
+    "doc": "",
+    "lines": 241,
+    "size": 9047
+  },
+  {
+    "path": "run_figure9_interpretability.py",
+    "classes": [],
+    "functions": [
+      "run_experiment"
+    ],
+    "imports": [
+      "argparse",
+      "copy",
+      "deep_decoder",
+      "deep_prior",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "scipy",
+      "skimage.metrics",
+      "spectral",
+      "sys",
+      "time",
+      "torch",
+      "utils"
+    ],
+    "doc": "Extension 7: Post-hoc Factor Analysis and Descriptive Visualization of DeepTensor Components.",
+    "lines": 400,
+    "size": 17110
+  },
+  {
+    "path": "run_figure9_robustness.py",
+    "classes": [],
+    "functions": [],
+    "imports": [
+      "argparse",
+      "copy",
+      "cv2",
+      "deep_decoder",
+      "deep_prior",
+      "losses",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "scipy",
+      "skimage.metrics",
+      "spectral",
+      "sys",
+      "time",
+      "torch",
+      "tqdm",
+      "utils"
+    ],
+    "doc": "This script replicates the DeepTensor results in Figure 6. The accuracy is",
+    "lines": 269,
+    "size": 8997
+  },
+  {
+    "path": "run_figure9_sparsity.py",
+    "classes": [],
+    "functions": [
+      "parse_args",
+      "compute_group_regularizer",
+      "compute_effective_ranks"
+    ],
+    "imports": [
+      "argparse",
+      "copy",
+      "deep_prior",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "scipy",
+      "skimage.metrics",
+      "spectral",
+      "sys",
+      "time",
+      "torch",
+      "tqdm",
+      "utils"
+    ],
+    "doc": "Research Extension 2: Factor Group-Sparsity (Group Lasso) Regularization",
+    "lines": 448,
+    "size": 17062
+  },
+  {
+    "path": "run_figure9_spectral_transformer.py",
+    "classes": [],
+    "functions": [
+      "set_seed",
+      "main"
+    ],
+    "imports": [
+      "argparse",
+      "copy",
+      "deep_prior",
+      "losses",
+      "numpy",
+      "os",
+      "random",
+      "scipy",
+      "skimage.metrics",
+      "spectral",
+      "spectral_transformer",
+      "sys",
+      "time",
+      "torch",
+      "utils"
+    ],
+    "doc": "",
+    "lines": 258,
+    "size": 9882
+  },
+  {
+    "path": "run_table1.py",
+    "classes": [
+      "PyMFBase",
+      "SNMF"
+    ],
+    "functions": [
+      "eighk",
+      "cmdet",
+      "simplex",
+      "get_nmf"
+    ],
+    "imports": [
+      "argparse",
+      "deep_decoder",
+      "deep_prior",
+      "logging",
+      "logging.config",
+      "losses",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "numpy.linalg",
+      "scipy.sparse",
+      "sklearn.decomposition",
+      "sys",
+      "torch",
+      "torch.utils.data",
+      "torchaudio",
+      "torchvision",
+      "tqdm",
+      "utils"
+    ],
+    "doc": "This script replicates results in table 1 in the main paper.",
+    "lines": 610,
+    "size": 19412
+  },
+  {
+    "path": "scratch_calibrate.py",
+    "classes": [],
+    "functions": [
+      "calibrate_gaussian",
+      "calibrate_poisson"
+    ],
+    "imports": [
+      "numpy",
+      "scipy",
+      "sys",
+      "utils"
+    ],
+    "doc": "",
+    "lines": 49,
+    "size": 1546
+  },
+  {
+    "path": "modules\\attention_spectral.py",
+    "classes": [
+      "SpectralSelfAttention",
+      "SpectralPointwiseControl",
+      "HybridSpectralNet"
+    ],
+    "functions": [
+      "count_parameters",
+      "estimate_flops"
+    ],
+    "imports": [
+      "math",
+      "torch",
+      "torch.nn",
+      "torch.nn.functional"
+    ],
+    "doc": "",
+    "lines": 207,
+    "size": 7070
+  },
+  {
+    "path": "modules\\cosine_annealing_with_warmup.py",
+    "classes": [
+      "CosineAnnealingWarmupRestarts"
+    ],
+    "functions": [],
+    "imports": [
+      "math",
+      "torch",
+      "torch.optim.lr_scheduler"
+    ],
+    "doc": "",
+    "lines": 92,
+    "size": 4304
+  },
+  {
+    "path": "modules\\deep_decoder.py",
+    "classes": [
+      "ResidualBlock"
+    ],
+    "functions": [
+      "add_module",
+      "conv",
+      "conv3d",
+      "conv1d",
+      "decodernw",
+      "decodernw3d",
+      "decodernw1d",
+      "resdecoder"
+    ],
+    "imports": [
+      "torch",
+      "torch.nn"
+    ],
+    "doc": "This is a modified version of the original code hosted at https://github.com/reinhardh/supplement_deep_decoder",
+    "lines": 257,
+    "size": 9517
+  },
+  {
+    "path": "modules\\deep_prior.py",
+    "classes": [
+      "Downsampler"
+    ],
+    "functions": [
+      "get_kernel",
+      "get_noise",
+      "np_to_torch",
+      "torch_to_np",
+      "fill_noise",
+      "get_image_grid",
+      "get_net"
+    ],
+    "imports": [
+      "cv2",
+      "deep_models.resnet",
+      "deep_models.skip",
+      "deep_models.texture_nets",
+      "deep_models.unet",
+      "numpy",
+      "os",
+      "pdb",
+      "sys",
+      "torch",
+      "torchvision",
+      "tqdm"
+    ],
+    "doc": "This is a modified version of the original code hosted at https://github.com/DmitryUlyanov/deep-image-prior",
+    "lines": 266,
+    "size": 10354
+  },
+  {
+    "path": "modules\\lin_inverse.py",
+    "classes": [],
+    "functions": [
+      "radon",
+      "get_video_coding_frames",
+      "video2codedvideo"
+    ],
+    "imports": [
+      "cv2",
+      "glob",
+      "kornia",
+      "kornia.geometry.transform",
+      "matplotlib.pyplot",
+      "numpy",
+      "os",
+      "pdb",
+      "scipy",
+      "sys",
+      "torch",
+      "tqdm"
+    ],
+    "doc": "This script contains functions pertaining to linear inverse problems ",
+    "lines": 97,
+    "size": 2684
+  },
+  {
+    "path": "modules\\losses.py",
+    "classes": [
+      "TVNorm",
+      "L1Norm",
+      "L2Norm"
+    ],
+    "functions": [],
+    "imports": [
+      "torch"
+    ],
+    "doc": "This script implements all loss functions utilized in our experiments ",
+    "lines": 35,
+    "size": 929
+  },
+  {
+    "path": "modules\\models.py",
+    "classes": [
+      "SimpleForwardMLP",
+      "SimpleForward2D",
+      "SimpleForward1D",
+      "UNetND"
+    ],
+    "functions": [],
+    "imports": [
+      "torch"
+    ],
+    "doc": "This script implements models other than the one proposed by [Ulyanov et al. 2018],",
+    "lines": 230,
+    "size": 7946
+  },
+  {
+    "path": "modules\\spectral.py",
+    "classes": [],
+    "functions": [
+      "lr_decompose",
+      "tucker_decompose"
+    ],
+    "imports": [
+      "numpy",
+      "scipy.sparse",
+      "tensorly",
+      "torch"
+    ],
+    "doc": "This module implements functions required for hyperspectral image experiments",
+    "lines": 61,
+    "size": 1757
+  },
+  {
+    "path": "modules\\spectral_transformer.py",
+    "classes": [
+      "SpectralTransformer",
+      "ControlSpectralTransformer"
+    ],
+    "functions": [
+      "count_parameters",
+      "get_alibi_bias",
+      "get_sinusoidal_pe"
+    ],
+    "imports": [
+      "math",
+      "torch",
+      "torch.nn"
+    ],
+    "doc": "",
+    "lines": 155,
+    "size": 5750
+  },
+  {
+    "path": "modules\\utils.py",
+    "classes": [],
+    "functions": [
+      "nextpow2",
+      "normalize",
+      "rsnr",
+      "psnr",
+      "measure",
+      "rician",
+      "resize",
+      "moduloclip",
+      "implay",
+      "build_montage",
+      "get_matrix",
+      "get_pca",
+      "get_inp",
+      "get_2d_posencode_inp",
+      "get_1d_posencode_inp",
+      "lr_decompose",
+      "get_scheduler"
+    ],
+    "imports": [
+      "cosine_annealing_with_warmup",
+      "cv2",
+      "matplotlib.lines",
+      "matplotlib.pyplot",
+      "numpy",
+      "pickle",
+      "scipy",
+      "scipy.linalg",
+      "scipy.sparse",
+      "torch"
+    ],
+    "doc": "Miscellaneous utilities that are required in all experiments.",
+    "lines": 431,
+    "size": 12825
+  },
+  {
+    "path": "modules\\deep_models\\common.py",
+    "classes": [
+      "Concat",
+      "Concat1d",
+      "GenNoise",
+      "Swish",
+      "Sine"
+    ],
+    "functions": [
+      "add_module",
+      "act",
+      "bn",
+      "bn1d",
+      "conv",
+      "conv1d"
+    ],
+    "imports": [
+      "downsampler",
+      "numpy",
+      "pdb",
+      "torch",
+      "torch.nn"
+    ],
+    "doc": "",
+    "lines": 197,
+    "size": 5815
+  },
+  {
+    "path": "modules\\deep_models\\dcgan.py",
+    "classes": [],
+    "functions": [
+      "dcgan"
+    ],
+    "imports": [
+      "torch",
+      "torch.nn"
+    ],
+    "doc": "",
+    "lines": 34,
+    "size": 1277
+  },
+  {
+    "path": "modules\\deep_models\\downsampler.py",
+    "classes": [
+      "Downsampler"
+    ],
+    "functions": [
+      "get_kernel"
+    ],
+    "imports": [
+      "numpy",
+      "torch",
+      "torch.nn"
+    ],
+    "doc": "",
+    "lines": 168,
+    "size": 5547
+  },
+  {
+    "path": "modules\\deep_models\\resnet.py",
+    "classes": [
+      "ResidualSequential",
+      "ResNet"
+    ],
+    "functions": [
+      "get_block"
+    ],
+    "imports": [
+      "common",
+      "math",
+      "numpy.linalg",
+      "numpy.random",
+      "torch",
+      "torch.nn",
+      "torch.nn.init"
+    ],
+    "doc": "",
+    "lines": 96,
+    "size": 3039
+  },
+  {
+    "path": "modules\\deep_models\\skip.py",
+    "classes": [],
+    "functions": [
+      "skip",
+      "skip1d"
+    ],
+    "imports": [
+      "common",
+      "torch",
+      "torch.nn"
+    ],
+    "doc": "",
+    "lines": 197,
+    "size": 7654
+  },
+  {
+    "path": "modules\\deep_models\\texture_nets.py",
+    "classes": [],
+    "functions": [
+      "conv",
+      "get_texture_nets"
+    ],
+    "imports": [
+      "common",
+      "torch",
+      "torch.nn"
+    ],
+    "doc": "",
+    "lines": 79,
+    "size": 2394
+  },
+  {
+    "path": "modules\\deep_models\\unet.py",
+    "classes": [
+      "ListModule",
+      "UNet",
+      "unetConv2",
+      "unetDown",
+      "unetUp"
+    ],
+    "functions": [],
+    "imports": [
+      "common",
+      "torch",
+      "torch.nn",
+      "torch.nn.functional"
+    ],
+    "doc": "",
+    "lines": 192,
+    "size": 7516
+  },
+  {
+    "path": "modules\\deep_models\\__init__.py",
+    "classes": [],
+    "functions": [
+      "get_net"
+    ],
+    "imports": [
+      "resnet",
+      "skip",
+      "texture_nets",
+      "torch.nn",
+      "unet"
+    ],
+    "doc": "",
+    "lines": 32,
+    "size": 1670
+  },
+  {
+    "path": "paper_reproduction\\cnn_baseline\\01_synthetic_decomposition\\benchmark_figure4_separable_speedup.py",
+    "classes": [
+      "Conv3D_DIP"
+    ],
+    "functions": [
+      "run_benchmark"
+    ],
+    "imports": [
+      "deep_prior",
+      "json",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "numpy",
+      "os",
+      "sys",
+      "time",
+      "torch",
+      "torch.nn",
+      "utils"
+    ],
+    "doc": "Figure 4: Separable Convolutions Speedup on 3D Volume",
+    "lines": 200,
+    "size": 9324
+  },
+  {
+    "path": "paper_reproduction\\cnn_baseline\\01_synthetic_decomposition\\benchmark_figure4_separable_speedup_improved.py",
+    "classes": [
+      "Conv3D_DIP"
+    ],
+    "functions": [
+      "generate_mri_phantom_volume",
+      "run_benchmark"
+    ],
+    "imports": [
+      "argparse",
+      "deep_prior",
+      "json",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "numpy",
+      "os",
+      "sys",
+      "time",
+      "torch",
+      "torch.nn",
+      "utils"
+    ],
+    "doc": "Figure 4 Improved Benchmark: Separable Convolutions Speedup on 3D Volume",
+    "lines": 307,
+    "size": 14320
+  },
+  {
+    "path": "paper_reproduction\\cnn_baseline\\01_synthetic_decomposition\\run_synthetic_suite.py",
+    "classes": [],
+    "functions": [
+      "run_figure3",
+      "run_figure4",
+      "run_figure8",
+      "run_table1",
+      "main"
+    ],
+    "imports": [
+      "argparse",
+      "deep_decoder",
+      "deep_prior",
+      "json",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "sys",
+      "time",
+      "torch",
+      "utils"
+    ],
+    "doc": "Synthetic Experiments Suite: Figures 3, 4, 8 and Table 1",
+    "lines": 377,
+    "size": 16592
+  },
+  {
+    "path": "paper_reproduction\\cnn_baseline\\03_nmf\\run_table2_nmf.py",
+    "classes": [],
+    "functions": [
+      "get_data",
+      "run_standard_nmf",
+      "run_deeptensor_nmf",
+      "main"
+    ],
+    "imports": [
+      "argparse",
+      "deep_decoder",
+      "deep_prior",
+      "json",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "sklearn.decomposition",
+      "sys",
+      "time",
+      "torch",
+      "torch.utils.data",
+      "torchvision",
+      "utils"
+    ],
+    "doc": "Table 2: DeepTensor NMF on MNIST & CIFAR-10",
+    "lines": 264,
+    "size": 11262
+  },
+  {
+    "path": "paper_reproduction\\cnn_baseline\\05_hyperspectral_denoising\\run_figure13_rank_sweep.py",
+    "classes": [],
+    "functions": [
+      "run_deeptensor_rank",
+      "main"
+    ],
+    "imports": [
+      "argparse",
+      "deep_decoder",
+      "deep_prior",
+      "json",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "scipy.io",
+      "sys",
+      "time",
+      "torch",
+      "utils"
+    ],
+    "doc": "Figure 13(a): Effect of Rank Choice on Hyperspectral Image Decomposition",
+    "lines": 175,
+    "size": 6940
+  },
+  {
+    "path": "paper_reproduction\\cnn_baseline\\06_yale_face_tensor_denoising\\generate_improved_panel.py",
+    "classes": [],
+    "functions": [
+      "main"
+    ],
+    "imports": [
+      "json",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "numpy",
+      "os",
+      "scipy.io",
+      "skimage.metrics",
+      "sys",
+      "utils"
+    ],
+    "doc": "Generates the comprehensive Figure 10 visual comparison panel and summary tables",
+    "lines": 191,
+    "size": 9244
+  },
+  {
+    "path": "paper_reproduction\\cnn_baseline\\06_yale_face_tensor_denoising\\run_figure10_yale_tensor.py",
+    "classes": [],
+    "functions": [
+      "add_salt_and_pepper_noise",
+      "run_parafac_deeptensor",
+      "main"
+    ],
+    "imports": [
+      "argparse",
+      "deep_decoder",
+      "deep_prior",
+      "json",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "scipy.io",
+      "skimage.metrics",
+      "sys",
+      "time",
+      "torch",
+      "utils"
+    ],
+    "doc": "Figure 10: 3-Way PARAFAC Tensor Denoising on Extended Yale Face Database B",
+    "lines": 365,
+    "size": 17691
+  },
+  {
+    "path": "paper_reproduction\\cnn_baseline\\06_yale_face_tensor_denoising\\run_figure10_yale_tensor_improved.py",
+    "classes": [],
+    "functions": [
+      "generate_salt_and_pepper_noise",
+      "run_parafac_deeptensor_improved",
+      "main"
+    ],
+    "imports": [
+      "argparse",
+      "deep_prior",
+      "json",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "numpy",
+      "os",
+      "scipy.io",
+      "skimage.metrics",
+      "sys",
+      "time",
+      "torch",
+      "torch.nn",
+      "utils"
+    ],
+    "doc": "Figure 10 Improved Rerun: 3-Way PARAFAC Tensor Denoising on Extended Yale Face Database B",
+    "lines": 434,
+    "size": 19510
+  },
+  {
+    "path": "paper_reproduction\\cnn_baseline\\06_yale_face_tensor_denoising\\run_figure13b_yale_rank_sweep.py",
+    "classes": [],
+    "functions": [
+      "run_deeptensor_parafac_rank",
+      "main"
+    ],
+    "imports": [
+      "argparse",
+      "deep_decoder",
+      "deep_prior",
+      "json",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "scipy.io",
+      "sys",
+      "time",
+      "torch",
+      "utils"
+    ],
+    "doc": "Figure 13(b): Effect of Rank Choice on PARAFAC Tensor Decomposition (Yale Face B)",
+    "lines": 179,
+    "size": 7740
+  },
+  {
+    "path": "paper_reproduction\\cnn_baseline\\06_yale_face_tensor_denoising\\run_figure13b_yale_rank_sweep_improved.py",
+    "classes": [],
+    "functions": [
+      "calculate_ssim",
+      "run_classical_parafac_als",
+      "run_deeptensor_parafac_rank",
+      "main"
+    ],
+    "imports": [
+      "argparse",
+      "deep_prior",
+      "json",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "numpy",
+      "os",
+      "scipy.io",
+      "skimage.metrics",
+      "sys",
+      "time",
+      "torch",
+      "torch.nn",
+      "utils"
+    ],
+    "doc": "Figure 13(b) Improved Rerun: Effect of Rank Choice on PARAFAC Tensor Decomposition (Yale Face B)",
+    "lines": 388,
+    "size": 17636
+  },
+  {
+    "path": "paper_reproduction\\cnn_baseline\\07_video_compressive_sensing\\run_figure11.py",
+    "classes": [],
+    "functions": [
+      "calculate_ssim",
+      "run_deeptensor",
+      "run_tv",
+      "main"
+    ],
+    "imports": [
+      "argparse",
+      "deep_decoder",
+      "deep_prior",
+      "json",
+      "lin_inverse",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "scipy",
+      "skimage.metrics",
+      "sys",
+      "time",
+      "torch",
+      "utils"
+    ],
+    "doc": "Figure 11: Video Compressive Sensing Replication",
+    "lines": 415,
+    "size": 16880
+  },
+  {
+    "path": "paper_reproduction\\cnn_baseline\\07_video_compressive_sensing\\run_figure11_improved.py",
+    "classes": [],
+    "functions": [
+      "calculate_ssim",
+      "run_deeptensor_improved",
+      "run_tv_calibrated",
+      "main"
+    ],
+    "imports": [
+      "argparse",
+      "deep_prior",
+      "json",
+      "lin_inverse",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "numpy",
+      "os",
+      "scipy",
+      "skimage.metrics",
+      "sys",
+      "time",
+      "torch",
+      "torch.nn",
+      "utils"
+    ],
+    "doc": "Figure 11 Improved Rerun: Video Compressive Sensing",
+    "lines": 497,
+    "size": 21453
+  },
+  {
+    "path": "paper_reproduction\\cnn_baseline\\08_ct_reconstruction\\run_figure12_improved.py",
+    "classes": [],
+    "functions": [
+      "compute_metrics",
+      "main"
+    ],
+    "imports": [
+      "argparse",
+      "copy",
+      "deep_prior",
+      "json",
+      "lin_inverse",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "scipy",
+      "skimage.metrics",
+      "sys",
+      "tensorly",
+      "time",
+      "torch",
+      "utils"
+    ],
+    "doc": "Figure 12 Improved Rerun: 3D PET CT Volume Reconstruction from Limited, Noisy Tomography",
+    "lines": 463,
+    "size": 22808
+  },
+  {
+    "path": "paper_reproduction\\cnn_baseline\\09_speech_time_frequency\\run_table3_speech_nmf.py",
+    "classes": [],
+    "functions": [
+      "get_speech_spectrograms",
+      "run_standard_nmf",
+      "run_deeptensor_speech",
+      "main"
+    ],
+    "imports": [
+      "argparse",
+      "deep_decoder",
+      "deep_prior",
+      "glob",
+      "json",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "scipy.io.wavfile",
+      "sklearn.decomposition",
+      "sys",
+      "time",
+      "torch",
+      "torchaudio",
+      "utils",
+      "warnings"
+    ],
+    "doc": "Table 3: DeepTensor NMF & Semi-NMF on Speech Spectrograms",
+    "lines": 344,
+    "size": 15078
+  },
+  {
+    "path": "paper_reproduction\\consolidated_results\\generate_consolidated_report.py",
+    "classes": [],
+    "functions": [
+      "load_json_safe",
+      "main"
+    ],
+    "imports": [
+      "json",
+      "numpy",
+      "os"
+    ],
+    "doc": "Consolidated Baseline Aggregator and Report Generator",
+    "lines": 119,
+    "size": 10176
+  },
+  {
+    "path": "previous_neurotensor_experiments\\01_icvl_cnn_baseline\\run_figure9.py",
+    "classes": [],
+    "functions": [
+      "compute_metrics"
+    ],
+    "imports": [
+      "argparse",
+      "bm3d",
+      "copy",
+      "deep_prior",
+      "json",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "scipy",
+      "skimage.metrics",
+      "spectral",
+      "sys",
+      "time",
+      "torch",
+      "utils"
+    ],
+    "doc": "This script replicates the DeepTensor, SVD, and BM3D results in Figure 9 of the paper:",
+    "lines": 339,
+    "size": 14765
+  },
+  {
+    "path": "previous_neurotensor_experiments\\02_icvl_adaptive_rank\\run_figure9_adaptive.py",
+    "classes": [],
+    "functions": [],
+    "imports": [
+      "copy",
+      "deep_prior",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "scipy",
+      "skimage.metrics",
+      "spectral",
+      "sys",
+      "time",
+      "torch",
+      "tqdm",
+      "utils"
+    ],
+    "doc": "Research Extension 1: Adaptive Rank Selection \u2014 Plateau-Based",
+    "lines": 481,
+    "size": 21593
+  },
+  {
+    "path": "previous_neurotensor_experiments\\03_icvl_factor_group_sparsity\\run_figure9_sparsity.py",
+    "classes": [],
+    "functions": [
+      "parse_args",
+      "compute_group_regularizer",
+      "compute_effective_ranks"
+    ],
+    "imports": [
+      "argparse",
+      "copy",
+      "deep_prior",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "scipy",
+      "skimage.metrics",
+      "spectral",
+      "sys",
+      "time",
+      "torch",
+      "tqdm",
+      "utils"
+    ],
+    "doc": "Research Extension 2: Factor Group-Sparsity (Group Lasso) Regularization",
+    "lines": 448,
+    "size": 17062
+  },
+  {
+    "path": "previous_neurotensor_experiments\\04_icvl_tensor_completion\\run_figure9_completion.py",
+    "classes": [],
+    "functions": [
+      "parse_args",
+      "generate_completion_masks",
+      "compute_subset_metrics"
+    ],
+    "imports": [
+      "argparse",
+      "copy",
+      "deep_prior",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "scipy",
+      "skimage.metrics",
+      "spectral",
+      "sys",
+      "time",
+      "torch",
+      "tqdm",
+      "utils"
+    ],
+    "doc": "Extension 3: Missing-Data / Tensor Completion Capability for DeepTensor",
+    "lines": 439,
+    "size": 17476
+  },
+  {
+    "path": "previous_neurotensor_experiments\\05_icvl_noise_robustness\\run_figure9_robustness.py",
+    "classes": [],
+    "functions": [],
+    "imports": [
+      "argparse",
+      "copy",
+      "cv2",
+      "deep_decoder",
+      "deep_prior",
+      "losses",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "scipy",
+      "skimage.metrics",
+      "spectral",
+      "sys",
+      "time",
+      "torch",
+      "tqdm",
+      "utils"
+    ],
+    "doc": "This script replicates the DeepTensor results in Figure 6. The accuracy is",
+    "lines": 269,
+    "size": 8997
+  },
+  {
+    "path": "previous_neurotensor_experiments\\06_icvl_ensemble_uncertainty\\run_figure9_ensemble.py",
+    "classes": [],
+    "functions": [
+      "set_seed",
+      "compute_edge_magnitude",
+      "main"
+    ],
+    "imports": [
+      "argparse",
+      "copy",
+      "deep_decoder",
+      "deep_prior",
+      "losses",
+      "models",
+      "numpy",
+      "os",
+      "random",
+      "scipy",
+      "scipy.stats",
+      "skimage.metrics",
+      "spectral",
+      "sys",
+      "time",
+      "torch",
+      "utils"
+    ],
+    "doc": "Extension 5: Ensemble Disagreement as a Proxy for Reconstruction Uncertainty.",
+    "lines": 365,
+    "size": 12574
+  },
+  {
+    "path": "previous_neurotensor_experiments\\07_icvl_factor_interpretability\\run_figure9_interpretability.py",
+    "classes": [],
+    "functions": [
+      "run_experiment"
+    ],
+    "imports": [
+      "argparse",
+      "copy",
+      "deep_decoder",
+      "deep_prior",
+      "losses",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "models",
+      "numpy",
+      "os",
+      "scipy",
+      "skimage.metrics",
+      "spectral",
+      "sys",
+      "time",
+      "torch",
+      "utils"
+    ],
+    "doc": "Extension 7: Post-hoc Factor Analysis and Descriptive Visualization of DeepTensor Components.",
+    "lines": 400,
+    "size": 17110
+  },
+  {
+    "path": "previous_neurotensor_experiments\\08_icvl_hybrid_attention\\run_figure9_hybrid.py",
+    "classes": [],
+    "functions": [
+      "set_seed",
+      "main"
+    ],
+    "imports": [
+      "argparse",
+      "attention_spectral",
+      "copy",
+      "deep_prior",
+      "losses",
+      "numpy",
+      "os",
+      "random",
+      "scipy",
+      "skimage.metrics",
+      "spectral",
+      "sys",
+      "time",
+      "torch",
+      "utils"
+    ],
+    "doc": "",
+    "lines": 241,
+    "size": 9047
+  },
+  {
+    "path": "previous_neurotensor_experiments\\08_icvl_hybrid_attention\\modules\\attention_spectral.py",
+    "classes": [
+      "SpectralSelfAttention",
+      "SpectralPointwiseControl",
+      "HybridSpectralNet"
+    ],
+    "functions": [
+      "count_parameters",
+      "estimate_flops"
+    ],
+    "imports": [
+      "math",
+      "torch",
+      "torch.nn",
+      "torch.nn.functional"
+    ],
+    "doc": "",
+    "lines": 207,
+    "size": 7070
+  },
+  {
+    "path": "previous_neurotensor_experiments\\09_icvl_spectral_transformer\\run_figure9_spectral_transformer.py",
+    "classes": [],
+    "functions": [
+      "set_seed",
+      "main"
+    ],
+    "imports": [
+      "argparse",
+      "copy",
+      "deep_prior",
+      "losses",
+      "numpy",
+      "os",
+      "random",
+      "scipy",
+      "skimage.metrics",
+      "spectral",
+      "spectral_transformer",
+      "sys",
+      "time",
+      "torch",
+      "utils"
+    ],
+    "doc": "",
+    "lines": 258,
+    "size": 9882
+  },
+  {
+    "path": "previous_neurotensor_experiments\\09_icvl_spectral_transformer\\modules\\spectral_transformer.py",
+    "classes": [
+      "SpectralTransformer",
+      "ControlSpectralTransformer"
+    ],
+    "functions": [
+      "count_parameters",
+      "get_alibi_bias",
+      "get_sinusoidal_pe"
+    ],
+    "imports": [
+      "math",
+      "torch",
+      "torch.nn"
+    ],
+    "doc": "",
+    "lines": 155,
+    "size": 5750
+  }
+]

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeepTensor++ Research Navigator — Phase 2 Faculty Evaluation</title>
+  
+  <!-- Inter & JetBrains Mono Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- KaTeX for LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="dark-theme">
+  <!-- Top Application Bar -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="logo-box">
+        <i class="fa-solid fa-cube text-primary"></i>
+      </div>
+      <div class="header-titles">
+        <h1 class="project-title">DeepTensor++ <span class="badge badge-accent">Research Navigator</span></h1>
+        <p class="project-subtitle">Phase 2 Faculty Evaluation & Interactive Code Verification Suite</p>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="global-search" placeholder="Search topics, equations, or code symbols (e.g. DT-06, einsum, CP)..." autocomplete="off">
+        <div id="search-dropdown" class="search-dropdown hidden"></div>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button id="btn-presentation-mode" class="btn btn-outline" title="Launch Step-Through Presentation Mode">
+        <i class="fa-solid fa-person-chalkboard"></i>
+        <span>Presentation Mode</span>
+      </button>
+      <button id="btn-experiments-view" class="btn btn-outline" title="Open 4-Application Benchmark Matrix">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Experiments (4)</span>
+      </button>
+      <div class="api-status" id="api-status-badge">
+        <span class="status-indicator live"></span>
+        <span class="status-text">Backend Connected</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Workspace Layout -->
+  <div class="workspace-layout">
+    <!-- Left Sidebar -->
+    <aside class="sidebar-panel" id="sidebar-panel">
+      <div class="sidebar-tabs">
+        <button class="sidebar-tab active" data-tab="tab-topics">
+          <i class="fa-solid fa-list-check"></i> Topics (24)
+        </button>
+        <button class="sidebar-tab" data-tab="tab-experiments">
+          <i class="fa-solid fa-flask"></i> Experiments
+        </button>
+        <button class="sidebar-tab" data-tab="tab-files">
+          <i class="fa-regular fa-folder-open"></i> Repo Files
+        </button>
+      </div>
+
+      <!-- Tab Content: Research Topics -->
+      <div class="tab-pane active" id="tab-topics">
+        <div class="topics-accordion" id="topics-accordion">
+          <!-- Dynamically populated by app.js -->
+          <div class="loading-spinner"><i class="fa-solid fa-circle-notch fa-spin"></i> Loading topics...</div>
+        </div>
+      </div>
+
+      <!-- Tab Content: 4 Experiments -->
+      <div class="tab-pane" id="tab-experiments">
+        <div class="experiments-list" id="experiments-list">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- Tab Content: Repository File Tree -->
+      <div class="tab-pane" id="tab-files">
+        <div class="file-tree" id="file-tree">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </aside>
+
+    <!-- Center Code View (Monaco Editor) -->
+    <main class="code-viewport">
+      <div class="code-toolbar">
+        <div class="file-breadcrumb">
+          <i class="fa-brands fa-python file-icon"></i>
+          <span id="current-file-path" class="path-text">src/deeptensor/models/deeptensor.py</span>
+          <span id="current-line-badge" class="line-badge">Lines 244–253</span>
+        </div>
+        <div class="code-actions">
+          <button id="btn-copy-path" class="tool-btn" title="Copy Relative File Path">
+            <i class="fa-regular fa-copy"></i> Copy Path
+          </button>
+          <button id="btn-reset-view" class="tool-btn" title="Jump to Target Lines">
+            <i class="fa-solid fa-crosshairs"></i> Focus Lines
+          </button>
+        </div>
+      </div>
+
+      <!-- Monaco Editor Canvas -->
+      <div id="monaco-container" class="monaco-container"></div>
+    </main>
+
+    <!-- Right Side Detail / Topic Card Panel -->
+    <section class="detail-panel" id="detail-panel">
+      <div class="panel-header">
+        <div class="topic-tag-group">
+          <span id="topic-id-badge" class="badge badge-primary">DT-01</span>
+          <span id="topic-source-badge" class="badge badge-warning">Repository Implementation</span>
+          <span id="topic-status-badge" class="badge badge-success"><i class="fa-solid fa-check"></i> Verified</span>
+        </div>
+        <h2 id="topic-title" class="topic-title">Topic Title Here</h2>
+        <p id="topic-section-title" class="topic-section-sub">Section 1: Research Background and Original Paper</p>
+      </div>
+
+      <div class="panel-content">
+        <!-- Concept Card -->
+        <div class="card concept-card">
+          <div class="card-header">
+            <i class="fa-solid fa-lightbulb card-icon"></i>
+            <h3>Scientific Concept & Formulation</h3>
+          </div>
+          <p id="topic-concept" class="concept-text">Explanation text here...</p>
+        </div>
+
+        <!-- Math Formula Card -->
+        <div class="card math-card">
+          <div class="card-header">
+            <i class="fa-solid fa-square-root-variable card-icon"></i>
+            <h3>Mathematical Model</h3>
+          </div>
+          <div id="topic-math-container" class="math-render"></div>
+          <p id="topic-math-explanation" class="math-subtext">Explanation of formula terms...</p>
+        </div>
+
+        <!-- Research Context Card -->
+        <div class="card context-card">
+          <div class="card-header">
+            <i class="fa-solid fa-diagram-project card-icon"></i>
+            <h3>Significance in DeepTensor++</h3>
+          </div>
+          <p id="topic-context" class="context-text">Research significance here...</p>
+        </div>
+
+        <!-- Verified Code Symbol Card -->
+        <div class="card symbol-card">
+          <div class="card-header">
+            <i class="fa-solid fa-code card-icon"></i>
+            <h3>Verified Code Anchor</h3>
+          </div>
+          <div class="symbol-details">
+            <div class="symbol-row">
+              <span class="symbol-label">File:</span>
+              <code id="topic-code-file" class="code-link">src/...</code>
+            </div>
+            <div class="symbol-row">
+              <span class="symbol-label">Lines:</span>
+              <span id="topic-code-lines" class="badge badge-neutral">L244–L253</span>
+            </div>
+            <div class="symbol-row">
+              <span class="symbol-label">Symbol:</span>
+              <code id="topic-code-symbol" class="symbol-name">DeepTensor.forward</code>
+            </div>
+          </div>
+          <p id="topic-code-summary" class="symbol-subtext">Summary of what the code does...</p>
+          <button id="btn-jump-code" class="btn btn-primary btn-block">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Jump to Exact Code
+          </button>
+        </div>
+
+        <!-- Faculty Viva Q&A Defense Card -->
+        <div class="card qa-card">
+          <div class="card-header">
+            <i class="fa-solid fa-graduation-cap card-icon"></i>
+            <h3>Faculty Viva Defense</h3>
+          </div>
+          <div class="qa-block">
+            <p class="qa-q"><strong class="text-accent">Q:</strong> <span id="topic-qa-question">Anticipated faculty viva question...</span></p>
+            <div class="qa-divider"></div>
+            <p class="qa-a"><strong class="text-success">Defense:</strong> <span id="topic-qa-defense">Authoritative scientific response grounded in code and empirical data...</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Floating Presentation Mode Toolbar (Hidden by default) -->
+  <div class="presentation-toolbar hidden" id="presentation-toolbar">
+    <div class="pres-info">
+      <span class="pres-badge">PRESENTATION MODE</span>
+      <span id="pres-slide-num" class="pres-counter">Slide 1 / 24</span>
+      <span id="pres-slide-title" class="pres-title">[DT-01] Topic Title</span>
+    </div>
+    <div class="pres-controls">
+      <button id="btn-pres-prev" class="pres-btn" title="Previous Slide (Left Arrow)"><i class="fa-solid fa-chevron-left"></i> Previous</button>
+      <button id="btn-pres-next" class="pres-btn pres-btn-primary" title="Next Slide (Right Arrow)">Next <i class="fa-solid fa-chevron-right"></i></button>
+      <button id="btn-pres-exit" class="pres-btn pres-btn-exit" title="Exit Presentation Mode"><i class="fa-solid fa-xmark"></i> Exit</button>
+    </div>
+  </div>
+
+  <!-- Modal: 4-Experiment Comparative Benchmark Modal -->
+  <div class="modal-backdrop hidden" id="modal-experiments">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <h2><i class="fa-solid fa-chart-line text-primary"></i> Four Application-Specific Experiments</h2>
+          <p>Controlled Comparative Benchmark across 5 Architectures</p>
+        </div>
+        <button id="btn-close-modal" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <!-- Experiment Tabs -->
+        <div class="exp-modal-tabs" id="exp-modal-tabs">
+          <button class="exp-modal-tab active" data-exp="figure09">Figure 09: ICVL HSI</button>
+          <button class="exp-modal-tab" data-exp="figure10">Figure 10: Yale Face B</button>
+          <button class="exp-modal-tab" data-exp="figure11">Figure 11: Video CS</button>
+          <button class="exp-modal-tab" data-exp="figure12">Figure 12: PET/CT</button>
+        </div>
+
+        <!-- Experiment Details View -->
+        <div class="exp-modal-content" id="exp-modal-content">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RequireJS & Monaco Editor Loader -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+  <script>
+    require.config({
+      paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs' }
+    });
+  </script>
+
+  <!-- Application Logic -->
+  <script src="/static/app.js"></script>
+</body>
+</html>
+

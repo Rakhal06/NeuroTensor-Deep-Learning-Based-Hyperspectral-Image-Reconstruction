@@ -1,0 +1,28 @@
+{
+  "noise_30": {
+    "input_noisy_psnr": 9.808829223187926,
+    "svd_psnr": 9.808829223187926,
+    "old_baseline_psnr": 26.54409734622089,
+    "improved_psnr": 30.859501808816226,
+    "improved_ssim": 0.914758563041687,
+    "paper_reported_psnr": 28.9,
+    "gain_over_old_db": 4.315404462595335,
+    "gap_to_paper_db": 1.9595018088162277,
+    "runtime_sec": 520.1468360424042,
+    "peak_vram_mb": 934.37841796875,
+    "best_epoch": 4981
+  },
+  "noise_60": {
+    "input_noisy_psnr": 6.7997215450146395,
+    "svd_psnr": 6.7997215450146395,
+    "old_baseline_psnr": 26.45746221997927,
+    "improved_psnr": 30.45807637644176,
+    "improved_ssim": 0.9045066833496094,
+    "paper_reported_psnr": 29.7,
+    "gain_over_old_db": 4.00061415646249,
+    "gap_to_paper_db": 0.7580763764417604,
+    "runtime_sec": 509.01934814453125,
+    "peak_vram_mb": 934.37841796875,
+    "best_epoch": 4960
+  }
+}

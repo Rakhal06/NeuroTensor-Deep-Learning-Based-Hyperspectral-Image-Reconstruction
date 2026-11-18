@@ -1,0 +1,46 @@
+{
+  "experiment": "Figure 11 Video Compressive Sensing (CACTI)",
+  "dataset": "data/cat_video.mat",
+  "tensor_shape": [
+    128,
+    128,
+    64
+  ],
+  "multiplexed_frames": 8,
+  "coded_snapshots": 8,
+  "rank": 32,
+  "epochs": 3000,
+  "device": "cuda",
+  "gpu_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "torch_version": "2.5.1+cu121",
+  "loss_criterion": "losses.L2Norm",
+  "timestamp": "2026-11-08 16:58:40",
+  "variants": [
+    "baseline",
+    "hybrid",
+    "cnn_control",
+    "pointwise_control",
+    "transformer"
+  ],
+  "parameter_counts": {
+    "baseline": 784648,
+    "hybrid": 834632,
+    "cnn_control": 834505,
+    "pointwise_control": 834568,
+    "transformer": 1376036
+  },
+  "runtimes_sec": {
+    "baseline": 225.73722982406616,
+    "hybrid": 235.015398979187,
+    "cnn_control": 228.99430465698242,
+    "pointwise_control": 232.8038547039032,
+    "transformer": 167.07686352729797
+  },
+  "peak_vram_mb": {
+    "baseline": 132.08740234375,
+    "hybrid": 133.412109375,
+    "cnn_control": 133.23779296875,
+    "pointwise_control": 133.40966796875,
+    "transformer": 143.07763671875
+  }
+}

@@ -1,0 +1,7 @@
+Variant: transformer
+PSNR: 44.0766 dB
+SSIM: 0.9793
+RMSE: 0.006254
+Runtime: 248.08 s
+Peak VRAM: 681.51 MB
+spec_net params: 798612

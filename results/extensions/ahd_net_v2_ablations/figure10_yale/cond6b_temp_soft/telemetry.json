@@ -1,0 +1,602 @@
+[
+  {
+    "epoch": 1,
+    "meas_loss": 0.36459633708000183,
+    "total_loss": 0.36459633708000183,
+    "tau": 2.0,
+    "router_entropy": 1.0986112356185913,
+    "channel_entropy": 1.0964267253875732,
+    "mean_weights": {
+      "cnn": 0.33394718170166016,
+      "pointwise": 0.3333166241645813,
+      "attention": 0.33273619413375854
+    },
+    "dominant_counts": {
+      "cnn": 45,
+      "pointwise": 36,
+      "attention": 47
+    },
+    "gradient_norms": {
+      "cnn": 0.00045097089605405927,
+      "pointwise": 0.00024482098524458706,
+      "attention": 0.0008963019936345518,
+      "router": 2.4465240130666643e-05
+    }
+  },
+  {
+    "epoch": 50,
+    "meas_loss": 0.21405145525932312,
+    "total_loss": 0.21405145525932312,
+    "tau": 1.995891590064789,
+    "router_entropy": 1.098374605178833,
+    "channel_entropy": 1.0929473638534546,
+    "mean_weights": {
+      "cnn": 0.33035582304000854,
+      "pointwise": 0.3433583676815033,
+      "attention": 0.32628577947616577
+    },
+    "dominant_counts": {
+      "cnn": 40,
+      "pointwise": 49,
+      "attention": 39
+    },
+    "gradient_norms": {
+      "cnn": 0.0014039486413821578,
+      "pointwise": 0.006916251499205828,
+      "attention": 0.002044928725808859,
+      "router": 0.00031040850444696844
+    }
+  },
+  {
+    "epoch": 100,
+    "meas_loss": 0.19779127836227417,
+    "total_loss": 0.19779127836227417,
+    "tau": 1.9833000510084537,
+    "router_entropy": 1.0975472927093506,
+    "channel_entropy": 1.0878279209136963,
+    "mean_weights": {
+      "cnn": 0.326583594083786,
+      "pointwise": 0.35470253229141235,
+      "attention": 0.31871387362480164
+    },
+    "dominant_counts": {
+      "cnn": 35,
+      "pointwise": 65,
+      "attention": 28
+    },
+    "gradient_norms": {
+      "cnn": 0.0033161635510623455,
+      "pointwise": 0.006456930190324783,
+      "attention": 0.007036123890429735,
+      "router": 0.0006829173071309924
+    }
+  },
+  {
+    "epoch": 150,
+    "meas_loss": 0.18953117728233337,
+    "total_loss": 0.18953117728233337,
+    "tau": 1.9624391140832749,
+    "router_entropy": 1.0962859392166138,
+    "channel_entropy": 1.0827159881591797,
+    "mean_weights": {
+      "cnn": 0.32281428575515747,
+      "pointwise": 0.3650921881198883,
+      "attention": 0.3120935559272766
+    },
+    "dominant_counts": {
+      "cnn": 37,
+      "pointwise": 65,
+      "attention": 26
+    },
+    "gradient_norms": {
+      "cnn": 0.005325065925717354,
+      "pointwise": 0.014082998968660831,
+      "attention": 0.011002665385603905,
+      "router": 0.0017702634213492274
+    }
+  },
+  {
+    "epoch": 200,
+    "meas_loss": 0.1817270666360855,
+    "total_loss": 0.1817270666360855,
+    "tau": 1.9336657157037864,
+    "router_entropy": 1.0951615571975708,
+    "channel_entropy": 1.0787404775619507,
+    "mean_weights": {
+      "cnn": 0.32263892889022827,
+      "pointwise": 0.37153416872024536,
+      "attention": 0.30582693219184875
+    },
+    "dominant_counts": {
+      "cnn": 39,
+      "pointwise": 65,
+      "attention": 24
+    },
+    "gradient_norms": {
+      "cnn": 0.0038111403118819,
+      "pointwise": 0.008979094214737415,
+      "attention": 0.009774966165423393,
+      "router": 0.0017785122618079185
+    }
+  },
+  {
+    "epoch": 250,
+    "meas_loss": 0.1777840256690979,
+    "total_loss": 0.1777840256690979,
+    "tau": 1.897472176693755,
+    "router_entropy": 1.0937577486038208,
+    "channel_entropy": 1.0740596055984497,
+    "mean_weights": {
+      "cnn": 0.3224121034145355,
+      "pointwise": 0.3781605064868927,
+      "attention": 0.2994273900985718
+    },
+    "dominant_counts": {
+      "cnn": 37,
+      "pointwise": 69,
+      "attention": 22
+    },
+    "gradient_norms": {
+      "cnn": 0.002931509632617235,
+      "pointwise": 0.009292050264775753,
+      "attention": 0.00491623068228364,
+      "router": 0.0009866517502814531
+    }
+  },
+  {
+    "epoch": 300,
+    "meas_loss": 0.1752530336380005,
+    "total_loss": 0.1752530336380005,
+    "tau": 1.8544777785403868,
+    "router_entropy": 1.0922460556030273,
+    "channel_entropy": 1.0691707134246826,
+    "mean_weights": {
+      "cnn": 0.32223081588745117,
+      "pointwise": 0.3842355012893677,
+      "attention": 0.29353365302085876
+    },
+    "dominant_counts": {
+      "cnn": 38,
+      "pointwise": 68,
+      "attention": 22
+    },
+    "gradient_norms": {
+      "cnn": 0.004790423437952995,
+      "pointwise": 0.01116402167826891,
+      "attention": 0.00819174200296402,
+      "router": 0.0015781151596456766
+    }
+  },
+  {
+    "epoch": 350,
+    "meas_loss": 0.1732812523841858,
+    "total_loss": 0.1732812523841858,
+    "tau": 1.805418167316385,
+    "router_entropy": 1.090805172920227,
+    "channel_entropy": 1.0643541812896729,
+    "mean_weights": {
+      "cnn": 0.32273682951927185,
+      "pointwise": 0.38911116123199463,
+      "attention": 0.28815197944641113
+    },
+    "dominant_counts": {
+      "cnn": 38,
+      "pointwise": 68,
+      "attention": 22
+    },
+    "gradient_norms": {
+      "cnn": 0.002395553281530738,
+      "pointwise": 0.0075240288861095905,
+      "attention": 0.004887042101472616,
+      "router": 0.0018076321575790644
+    }
+  },
+  {
+    "epoch": 400,
+    "meas_loss": 0.17222192883491516,
+    "total_loss": 0.17222192883491516,
+    "tau": 1.7511327665716863,
+    "router_entropy": 1.0889981985092163,
+    "channel_entropy": 1.0583469867706299,
+    "mean_weights": {
+      "cnn": 0.3233904540538788,
+      "pointwise": 0.3945375084877014,
+      "attention": 0.2820720672607422
+    },
+    "dominant_counts": {
+      "cnn": 37,
+      "pointwise": 70,
+      "attention": 21
+    },
+    "gradient_norms": {
+      "cnn": 0.0025307554751634598,
+      "pointwise": 0.008113122545182705,
+      "attention": 0.004546984098851681,
+      "router": 0.0009482913301326334
+    }
+  },
+  {
+    "epoch": 450,
+    "meas_loss": 0.1713908165693283,
+    "total_loss": 0.1713908165693283,
+    "tau": 1.692550414563789,
+    "router_entropy": 1.0870001316070557,
+    "channel_entropy": 1.0513598918914795,
+    "mean_weights": {
+      "cnn": 0.3244892656803131,
+      "pointwise": 0.3997272551059723,
+      "attention": 0.2757834792137146
+    },
+    "dominant_counts": {
+      "cnn": 41,
+      "pointwise": 68,
+      "attention": 19
+    },
+    "gradient_norms": {
+      "cnn": 0.005704199429601431,
+      "pointwise": 0.015911957249045372,
+      "attention": 0.009094011969864368,
+      "router": 0.0031000631861388683
+    }
+  },
+  {
+    "epoch": 500,
+    "meas_loss": 0.1704273372888565,
+    "total_loss": 0.1704273372888565,
+    "tau": 1.6306734715776448,
+    "router_entropy": 1.0849874019622803,
+    "channel_entropy": 1.0442379713058472,
+    "mean_weights": {
+      "cnn": 0.3259752690792084,
+      "pointwise": 0.4042436480522156,
+      "attention": 0.26978108286857605
+    },
+    "dominant_counts": {
+      "cnn": 42,
+      "pointwise": 67,
+      "attention": 19
+    },
+    "gradient_norms": {
+      "cnn": 0.006234774831682444,
+      "pointwise": 0.014206485822796822,
+      "attention": 0.008740242570638657,
+      "router": 0.002393435686826706
+    }
+  },
+  {
+    "epoch": 550,
+    "meas_loss": 0.16936473548412323,
+    "total_loss": 0.16936473548412323,
+    "tau": 1.5665606692632763,
+    "router_entropy": 1.0828065872192383,
+    "channel_entropy": 1.0363612174987793,
+    "mean_weights": {
+      "cnn": 0.3275691568851471,
+      "pointwise": 0.40865543484687805,
+      "attention": 0.2637753486633301
+    },
+    "dominant_counts": {
+      "cnn": 42,
+      "pointwise": 68,
+      "attention": 18
+    },
+    "gradient_norms": {
+      "cnn": 0.005893116816878319,
+      "pointwise": 0.013727094978094101,
+      "attention": 0.010382034815847874,
+      "router": 0.003163957269862294
+    }
+  },
+  {
+    "epoch": 600,
+    "meas_loss": 0.16868005692958832,
+    "total_loss": 0.16868005692958832,
+    "tau": 1.501308995443709,
+    "router_entropy": 1.0806517601013184,
+    "channel_entropy": 1.0285108089447021,
+    "mean_weights": {
+      "cnn": 0.3295230269432068,
+      "pointwise": 0.4124157428741455,
+      "attention": 0.2580612897872925
+    },
+    "dominant_counts": {
+      "cnn": 43,
+      "pointwise": 69,
+      "attention": 16
+    },
+    "gradient_norms": {
+      "cnn": 0.002347133820876479,
+      "pointwise": 0.006944709923118353,
+      "attention": 0.0035170961637049913,
+      "router": 0.001612880383618176
+    }
+  },
+  {
+    "epoch": 650,
+    "meas_loss": 0.16851681470870972,
+    "total_loss": 0.16851681470870972,
+    "tau": 1.436034924349178,
+    "router_entropy": 1.0782513618469238,
+    "channel_entropy": 1.020073652267456,
+    "mean_weights": {
+      "cnn": 0.33172696828842163,
+      "pointwise": 0.4161856770515442,
+      "attention": 0.2520873546600342
+    },
+    "dominant_counts": {
+      "cnn": 44,
+      "pointwise": 69,
+      "attention": 15
+    },
+    "gradient_norms": {
+      "cnn": 0.007403610274195671,
+      "pointwise": 0.018265921622514725,
+      "attention": 0.011647687293589115,
+      "router": 0.00484606483951211
+    }
+  },
+  {
+    "epoch": 700,
+    "meas_loss": 0.16789354383945465,
+    "total_loss": 0.16789354383945465,
+    "tau": 1.3718553134335016,
+    "router_entropy": 1.0753679275512695,
+    "channel_entropy": 1.0101248025894165,
+    "mean_weights": {
+      "cnn": 0.33395156264305115,
+      "pointwise": 0.4204895794391632,
+      "attention": 0.24555888772010803
+    },
+    "dominant_counts": {
+      "cnn": 44,
+      "pointwise": 70,
+      "attention": 14
+    },
+    "gradient_norms": {
+      "cnn": 0.005635623820126057,
+      "pointwise": 0.011335630901157856,
+      "attention": 0.00646448927000165,
+      "router": 0.0022133062593638897
+    }
+  },
+  {
+    "epoch": 750,
+    "meas_loss": 0.16751518845558167,
+    "total_loss": 0.16751518845558167,
+    "tau": 1.3098682936333976,
+    "router_entropy": 1.0726029872894287,
+    "channel_entropy": 1.000487208366394,
+    "mean_weights": {
+      "cnn": 0.3367062509059906,
+      "pointwise": 0.42386549711227417,
+      "attention": 0.23942822217941284
+    },
+    "dominant_counts": {
+      "cnn": 46,
+      "pointwise": 69,
+      "attention": 13
+    },
+    "gradient_norms": {
+      "cnn": 0.00441893981769681,
+      "pointwise": 0.009928012266755104,
+      "attention": 0.004702433478087187,
+      "router": 0.0019266061717644334
+    }
+  },
+  {
+    "epoch": 800,
+    "meas_loss": 0.16706053912639618,
+    "total_loss": 0.16706053912639618,
+    "tau": 1.2511344800436939,
+    "router_entropy": 1.0701241493225098,
+    "channel_entropy": 0.9913960695266724,
+    "mean_weights": {
+      "cnn": 0.3400619328022003,
+      "pointwise": 0.42605024576187134,
+      "attention": 0.23388780653476715
+    },
+    "dominant_counts": {
+      "cnn": 47,
+      "pointwise": 68,
+      "attention": 13
+    },
+    "gradient_norms": {
+      "cnn": 0.005699076224118471,
+      "pointwise": 0.016104375943541527,
+      "attention": 0.007371215615421534,
+      "router": 0.004719638265669346
+    }
+  },
+  {
+    "epoch": 850,
+    "meas_loss": 0.16678565740585327,
+    "total_loss": 0.16678565740585327,
+    "tau": 1.1966588244990002,
+    "router_entropy": 1.0670769214630127,
+    "channel_entropy": 0.9807908535003662,
+    "mean_weights": {
+      "cnn": 0.34326446056365967,
+      "pointwise": 0.42895689606666565,
+      "attention": 0.22777865827083588
+    },
+    "dominant_counts": {
+      "cnn": 47,
+      "pointwise": 68,
+      "attention": 13
+    },
+    "gradient_norms": {
+      "cnn": 0.005505040753632784,
+      "pointwise": 0.01397794857621193,
+      "attention": 0.005926697980612516,
+      "router": 0.0030613841954618692
+    }
+  },
+  {
+    "epoch": 900,
+    "meas_loss": 0.16639932990074158,
+    "total_loss": 0.16639932990074158,
+    "tau": 1.1473734205691912,
+    "router_entropy": 1.0642436742782593,
+    "channel_entropy": 0.9712570905685425,
+    "mean_weights": {
+      "cnn": 0.34663230180740356,
+      "pointwise": 0.4311096966266632,
+      "attention": 0.22225798666477203
+    },
+    "dominant_counts": {
+      "cnn": 47,
+      "pointwise": 68,
+      "attention": 13
+    },
+    "gradient_norms": {
+      "cnn": 0.003718164749443531,
+      "pointwise": 0.01081948820501566,
+      "attention": 0.004628132563084364,
+      "router": 0.003377770073711872
+    }
+  },
+  {
+    "epoch": 950,
+    "meas_loss": 0.1662515252828598,
+    "total_loss": 0.1662515252828598,
+    "tau": 1.1041215551800014,
+    "router_entropy": 1.0613417625427246,
+    "channel_entropy": 0.961650550365448,
+    "mean_weights": {
+      "cnn": 0.3500220775604248,
+      "pointwise": 0.433085560798645,
+      "attention": 0.2168923169374466
+    },
+    "dominant_counts": {
+      "cnn": 47,
+      "pointwise": 68,
+      "attention": 13
+    },
+    "gradient_norms": {
+      "cnn": 0.004604567773640156,
+      "pointwise": 0.014664053916931152,
+      "attention": 0.003991869743913412,
+      "router": 0.0037953457795083523
+    }
+  },
+  {
+    "epoch": 1000,
+    "meas_loss": 0.16583842039108276,
+    "total_loss": 0.16583842039108276,
+    "tau": 1.0676432797399225,
+    "router_entropy": 1.0583776235580444,
+    "channel_entropy": 0.9525370597839355,
+    "mean_weights": {
+      "cnn": 0.35322433710098267,
+      "pointwise": 0.43503886461257935,
+      "attention": 0.211736798286438
+    },
+    "dominant_counts": {
+      "cnn": 47,
+      "pointwise": 68,
+      "attention": 13
+    },
+    "gradient_norms": {
+      "cnn": 0.00963104423135519,
+      "pointwise": 0.018871892243623734,
+      "attention": 0.010974761098623276,
+      "router": 0.005153083708137274
+    }
+  },
+  {
+    "epoch": 1050,
+    "meas_loss": 0.16554783284664154,
+    "total_loss": 0.16554783284664154,
+    "tau": 1.038562747655423,
+    "router_entropy": 1.0558398962020874,
+    "channel_entropy": 0.9447983503341675,
+    "mean_weights": {
+      "cnn": 0.3565012812614441,
+      "pointwise": 0.43614766001701355,
+      "attention": 0.20735111832618713
+    },
+    "dominant_counts": {
+      "cnn": 49,
+      "pointwise": 66,
+      "attention": 13
+    },
+    "gradient_norms": {
+      "cnn": 0.009566670283675194,
+      "pointwise": 0.014765958301723003,
+      "attention": 0.009405504912137985,
+      "router": 0.00336015154607594
+    }
+  },
+  {
+    "epoch": 1100,
+    "meas_loss": 0.16535434126853943,
+    "total_loss": 0.16535434126853943,
+    "tau": 1.0173775348931149,
+    "router_entropy": 1.0536097288131714,
+    "channel_entropy": 0.9380896091461182,
+    "mean_weights": {
+      "cnn": 0.35958990454673767,
+      "pointwise": 0.4368308484554291,
+      "attention": 0.20357921719551086
+    },
+    "dominant_counts": {
+      "cnn": 49,
+      "pointwise": 66,
+      "attention": 13
+    },
+    "gradient_norms": {
+      "cnn": 0.005218212492763996,
+      "pointwise": 0.013126816600561142,
+      "attention": 0.0041882931254804134,
+      "router": 0.0031425810884684324
+    }
+  },
+  {
+    "epoch": 1150,
+    "meas_loss": 0.16506147384643555,
+    "total_loss": 0.16506147384643555,
+    "tau": 1.0044501263170127,
+    "router_entropy": 1.0516830682754517,
+    "channel_entropy": 0.9326419830322266,
+    "mean_weights": {
+      "cnn": 0.36253970861434937,
+      "pointwise": 0.4371068477630615,
+      "attention": 0.2003534436225891
+    },
+    "dominant_counts": {
+      "cnn": 51,
+      "pointwise": 66,
+      "attention": 11
+    },
+    "gradient_norms": {
+      "cnn": 0.006607746705412865,
+      "pointwise": 0.013427546247839928,
+      "attention": 0.005294593516737223,
+      "router": 0.0035967647563666105
+    }
+  },
+  {
+    "epoch": 1200,
+    "meas_loss": 0.16512127220630646,
+    "total_loss": 0.16512127220630646,
+    "tau": 1.0000017134720076,
+    "router_entropy": 1.050358533859253,
+    "channel_entropy": 0.9292260408401489,
+    "mean_weights": {
+      "cnn": 0.3656603693962097,
+      "pointwise": 0.43639564514160156,
+      "attention": 0.19794398546218872
+    },
+    "dominant_counts": {
+      "cnn": 53,
+      "pointwise": 66,
+      "attention": 9
+    },
+    "gradient_norms": {
+      "cnn": 0.011866644956171513,
+      "pointwise": 0.02321723848581314,
+      "attention": 0.01178355049341917,
+      "router": 0.006910485681146383
+    }
+  }
+]

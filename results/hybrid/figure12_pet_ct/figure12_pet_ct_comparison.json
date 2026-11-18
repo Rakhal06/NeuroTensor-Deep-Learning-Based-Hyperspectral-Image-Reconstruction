@@ -1,0 +1,101 @@
+{
+  "experiment": "figure12_pet_ct",
+  "models": {
+    "baseline": {
+      "metrics": {
+        "psnr": 30.002329936047488,
+        "ssim": 0.847166920794543,
+        "rmse": 0.03161429241299629,
+        "mae": 0.018809299916028976,
+        "rel_error": 0.17214436829090118
+      },
+      "params": 3918508,
+      "runtime_sec": 465.7666003704071,
+      "peak_vram_mb": 610.10986328125,
+      "extra_metrics": {}
+    },
+    "hybrid": {
+      "metrics": {
+        "psnr": 30.2947209003835,
+        "ssim": 0.85660139152197,
+        "rmse": 0.03056778386235237,
+        "mae": 0.018238039687275887,
+        "rel_error": 0.1664460003376007
+      },
+      "params": 4050988,
+      "runtime_sec": 507.94992995262146,
+      "peak_vram_mb": 612.6845703125,
+      "extra_metrics": {}
+    },
+    "cnn_control": {
+      "metrics": {
+        "psnr": 30.312834876602057,
+        "ssim": 0.857858594673751,
+        "rmse": 0.030504103749990463,
+        "mae": 0.018067030236124992,
+        "rel_error": 0.1660992056131363
+      },
+      "params": 4051160,
+      "runtime_sec": 509.358323097229,
+      "peak_vram_mb": 612.31982421875,
+      "extra_metrics": {}
+    },
+    "pointwise_control": {
+      "metrics": {
+        "psnr": 30.62121247267467,
+        "ssim": 0.8621499758702521,
+        "rmse": 0.029440106824040413,
+        "mae": 0.017660824581980705,
+        "rel_error": 0.16030561923980713
+      },
+      "params": 4050860,
+      "runtime_sec": 509.2673599720001,
+      "peak_vram_mb": 612.54150390625,
+      "extra_metrics": {}
+    },
+    "transformer": {
+      "metrics": {
+        "psnr": 30.40561702744171,
+        "ssim": 0.8584554591139809,
+        "rmse": 0.03017999418079853,
+        "mae": 0.018047034740447998,
+        "rel_error": 0.16433440148830414
+      },
+      "params": 3663144,
+      "runtime_sec": 398.75910687446594,
+      "peak_vram_mb": 607.62109375,
+      "extra_metrics": {}
+    }
+  },
+  "comparisons": {
+    "hybrid_vs_baseline": {
+      "delta_psnr_db": 0.2923909643360112,
+      "delta_ssim": 0.00943447072742698,
+      "delta_rmse": -0.001046508550643921,
+      "param_ratio": 1.033808786405438,
+      "psnr_improved": true
+    },
+    "cnn_control_vs_baseline": {
+      "delta_psnr_db": 0.31050494055456923,
+      "delta_ssim": 0.010691673879207997,
+      "delta_rmse": -0.0011101886630058289,
+      "param_ratio": 1.0338526806631503,
+      "psnr_improved": true
+    },
+    "pointwise_control_vs_baseline": {
+      "delta_psnr_db": 0.6188825366271828,
+      "delta_ssim": 0.014983055075709073,
+      "delta_rmse": -0.002174185588955879,
+      "param_ratio": 1.0337761209113265,
+      "psnr_improved": true
+    },
+    "transformer_vs_baseline": {
+      "delta_psnr_db": 0.4032870913942226,
+      "delta_ssim": 0.01128853831943788,
+      "delta_rmse": -0.0014342982321977615,
+      "param_ratio": 0.9348313184507981,
+      "psnr_improved": true
+    }
+  },
+  "csv_path": "E:\\Rakhal_Tensor\\results\\hybrid\\figure12_pet_ct\\figure12_pet_ct_comparison.csv"
+}

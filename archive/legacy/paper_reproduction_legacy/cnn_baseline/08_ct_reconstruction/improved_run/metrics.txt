@@ -1,0 +1,28 @@
+============================================================
+DEEPTENSOR BASELINE: FIGURE 12 IMPROVED METRICS SUMMARY
+============================================================
+Experiment: Figure 12 (3D PET CT Reconstruction)
+Dataset: PET CT Scan (data/pet.mat) | Dimensions: 128 x 128 x 56
+PARAFAC Rank: 1000 | Tomographic Angles: 40
+Noise: Poisson (tau=100.0) + Gaussian readout (snr=2.0)
+Epochs: 4000 | Optimizer: Adam (lr=0.001) + CosineAnnealing
+Device: cuda | Peak VRAM: 584.70 MB
+
+METHOD                     PSNR (dB)     SSIM         RMSE         RUNTIME (s)
+--------------------------------------------------------------------------------
+Algorithmic Rec            26.97         0.5317       0.0448       8.87
+2D TV Regularization       30.31         0.7585       0.0305       9.40
+2D TV + PARAFAC            27.06         0.6975       0.0444       14.25
+DeepTensor (Rank-1000)     30.55         0.8302       0.0297       425.60
+--------------------------------------------------------------------------------
+Paper Reference (DeepTensor): 31.10 dB     0.8700
+Paper Reference (2D TV):      28.60 dB     0.7100
+Paper Reference (2D TV+CP):   27.60 dB     0.5900
+Paper Reference (Algorithmic):26.30 dB     0.4800
+
+DeepTensor PSNR Gain over Algorithmic: +3.57 dB
+DeepTensor PSNR Gain over 2D TV:       +0.24 dB
+DeepTensor PSNR Gain over 2D TV+CP:    +3.49 dB
+DeepTensor SSIM Gain over 2D TV:       +0.0717
+DeepTensor SSIM Gain over 2D TV+CP:    +0.1327
+Final Measurement Loss:                2.261706e-01

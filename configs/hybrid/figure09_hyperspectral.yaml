@@ -1,0 +1,51 @@
+experiment: Figure 09 Hyperspectral Denoising (ICVL)
+dataset: data/icvl.mat
+data_shape: [174, 164, 260]
+rank: 20
+n_inputs: 20
+noise_snr: 2.0
+tau: 100
+learning_rate: 0.001
+reg_noise_std: 0.03333333333333333
+epochs: 5000
+smoke_epochs: 10
+device: cuda
+output_dir: results/hybrid/figure09_hyperspectral
+
+architectures:
+  baseline:
+    spatial_type: skip
+    spectral_type: skip1d
+  hybrid:
+    spatial_type: skip
+    spectral_type: hybrid_attention
+    d_model: 128
+    heads: 2
+    seq_len: 260
+  transformer:
+    spatial_type: skip
+    spectral_type: spectral_transformer
+    d_model: 128
+    n_heads: 4
+    n_layers: 4
+    d_ffn: 512
+    seq_len: 260
+  control:
+    spatial_type: skip
+    spectral_type: control_transformer
+    d_model: 128
+    n_heads: 4
+    n_layers: 4
+    d_ffn: 512
+    seq_len: 260
+  cnn_control:
+    spatial_type: skip
+    spectral_type: cnn_control
+    d_model: 128
+    seq_len: 260
+  pointwise_control:
+    spatial_type: skip
+    spectral_type: hybrid_control
+    d_model: 128
+    seq_len: 260
+

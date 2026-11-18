@@ -1,0 +1,17 @@
+================================================================================
+RUNNING FIGURE 11 ROUTING VALIDATION: cond_b_constant_tau1 — Constant Temperature CAGC
+Condition: Condition B | Description: Learned CAGC router with fixed constant unit temperature (tau = 1.0, no decay)
+Router Type: cagc | Fixed Tau: 1.0
+Epochs: 3000 | Rank: 32 | Device: cuda
+================================================================================
+--> Trainable Parameters: Model=834,632 | AdaptiveBlock=49,984
+  [Epoch    1/3000] Loss: 1.17599e+00 | Best Loss: inf (Ep -1) | H: 1.0837 | Gates: CNN=0.353, PW=0.324, Attn=0.323 | Dominance: CNN=27, PW=19, Attn=18
+  [Epoch  500/3000] Loss: 8.42377e-03 | Best Loss: 8.38094e-03 (Ep 498) | H: 1.0830 | Gates: CNN=0.354, PW=0.323, Attn=0.323 | Dominance: CNN=26, PW=19, Attn=19
+  [Epoch 1000/3000] Loss: 6.68044e-03 | Best Loss: 6.60386e-03 (Ep 995) | H: 1.0829 | Gates: CNN=0.354, PW=0.323, Attn=0.322 | Dominance: CNN=26, PW=19, Attn=19
+  [Epoch 1500/3000] Loss: 5.84941e-03 | Best Loss: 5.83613e-03 (Ep 1499) | H: 1.0827 | Gates: CNN=0.355, PW=0.324, Attn=0.321 | Dominance: CNN=26, PW=19, Attn=19
+  [Epoch 2000/3000] Loss: 5.24135e-03 | Best Loss: 5.18915e-03 (Ep 1981) | H: 1.0823 | Gates: CNN=0.355, PW=0.324, Attn=0.321 | Dominance: CNN=27, PW=18, Attn=19
+  [Epoch 2500/3000] Loss: 4.74925e-03 | Best Loss: 4.69669e-03 (Ep 2494) | H: 1.0821 | Gates: CNN=0.356, PW=0.325, Attn=0.320 | Dominance: CNN=27, PW=18, Attn=19
+  [Epoch 3000/3000] Loss: 4.31869e-03 | Best Loss: 4.28682e-03 (Ep 2972) | H: 1.0819 | Gates: CNN=0.355, PW=0.325, Attn=0.319 | Dominance: CNN=28, PW=18, Attn=18
+--> Optimization Complete: Runtime=250.5s | Best Meas Loss=4.286820e-03 at Ep 2972
+--> RESULTS: PSNR (In-Loop)=25.1577 dB | SSIM=0.7311
+--> RESULTS: PSNR (Clean DIP)=25.3732 dB | SSIM=0.7556

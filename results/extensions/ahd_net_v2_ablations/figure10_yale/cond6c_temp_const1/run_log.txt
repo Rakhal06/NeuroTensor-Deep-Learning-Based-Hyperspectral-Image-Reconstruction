@@ -1,0 +1,19 @@
+================================================================================
+RUNNING ABLATION CONDITION: cond6c_temp_const1 — Constant Temperature
+Description: Fixed constant unit temperature (tau = 1.0, no decay)
+Router Type: cagc | Gating Floor: 0.0
+Temperature Schedule: constant (1.0 -> 1.0)
+Entropy Regularization: lambda = 0.0
+Epochs: 1200 | Rank: 2000 | Device: cuda
+================================================================================
+--> Trainable Parameters: Model=5,602,988 | AdaptiveBlock=132,480
+  [Epoch    1/1200] Loss: 0.364592 | tau: 1.00 | H_chan: 1.0899 | Gates: CNN=0.334, PW=0.333, Attn=0.332
+  [Epoch  200/1200] Loss: 0.181555 | tau: 1.00 | H_chan: 1.0067 | Gates: CNN=0.314, PW=0.410, Attn=0.276
+  [Epoch  400/1200] Loss: 0.171848 | tau: 1.00 | H_chan: 0.9452 | Gates: CNN=0.314, PW=0.447, Attn=0.239
+  [Epoch  600/1200] Loss: 0.168528 | tau: 1.00 | H_chan: 0.8970 | Gates: CNN=0.325, PW=0.463, Attn=0.212
+  [Epoch  800/1200] Loss: 0.167205 | tau: 1.00 | H_chan: 0.8554 | Gates: CNN=0.340, PW=0.469, Attn=0.191
+  [Epoch 1000/1200] Loss: 0.165391 | tau: 1.00 | H_chan: 0.8193 | Gates: CNN=0.354, PW=0.473, Attn=0.173
+  [Epoch 1200/1200] Loss: 0.164647 | tau: 1.00 | H_chan: 0.7879 | Gates: CNN=0.367, PW=0.474, Attn=0.159
+--> Optimization Complete: Runtime=160.0s | Best Meas Loss=0.164590 at Ep 1184
+--> RESULTS: PSNR (In-Loop)=27.8571 dB | SSIM=0.8565
+--> RESULTS: PSNR (Clean DIP)=27.8571 dB | SSIM=0.8565

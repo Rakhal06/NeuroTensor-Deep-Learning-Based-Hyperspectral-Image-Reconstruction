@@ -1,0 +1,1043 @@
+DeepTensor-Plus-Plus/
+├── .gitignore
+├── LICENSE
+├── PROJECT_STRUCTURE.txt
+├── README.md
+├── apps/
+│   └── streamlit_demo/
+│       ├── demo.py
+│       └── demo_backend.py
+├── archive/
+│   ├── backups/
+│   │   ├── demo.py.bak
+│   │   ├── demo_backend.py.bak
+│   │   ├── demo_backend_backup.py
+│   │   └── demo_backup.py
+│   └── legacy/
+│       ├── matrix_decomp.py
+│       ├── modify_robustness.py
+│       ├── modules_legacy/
+│       │   ├── attention_spectral.py
+│       │   ├── cosine_annealing_with_warmup.py
+│       │   ├── deep_decoder.py
+│       │   ├── deep_models/
+│       │   │   ├── __init__.py
+│       │   │   ├── common.py
+│       │   │   ├── dcgan.py
+│       │   │   ├── downsampler.py
+│       │   │   ├── resnet.py
+│       │   │   ├── skip.py
+│       │   │   ├── texture_nets.py
+│       │   │   └── unet.py
+│       │   ├── deep_prior.py
+│       │   ├── lin_inverse.py
+│       │   ├── losses.py
+│       │   ├── models.py
+│       │   ├── spectral.py
+│       │   ├── spectral_transformer.py
+│       │   └── utils.py
+│       ├── paper_extracted_text.txt
+│       ├── paper_reproduction_legacy/
+│       │   ├── cnn_baseline/
+│       │   │   ├── 01_synthetic_decomposition/
+│       │   │   │   ├── benchmark_figure4_separable_speedup.py
+│       │   │   │   ├── benchmark_figure4_separable_speedup_improved.py
+│       │   │   │   ├── config.yaml
+│       │   │   │   ├── experiment_notes.md
+│       │   │   │   ├── figure4_benchmark_metrics.json
+│       │   │   │   ├── images/
+│       │   │   │   │   └── ... (1 items)
+│       │   │   │   ├── metrics.json
+│       │   │   │   ├── plots/
+│       │   │   │   │   └── ... (4 items)
+│       │   │   │   ├── run_synthetic_suite.py
+│       │   │   │   ├── synthetic_suite_metrics.json
+│       │   │   │   └── training_log.log
+│       │   │   ├── 02_pca/
+│       │   │   │   ├── config.yaml
+│       │   │   │   ├── experiment_notes.md
+│       │   │   │   ├── images/
+│       │   │   │   │   └── ... (1 items)
+│       │   │   │   ├── metrics.json
+│       │   │   │   ├── plots/
+│       │   │   │   │   └── ... (1 items)
+│       │   │   │   └── training_log.log
+│       │   │   ├── 03_nmf/
+│       │   │   │   ├── metrics.json
+│       │   │   │   ├── metrics.txt
+│       │   │   │   └── run_table2_nmf.py
+│       │   │   ├── 04_eigenfaces_classification/
+│       │   │   │   ├── config.yaml
+│       │   │   │   ├── experiment_notes.md
+│       │   │   │   ├── images/
+│       │   │   │   │   └── ... (2 items)
+│       │   │   │   ├── metrics.json
+│       │   │   │   ├── plots/
+│       │   │   │   │   └── ... (2 items)
+│       │   │   │   └── training_log.log
+│       │   │   ├── 05_hyperspectral_denoising/
+│       │   │   │   ├── checkpoint/
+│       │   │   │   │   └── ... (1 items)
+│       │   │   │   ├── config.yaml
+│       │   │   │   ├── experiment_notes.md
+│       │   │   │   ├── figure13a_metrics.json
+│       │   │   │   ├── images/
+│       │   │   │   │   └── ... (1 items)
+│       │   │   │   ├── metrics.json
+│       │   │   │   ├── plots/
+│       │   │   │   │   └── ... (2 items)
+│       │   │   │   ├── run_figure13_rank_sweep.py
+│       │   │   │   └── training_log.log
+│       │   │   ├── 06_yale_face_tensor_denoising/
+│       │   │   │   ├── FIGURE10_IMPROVEMENT_REPORT.md
+│       │   │   │   ├── FIGURE13B_IMPROVEMENT_REPORT.md
+│       │   │   │   ├── checkpoint/
+│       │   │   │   │   └── ... (2 items)
+│       │   │   │   ├── config.yaml
+│       │   │   │   ├── experiment_notes.md
+│       │   │   │   ├── figure13b_metrics.json
+│       │   │   │   ├── generate_improved_panel.py
+│       │   │   │   ├── images/
+│       │   │   │   │   └── ... (1 items)
+│       │   │   │   ├── improved_run/
+│       │   │   │   │   └── ... (14 items)
+│       │   │   │   ├── improved_run_fig13b/
+│       │   │   │   │   └── ... (5 items)
+│       │   │   │   ├── metrics.json
+│       │   │   │   ├── metrics.txt
+│       │   │   │   ├── original_baseline/
+│       │   │   │   │   └── ... (8 items)
+│       │   │   │   ├── plots/
+│       │   │   │   │   └── ... (2 items)
+│       │   │   │   ├── run_figure10_yale_tensor.py
+│       │   │   │   ├── run_figure10_yale_tensor_improved.py
+│       │   │   │   ├── run_figure13b_yale_rank_sweep.py
+│       │   │   │   └── run_figure13b_yale_rank_sweep_improved.py
+│       │   │   ├── 07_video_compressive_sensing/
+│       │   │   │   ├── FIGURE11_IMPROVEMENT_REPORT.md
+│       │   │   │   ├── checkpoint/
+│       │   │   │   │   └── ... (1 items)
+│       │   │   │   ├── config.yaml
+│       │   │   │   ├── experiment_notes.md
+│       │   │   │   ├── figure11_results.npz
+│       │   │   │   ├── images/
+│       │   │   │   │   └── ... (1 items)
+│       │   │   │   ├── improved_run/
+│       │   │   │   │   └── ... (7 items)
+│       │   │   │   ├── metrics.json
+│       │   │   │   ├── metrics.txt
+│       │   │   │   ├── original_baseline/
+│       │   │   │   │   └── ... (8 items)
+│       │   │   │   ├── plots/
+│       │   │   │   │   └── ... (1 items)
+│       │   │   │   ├── run_figure11.py
+│       │   │   │   └── run_figure11_improved.py
+│       │   │   ├── 08_ct_reconstruction/
+│       │   │   │   ├── FIGURE12_IMPROVEMENT_REPORT.md
+│       │   │   │   ├── checkpoint/
+│       │   │   │   │   └── ... (1 items)
+│       │   │   │   ├── config.yaml
+│       │   │   │   ├── experiment_notes.md
+│       │   │   │   ├── images/
+│       │   │   │   │   └── ... (1 items)
+│       │   │   │   ├── improved_run/
+│       │   │   │   │   └── ... (7 items)
+│       │   │   │   ├── metrics.json
+│       │   │   │   ├── plots/
+│       │   │   │   │   └── ... (1 items)
+│       │   │   │   ├── run_figure12_improved.py
+│       │   │   │   └── training_log.log
+│       │   │   └── 09_speech_time_frequency/
+│       │   │       ├── config.yaml
+│       │   │       ├── experiment_notes.md
+│       │   │       ├── images/
+│       │   │       │   └── ... (1 items)
+│       │   │       ├── metrics.json
+│       │   │       ├── metrics.txt
+│       │   │       └── run_table3_speech_nmf.py
+│       │   ├── consolidated_results/
+│       │   │   ├── CNN_BASELINE_CONSOLIDATED_REPORT.md
+│       │   │   ├── FIGURE10_IMPROVEMENT_REPORT.md
+│       │   │   ├── FIGURE11_IMPROVEMENT_REPORT.md
+│       │   │   ├── PHASE1_EXPERIMENT_CONFIG_AUDIT.csv
+│       │   │   ├── PHASE1_IMPROVEMENT_PLAN.md
+│       │   │   ├── PHASE1_PERFORMANCE_GAP_AUDIT.md
+│       │   │   ├── PHASE1_RERUN_PRIORITY.csv
+│       │   │   ├── PHASE1_VALIDATION_REPORT.md
+│       │   │   ├── PHASE1_VALIDATION_SUMMARY.json
+│       │   │   ├── cnn_baseline_summary.json
+│       │   │   └── generate_consolidated_report.py
+│       │   ├── datasets/
+│       │   │   ├── 01_synthetic/
+│       │   │   │   └── README.md
+│       │   │   ├── 02_pca/
+│       │   │   │   └── README.md
+│       │   │   ├── 03_nmf/
+│       │   │   │   └── README.md
+│       │   │   ├── 04_weizmann/
+│       │   │   │   └── README.md
+│       │   │   ├── 05_icvl/
+│       │   │   │   └── README.md
+│       │   │   ├── 06_yale_b/
+│       │   │   │   └── README.md
+│       │   │   ├── 07_cat_video/
+│       │   │   │   └── README.md
+│       │   │   ├── 08_pet_ct/
+│       │   │   │   └── README.md
+│       │   │   ├── 09_speech_commands/
+│       │   │   │   └── README.md
+│       │   │   └── DATASET_AUDIT.md
+│       │   └── original_paper/
+│       │       ├── EXPERIMENT_SETTINGS.md
+│       │       ├── FIGURE_TO_EXPERIMENT_MAPPING.md
+│       │       ├── FIGURE_TRACKER.md
+│       │       └── REPORTED_METRICS.md
+│       ├── scratch_audit/
+│       │   ├── audit_duplicate_files.py
+│       │   ├── audit_experiments.py
+│       │   ├── audit_helper.py
+│       │   ├── build_audit_data.py
+│       │   ├── check_src_imports.py
+│       │   ├── comprehensive_audit_data.json
+│       │   ├── diff_backups.py
+│       │   ├── execute_post_migration_validation.py
+│       │   ├── execute_pre_migration.py
+│       │   ├── execute_project_reorganization.py
+│       │   ├── find_21_05.py
+│       │   ├── find_43_4.py
+│       │   ├── find_88_67.py
+│       │   ├── find_deeptensor_class.py
+│       │   ├── find_fig11_cons.py
+│       │   ├── folder_sizes.py
+│       │   ├── generate_doc1_consistency.py
+│       │   ├── generate_doc2_dataset_dimensions.py
+│       │   ├── generate_doc3_experiment_metrics.py
+│       │   ├── generate_doc4_file_duplication.py
+│       │   ├── generate_second_pass_audit.py
+│       │   ├── inspect_data.py
+│       │   ├── inspect_imports.py
+│       │   ├── inspect_modules.py
+│       │   ├── inspect_root_files.py
+│       │   ├── inspect_run_fig11.py
+│       │   ├── inspect_storage.py
+│       │   ├── investigate_all_discrepancies.py
+│       │   ├── investigate_discrepancies.py
+│       │   ├── investigate_fig11.py
+│       │   ├── investigate_fig13b.py
+│       │   ├── investigate_fig2.py
+│       │   ├── investigate_fig9.py
+│       │   ├── make_audit_summary_doc.py
+│       │   ├── make_data_results_inventory_doc.py
+│       │   ├── make_dependency_map_doc.py
+│       │   ├── make_experiment_mapping_doc.py
+│       │   ├── make_final_structure_doc.py
+│       │   ├── make_migration_map_doc.py
+│       │   ├── make_python_inventory_doc.py
+│       │   ├── make_structure_doc.py
+│       │   ├── populate_src_package.py
+│       │   ├── scaffold_directories.py
+│       │   ├── test_demo_startup.py
+│       │   └── test_package_imports.py
+│       ├── scratch_calibrate.py
+│       ├── scratch_exp_mapping.json
+│       ├── scratch_py_inventory.json
+│       └── user_prompt.txt
+├── configs/
+│   ├── hybrid/
+│   ├── improvements/
+│   │   ├── figure10_yale.yaml
+│   │   ├── figure11_video.yaml
+│   │   └── figure13b_yale_rank.yaml
+│   └── reproduction/
+│       ├── figure02_eigenfaces.json
+│       ├── figure04_efficiency.yaml
+│       ├── figure06_synthetic_robustness.json
+│       ├── figure07_robust_pca.json
+│       ├── figure09_hyperspectral.json
+│       ├── figure10_yale_denoising.yaml
+│       ├── figure11_video_cs.yaml
+│       ├── figure12_pet_ct.json
+│       ├── figure13a_hsi_rank.yaml
+│       ├── figure13b_yale_rank.yaml
+│       ├── table01_synthetic.yaml
+│       └── table03_speech.yaml
+├── data/
+│   ├── CroppedYale/
+│   │   ├── CroppedYale/
+│   │   │   ├── .DS_Store
+│   │   │   ├── yaleB01/
+│   │   │   │   └── ... (68 data/asset items)
+│   │   │   ├── yaleB02/
+│   │   │   │   └── ... (67 data/asset items)
+│   │   │   ├── yaleB03/
+│   │   │   │   └── ... (67 data/asset items)
+│   │   │   ├── yaleB04/
+│   │   │   │   └── ... (67 data/asset items)
+│   │   │   ├── yaleB05/
+│   │   │   │   └── ... (67 data/asset items)
+│   │   │   ├── yaleB06/
+│   │   │   │   └── ... (67 data/asset items)
+│   │   │   ├── yaleB07/
+│   │   │   │   └── ... (67 data/asset items)
+│   │   │   ├── yaleB08/
+│   │   │   │   └── ... (67 data/asset items)
+│   │   │   ├── yaleB09/
+│   │   │   │   └── ... (67 data/asset items)
+│   │   │   ├── yaleB10/
+│   │   │   │   └── ... (67 data/asset items)
+│   │   │   ├── yaleB11/
+│   │   │   │   └── ... (67 data/asset items)
+│   │   │   ├── yaleB12/
+│   │   │   │   └── ... (67 data/asset items)
+│   │   │   └── yaleB13/
+│   │   │       └── ... (67 data/asset items)
+│   │   └── __MACOSX/
+│   │       ├── ._CroppedYale
+│   │       └── CroppedYale/
+│   │           ├── ._.DS_Store
+│   │           ├── ._yaleB01
+│   │           ├── ._yaleB02
+│   │           ├── ._yaleB03
+│   │           ├── ._yaleB04
+│   │           ├── ._yaleB05
+│   │           ├── ._yaleB06
+│   │           ├── ._yaleB07
+│   │           ├── ._yaleB08
+│   │           ├── ._yaleB09
+│   │           ├── ._yaleB10
+│   │           ├── ._yaleB11
+│   │           ├── ._yaleB12
+│   │           ├── ._yaleB13
+│   │           ├── yaleB01/
+│   │           │   └── ... (68 data/asset items)
+│   │           ├── yaleB02/
+│   │           │   └── ... (67 data/asset items)
+│   │           ├── yaleB03/
+│   │           │   └── ... (67 data/asset items)
+│   │           ├── yaleB04/
+│   │           │   └── ... (67 data/asset items)
+│   │           ├── yaleB05/
+│   │           │   └── ... (67 data/asset items)
+│   │           ├── yaleB06/
+│   │           │   └── ... (67 data/asset items)
+│   │           ├── yaleB07/
+│   │           │   └── ... (67 data/asset items)
+│   │           ├── yaleB08/
+│   │           │   └── ... (67 data/asset items)
+│   │           ├── yaleB09/
+│   │           │   └── ... (67 data/asset items)
+│   │           ├── yaleB10/
+│   │           │   └── ... (67 data/asset items)
+│   │           ├── yaleB11/
+│   │           │   └── ... (67 data/asset items)
+│   │           ├── yaleB12/
+│   │           │   └── ... (67 data/asset items)
+│   │           └── yaleB13/
+│   │               └── ... (67 data/asset items)
+│   ├── CroppedYale.zip
+│   ├── MNIST/
+│   │   └── raw/
+│   │       ├── t10k-images-idx3-ubyte
+│   │       ├── t10k-images-idx3-ubyte.gz
+│   │       ├── t10k-labels-idx1-ubyte
+│   │       ├── t10k-labels-idx1-ubyte.gz
+│   │       ├── train-images-idx3-ubyte
+│   │       ├── train-images-idx3-ubyte.gz
+│   │       ├── train-labels-idx1-ubyte
+│   │       └── train-labels-idx1-ubyte.gz
+│   ├── README.txt
+│   ├── SpeechCommands/
+│   │   └── speech_commands_v0.02/
+│   │       ├── .DS_Store
+│   │       ├── LICENSE
+│   │       ├── README.md
+│   │       ├── _background_noise_/
+│   │       │   ├── README.md
+│   │       │   ├── doing_the_dishes.wav
+│   │       │   ├── dude_miaowing.wav
+│   │       │   ├── exercise_bike.wav
+│   │       │   ├── pink_noise.wav
+│   │       │   ├── running_tap.wav
+│   │       │   └── white_noise.wav
+│   │       ├── backward/
+│   │       │   └── ... (1664 data/asset items)
+│   │       ├── bed/
+│   │       │   └── ... (2014 data/asset items)
+│   │       ├── bird/
+│   │       │   └── ... (2064 data/asset items)
+│   │       ├── cat/
+│   │       │   └── ... (2031 data/asset items)
+│   │       ├── dog/
+│   │       │   └── ... (2128 data/asset items)
+│   │       ├── down/
+│   │       │   └── ... (3917 data/asset items)
+│   │       ├── eight/
+│   │       │   └── ... (3787 data/asset items)
+│   │       ├── five/
+│   │       │   └── ... (4052 data/asset items)
+│   │       ├── follow/
+│   │       │   └── ... (1579 data/asset items)
+│   │       ├── forward/
+│   │       │   └── ... (1557 data/asset items)
+│   │       ├── four/
+│   │       │   └── ... (3728 data/asset items)
+│   │       ├── go/
+│   │       │   └── ... (3880 data/asset items)
+│   │       ├── happy/
+│   │       │   └── ... (2054 data/asset items)
+│   │       ├── house/
+│   │       │   └── ... (2113 data/asset items)
+│   │       ├── learn/
+│   │       │   └── ... (1575 data/asset items)
+│   │       ├── left/
+│   │       │   └── ... (3801 data/asset items)
+│   │       ├── marvin/
+│   │       │   └── ... (2100 data/asset items)
+│   │       ├── nine/
+│   │       │   └── ... (3934 data/asset items)
+│   │       ├── no/
+│   │       │   └── ... (3941 data/asset items)
+│   │       ├── off/
+│   │       │   └── ... (3745 data/asset items)
+│   │       ├── on/
+│   │       │   └── ... (3845 data/asset items)
+│   │       ├── one/
+│   │       │   └── ... (3890 data/asset items)
+│   │       ├── right/
+│   │       │   └── ... (3778 data/asset items)
+│   │       ├── seven/
+│   │       │   └── ... (3998 data/asset items)
+│   │       ├── sheila/
+│   │       │   └── ... (2022 data/asset items)
+│   │       ├── six/
+│   │       │   └── ... (3860 data/asset items)
+│   │       ├── stop/
+│   │       │   └── ... (3872 data/asset items)
+│   │       ├── testing_list.txt
+│   │       ├── three/
+│   │       │   └── ... (3727 data/asset items)
+│   │       ├── tree/
+│   │       │   └── ... (1759 data/asset items)
+│   │       ├── two/
+│   │       │   └── ... (3880 data/asset items)
+│   │       ├── up/
+│   │       │   └── ... (3723 data/asset items)
+│   │       ├── validation_list.txt
+│   │       ├── visual/
+│   │       │   └── ... (1592 data/asset items)
+│   │       ├── wow/
+│   │       │   └── ... (2123 data/asset items)
+│   │       ├── yes/
+│   │       │   └── ... (4044 data/asset items)
+│   │       └── zero/
+│   │           └── ... (4052 data/asset items)
+│   ├── cat_video.mat
+│   ├── cifar-10-batches-py/
+│   │   ├── batches.meta
+│   │   ├── data_batch_1
+│   │   ├── data_batch_2
+│   │   ├── data_batch_3
+│   │   ├── data_batch_4
+│   │   ├── data_batch_5
+│   │   ├── readme.html
+│   │   └── test_batch
+│   ├── cifar-10-python.tar.gz
+│   ├── icvl.mat
+│   ├── pet.mat
+│   ├── speech_commands_v0.02.tar.gz
+│   ├── weizzman.mat
+│   └── yale_b.mat
+├── experiments/
+│   ├── extensions/
+│   │   ├── adaptive_rank/
+│   │   │   └── run_figure9_adaptive.py
+│   │   ├── ensemble_uncertainty/
+│   │   │   └── run_figure9_ensemble.py
+│   │   ├── factor_interpretability/
+│   │   │   └── run_figure9_interpretability.py
+│   │   ├── group_sparsity/
+│   │   │   └── run_figure9_sparsity.py
+│   │   ├── hybrid_attention/
+│   │   │   └── run_figure9_hybrid.py
+│   │   ├── noise_robustness/
+│   │   │   └── run_figure9_robustness.py
+│   │   ├── spectral_transformer/
+│   │   │   └── run_figure9_spectral_transformer.py
+│   │   └── tensor_completion/
+│   │       └── run_figure9_completion.py
+│   ├── hybrid_prototypes/
+│   ├── improvements/
+│   │   ├── figure10_yale/
+│   │   │   ├── generate_improved_panel.py
+│   │   │   └── run_figure10_yale_tensor_improved.py
+│   │   ├── figure11_video/
+│   │   │   └── run_figure11_improved.py
+│   │   ├── figure12_pet_ct/
+│   │   │   └── run_figure12_improved.py
+│   │   └── figure13b_yale_rank/
+│   │       └── run_figure13b_yale_rank_sweep_improved.py
+│   ├── legacy_experiments/
+│   │   └── previous_neurotensor_experiments/
+│   │       ├── 01_icvl_cnn_baseline/
+│   │       │   ├── baseline_figure9_report.md
+│   │       │   ├── baseline_metrics.json
+│   │       │   ├── configuration.json
+│   │       │   ├── experiment.log
+│   │       │   ├── images/
+│   │       │   │   └── figure9_hyperspectral_denoising_panel.png
+│   │       │   ├── metrics.txt
+│   │       │   ├── plots/
+│   │       │   │   └── figure9_convergence_curves.png
+│   │       │   └── run_figure9.py
+│   │       ├── 02_icvl_adaptive_rank/
+│   │       │   ├── ADAPTIVE_RANK_SELECTION_DOCUMENTATION.md
+│   │       │   ├── error_map.png
+│   │       │   ├── metrics.csv
+│   │       │   ├── metrics.json
+│   │       │   ├── network_summary.txt
+│   │       │   ├── rank_history.png
+│   │       │   ├── reconstruction_comparison.png
+│   │       │   └── run_figure9_adaptive.py
+│   │       ├── 03_icvl_factor_group_sparsity/
+│   │       │   ├── error_map.png
+│   │       │   ├── metrics.csv
+│   │       │   ├── metrics.json
+│   │       │   ├── network_summary.txt
+│   │       │   ├── reconstruction_comparison.png
+│   │       │   └── run_figure9_sparsity.py
+│   │       ├── 04_icvl_tensor_completion/
+│   │       │   ├── TENSOR_COMPLETION_DOCUMENTATION.md
+│   │       │   ├── run_figure9_completion.py
+│   │       │   ├── summary_p_0.0_cond_noisy_seed_42.txt
+│   │       │   ├── summary_p_0.2_cond_noisy_seed_42.txt
+│   │       │   ├── summary_p_0.5_cond_clean_seed_42.txt
+│   │       │   ├── summary_p_0.5_cond_noisy_seed_42.txt
+│   │       │   └── summary_p_0.8_cond_noisy_seed_42.txt
+│   │       ├── 05_icvl_noise_robustness/
+│   │       │   ├── NOISE_TYPE_ROBUSTNESS_DOCUMENTATION.md
+│   │       │   ├── run_figure9_robustness.py
+│   │       │   ├── run_robustness.bat
+│   │       │   ├── summary_gaussian.txt
+│   │       │   ├── summary_mixed.txt
+│   │       │   └── summary_poisson.txt
+│   │       ├── 06_icvl_ensemble_uncertainty/
+│   │       │   ├── ENSEMBLE_UNCERTAINTY_DOCUMENTATION.md
+│   │       │   ├── run_figure9_ensemble.py
+│   │       │   └── summary.txt
+│   │       ├── 07_icvl_factor_interpretability/
+│   │       │   ├── FACTOR_INTERPRETABILITY_DOCUMENTATION.md
+│   │       │   ├── progressive_topk_metrics.png
+│   │       │   ├── run_figure9_interpretability.py
+│   │       │   ├── spatial_cosine_similarity.png
+│   │       │   ├── spectral_cosine_similarity.png
+│   │       │   ├── summary.txt
+│   │       │   └── top5_components.png
+│   │       ├── 08_icvl_hybrid_attention/
+│   │       │   ├── EXTENSION_8_DOCUMENTATION.md
+│   │       │   ├── baseline_summary.txt
+│   │       │   ├── control_full_summary.txt
+│   │       │   ├── control_summary.txt
+│   │       │   ├── hybrid_full_summary.txt
+│   │       │   ├── hybrid_summary.txt
+│   │       │   ├── modules/
+│   │       │   │   └── attention_spectral.py
+│   │       │   └── run_figure9_hybrid.py
+│   │       ├── 09_icvl_spectral_transformer/
+│   │       │   ├── EXTENSION_9_DOCUMENTATION.md
+│   │       │   ├── baseline_summary.txt
+│   │       │   ├── control_full_summary.txt
+│   │       │   ├── control_summary.txt
+│   │       │   ├── modules/
+│   │       │   │   └── spectral_transformer.py
+│   │       │   ├── run_figure9_spectral_transformer.py
+│   │       │   ├── transformer_full_summary.txt
+│   │       │   └── transformer_summary.txt
+│   │       └── MANIFEST.md
+│   └── reproduction/
+│       ├── figure02_eigenfaces/
+│       │   └── run_figure2.py
+│       ├── figure04_efficiency/
+│       │   ├── benchmark_figure4_separable_speedup.py
+│       │   └── benchmark_figure4_separable_speedup_improved.py
+│       ├── figure06_synthetic_robustness/
+│       │   ├── run_figure6.py
+│       │   └── run_robustness.bat
+│       ├── figure07_robust_pca/
+│       │   └── run_figure7.py
+│       ├── figure09_hyperspectral/
+│       │   ├── run_figure9.py
+│       │   └── run_figure9_bm3d.py
+│       ├── figure10_yale_denoising/
+│       │   └── run_figure10_yale_tensor.py
+│       ├── figure11_video_cs/
+│       │   ├── run_figure11.py
+│       │   ├── run_figure11_TV.py
+│       │   └── run_figure11_baseline.py
+│       ├── figure12_pet_ct/
+│       │   ├── run_figure12.py
+│       │   └── run_figure12_TV.py
+│       ├── figure13a_hsi_rank/
+│       │   └── run_figure13_rank_sweep.py
+│       ├── figure13b_yale_rank/
+│       │   └── run_figure13b_yale_rank_sweep.py
+│       ├── table01_synthetic/
+│       │   ├── run_synthetic_suite.py
+│       │   └── run_table1.py
+│       ├── table02_nmf/
+│       │   └── run_table2_nmf.py
+│       └── table03_speech/
+│           └── run_table3_speech_nmf.py
+├── migration/
+│   ├── CLEANUP_MANIFEST.csv
+│   ├── MIGRATION_LOG.md
+│   ├── MIGRATION_MANIFEST.csv
+│   ├── MIGRATION_VALIDATION_REPORT.md
+│   ├── SHA256_AFTER.csv
+│   └── SHA256_BEFORE.csv
+├── pyproject.toml
+├── reports/
+│   ├── audits/
+│   │   ├── DATASET_AUDIT.md
+│   │   ├── DATASET_REGISTER.md
+│   │   ├── DATA_DIMENSION_TRACE.md
+│   │   ├── DEMO_IMPLEMENTATION_PLAN.md
+│   │   ├── EXPERIMENT_TRACKER.md
+│   │   ├── FIGURE_TRACKER.md
+│   │   ├── FINAL_PROJECT_STRUCTURE.md
+│   │   ├── IMPLEMENTATION_DOCUMENTATION.md
+│   │   ├── IMPLEMENTATION_STATUS.md
+│   │   ├── PHASE1_EXPERIMENT_CONFIG_AUDIT.csv
+│   │   ├── PROJECT_CONTEXT.md
+│   │   ├── PROJECT_ROADMAP.md
+│   │   ├── PROJECT_STRUCTURE.txt
+│   │   ├── REPRODUCIBILITY.md
+│   │   ├── RESEARCH_NOTES.md
+│   │   └── codebase_audit/
+│   │       ├── CODEBASE_AUDIT_SUMMARY.md
+│   │       ├── CODEBASE_CONSISTENCY_AUDIT.md
+│   │       ├── CURRENT_CODEBASE_STRUCTURE.md
+│   │       ├── DATA_AND_RESULTS_INVENTORY.md
+│   │       ├── DEPENDENCY_AND_IMPORT_MAP.md
+│   │       ├── FILE_DUPLICATION_AND_RETENTION_AUDIT.md
+│   │       ├── PROPOSED_ARCHITECTURE_AND_MIGRATION_MAP.md
+│   │       ├── PYTHON_FILE_INVENTORY.md
+│   │       ├── RESEARCH_EXPERIMENT_MAPPING.md
+│   │       ├── VERIFIED_DATASET_DIMENSIONS.md
+│   │       └── VERIFIED_EXPERIMENT_METRICS.md
+│   ├── extensions/
+│   │   └── documentation/
+│   │       ├── extension_1_adaptive_rank/
+│   │       │   └── ADAPTIVE_RANK_SELECTION_DOCUMENTATION.md
+│   │       ├── extension_2_factor_group_sparsity/
+│   │       │   └── FACTOR_GROUP_SPARSITY_DOCUMENTATION.md
+│   │       ├── extension_3_tensor_completion/
+│   │       │   └── TENSOR_COMPLETION_DOCUMENTATION.md
+│   │       ├── extension_4_noise_type_robustness/
+│   │       │   └── NOISE_TYPE_ROBUSTNESS_DOCUMENTATION.md
+│   │       ├── extension_5_ensemble_uncertainty/
+│   │       │   └── ENSEMBLE_UNCERTAINTY_DOCUMENTATION.md
+│   │       ├── extension_7_interpretability/
+│   │       │   └── FACTOR_INTERPRETABILITY_DOCUMENTATION.md
+│   │       ├── extension_8_attention/
+│   │       │   └── EXTENSION_8_DOCUMENTATION.md
+│   │       └── extension_9_spectral_transformer/
+│   │           └── EXTENSION_9_DOCUMENTATION.md
+│   ├── improvements/
+│   │   ├── FIGURE10_IMPROVEMENT_REPORT.md
+│   │   ├── FIGURE11_IMPROVEMENT_REPORT.md
+│   │   ├── FIGURE12_IMPROVEMENT_REPORT.md
+│   │   ├── FIGURE13B_IMPROVEMENT_REPORT.md
+│   │   ├── PHASE1_IMPROVEMENT_PLAN.md
+│   │   ├── PHASE1_PERFORMANCE_GAP_AUDIT.md
+│   │   └── PHASE1_RERUN_PRIORITY.csv
+│   └── reproduction/
+│       ├── CNN_BASELINE_CONSOLIDATED_REPORT.md
+│       ├── EXPERIMENT_SETTINGS.md
+│       ├── FIGURE_TO_EXPERIMENT_MAPPING.md
+│       ├── PAPER_EXPERIMENT_REGISTER.md
+│       ├── REPORTED_METRICS.md
+│       ├── REPRODUCIBILITY.md
+│       ├── gallery_paper_results/
+│       │   ├── figure10_yale_tensor_denoising_improved_panel.png
+│       │   ├── figure11_video_cs_panel.png
+│       │   ├── figure12_convergence_curves_improved.png
+│       │   ├── figure12_reconstruction_panel.png
+│       │   ├── figure12_reconstruction_panel_improved.png
+│       │   ├── figure13a_rank_sweep.png
+│       │   ├── figure13b_reconstruction_panel.png
+│       │   ├── figure13b_yale_rank_sweep_improved.png
+│       │   ├── figure2_eigenfaces_top12.png
+│       │   ├── figure3_inductive_bias.png
+│       │   ├── figure4_separable_convolutions_speedup.png
+│       │   ├── figure6_psnr_vs_rank.png
+│       │   ├── figure7_pca_sample_size_and_noise.png
+│       │   ├── figure8_stopping_criterion.png
+│       │   ├── figure9_hyperspectral_denoising_panel.png
+│       │   └── figure_speech_nmf_panel.png
+│       └── papers_and_slides/
+│           ├── DeepTensor_Implementation_Documentation.pdf
+│           ├── DeepTensor_Paper_2204.03145.pdf
+│           └── Enhanced_DeepTensor_Phase1_Detailed_Presentation-1.pptx
+├── requirements.txt
+├── results/
+│   ├── baseline/
+│   │   ├── README.md
+│   │   ├── baseline_figure9_metrics.md
+│   │   ├── baseline_figure9_report.md
+│   │   ├── baseline_fixed/
+│   │   │   └── checkpoint/
+│   │   │       └── checkpoint.pt
+│   │   ├── checkpoint/
+│   │   │   └── checkpoint.pt
+│   │   ├── error_map.png
+│   │   ├── experiment_summary.txt
+│   │   ├── figure02_eigenfaces/
+│   │   │   ├── configuration.json
+│   │   │   ├── experiment.log
+│   │   │   ├── figure2_results.npz
+│   │   │   ├── images/
+│   │   │   │   ├── deeptensor_eigenfaces_montage.png
+│   │   │   │   └── figure2_eigenfaces_top12.png
+│   │   │   ├── metrics.txt
+│   │   │   └── plots/
+│   │   │       ├── figure2_classification_accuracy.png
+│   │   │       └── figure2_loss_curve.png
+│   │   ├── figure06_synthetic_robustness/
+│   │   │   ├── configuration.json
+│   │   │   ├── experiment.log
+│   │   │   ├── figure6_results.npz
+│   │   │   ├── images/
+│   │   │   │   └── figure6_visual_comparisons_rank30.png
+│   │   │   ├── metrics.txt
+│   │   │   └── plots/
+│   │   │       └── figure6_psnr_vs_rank.png
+│   │   ├── figure07_robust_pca/
+│   │   │   ├── configuration.json
+│   │   │   ├── experiment.log
+│   │   │   ├── figure7_results.npz
+│   │   │   ├── images/
+│   │   │   │   └── figure7_covariance_visual_comparison.png
+│   │   │   ├── metrics.txt
+│   │   │   └── plots/
+│   │   │       └── figure7_pca_sample_size_and_noise.png
+│   │   ├── figure09_hyperspectral/
+│   │   │   ├── checkpoint/
+│   │   │   │   └── figure9_deeptensor_checkpoint.pt
+│   │   │   ├── configuration.json
+│   │   │   ├── experiment.log
+│   │   │   ├── figure9_results.npz
+│   │   │   ├── images/
+│   │   │   │   └── figure9_hyperspectral_denoising_panel.png
+│   │   │   ├── metrics.txt
+│   │   │   └── plots/
+│   │   │       └── figure9_convergence_curves.png
+│   │   ├── figure10_yale_denoising/
+│   │   │   ├── checkpoint/
+│   │   │   │   ├── deeptensor_noise_30_checkpoint.pt
+│   │   │   │   └── deeptensor_noise_60_checkpoint.pt
+│   │   │   ├── config.yaml
+│   │   │   ├── experiment_notes.md
+│   │   │   ├── figure13b_metrics.json
+│   │   │   ├── images/
+│   │   │   │   └── figure10_yale_tensor_denoising_panel.png
+│   │   │   ├── metrics.json
+│   │   │   ├── metrics.txt
+│   │   │   └── plots/
+│   │   │       ├── figure10_loss_curves.png
+│   │   │       └── figure13b_yale_rank_sweep.png
+│   │   ├── figure11_video_cs/
+│   │   │   ├── checkpoint/
+│   │   │   │   └── figure11_deeptensor_checkpoint.pt
+│   │   │   ├── config.yaml
+│   │   │   ├── experiment_notes.md
+│   │   │   ├── figure11_results.npz
+│   │   │   ├── images/
+│   │   │   │   └── figure11_video_cs_panel.png
+│   │   │   ├── metrics.json
+│   │   │   ├── metrics.txt
+│   │   │   └── plots/
+│   │   │       └── figure11_convergence_curves.png
+│   │   ├── figure12_pet_ct/
+│   │   │   ├── checkpoint/
+│   │   │   │   └── figure12_deeptensor_checkpoint.pt
+│   │   │   ├── configuration.json
+│   │   │   ├── experiment.log
+│   │   │   ├── figure12_results.npz
+│   │   │   ├── images/
+│   │   │   │   └── figure12_reconstruction_panel.png
+│   │   │   ├── metrics.txt
+│   │   │   └── plots/
+│   │   │       └── figure12_convergence_curves.png
+│   │   ├── figure13a_hsi_rank/
+│   │   │   └── figure13a_metrics.json
+│   │   ├── figure13b_yale_rank/
+│   │   │   └── figure13b_metrics.json
+│   │   ├── final_report.txt
+│   │   ├── metrics.csv
+│   │   ├── metrics.json
+│   │   ├── network_summary.txt
+│   │   ├── reconstruction_comparison.png
+│   │   ├── table01_synthetic/
+│   │   │   └── synthetic_suite_metrics.json
+│   │   ├── table02_nmf/
+│   │   │   └── metrics.json
+│   │   └── table03_speech/
+│   │       └── metrics.json
+│   ├── extensions/
+│   │   ├── adaptive_rank/
+│   │   │   ├── adaptive_rank_results.png
+│   │   │   ├── runs/
+│   │   │   │   ├── adaptive/
+│   │   │   │   │   └── checkpoint/
+│   │   │   │   │       └── ... (1 items)
+│   │   │   │   └── adaptive_fixed/
+│   │   │   │       └── checkpoint/
+│   │   │   │           └── ... (1 items)
+│   │   │   └── standard/
+│   │   │       ├── error_map.png
+│   │   │       ├── metrics.csv
+│   │   │       ├── metrics.json
+│   │   │       ├── network_summary.txt
+│   │   │       ├── rank_history.png
+│   │   │       └── reconstruction_comparison.png
+│   │   ├── comparison/
+│   │   │   └── all_methods_comparison.png
+│   │   ├── completion/
+│   │   │   ├── debug/
+│   │   │   │   └── summary_p_0.2_cond_noisy_seed_42.txt
+│   │   │   ├── sanity/
+│   │   │   │   └── summary_p_0.0_cond_noisy_seed_42.txt
+│   │   │   ├── smoke/
+│   │   │   │   └── summary_p_0.5_cond_noisy_seed_42.txt
+│   │   │   └── standard/
+│   │   │       ├── summary_p_0.2_cond_noisy_seed_42.txt
+│   │   │       ├── summary_p_0.5_cond_clean_seed_42.txt
+│   │   │       ├── summary_p_0.5_cond_noisy_seed_42.txt
+│   │   │       └── summary_p_0.8_cond_noisy_seed_42.txt
+│   │   ├── ensemble/
+│   │   │   ├── smoke/
+│   │   │   │   ├── ensemble_results.npz
+│   │   │   │   └── summary.txt
+│   │   │   └── standard/
+│   │   │       ├── ensemble_results.npz
+│   │   │       └── summary.txt
+│   │   ├── historical/
+│   │   │   └── _validation_10_epoch/
+│   │   │       ├── TEST_CHECKPOINT.txt
+│   │   │       ├── adaptive/
+│   │   │       │   └── checkpoint.pt
+│   │   │       ├── baseline/
+│   │   │       │   └── checkpoint.pt
+│   │   │       └── sparsity/
+│   │   │           └── checkpoint_l0.001.pt
+│   │   ├── interpretability/
+│   │   │   ├── smoke/
+│   │   │   │   ├── interpretability_results.npz
+│   │   │   │   ├── progressive_topk_metrics.png
+│   │   │   │   ├── spatial_cosine_similarity.png
+│   │   │   │   ├── spectral_cosine_similarity.png
+│   │   │   │   ├── summary.txt
+│   │   │   │   └── top5_components.png
+│   │   │   └── standard/
+│   │   │       ├── interpretability_results.npz
+│   │   │       ├── progressive_topk_metrics.png
+│   │   │       ├── spatial_cosine_similarity.png
+│   │   │       ├── spectral_cosine_similarity.png
+│   │   │       ├── summary.txt
+│   │   │       └── top5_components.png
+│   │   ├── robustness/
+│   │   │   └── standard/
+│   │   │       ├── summary_gaussian.txt
+│   │   │       ├── summary_mixed.txt
+│   │   │       └── summary_poisson.txt
+│   │   └── sparsity/
+│   │       ├── archived_diagnostic_l0.001/
+│   │       │   ├── checkpoint_l0.001.pt
+│   │       │   └── factor_group-sparsity/
+│   │       │       ├── error_map.png
+│   │       │       ├── metrics.csv
+│   │       │       ├── metrics.json
+│   │       │       ├── network_summary.txt
+│   │       │       └── reconstruction_comparison.png
+│   │       ├── corrected/
+│   │       │   ├── plot_lambda_0.0001_seed_42.png
+│   │       │   ├── plot_lambda_0.001_seed_42.png
+│   │       │   ├── plot_lambda_0.01_seed_42.png
+│   │       │   ├── plot_lambda_0.0_seed_42.png
+│   │       │   ├── summary_lambda_0.0001_seed_42.txt
+│   │       │   ├── summary_lambda_0.001_seed_42.txt
+│   │       │   ├── summary_lambda_0.01_seed_42.txt
+│   │       │   └── summary_lambda_0.0_seed_42.txt
+│   │       ├── diagnostic/
+│   │       │   ├── plot_lambda_0.0_seed_42.png
+│   │       │   └── summary_lambda_0.0_seed_42.txt
+│   │       ├── factor_group_sparsity/
+│   │       │   ├── error_map.png
+│   │       │   ├── metrics.csv
+│   │       │   ├── metrics.json
+│   │       │   ├── network_summary.txt
+│   │       │   └── reconstruction_comparison.png
+│   │       ├── logs/
+│   │       │   ├── results_lambda_0.0001.txt
+│   │       │   ├── results_lambda_0.001.txt
+│   │       │   ├── results_lambda_0.01.txt
+│   │       │   └── results_lambda_0.txt
+│   │       ├── runs/
+│   │       │   └── sparsity/
+│   │       │       └── checkpoint/
+│   │       │           └── ... (2 items)
+│   │       ├── sparsity_rank_results.png
+│   │       └── standard/
+│   │           ├── plot_lambda_0.0001_seed_42.png
+│   │           ├── plot_lambda_0.001_seed_42.png
+│   │           ├── plot_lambda_0.01_seed_42.png
+│   │           ├── plot_lambda_0.0_seed_42.png
+│   │           ├── summary_lambda_0.0001_seed_42.txt
+│   │           ├── summary_lambda_0.001_seed_42.txt
+│   │           ├── summary_lambda_0.01_seed_42.txt
+│   │           └── summary_lambda_0.0_seed_42.txt
+│   ├── hybrid/
+│   │   ├── hybrid_attention/
+│   │   │   ├── attention_weights_hybrid.npy
+│   │   │   ├── baseline_summary.txt
+│   │   │   ├── control_full_summary.txt
+│   │   │   ├── control_summary.txt
+│   │   │   ├── hybrid_full_summary.txt
+│   │   │   ├── hybrid_summary.txt
+│   │   │   ├── loss_baseline.csv
+│   │   │   ├── loss_control.csv
+│   │   │   ├── loss_hybrid.csv
+│   │   │   └── sanity_check_baseline.txt
+│   │   └── spectral_transformer/
+│   │       ├── attention_weights.npy
+│   │       ├── attention_weights_smoke.npy
+│   │       ├── baseline_summary.txt
+│   │       ├── control_full_summary.txt
+│   │       ├── control_summary.txt
+│   │       ├── loss_control.csv
+│   │       ├── loss_transformer.csv
+│   │       ├── sanity_check_baseline.txt
+│   │       ├── transformer_full_summary.txt
+│   │       └── transformer_summary.txt
+│   └── improved/
+│       ├── figure10_yale_denoising/
+│       │   ├── checkpoint/
+│       │   │   ├── deeptensor_noise_30_improved_checkpoint.pt
+│       │   │   └── deeptensor_noise_60_improved_checkpoint.pt
+│       │   ├── figure10_consolidated_comparison.json
+│       │   ├── images/
+│       │   │   ├── figure10_noise_30_reconstruction_sample.png
+│       │   │   ├── figure10_noise_60_reconstruction_sample.png
+│       │   │   └── figure10_yale_tensor_denoising_improved_panel.png
+│       │   ├── metrics_noise_30.json
+│       │   ├── metrics_noise_60.json
+│       │   ├── noisy_noise_30.npy
+│       │   ├── noisy_noise_60.npy
+│       │   ├── plots/
+│       │   │   ├── figure10_combined_convergence_curves.png
+│       │   │   ├── figure10_noise_30_convergence_curves.png
+│       │   │   └── figure10_noise_60_convergence_curves.png
+│       │   ├── progression_noise_30.csv
+│       │   ├── progression_noise_60.csv
+│       │   ├── recon_noise_30_deeptensor.npy
+│       │   ├── recon_noise_30_svd.npy
+│       │   ├── recon_noise_60_deeptensor.npy
+│       │   └── recon_noise_60_svd.npy
+│       ├── figure11_video_cs/
+│       │   ├── checkpoint/
+│       │   │   └── figure11_deeptensor_improved_checkpoint.pt
+│       │   ├── figure11_improved_results.npz
+│       │   ├── images/
+│       │   │   └── figure11_video_cs_improved_panel.png
+│       │   ├── metrics.json
+│       │   ├── plots/
+│       │   │   └── figure11_improved_convergence_curves.png
+│       │   ├── progression_deeptensor.csv
+│       │   └── progression_tv.csv
+│       ├── figure12_pet_ct/
+│       │   ├── checkpoint/
+│       │   │   └── figure12_deeptensor_improved_checkpoint.pt
+│       │   ├── figure12_improved_metrics.json
+│       │   ├── figure12_results.npz
+│       │   ├── images/
+│       │   │   └── figure12_reconstruction_panel.png
+│       │   ├── metrics.txt
+│       │   ├── plots/
+│       │   │   └── figure12_convergence_curves.png
+│       │   └── progression_deeptensor.csv
+│       └── figure13b_yale_rank/
+│           ├── checkpoint/
+│           │   ├── deeptensor_rank_1000_checkpoint.pt
+│           │   ├── deeptensor_rank_100_checkpoint.pt
+│           │   ├── deeptensor_rank_10_checkpoint.pt
+│           │   ├── deeptensor_rank_2000_checkpoint.pt
+│           │   ├── deeptensor_rank_4000_checkpoint.pt
+│           │   ├── deeptensor_rank_500_checkpoint.pt
+│           │   └── deeptensor_rank_50_checkpoint.pt
+│           ├── figure13b_improved_metrics.json
+│           ├── figure13b_rank_metrics.csv
+│           ├── images/
+│           │   └── figure13b_reconstruction_panel.png
+│           └── plots/
+│               └── figure13b_yale_rank_sweep_improved.png
+├── src/
+│   ├── deeptensor/
+│   │   ├── __init__.py
+│   │   ├── baselines/
+│   │   │   ├── __init__.py
+│   │   │   ├── parafac_als.py
+│   │   │   └── spectral.py
+│   │   ├── losses/
+│   │   │   ├── __init__.py
+│   │   │   └── objectives.py
+│   │   ├── models/
+│   │   │   ├── __init__.py
+│   │   │   ├── attention/
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── spatial_spectral.py
+│   │   │   │   └── spectral_transformer.py
+│   │   │   ├── backbones/
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── common.py
+│   │   │   │   ├── dcgan.py
+│   │   │   │   ├── downsampler.py
+│   │   │   │   ├── resnet.py
+│   │   │   │   ├── skip.py
+│   │   │   │   ├── texture_nets.py
+│   │   │   │   └── unet.py
+│   │   │   ├── deep_decoder.py
+│   │   │   ├── deep_prior.py
+│   │   │   └── deeptensor.py
+│   │   ├── physics/
+│   │   │   ├── __init__.py
+│   │   │   ├── operators.py
+│   │   │   ├── radon.py
+│   │   │   └── video_cs.py
+│   │   ├── training/
+│   │   │   ├── __init__.py
+│   │   │   ├── schedulers.py
+│   │   │   └── trainer.py
+│   │   └── utils/
+│   │       ├── __init__.py
+│   │       ├── device.py
+│   │       ├── metrics.py
+│   │       ├── utils_legacy.py
+│   │       └── visualization.py
+│   └── deeptensor.egg-info/
+│       ├── PKG-INFO
+│       ├── SOURCES.txt
+│       ├── dependency_links.txt
+│       ├── requires.txt
+│       └── top_level.txt
+├── tests/
+│   ├── run_all_tests.py
+│   ├── test_dataset_paths.py
+│   ├── test_imports.py
+│   └── test_smoke_models.py
+└── tools/
+    ├── check_attn.py
+    ├── execute_final_cleanup.py
+    ├── fix_newlines.py
+    ├── generate_pdf.py
+    ├── modify_robustness.py
+    └── scratch_calibrate.py

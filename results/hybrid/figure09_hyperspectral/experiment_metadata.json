@@ -1,0 +1,132 @@
+{
+  "experiment": "figure09_icvl_hsi",
+  "timestamp": "2026-11-08T15:28:00+05:30",
+  "dataset": {
+    "file": "data/icvl.mat",
+    "raw_tensor_shape": [174, 164, 260],
+    "evaluated_shape": [174, 164, 260],
+    "spatial_mode_matricization": 28536,
+    "spectral_bands": 260,
+    "wavelength_range_nm": [400, 700],
+    "normalization": "cube / cube.max() -> [0.0, 1.0]",
+    "crop_protocol": "Full scene (no artificial spatial crop or downsampling applied)"
+  },
+  "forward_model": {
+    "operator": "identity_denoising",
+    "noise_type": "mixed_gaussian_poisson",
+    "snr_gaussian": 2.0,
+    "tau_poisson": 100.0,
+    "seed_observation": 42
+  },
+  "optimization": {
+    "rank": 20,
+    "optimizer": "Adam",
+    "lr": 0.001,
+    "reg_noise_std": 0.03333333333333333,
+    "epochs": 5000,
+    "loss_function": "L1Norm (unsupervised measurement residual)",
+    "checkpoint_selection_criterion": "Minimum unsupervised training loss (zero ground-truth leakage)"
+  },
+  "hardware": {
+    "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "total_vram_mb": 8188.0,
+    "cuda_version": "12.1",
+    "torch_version": "2.5.1+cu121",
+    "python_version": "3.11.9"
+  },
+  "models": {
+    "baseline": {
+      "type": "Pure 1D CNN Skip Decoder",
+      "parameters": 3005328,
+      "psnr_db": 46.0653,
+      "ssim": 0.9874,
+      "rmse": 0.004784,
+      "mae": 0.003350,
+      "rel_error": 0.041590,
+      "runtime_sec": 349.56,
+      "peak_vram_mb": 452.85,
+      "best_loss": 0.029821,
+      "checkpoint": "results/hybrid/figure09_hyperspectral/baseline_checkpoint.pth"
+    },
+    "cnn_control": {
+      "type": "Parameter-Matched Pure 1D CNN (Conv1d residual blocks)",
+      "parameters": 3137980,
+      "parameter_delta_vs_hybrid": "+172 (+0.0055%)",
+      "psnr_db": 45.5844,
+      "ssim": 0.9857,
+      "rmse": 0.005056,
+      "mae": 0.003436,
+      "rel_error": 0.043958,
+      "runtime_sec": 353.91,
+      "peak_vram_mb": 455.37,
+      "best_loss": 0.029880,
+      "checkpoint": "results/hybrid/figure09_hyperspectral/cnn_control_checkpoint.pth"
+    },
+    "pointwise_control": {
+      "type": "Parameter-Matched Pointwise MLP Control",
+      "parameters": 3137680,
+      "parameter_delta_vs_hybrid": "-128 (-0.0041%)",
+      "psnr_db": 45.4229,
+      "ssim": 0.9852,
+      "rmse": 0.005151,
+      "mae": 0.003496,
+      "rel_error": 0.044783,
+      "runtime_sec": 386.92,
+      "peak_vram_mb": 456.42,
+      "best_loss": 0.029891,
+      "checkpoint": "results/hybrid/figure09_hyperspectral/pointwise_control_checkpoint.pth"
+    },
+    "hybrid": {
+      "type": "Hybrid CNN Spatial + Pre-LN Multi-Head Self-Attention Spectral",
+      "parameters": 3137808,
+      "parameter_delta_vs_baseline": "+132480 (+4.41%)",
+      "psnr_db": 44.8526,
+      "ssim": 0.9842,
+      "rmse": 0.005500,
+      "mae": 0.003757,
+      "rel_error": 0.047822,
+      "runtime_sec": 362.86,
+      "peak_vram_mb": 456.42,
+      "best_loss": 0.029919,
+      "checkpoint": "results/hybrid/figure09_hyperspectral/hybrid_checkpoint.pth"
+    },
+    "transformer": {
+      "type": "Pure Pre-LN Spectral Transformer with ALiBi relative position bias",
+      "parameters": 3004764,
+      "parameter_delta_vs_baseline": "-564 (-0.0188%)",
+      "psnr_db": 43.4026,
+      "ssim": 0.9766,
+      "rmse": 0.006499,
+      "mae": 0.004175,
+      "rel_error": 0.056509,
+      "runtime_sec": 264.26,
+      "peak_vram_mb": 467.72,
+      "best_loss": 0.030089,
+      "checkpoint": "results/hybrid/figure09_hyperspectral/transformer_checkpoint.pth"
+    }
+  },
+  "comparisons": {
+    "hybrid_vs_baseline": {
+      "delta_psnr_db": -1.2127,
+      "delta_ssim": -0.0032,
+      "delta_rmse": 0.000717
+    },
+    "cnn_control_vs_hybrid": {
+      "delta_psnr_db": +0.7318,
+      "delta_ssim": +0.0014,
+      "delta_rmse": -0.000444,
+      "parameter_match_tolerance": "+0.0055%"
+    },
+    "pointwise_control_vs_hybrid": {
+      "delta_psnr_db": +0.5703,
+      "delta_ssim": +0.0010,
+      "delta_rmse": -0.000349,
+      "parameter_match_tolerance": "-0.0041%"
+    },
+    "transformer_vs_baseline": {
+      "delta_psnr_db": -2.6627,
+      "delta_ssim": -0.0108,
+      "delta_rmse": 0.001716
+    }
+  }
+}

@@ -1,0 +1,266 @@
+{
+  "audited_records": [
+    {
+      "cond_id": "cond1_cnn_only",
+      "name": "CNN-Only Tri-Branch",
+      "router_type": "cnn_only",
+      "gating_floor": 0.0,
+      "entropy_reg": 0.0,
+      "params": 5594396,
+      "best_epoch": 1200,
+      "best_loss": 0.1646890640258789,
+      "tau_best": 1.0,
+      "inloop_psnr": 27.838325354253296,
+      "inloop_ssim": 0.8533172607421875,
+      "dip_psnr": 27.82246017612319,
+      "dip_ssim": 0.8553436398506165,
+      "dip_rmse": 0.04063282534480095,
+      "best_sha256": "fc1a1f069ad92894389779bcae322f58d77a74c49d549add093edb33bdd75f5d",
+      "gates": {
+        "cnn": 1.0,
+        "pointwise": 0.0,
+        "attention": 0.0
+      },
+      "entropy": -0.0
+    },
+    {
+      "cond_id": "cond2_pointwise_only",
+      "name": "Pointwise-Only Tri-Branch",
+      "router_type": "pointwise_only",
+      "gating_floor": 0.0,
+      "entropy_reg": 0.0,
+      "params": 5594396,
+      "best_epoch": 1193,
+      "best_loss": 0.16474774479866028,
+      "tau_best": 1.0,
+      "inloop_psnr": 27.804092528268907,
+      "inloop_ssim": 0.8555108904838562,
+      "dip_psnr": 27.797096136364377,
+      "dip_ssim": 0.8557096719741821,
+      "dip_rmse": 0.04075164720416069,
+      "best_sha256": "024b2d8227b696023150ebee19d7c372fd71964aa8c914e0977c7ec7258800bd",
+      "gates": {
+        "cnn": 0.0,
+        "pointwise": 1.0,
+        "attention": 0.0
+      },
+      "entropy": -0.0
+    },
+    {
+      "cond_id": "cond3_attention_only",
+      "name": "Attention-Only Tri-Branch",
+      "router_type": "attention_only",
+      "gating_floor": 0.0,
+      "entropy_reg": 0.0,
+      "params": 5594396,
+      "best_epoch": 1181,
+      "best_loss": 0.1650097519159317,
+      "tau_best": 1.0,
+      "inloop_psnr": 27.63378976017927,
+      "inloop_ssim": 0.849452793598175,
+      "dip_psnr": 27.618202609322452,
+      "dip_ssim": 0.8505716323852539,
+      "dip_rmse": 0.04159964993596077,
+      "best_sha256": "2bf138cf36b582cd01a0a0f8261b6515b513eb92bcf08b72968afea7801e1999",
+      "gates": {
+        "cnn": 0.0,
+        "pointwise": 0.0,
+        "attention": 1.0
+      },
+      "entropy": -0.0
+    },
+    {
+      "cond_id": "cond4_static_equal",
+      "name": "Static Equal Tri-Branch",
+      "router_type": "static",
+      "gating_floor": 0.0,
+      "entropy_reg": 0.0,
+      "params": 5594396,
+      "best_epoch": 1191,
+      "best_loss": 0.16458645462989807,
+      "tau_best": 1.0,
+      "inloop_psnr": 27.90276992238195,
+      "inloop_ssim": 0.8557182550430298,
+      "dip_psnr": 27.82423624119138,
+      "dip_ssim": 0.8552972078323364,
+      "dip_rmse": 0.04062451794743538,
+      "best_sha256": "06897d4149f26ef4f859cea3bd4c2f209596c2133006b86eae56cbeddbe0993d",
+      "gates": {
+        "cnn": 0.333333283662796,
+        "pointwise": 0.333333283662796,
+        "attention": 0.333333283662796
+      },
+      "entropy": 1.0986123085021973
+    },
+    {
+      "cond_id": "cond5_standard_cagc",
+      "name": "Standard AHD-Net v1 Reference",
+      "router_type": "cagc",
+      "gating_floor": 0.0,
+      "entropy_reg": 0.0,
+      "params": 5602988,
+      "best_epoch": 1184,
+      "best_loss": 0.16461437940597534,
+      "tau_best": 0.5007426679392594,
+      "inloop_psnr": 27.85529628133721,
+      "inloop_ssim": 0.8550351858139038,
+      "dip_psnr": 27.830019018093655,
+      "dip_ssim": 0.8530043363571167,
+      "dip_rmse": 0.04059747979044914,
+      "best_sha256": "a9746091d03f9707941d5d5640f175ae3f96605a57c5043603580130940005d8",
+      "gates": {
+        "cnn": 0.3632618188858032,
+        "pointwise": 0.5211894512176514,
+        "attention": 0.1155487596988678
+      },
+      "entropy": 0.9568405747413635
+    },
+    {
+      "cond_id": "cond6a_temp_sharp",
+      "name": "Temperature Sharpening",
+      "router_type": "cagc",
+      "gating_floor": 0.0,
+      "entropy_reg": 0.0,
+      "params": 5602988,
+      "best_epoch": 1182,
+      "best_loss": 0.16475239396095276,
+      "tau_best": 0.1011750288145851,
+      "inloop_psnr": 27.812292296226722,
+      "inloop_ssim": 0.8542767763137817,
+      "dip_psnr": 27.795242162776184,
+      "dip_ssim": 0.8525415658950806,
+      "dip_rmse": 0.040760353207588196,
+      "best_sha256": "60ff54bc4f408f3d00cf3576d3a566985a68a29fe57886bf0002b15444e50f82",
+      "gates": {
+        "cnn": 0.3813436031341553,
+        "pointwise": 0.5450013875961304,
+        "attention": 0.07365503907203674
+      },
+      "entropy": 0.8905529379844666
+    },
+    {
+      "cond_id": "cond6b_temp_soft",
+      "name": "Conservative Temperature",
+      "router_type": "cagc",
+      "gating_floor": 0.0,
+      "entropy_reg": 0.0,
+      "params": 5602988,
+      "best_epoch": 1189,
+      "best_loss": 0.16471105813980103,
+      "tau_best": 1.000246719817134,
+      "inloop_psnr": 27.81024022028962,
+      "inloop_ssim": 0.8547771573066711,
+      "dip_psnr": 27.77173183678597,
+      "dip_ssim": 0.8556296229362488,
+      "dip_rmse": 0.04087083414196968,
+      "best_sha256": "f08d7a36ee7857c41b2c75256ab4192b380b214835a007723cb7a40fa704f738",
+      "gates": {
+        "cnn": 0.3654753267765045,
+        "pointwise": 0.4370335638523102,
+        "attention": 0.19749107956886292
+      },
+      "entropy": 1.049966812133789
+    },
+    {
+      "cond_id": "cond6c_temp_const1",
+      "name": "Constant Temperature",
+      "router_type": "cagc",
+      "gating_floor": 0.0,
+      "entropy_reg": 0.0,
+      "params": 5602988,
+      "best_epoch": 1184,
+      "best_loss": 0.16458970308303833,
+      "tau_best": 1.0,
+      "inloop_psnr": 27.857083873386493,
+      "inloop_ssim": 0.8565446138381958,
+      "dip_psnr": 27.876406920678676,
+      "dip_ssim": 0.857162594795227,
+      "dip_rmse": 0.04038124904036522,
+      "best_sha256": "3c0342b22ca462fd412ebc7e4506ab59d5047f8a2e418b67a5704e27ed29abf8",
+      "gates": {
+        "cnn": 0.36694008111953735,
+        "pointwise": 0.4741206169128418,
+        "attention": 0.15893930196762085
+      },
+      "entropy": 1.014037847518921
+    },
+    {
+      "cond_id": "cond7_gating_floor15",
+      "name": "Gating Floor Constraint (0.15)",
+      "router_type": "cagc",
+      "gating_floor": 0.15,
+      "entropy_reg": 0.0,
+      "params": 5602988,
+      "best_epoch": 1189,
+      "best_loss": 0.16480940580368042,
+      "tau_best": 0.5003700797257014,
+      "inloop_psnr": 27.746449374360992,
+      "inloop_ssim": 0.8536869287490845,
+      "dip_psnr": 27.754053530585537,
+      "dip_ssim": 0.8540002703666687,
+      "dip_rmse": 0.0409541018307209,
+      "best_sha256": "f014bd67328be3da624400c012f09badfbafd02b368981e1eb34ce47dad506ca",
+      "gates": {
+        "cnn": 0.3755599558353424,
+        "pointwise": 0.4046856462955475,
+        "attention": 0.21975445747375488
+      },
+      "entropy": 1.066878318786621
+    },
+    {
+      "cond_id": "cond8_entropy_reg",
+      "name": "Entropy Regularization (0.01)",
+      "router_type": "cagc",
+      "gating_floor": 0.0,
+      "entropy_reg": 0.01,
+      "params": 5602988,
+      "best_epoch": 1198,
+      "best_loss": 0.16492602229118347,
+      "tau_best": 0.5000231317664078,
+      "inloop_psnr": 27.707385909735642,
+      "inloop_ssim": 0.8518153429031372,
+      "dip_psnr": 27.684243530893575,
+      "dip_ssim": 0.8528295755386353,
+      "dip_rmse": 0.04128458723425865,
+      "best_sha256": "a47d1edcb84ab26f8f9b92a9ec4b127d094f081d51ed4af05a531edef8d0b2ac",
+      "gates": {
+        "cnn": 0.3368600606918335,
+        "pointwise": 0.3365330100059509,
+        "attention": 0.3266069293022156
+      },
+      "entropy": 1.0985100269317627
+    }
+  ],
+  "historical_reference": {
+    "Baseline CNN": {
+      "psnr": 27.7808,
+      "ssim": 0.8528,
+      "params": 5334812
+    },
+    "Serial Hybrid": {
+      "psnr": 28.0392,
+      "ssim": 0.8592,
+      "params": 5602988
+    },
+    "CNN Control": {
+      "psnr": 28.3521,
+      "ssim": 0.8612,
+      "params": 5602988
+    },
+    "Pointwise Control": {
+      "psnr": 28.1703,
+      "ssim": 0.8601,
+      "params": 5602988
+    },
+    "Pure Transformer (Winner)": {
+      "psnr": 28.5552,
+      "ssim": 0.8655,
+      "params": 5602988
+    },
+    "Standard AHD-Net v1": {
+      "psnr": 27.8486,
+      "ssim": 0.856,
+      "params": 5602988
+    }
+  }
+}

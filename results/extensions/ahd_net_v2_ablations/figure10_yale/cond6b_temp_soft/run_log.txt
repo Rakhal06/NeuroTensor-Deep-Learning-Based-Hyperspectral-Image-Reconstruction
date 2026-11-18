@@ -1,0 +1,19 @@
+================================================================================
+RUNNING ABLATION CONDITION: cond6b_temp_soft — Conservative Temperature
+Description: Conservative cosine temperature decay (2.0 -> 1.0)
+Router Type: cagc | Gating Floor: 0.0
+Temperature Schedule: cosine (2.0 -> 1.0)
+Entropy Regularization: lambda = 0.0
+Epochs: 1200 | Rank: 2000 | Device: cuda
+================================================================================
+--> Trainable Parameters: Model=5,602,988 | AdaptiveBlock=132,480
+  [Epoch    1/1200] Loss: 0.364596 | tau: 2.00 | H_chan: 1.0964 | Gates: CNN=0.334, PW=0.333, Attn=0.333
+  [Epoch  200/1200] Loss: 0.181727 | tau: 1.93 | H_chan: 1.0787 | Gates: CNN=0.323, PW=0.372, Attn=0.306
+  [Epoch  400/1200] Loss: 0.172222 | tau: 1.75 | H_chan: 1.0583 | Gates: CNN=0.323, PW=0.395, Attn=0.282
+  [Epoch  600/1200] Loss: 0.168680 | tau: 1.50 | H_chan: 1.0285 | Gates: CNN=0.330, PW=0.412, Attn=0.258
+  [Epoch  800/1200] Loss: 0.167061 | tau: 1.25 | H_chan: 0.9914 | Gates: CNN=0.340, PW=0.426, Attn=0.234
+  [Epoch 1000/1200] Loss: 0.165838 | tau: 1.07 | H_chan: 0.9525 | Gates: CNN=0.353, PW=0.435, Attn=0.212
+  [Epoch 1200/1200] Loss: 0.165121 | tau: 1.00 | H_chan: 0.9292 | Gates: CNN=0.366, PW=0.436, Attn=0.198
+--> Optimization Complete: Runtime=162.0s | Best Meas Loss=0.164711 at Ep 1189
+--> RESULTS: PSNR (In-Loop)=27.8102 dB | SSIM=0.8548
+--> RESULTS: PSNR (Clean DIP)=27.8102 dB | SSIM=0.8548

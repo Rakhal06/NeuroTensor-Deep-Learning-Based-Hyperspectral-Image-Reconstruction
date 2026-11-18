@@ -1,0 +1,9 @@
+experiment: Figure 10: Yale Face B Tensor Denoising
+dataset: data/yale_b.mat
+model: 3-Way PARAFAC DeepTensor
+rank: 2000
+epochs: 1200
+learning_rate: 0.001
+loss: L1Norm
+device: cuda
+noise_types: ['30% Salt & Pepper', '60% Salt & Pepper']

@@ -1,0 +1,19 @@
+================================================================================
+RUNNING ABLATION CONDITION: cond2_pointwise_only — Pointwise-Only Tri-Branch
+Description: Clamped Pointwise branch (w = [0, 1, 0]) inside tri-branch block
+Router Type: pointwise_only | Gating Floor: 0.0
+Temperature Schedule: constant (1.0 -> 1.0)
+Entropy Regularization: lambda = 0.0
+Epochs: 1200 | Rank: 2000 | Device: cuda
+================================================================================
+--> Trainable Parameters: Model=5,594,396 | AdaptiveBlock=123,888
+  [Epoch    1/1200] Loss: 0.364565 | tau: 1.00 | H_chan: 0.0000 | Gates: CNN=0.000, PW=1.000, Attn=0.000
+  [Epoch  200/1200] Loss: 0.181193 | tau: 1.00 | H_chan: 0.0000 | Gates: CNN=0.000, PW=1.000, Attn=0.000
+  [Epoch  400/1200] Loss: 0.171602 | tau: 1.00 | H_chan: 0.0000 | Gates: CNN=0.000, PW=1.000, Attn=0.000
+  [Epoch  600/1200] Loss: 0.168604 | tau: 1.00 | H_chan: 0.0000 | Gates: CNN=0.000, PW=1.000, Attn=0.000
+  [Epoch  800/1200] Loss: 0.166976 | tau: 1.00 | H_chan: 0.0000 | Gates: CNN=0.000, PW=1.000, Attn=0.000
+  [Epoch 1000/1200] Loss: 0.165849 | tau: 1.00 | H_chan: 0.0000 | Gates: CNN=0.000, PW=1.000, Attn=0.000
+  [Epoch 1200/1200] Loss: 0.164880 | tau: 1.00 | H_chan: 0.0000 | Gates: CNN=0.000, PW=1.000, Attn=0.000
+--> Optimization Complete: Runtime=153.8s | Best Meas Loss=0.164748 at Ep 1193
+--> RESULTS: PSNR (In-Loop)=27.8041 dB | SSIM=0.8555
+--> RESULTS: PSNR (Clean DIP)=27.8041 dB | SSIM=0.8555

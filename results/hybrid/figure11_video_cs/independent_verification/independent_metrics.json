@@ -1,0 +1,72 @@
+{
+  "baseline": {
+    "variant": "baseline",
+    "total_params": 784648,
+    "best_epoch": 2976,
+    "best_loss": 0.004326449750881966,
+    "reported_psnr": 25.1576936018773,
+    "stored_recon_psnr": 25.1576936018773,
+    "forward_pass_psnr": 25.335769777200916,
+    "reported_ssim": 0.7223079204559326,
+    "stored_recon_ssim": 0.7223079204559326,
+    "forward_pass_ssim": 0.7448247075080872,
+    "rmse": 0.05522240325808525,
+    "mae": 0.036453329026699066
+  },
+  "hybrid": {
+    "variant": "hybrid",
+    "total_params": 834632,
+    "best_epoch": 2999,
+    "best_loss": 0.005113022147368888,
+    "reported_psnr": 24.743978709208427,
+    "stored_recon_psnr": 24.743978709208427,
+    "forward_pass_psnr": 25.003234798551137,
+    "reported_ssim": 0.6865190267562866,
+    "stored_recon_ssim": 0.6865190267562866,
+    "forward_pass_ssim": 0.7152284979820251,
+    "rmse": 0.05791633203625679,
+    "mae": 0.03867602348327637
+  },
+  "cnn_control": {
+    "variant": "cnn_control",
+    "total_params": 834505,
+    "best_epoch": 2993,
+    "best_loss": 0.004634298489338752,
+    "reported_psnr": 25.03951538804932,
+    "stored_recon_psnr": 25.03951538804932,
+    "forward_pass_psnr": 25.311361255862987,
+    "reported_ssim": 0.7100577354431152,
+    "stored_recon_ssim": 0.7100577354431152,
+    "forward_pass_ssim": 0.734046220779419,
+    "rmse": 0.055978886783123016,
+    "mae": 0.037223439663648605
+  },
+  "pointwise_control": {
+    "variant": "pointwise_control",
+    "total_params": 834568,
+    "best_epoch": 2978,
+    "best_loss": 0.005022168689873714,
+    "reported_psnr": 24.814696895758605,
+    "stored_recon_psnr": 24.814696895758605,
+    "forward_pass_psnr": 25.087010384002284,
+    "reported_ssim": 0.6885342597961426,
+    "stored_recon_ssim": 0.6885342597961426,
+    "forward_pass_ssim": 0.7078721523284912,
+    "rmse": 0.05744670704007149,
+    "mae": 0.03838098794221878
+  },
+  "transformer": {
+    "variant": "transformer",
+    "total_params": 1376036,
+    "best_epoch": 2988,
+    "best_loss": 0.006075729906297081,
+    "reported_psnr": 24.05023874096093,
+    "stored_recon_psnr": 24.05023874096093,
+    "forward_pass_psnr": 24.412863453512756,
+    "reported_ssim": 0.6530864238739014,
+    "stored_recon_ssim": 0.6530864238739014,
+    "forward_pass_ssim": 0.6801549792289734,
+    "rmse": 0.06273184716701508,
+    "mae": 0.04151995852589607
+  }
+}

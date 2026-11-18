@@ -1,0 +1,9 @@
+Model,Source,In-Loop PSNR (dB),Clean DIP PSNR (dB),SSIM,Parameters,Delta vs Baseline (dB)
+Baseline CNN,historical,30.0023,30.0023,0.8472,3918508,+0.0000
+Serial Hybrid,historical,30.2947,30.2947,0.8566,4050988,+0.2924
+CNN Control,historical,30.3128,30.3128,0.8579,4051160,+0.3105
+Pointwise Control (Winner),historical,30.6212,30.6212,0.8621,4050860,+0.6189
+Pure Transformer,historical,30.4056,30.4056,0.8585,3663144,+0.4033
+Standard AHD-Net v1,historical,30.2491,30.2500,0.8558,4050988,+0.2477
+Condition A: Static Equal Fusion,stage3_validation,30.2422,30.1453,0.8524,4042396,+0.1430
+Condition B: Constant Temp (tau=1.0) CAGC,stage3_validation,30.1618,30.1685,0.8501,4050988,+0.1662

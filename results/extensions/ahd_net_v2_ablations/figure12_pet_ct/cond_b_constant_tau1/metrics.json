@@ -1,0 +1,62 @@
+{
+  "cond_id": "cond_b_constant_tau1",
+  "condition_id": "Condition B",
+  "name": "Constant Temperature CAGC",
+  "router_type": "cagc",
+  "tau": 1.0,
+  "total_params": 4050988,
+  "block_params": 132480,
+  "runtime_sec": 561.8845872879028,
+  "peak_vram_mb": 599.31640625,
+  "best_epoch": 3963,
+  "best_loss": 0.24678963422775269,
+  "metrics_inloop": {
+    "psnr": 30.161798031894456,
+    "ssim": 0.8497024799691745,
+    "rmse": 0.031039170920848846,
+    "mae": 0.01864388957619667,
+    "rel_error": 0.16901275515556335
+  },
+  "metrics_dip": {
+    "psnr": 30.164755199489107,
+    "ssim": 0.8498323580262258,
+    "rmse": 0.03102860413491726,
+    "mae": 0.018647408112883568,
+    "rel_error": 0.1689552515745163
+  },
+  "final_router_telem": {
+    "mean_weights": {
+      "cnn": 0.3335784375667572,
+      "pointwise": 0.3497205972671509,
+      "attention": 0.3167009651660919
+    },
+    "router_entropy": 1.0977938175201416,
+    "channel_entropy": 1.0820767879486084,
+    "current_tau": 1.0,
+    "dominant_counts": {
+      "cnn": 40,
+      "pointwise": 53,
+      "attention": 35
+    },
+    "channel_distribution": {
+      "cnn": {
+        "mean": 0.3335784673690796,
+        "std": 0.05695103108882904,
+        "min": 0.15863293409347534,
+        "max": 0.4648762345314026
+      },
+      "pointwise": {
+        "mean": 0.3497205972671509,
+        "std": 0.06597132980823517,
+        "min": 0.23069897294044495,
+        "max": 0.6368837356567383
+      },
+      "attention": {
+        "mean": 0.31670093536376953,
+        "std": 0.054922230541706085,
+        "min": 0.19756315648555756,
+        "max": 0.4269205629825592
+      }
+    }
+  }
+}

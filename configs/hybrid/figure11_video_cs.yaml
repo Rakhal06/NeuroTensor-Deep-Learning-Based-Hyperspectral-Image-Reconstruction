@@ -1,0 +1,63 @@
+experiment: Figure 11 Video Compressive Sensing (Cat Video)
+dataset: data/cat_video.mat
+tensor_shape: [128, 128, 64]
+multiplexed_frames: 8
+rank: 32
+n_inputs: 32
+learning_rate: 0.001
+epochs: 3000
+smoke_epochs: 1
+device: cuda
+output_dir: results/hybrid/figure11_video_cs
+
+noise:
+  tau: 100
+  noise_snr: 2
+  reg_noise_std: 0.03333333333333333  # 1/30
+
+loss:
+  criterion: l2
+
+architectures:
+  baseline:
+    spatial_type: skip
+    spectral_type: skip1d
+    skip_n33d: 64
+    skip_n33u: 64
+    num_scales: 5
+  hybrid:
+    spatial_type: skip
+    spectral_type: hybrid_attention
+    skip_n33d: 64
+    skip_n33u: 64
+    num_scales: 5
+    d_model: 128
+    heads: 2
+    seq_len: 64
+  cnn_control:
+    spatial_type: skip
+    spectral_type: cnn_control
+    skip_n33d: 64
+    skip_n33u: 64
+    num_scales: 5
+    d_model: 128
+    seq_len: 64
+  pointwise_control:
+    spatial_type: skip
+    spectral_type: hybrid_control
+    skip_n33d: 64
+    skip_n33u: 64
+    num_scales: 5
+    d_model: 128
+    seq_len: 64
+  transformer:
+    spatial_type: skip
+    spectral_type: spectral_transformer
+    skip_n33d: 64
+    skip_n33u: 64
+    num_scales: 5
+    d_model: 128
+    n_heads: 4
+    n_layers: 4
+    d_ffn: 512
+    seq_len: 64

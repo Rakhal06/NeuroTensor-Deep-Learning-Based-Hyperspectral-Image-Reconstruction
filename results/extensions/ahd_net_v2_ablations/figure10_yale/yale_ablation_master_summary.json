@@ -1,0 +1,798 @@
+{
+  "experiment": "ahd_net_v2_yale_ablations",
+  "dataset": "Extended Yale Face B (192x168x160)",
+  "rank": 2000,
+  "epochs": 1200,
+  "conditions": {
+    "cond1_cnn_only": {
+      "cond_id": "cond1_cnn_only",
+      "name": "CNN-Only Tri-Branch",
+      "phase": 1,
+      "router_type": "cnn_only",
+      "gating_floor": 0.0,
+      "tau_schedule": "constant",
+      "entropy_reg": 0.0,
+      "total_params": 5594396,
+      "block_params": 123888,
+      "runtime_sec": 163.85007071495056,
+      "peak_vram_mb": 917.37353515625,
+      "best_epoch": 1200,
+      "best_loss": 0.1646890640258789,
+      "tau_at_best": 1.0,
+      "metrics_inloop": {
+        "psnr": 27.838325354253296,
+        "ssim": 0.8533172607421875,
+        "rmse": 0.04055868834257126,
+        "mae": 0.02124776318669319,
+        "rel_error": 0.10318996757268906
+      },
+      "metrics_dip": {
+        "psnr": 27.838325354253296,
+        "ssim": 0.8533172607421875,
+        "rmse": 0.04055868834257126,
+        "mae": 0.02124776318669319,
+        "rel_error": 0.10318996757268906
+      },
+      "metrics_tau1": {
+        "psnr": 27.838325354253296,
+        "ssim": 0.8533172607421875,
+        "rmse": 0.04055868834257126,
+        "mae": 0.02124776318669319,
+        "rel_error": 0.10318996757268906
+      },
+      "metrics_eval": {
+        "psnr": 15.877115153522341,
+        "ssim": 0.624747097492218,
+        "rmse": 0.16074754297733307,
+        "mae": 0.12090706080198288,
+        "rel_error": 0.40898266434669495
+      },
+      "final_router_telem": {
+        "mean_weights": {
+          "cnn": 1.0,
+          "pointwise": 0.0,
+          "attention": 0.0
+        },
+        "router_entropy": -0.0,
+        "channel_entropy": 0.0,
+        "current_tau": 1.0,
+        "dominant_counts": {
+          "cnn": 128,
+          "pointwise": 0,
+          "attention": 0
+        },
+        "channel_distribution": {
+          "cnn": {
+            "mean": 1.0,
+            "std": 0.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "pointwise": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "attention": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          }
+        }
+      }
+    },
+    "cond2_pointwise_only": {
+      "cond_id": "cond2_pointwise_only",
+      "name": "Pointwise-Only Tri-Branch",
+      "phase": 1,
+      "router_type": "pointwise_only",
+      "gating_floor": 0.0,
+      "tau_schedule": "constant",
+      "entropy_reg": 0.0,
+      "total_params": 5594396,
+      "block_params": 123888,
+      "runtime_sec": 153.8445291519165,
+      "peak_vram_mb": 918.26220703125,
+      "best_epoch": 1193,
+      "best_loss": 0.16474774479866028,
+      "tau_at_best": 1.0,
+      "metrics_inloop": {
+        "psnr": 27.804092528268907,
+        "ssim": 0.8555108904838562,
+        "rmse": 0.04071885347366333,
+        "mae": 0.02132483758032322,
+        "rel_error": 0.10359743237495422
+      },
+      "metrics_dip": {
+        "psnr": 27.804092528268907,
+        "ssim": 0.8555108904838562,
+        "rmse": 0.04071885347366333,
+        "mae": 0.02132483758032322,
+        "rel_error": 0.10359743237495422
+      },
+      "metrics_tau1": {
+        "psnr": 27.804092528268907,
+        "ssim": 0.8555108904838562,
+        "rmse": 0.04071885347366333,
+        "mae": 0.02132483758032322,
+        "rel_error": 0.10359743237495422
+      },
+      "metrics_eval": {
+        "psnr": 16.560828656809655,
+        "ssim": 0.6393579244613647,
+        "rmse": 0.1485794186592102,
+        "mae": 0.10792644321918488,
+        "rel_error": 0.3780222535133362
+      },
+      "final_router_telem": {
+        "mean_weights": {
+          "cnn": 0.0,
+          "pointwise": 1.0,
+          "attention": 0.0
+        },
+        "router_entropy": -0.0,
+        "channel_entropy": 0.0,
+        "current_tau": 1.0,
+        "dominant_counts": {
+          "cnn": 0,
+          "pointwise": 128,
+          "attention": 0
+        },
+        "channel_distribution": {
+          "cnn": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "pointwise": {
+            "mean": 1.0,
+            "std": 0.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "attention": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          }
+        }
+      }
+    },
+    "cond3_attention_only": {
+      "cond_id": "cond3_attention_only",
+      "name": "Attention-Only Tri-Branch",
+      "phase": 1,
+      "router_type": "attention_only",
+      "gating_floor": 0.0,
+      "tau_schedule": "constant",
+      "entropy_reg": 0.0,
+      "total_params": 5594396,
+      "block_params": 123888,
+      "runtime_sec": 154.98114824295044,
+      "peak_vram_mb": 918.5400390625,
+      "best_epoch": 1181,
+      "best_loss": 0.1650097519159317,
+      "tau_at_best": 1.0,
+      "metrics_inloop": {
+        "psnr": 27.63378976017927,
+        "ssim": 0.849452793598175,
+        "rmse": 0.04152509570121765,
+        "mae": 0.021683843806385994,
+        "rel_error": 0.10564865171909332
+      },
+      "metrics_dip": {
+        "psnr": 27.63378976017927,
+        "ssim": 0.849452793598175,
+        "rmse": 0.04152509570121765,
+        "mae": 0.021683843806385994,
+        "rel_error": 0.10564865171909332
+      },
+      "metrics_tau1": {
+        "psnr": 27.63378976017927,
+        "ssim": 0.849452793598175,
+        "rmse": 0.04152509570121765,
+        "mae": 0.021683843806385994,
+        "rel_error": 0.10564865171909332
+      },
+      "metrics_eval": {
+        "psnr": 15.697020083847404,
+        "ssim": 0.6179877519607544,
+        "rmse": 0.16411526501178741,
+        "mae": 0.11911650002002716,
+        "rel_error": 0.4175497889518738
+      },
+      "final_router_telem": {
+        "mean_weights": {
+          "cnn": 0.0,
+          "pointwise": 0.0,
+          "attention": 1.0
+        },
+        "router_entropy": -0.0,
+        "channel_entropy": 0.0,
+        "current_tau": 1.0,
+        "dominant_counts": {
+          "cnn": 0,
+          "pointwise": 0,
+          "attention": 128
+        },
+        "channel_distribution": {
+          "cnn": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "pointwise": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "attention": {
+            "mean": 1.0,
+            "std": 0.0,
+            "min": 1.0,
+            "max": 1.0
+          }
+        }
+      }
+    },
+    "cond4_static_equal": {
+      "cond_id": "cond4_static_equal",
+      "name": "Static Equal Tri-Branch",
+      "phase": 1,
+      "router_type": "static",
+      "gating_floor": 0.0,
+      "tau_schedule": "constant",
+      "entropy_reg": 0.0,
+      "total_params": 5594396,
+      "block_params": 123888,
+      "runtime_sec": 160.31023693084717,
+      "peak_vram_mb": 919.8271484375,
+      "best_epoch": 1191,
+      "best_loss": 0.16458645462989807,
+      "tau_at_best": 1.0,
+      "metrics_inloop": {
+        "psnr": 27.90276992238195,
+        "ssim": 0.8557182550430298,
+        "rmse": 0.04025886580348015,
+        "mae": 0.021100573241710663,
+        "rel_error": 0.10242714732885361
+      },
+      "metrics_dip": {
+        "psnr": 27.90276992238195,
+        "ssim": 0.8557182550430298,
+        "rmse": 0.04025886580348015,
+        "mae": 0.021100573241710663,
+        "rel_error": 0.10242714732885361
+      },
+      "metrics_tau1": {
+        "psnr": 27.90276992238195,
+        "ssim": 0.8557182550430298,
+        "rmse": 0.04025886580348015,
+        "mae": 0.021100573241710663,
+        "rel_error": 0.10242714732885361
+      },
+      "metrics_eval": {
+        "psnr": 15.884142080410932,
+        "ssim": 0.611855149269104,
+        "rmse": 0.16061758995056152,
+        "mae": 0.11652550846338272,
+        "rel_error": 0.40865063667297363
+      },
+      "final_router_telem": {
+        "mean_weights": {
+          "cnn": 0.333333283662796,
+          "pointwise": 0.333333283662796,
+          "attention": 0.333333283662796
+        },
+        "router_entropy": 1.0986123085021973,
+        "channel_entropy": 1.0986123085021973,
+        "current_tau": 1.0,
+        "dominant_counts": {
+          "cnn": 128,
+          "pointwise": 0,
+          "attention": 0
+        },
+        "channel_distribution": {
+          "cnn": {
+            "mean": 0.3333333432674408,
+            "std": 0.0,
+            "min": 0.3333333432674408,
+            "max": 0.3333333432674408
+          },
+          "pointwise": {
+            "mean": 0.3333333432674408,
+            "std": 0.0,
+            "min": 0.3333333432674408,
+            "max": 0.3333333432674408
+          },
+          "attention": {
+            "mean": 0.3333333432674408,
+            "std": 0.0,
+            "min": 0.3333333432674408,
+            "max": 0.3333333432674408
+          }
+        }
+      }
+    },
+    "cond5_standard_cagc": {
+      "cond_id": "cond5_standard_cagc",
+      "name": "Standard AHD-Net v1 Reference",
+      "phase": 1,
+      "router_type": "cagc",
+      "gating_floor": 0.0,
+      "tau_schedule": "cosine",
+      "entropy_reg": 0.0,
+      "total_params": 5602988,
+      "block_params": 132480,
+      "runtime_sec": 182.64551949501038,
+      "peak_vram_mb": 920.68408203125,
+      "best_epoch": 1184,
+      "best_loss": 0.16461437940597534,
+      "tau_at_best": 0.5007426679392594,
+      "metrics_inloop": {
+        "psnr": 27.85529628133721,
+        "ssim": 0.8550351858139038,
+        "rmse": 0.040479499846696854,
+        "mae": 0.021145084872841835,
+        "rel_error": 0.10298849642276764
+      },
+      "metrics_dip": {
+        "psnr": 27.85529628133721,
+        "ssim": 0.8550351858139038,
+        "rmse": 0.040479499846696854,
+        "mae": 0.021145084872841835,
+        "rel_error": 0.10298849642276764
+      },
+      "metrics_tau1": {
+        "psnr": 27.13509066757969,
+        "ssim": 0.8435648679733276,
+        "rmse": 0.04397900030016899,
+        "mae": 0.025900090113282204,
+        "rel_error": 0.11189308762550354
+      },
+      "metrics_eval": {
+        "psnr": 15.096392969209479,
+        "ssim": 0.6167320013046265,
+        "rmse": 0.17586524784564972,
+        "mae": 0.12868767976760864,
+        "rel_error": 0.44744375348091125
+      },
+      "final_router_telem": {
+        "mean_weights": {
+          "cnn": 0.362249493598938,
+          "pointwise": 0.49583345651626587,
+          "attention": 0.14191710948944092
+        },
+        "router_entropy": 0.9927657246589661,
+        "channel_entropy": 0.736595630645752,
+        "current_tau": 0.5007426679392594,
+        "dominant_counts": {
+          "cnn": 49,
+          "pointwise": 70,
+          "attention": 9
+        },
+        "channel_distribution": {
+          "cnn": {
+            "mean": 0.362249493598938,
+            "std": 0.27116987109184265,
+            "min": 0.00790715217590332,
+            "max": 0.9772160053253174
+          },
+          "pointwise": {
+            "mean": 0.4958334267139435,
+            "std": 0.2759742736816406,
+            "min": 0.013958174735307693,
+            "max": 0.9893088340759277
+          },
+          "attention": {
+            "mean": 0.14191710948944092,
+            "std": 0.14089462161064148,
+            "min": 0.002783944131806493,
+            "max": 0.6580114960670471
+          }
+        }
+      }
+    },
+    "cond6a_temp_sharp": {
+      "cond_id": "cond6a_temp_sharp",
+      "name": "Temperature Sharpening",
+      "phase": 2,
+      "router_type": "cagc",
+      "gating_floor": 0.0,
+      "tau_schedule": "cosine",
+      "entropy_reg": 0.0,
+      "total_params": 5602988,
+      "block_params": 132480,
+      "runtime_sec": 181.13566136360168,
+      "peak_vram_mb": 918.689453125,
+      "best_epoch": 1182,
+      "best_loss": 0.16475239396095276,
+      "tau_at_best": 0.1011750288145851,
+      "metrics_inloop": {
+        "psnr": 27.812292296226722,
+        "ssim": 0.8542767763137817,
+        "rmse": 0.0406804122030735,
+        "mae": 0.021335948258638382,
+        "rel_error": 0.10349968075752258
+      },
+      "metrics_dip": {
+        "psnr": 27.812292296226722,
+        "ssim": 0.8542767763137817,
+        "rmse": 0.0406804122030735,
+        "mae": 0.021335948258638382,
+        "rel_error": 0.10349968075752258
+      },
+      "metrics_tau1": {
+        "psnr": 24.73589323172872,
+        "ssim": 0.7978517413139343,
+        "rmse": 0.057970285415649414,
+        "mae": 0.04083096608519554,
+        "rel_error": 0.14749111235141754
+      },
+      "metrics_eval": {
+        "psnr": 15.480622496403072,
+        "ssim": 0.6163798570632935,
+        "rmse": 0.16825531423091888,
+        "mae": 0.12268049269914627,
+        "rel_error": 0.428083598613739
+      },
+      "final_router_telem": {
+        "mean_weights": {
+          "cnn": 0.3867855668067932,
+          "pointwise": 0.5280890464782715,
+          "attention": 0.0851254016160965
+        },
+        "router_entropy": 0.9142990112304688,
+        "channel_entropy": 0.3858788013458252,
+        "current_tau": 0.1011750288145851,
+        "dominant_counts": {
+          "cnn": 53,
+          "pointwise": 67,
+          "attention": 8
+        },
+        "channel_distribution": {
+          "cnn": {
+            "mean": 0.3867855668067932,
+            "std": 0.3808887302875519,
+            "min": 1.1715267334011514e-07,
+            "max": 1.0
+          },
+          "pointwise": {
+            "mean": 0.5280890464782715,
+            "std": 0.3924720883369446,
+            "min": 3.1150864998608085e-08,
+            "max": 0.9999995231628418
+          },
+          "attention": {
+            "mean": 0.0851254090666771,
+            "std": 0.17618310451507568,
+            "min": 1.705122931738856e-09,
+            "max": 0.9917412996292114
+          }
+        }
+      }
+    },
+    "cond6b_temp_soft": {
+      "cond_id": "cond6b_temp_soft",
+      "name": "Conservative Temperature",
+      "phase": 2,
+      "router_type": "cagc",
+      "gating_floor": 0.0,
+      "tau_schedule": "cosine",
+      "entropy_reg": 0.0,
+      "total_params": 5602988,
+      "block_params": 132480,
+      "runtime_sec": 161.9576132297516,
+      "peak_vram_mb": 921.755859375,
+      "best_epoch": 1189,
+      "best_loss": 0.16471105813980103,
+      "tau_at_best": 1.000246719817134,
+      "metrics_inloop": {
+        "psnr": 27.81024022028962,
+        "ssim": 0.8547771573066711,
+        "rmse": 0.04069003835320473,
+        "mae": 0.02127499133348465,
+        "rel_error": 0.10352406650781631
+      },
+      "metrics_dip": {
+        "psnr": 27.81024022028962,
+        "ssim": 0.8547771573066711,
+        "rmse": 0.04069003835320473,
+        "mae": 0.02127499133348465,
+        "rel_error": 0.10352406650781631
+      },
+      "metrics_tau1": {
+        "psnr": 27.810220181377986,
+        "ssim": 0.8547769784927368,
+        "rmse": 0.04069014638662338,
+        "mae": 0.02127518504858017,
+        "rel_error": 0.10352429747581482
+      },
+      "metrics_eval": {
+        "psnr": 15.267157311149678,
+        "ssim": 0.5993043780326843,
+        "rmse": 0.17244161665439606,
+        "mae": 0.12578271329402924,
+        "rel_error": 0.43873313069343567
+      },
+      "final_router_telem": {
+        "mean_weights": {
+          "cnn": 0.35984915494918823,
+          "pointwise": 0.4140056073665619,
+          "attention": 0.22614513337612152
+        },
+        "router_entropy": 1.069075107574463,
+        "channel_entropy": 0.9946666359901428,
+        "current_tau": 1.000246719817134,
+        "dominant_counts": {
+          "cnn": 50,
+          "pointwise": 65,
+          "attention": 13
+        },
+        "channel_distribution": {
+          "cnn": {
+            "mean": 0.359849214553833,
+            "std": 0.14210008084774017,
+            "min": 0.053055599331855774,
+            "max": 0.7710334062576294
+          },
+          "pointwise": {
+            "mean": 0.41400566697120667,
+            "std": 0.1430533230304718,
+            "min": 0.0922219455242157,
+            "max": 0.7721602916717529
+          },
+          "attention": {
+            "mean": 0.22614514827728271,
+            "std": 0.09769042581319809,
+            "min": 0.042899154126644135,
+            "max": 0.5264856219291687
+          }
+        }
+      }
+    },
+    "cond6c_temp_const1": {
+      "cond_id": "cond6c_temp_const1",
+      "name": "Constant Temperature",
+      "phase": 2,
+      "router_type": "cagc",
+      "gating_floor": 0.0,
+      "tau_schedule": "constant",
+      "entropy_reg": 0.0,
+      "total_params": 5602988,
+      "block_params": 132480,
+      "runtime_sec": 160.00073289871216,
+      "peak_vram_mb": 921.67919921875,
+      "best_epoch": 1184,
+      "best_loss": 0.16458970308303833,
+      "tau_at_best": 1.0,
+      "metrics_inloop": {
+        "psnr": 27.857083873386493,
+        "ssim": 0.8565446138381958,
+        "rmse": 0.04047117009758949,
+        "mae": 0.021102087572216988,
+        "rel_error": 0.102967269718647
+      },
+      "metrics_dip": {
+        "psnr": 27.857083873386493,
+        "ssim": 0.8565446138381958,
+        "rmse": 0.04047117009758949,
+        "mae": 0.021102087572216988,
+        "rel_error": 0.102967269718647
+      },
+      "metrics_tau1": {
+        "psnr": 27.857083873386493,
+        "ssim": 0.8565446138381958,
+        "rmse": 0.04047117009758949,
+        "mae": 0.021102087572216988,
+        "rel_error": 0.102967269718647
+      },
+      "metrics_eval": {
+        "psnr": 16.372685757512404,
+        "ssim": 0.6265751123428345,
+        "rmse": 0.15183281898498535,
+        "mae": 0.11064735054969788,
+        "rel_error": 0.38630038499832153
+      },
+      "final_router_telem": {
+        "mean_weights": {
+          "cnn": 0.36269375681877136,
+          "pointwise": 0.4513770043849945,
+          "attention": 0.18592920899391174
+        },
+        "router_entropy": 1.0396969318389893,
+        "channel_entropy": 0.8839669227600098,
+        "current_tau": 1.0,
+        "dominant_counts": {
+          "cnn": 55,
+          "pointwise": 62,
+          "attention": 11
+        },
+        "channel_distribution": {
+          "cnn": {
+            "mean": 0.36269378662109375,
+            "std": 0.21745449304580688,
+            "min": 0.04357796534895897,
+            "max": 0.9223167300224304
+          },
+          "pointwise": {
+            "mean": 0.4513770341873169,
+            "std": 0.21629436314105988,
+            "min": 0.0270901620388031,
+            "max": 0.934203028678894
+          },
+          "attention": {
+            "mean": 0.18592923879623413,
+            "std": 0.11493421345949173,
+            "min": 0.02221900224685669,
+            "max": 0.5318503975868225
+          }
+        }
+      }
+    },
+    "cond7_gating_floor15": {
+      "cond_id": "cond7_gating_floor15",
+      "name": "Gating Floor Constraint (0.15)",
+      "phase": 2,
+      "router_type": "cagc",
+      "gating_floor": 0.15,
+      "tau_schedule": "cosine",
+      "entropy_reg": 0.0,
+      "total_params": 5602988,
+      "block_params": 132480,
+      "runtime_sec": 162.30176997184753,
+      "peak_vram_mb": 921.51318359375,
+      "best_epoch": 1189,
+      "best_loss": 0.16480940580368042,
+      "tau_at_best": 0.5003700797257014,
+      "metrics_inloop": {
+        "psnr": 27.746449374360992,
+        "ssim": 0.8536869287490845,
+        "rmse": 0.0409899577498436,
+        "mae": 0.021415334194898605,
+        "rel_error": 0.10428717732429504
+      },
+      "metrics_dip": {
+        "psnr": 27.746449374360992,
+        "ssim": 0.8536869287490845,
+        "rmse": 0.0409899577498436,
+        "mae": 0.021415334194898605,
+        "rel_error": 0.10428717732429504
+      },
+      "metrics_tau1": {
+        "psnr": 27.52178198469011,
+        "ssim": 0.8479976654052734,
+        "rmse": 0.04206400737166405,
+        "mae": 0.02293754182755947,
+        "rel_error": 0.10702034831047058
+      },
+      "metrics_eval": {
+        "psnr": 14.855921386999398,
+        "ssim": 0.6067312359809875,
+        "rmse": 0.18080225586891174,
+        "mae": 0.13271772861480713,
+        "rel_error": 0.46000492572784424
+      },
+      "final_router_telem": {
+        "mean_weights": {
+          "cnn": 0.37093740701675415,
+          "pointwise": 0.3971041738986969,
+          "attention": 0.23195846378803253
+        },
+        "router_entropy": 1.0735520124435425,
+        "channel_entropy": 1.0100001096725464,
+        "current_tau": 0.5003700797257014,
+        "dominant_counts": {
+          "cnn": 56,
+          "pointwise": 60,
+          "attention": 12
+        },
+        "channel_distribution": {
+          "cnn": {
+            "mean": 0.37093743681907654,
+            "std": 0.14126883447170258,
+            "min": 0.15386977791786194,
+            "max": 0.658416748046875
+          },
+          "pointwise": {
+            "mean": 0.3971042037010193,
+            "std": 0.13956184685230255,
+            "min": 0.1818629950284958,
+            "max": 0.6956381797790527
+          },
+          "attention": {
+            "mean": 0.23195844888687134,
+            "std": 0.07691946625709534,
+            "min": 0.1504920870065689,
+            "max": 0.4760047197341919
+          }
+        }
+      }
+    },
+    "cond8_entropy_reg": {
+      "cond_id": "cond8_entropy_reg",
+      "name": "Entropy Regularization (0.01)",
+      "phase": 2,
+      "router_type": "cagc",
+      "gating_floor": 0.0,
+      "tau_schedule": "cosine",
+      "entropy_reg": 0.01,
+      "total_params": 5602988,
+      "block_params": 132480,
+      "runtime_sec": 160.9943037033081,
+      "peak_vram_mb": 921.74267578125,
+      "best_epoch": 1198,
+      "best_loss": 0.16492602229118347,
+      "tau_at_best": 0.5000231317664078,
+      "metrics_inloop": {
+        "psnr": 27.707385909735642,
+        "ssim": 0.8518153429031372,
+        "rmse": 0.04117473587393761,
+        "mae": 0.02157084085047245,
+        "rel_error": 0.10475718230009079
+      },
+      "metrics_dip": {
+        "psnr": 27.707385909735642,
+        "ssim": 0.8518153429031372,
+        "rmse": 0.04117473587393761,
+        "mae": 0.02157084085047245,
+        "rel_error": 0.10475718230009079
+      },
+      "metrics_tau1": {
+        "psnr": 27.701754887230592,
+        "ssim": 0.851734459400177,
+        "rmse": 0.04120142012834549,
+        "mae": 0.021592428907752037,
+        "rel_error": 0.10482511669397354
+      },
+      "metrics_eval": {
+        "psnr": 15.649678434023047,
+        "ssim": 0.6302709579467773,
+        "rmse": 0.16501224040985107,
+        "mae": 0.1195162907242775,
+        "rel_error": 0.4198313355445862
+      },
+      "final_router_telem": {
+        "mean_weights": {
+          "cnn": 0.33739030361175537,
+          "pointwise": 0.336063951253891,
+          "attention": 0.32654574513435364
+        },
+        "router_entropy": 1.0985069274902344,
+        "channel_entropy": 1.0973995923995972,
+        "current_tau": 0.5000231317664078,
+        "dominant_counts": {
+          "cnn": 54,
+          "pointwise": 47,
+          "attention": 27
+        },
+        "channel_distribution": {
+          "cnn": {
+            "mean": 0.33739030361175537,
+            "std": 0.0144234299659729,
+            "min": 0.29756098985671997,
+            "max": 0.37702611088752747
+          },
+          "pointwise": {
+            "mean": 0.336063951253891,
+            "std": 0.016024410724639893,
+            "min": 0.2964390218257904,
+            "max": 0.38778066635131836
+          },
+          "attention": {
+            "mean": 0.32654574513435364,
+            "std": 0.016513841226696968,
+            "min": 0.28229591250419617,
+            "max": 0.36543211340904236
+          }
+        }
+      }
+    }
+  }
+}

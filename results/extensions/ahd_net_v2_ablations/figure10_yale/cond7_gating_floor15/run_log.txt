@@ -1,0 +1,19 @@
+================================================================================
+RUNNING ABLATION CONDITION: cond7_gating_floor15 — Gating Floor Constraint (0.15)
+Description: CAGC with w_b >= 0.15 minimum gating floor to prevent attention starvation
+Router Type: cagc | Gating Floor: 0.15
+Temperature Schedule: cosine (2.0 -> 0.5)
+Entropy Regularization: lambda = 0.0
+Epochs: 1200 | Rank: 2000 | Device: cuda
+================================================================================
+--> Trainable Parameters: Model=5,602,988 | AdaptiveBlock=132,480
+  [Epoch    1/1200] Loss: 0.364598 | tau: 2.00 | H_chan: 1.0980 | Gates: CNN=0.334, PW=0.333, Attn=0.333
+  [Epoch  200/1200] Loss: 0.181172 | tau: 1.90 | H_chan: 1.0921 | Gates: CNN=0.329, PW=0.352, Attn=0.318
+  [Epoch  400/1200] Loss: 0.172158 | tau: 1.63 | H_chan: 1.0818 | Gates: CNN=0.332, PW=0.367, Attn=0.301
+  [Epoch  600/1200] Loss: 0.168818 | tau: 1.25 | H_chan: 1.0649 | Gates: CNN=0.338, PW=0.380, Attn=0.282
+  [Epoch  800/1200] Loss: 0.167158 | tau: 0.88 | H_chan: 1.0378 | Gates: CNN=0.348, PW=0.394, Attn=0.258
+  [Epoch 1000/1200] Loss: 0.165787 | tau: 0.60 | H_chan: 1.0039 | Gates: CNN=0.363, PW=0.403, Attn=0.234
+  [Epoch 1200/1200] Loss: 0.164914 | tau: 0.50 | H_chan: 0.9850 | Gates: CNN=0.376, PW=0.405, Attn=0.220
+--> Optimization Complete: Runtime=162.3s | Best Meas Loss=0.164809 at Ep 1189
+--> RESULTS: PSNR (In-Loop)=27.7464 dB | SSIM=0.8537
+--> RESULTS: PSNR (Clean DIP)=27.7464 dB | SSIM=0.8537

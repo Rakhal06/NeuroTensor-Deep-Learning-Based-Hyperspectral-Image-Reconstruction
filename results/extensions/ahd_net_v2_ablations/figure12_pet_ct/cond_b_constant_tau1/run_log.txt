@@ -1,0 +1,19 @@
+================================================================================
+RUNNING FIGURE 12 PET/CT ROUTING VALIDATION: cond_b_constant_tau1 — Constant Temperature CAGC
+Condition: Condition B | Description: Learned CAGC router with fixed constant unit temperature (tau = 1.0, no decay)
+Router Type: cagc | Fixed Tau: 1.0
+Epochs: 4000 | Rank: 1000 | Angles: 40 | Device: cuda
+================================================================================
+--> Trainable Parameters: Model=4,050,988 | AdaptiveBlock=132,480
+  [Epoch    1/4000] Loss: 3.10750e+02 | Best Loss: inf (Ep 0) | H: 1.0905 | Gates: CNN=0.340, PW=0.329, Attn=0.331 | Dominance: CNN=48, PW=34, Attn=46
+  [Epoch  500/4000] Loss: 6.69549e-01 | Best Loss: 6.70260e-01 (Ep 499) | H: 1.0859 | Gates: CNN=0.338, PW=0.334, Attn=0.328 | Dominance: CNN=44, PW=46, Attn=38
+  [Epoch 1000/4000] Loss: 4.79175e-01 | Best Loss: 4.78517e-01 (Ep 995) | H: 1.0864 | Gates: CNN=0.338, PW=0.336, Attn=0.326 | Dominance: CNN=44, PW=48, Attn=36
+  [Epoch 1500/4000] Loss: 4.15705e-01 | Best Loss: 3.96384e-01 (Ep 1494) | H: 1.0862 | Gates: CNN=0.338, PW=0.338, Attn=0.324 | Dominance: CNN=47, PW=46, Attn=35
+  [Epoch 2000/4000] Loss: 3.50814e-01 | Best Loss: 3.46549e-01 (Ep 1997) | H: 1.0853 | Gates: CNN=0.337, PW=0.341, Attn=0.322 | Dominance: CNN=46, PW=46, Attn=36
+  [Epoch 2500/4000] Loss: 3.20326e-01 | Best Loss: 3.11750e-01 (Ep 2480) | H: 1.0858 | Gates: CNN=0.337, PW=0.341, Attn=0.322 | Dominance: CNN=46, PW=46, Attn=36
+  [Epoch 3000/4000] Loss: 2.83548e-01 | Best Loss: 2.82463e-01 (Ep 2995) | H: 1.0839 | Gates: CNN=0.336, PW=0.345, Attn=0.319 | Dominance: CNN=46, PW=46, Attn=36
+  [Epoch 3500/4000] Loss: 2.84326e-01 | Best Loss: 2.63953e-01 (Ep 3473) | H: 1.0825 | Gates: CNN=0.334, PW=0.348, Attn=0.317 | Dominance: CNN=41, PW=51, Attn=36
+  [Epoch 4000/4000] Loss: 2.58753e-01 | Best Loss: 2.46790e-01 (Ep 3963) | H: 1.0818 | Gates: CNN=0.333, PW=0.350, Attn=0.316 | Dominance: CNN=40, PW=53, Attn=35
+--> Optimization Complete: Runtime=561.9s | Best Meas Loss=2.467896e-01 at Ep 3963
+--> RESULTS: PSNR (In-Loop)=30.1618 dB | SSIM=0.8497
+--> RESULTS: PSNR (Clean DIP)=30.1648 dB | SSIM=0.8498

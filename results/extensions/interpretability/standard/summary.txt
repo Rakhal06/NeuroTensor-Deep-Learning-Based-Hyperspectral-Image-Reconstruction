@@ -1,0 +1,62 @@
+=== EXTENSION 7: FACTOR / COMPONENT INTERPRETABILITY RESULTS ===
+
+Seed: 42
+Rank R: 20
+Epochs: 5000
+Runtime: 149.54 s
+Peak VRAM: 642.86 MB
+
+--- FULL MODEL RECONSTRUCTION METRICS ---
+Full Model PSNR: 46.1629 dB
+Full Model SSIM: 0.986746
+Full Model RMSE: 0.004919
+
+--- COMPONENT IMPORTANCE (E_r = ||U_r||_F * ||V_r||_F) ---
+Sorted Top #01: Orig Comp 11 | E_r = 98.301598
+Sorted Top #02: Orig Comp 12 | E_r = 97.020035
+Sorted Top #03: Orig Comp 15 | E_r = 44.734650
+Sorted Top #04: Orig Comp 04 | E_r = 38.442600
+Sorted Top #05: Orig Comp 06 | E_r = 35.302658
+Sorted Top #06: Orig Comp 07 | E_r = 21.584539
+Sorted Top #07: Orig Comp 18 | E_r = 12.154758
+Sorted Top #08: Orig Comp 09 | E_r = 11.392535
+Sorted Top #09: Orig Comp 01 | E_r = 8.737834
+Sorted Top #10: Orig Comp 13 | E_r = 7.645317
+Sorted Top #11: Orig Comp 17 | E_r = 7.027643
+Sorted Top #12: Orig Comp 05 | E_r = 6.666837
+Sorted Top #13: Orig Comp 00 | E_r = 6.401504
+Sorted Top #14: Orig Comp 03 | E_r = 4.535491
+Sorted Top #15: Orig Comp 10 | E_r = 4.318876
+Sorted Top #16: Orig Comp 14 | E_r = 3.364656
+Sorted Top #17: Orig Comp 16 | E_r = 2.946525
+Sorted Top #18: Orig Comp 08 | E_r = 2.086981
+Sorted Top #19: Orig Comp 02 | E_r = 1.731866
+Sorted Top #20: Orig Comp 19 | E_r = 1.268862
+
+--- PROGRESSIVE TOP-K RECONSTRUCTION ABLATION ---
+k=01: PSNR = 21.4585 dB | SSIM = 0.527911 | RMSE = 0.084543
+k=02: PSNR = 25.7084 dB | SSIM = 0.793057 | RMSE = 0.051830
+k=03: PSNR = 28.2241 dB | SSIM = 0.853338 | RMSE = 0.038797
+k=04: PSNR = 31.3711 dB | SSIM = 0.928478 | RMSE = 0.027005
+k=05: PSNR = 34.2985 dB | SSIM = 0.961697 | RMSE = 0.019279
+k=06: PSNR = 36.7864 dB | SSIM = 0.971868 | RMSE = 0.014477
+k=07: PSNR = 38.2964 dB | SSIM = 0.975496 | RMSE = 0.012167
+k=08: PSNR = 39.9290 dB | SSIM = 0.978102 | RMSE = 0.010082
+k=09: PSNR = 40.9253 dB | SSIM = 0.979744 | RMSE = 0.008989
+k=10: PSNR = 42.3128 dB | SSIM = 0.981748 | RMSE = 0.007662
+k=11: PSNR = 42.9961 dB | SSIM = 0.982531 | RMSE = 0.007083
+k=12: PSNR = 43.5936 dB | SSIM = 0.983475 | RMSE = 0.006612
+k=13: PSNR = 44.4518 dB | SSIM = 0.984788 | RMSE = 0.005990
+k=14: PSNR = 44.9071 dB | SSIM = 0.985282 | RMSE = 0.005684
+k=15: PSNR = 45.3169 dB | SSIM = 0.985909 | RMSE = 0.005422
+k=16: PSNR = 45.6711 dB | SSIM = 0.986198 | RMSE = 0.005205
+k=17: PSNR = 45.9318 dB | SSIM = 0.986492 | RMSE = 0.005051
+k=18: PSNR = 46.1186 dB | SSIM = 0.986663 | RMSE = 0.004944
+k=19: PSNR = 46.1690 dB | SSIM = 0.986759 | RMSE = 0.004915
+k=20: PSNR = 46.1629 dB | SSIM = 0.986746 | RMSE = 0.004919
+
+Descriptive Energy-Concentration Point k*: 18 (Threshold: PSNR(20) - 0.1 dB = 46.0629 dB)
+
+--- PAIRWISE COMPONENT CORRELATION STRUCTURE ---
+Mean Abs Off-Diagonal Spatial Cosine Similarity: 0.345825
+Mean Abs Off-Diagonal Spectral Cosine Similarity: 0.366159

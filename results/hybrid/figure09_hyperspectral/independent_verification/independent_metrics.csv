@@ -1,0 +1,6 @@
+Model,Report PSNR Cube (dB),Report SSIM Cube,Report RMSE Cube,Slice 130 PSNR Local Range (dB),Slice 130 PSNR Global Range (dB),Range Shift Delta (dB)
+baseline,46.0653,0.9874,0.004784,20.89,34.14,13.25
+hybrid,44.8526,0.9842,0.005500,22.55,35.81,13.25
+cnn_control,45.5844,0.9857,0.005056,20.74,33.99,13.25
+pointwise_control,45.4229,0.9852,0.005151,22.75,36.00,13.25
+transformer,43.4026,0.9766,0.006499,23.79,37.04,13.25

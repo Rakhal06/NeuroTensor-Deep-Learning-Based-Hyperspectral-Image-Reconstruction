@@ -1,0 +1,19 @@
+================================================================================
+RUNNING ABLATION CONDITION: cond1_cnn_only — CNN-Only Tri-Branch
+Description: Clamped CNN branch (w = [1, 0, 0]) inside tri-branch block
+Router Type: cnn_only | Gating Floor: 0.0
+Temperature Schedule: constant (1.0 -> 1.0)
+Entropy Regularization: lambda = 0.0
+Epochs: 1200 | Rank: 2000 | Device: cuda
+================================================================================
+--> Trainable Parameters: Model=5,594,396 | AdaptiveBlock=123,888
+  [Epoch    1/1200] Loss: 0.364534 | tau: 1.00 | H_chan: 0.0000 | Gates: CNN=1.000, PW=0.000, Attn=0.000
+  [Epoch  200/1200] Loss: 0.181889 | tau: 1.00 | H_chan: 0.0000 | Gates: CNN=1.000, PW=0.000, Attn=0.000
+  [Epoch  400/1200] Loss: 0.172723 | tau: 1.00 | H_chan: 0.0000 | Gates: CNN=1.000, PW=0.000, Attn=0.000
+  [Epoch  600/1200] Loss: 0.168925 | tau: 1.00 | H_chan: 0.0000 | Gates: CNN=1.000, PW=0.000, Attn=0.000
+  [Epoch  800/1200] Loss: 0.166758 | tau: 1.00 | H_chan: 0.0000 | Gates: CNN=1.000, PW=0.000, Attn=0.000
+  [Epoch 1000/1200] Loss: 0.165766 | tau: 1.00 | H_chan: 0.0000 | Gates: CNN=1.000, PW=0.000, Attn=0.000
+  [Epoch 1200/1200] Loss: 0.164689 | tau: 1.00 | H_chan: 0.0000 | Gates: CNN=1.000, PW=0.000, Attn=0.000
+--> Optimization Complete: Runtime=163.9s | Best Meas Loss=0.164689 at Ep 1200
+--> RESULTS: PSNR (In-Loop)=27.8383 dB | SSIM=0.8533
+--> RESULTS: PSNR (Clean DIP)=27.8383 dB | SSIM=0.8533

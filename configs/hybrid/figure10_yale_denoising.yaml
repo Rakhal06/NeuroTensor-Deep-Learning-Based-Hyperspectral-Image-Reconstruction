@@ -1,0 +1,44 @@
+experiment: Figure 10 Yale Face B 3-Way Tensor Denoising
+dataset: data/yale_b.mat
+tensor_shape: [192, 168, 160]
+rank: 2000
+n_inputs: 2000
+noise_ratio: 0.30
+noise_type: salt_and_pepper
+learning_rate: 0.001
+epochs: 1200
+smoke_epochs: 10
+device: cuda
+output_dir: results/hybrid/figure10_yale_denoising
+
+architectures:
+  baseline:
+    u_type: skip1d
+    v_type: skip1d
+    w_type: skip1d
+  hybrid:
+    u_type: skip1d
+    v_type: skip1d
+    w_type: hybrid_attention
+    d_model: 128
+    heads: 2
+    seq_len: 160
+  transformer:
+    u_type: skip1d
+    v_type: skip1d
+    w_type: spectral_transformer
+    d_model: 128
+    n_heads: 4
+    n_layers: 4
+    d_ffn: 512
+    seq_len: 160
+  control:
+    u_type: skip1d
+    v_type: skip1d
+    w_type: control_transformer
+    d_model: 128
+    n_heads: 4
+    n_layers: 4
+    d_ffn: 512
+    seq_len: 160
+

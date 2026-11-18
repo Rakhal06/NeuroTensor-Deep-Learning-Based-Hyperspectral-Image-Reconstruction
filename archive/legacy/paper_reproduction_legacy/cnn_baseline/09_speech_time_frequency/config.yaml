@@ -1,0 +1,28 @@
+experiment:
+  name: "Table 3: Speech Time-Frequency Nonnegative Matrix Factorization (NMF & Semi-NMF)"
+  paper: "DeepTensor: Low-Rank Tensor Decomposition with Deep Network Priors"
+  section: "Section 4.3, Page 10"
+
+dataset:
+  name: "Google Speech Commands v0.02"
+  samples: 40
+  format: "STFT Spectrograms"
+  dimensions: [40, 1, 500, 500]
+  noise_type: "Rician"
+  input_psnr_db: 4.69
+
+model:
+  architecture: "Deep Decoder (decodernw + decodernw1d)"
+  clusters_rank: 10
+  modes_tested:
+    - "NMF: Softplus, Abs, ReLU"
+    - "Semi-NMF: Softplus, Abs, ReLU"
+
+training:
+  optimizer: "Adam"
+  learning_rate: 0.01
+  epochs: 300
+  loss_function: "L2 Norm + 0.01 L1 Regularization"
+  device: "cuda"
+  n_runs: 2
+

@@ -1,0 +1,65 @@
+{
+    "experiment": "Figure 12: 3D PET CT Reconstruction (Improved Rerun)",
+    "dataset": "data/pet.mat",
+    "volume_dimensions": [
+        128,
+        128,
+        56
+    ],
+    "decomposition_rank": 1000,
+    "tomographic_angles": 40,
+    "noise_configuration": {
+        "noise_snr": 2.0,
+        "tau": 100.0,
+        "model": "Poisson (tau=100) + Gaussian readout (snr=2)"
+    },
+    "optimizer": "Adam + CosineAnnealingLR",
+    "learning_rate": 0.001,
+    "epochs": 4000,
+    "device": "cuda",
+    "best_epoch": 3999,
+    "runtime_seconds": 425.59870076179504,
+    "peak_vram_mb": 584.701171875,
+    "published_paper_reference": {
+        "deeptensor_psnr": 31.1,
+        "deeptensor_ssim": 0.87,
+        "bacca_psnr": 30.5,
+        "bacca_ssim": 0.84,
+        "fbpconvnet_psnr": 29.1,
+        "fbpconvnet_ssim": 0.65,
+        "gong_psnr": 28.6,
+        "gong_ssim": 0.69,
+        "tv_2d_psnr": 28.6,
+        "tv_2d_ssim": 0.71,
+        "tv_2d_parafac_psnr": 27.6,
+        "tv_2d_parafac_ssim": 0.59,
+        "algorithmic_psnr": 26.3,
+        "algorithmic_ssim": 0.48
+    },
+    "metrics": {
+        "algorithmic": {
+            "PSNR": 26.974088152895284,
+            "SSIM": 0.5316677689552307,
+            "RMSE": 0.04480181261897087,
+            "time": 8.867605209350586
+        },
+        "tv_2d": {
+            "PSNR": 30.307514475354683,
+            "SSIM": 0.7584699988365173,
+            "RMSE": 0.030522793531417847,
+            "time": 9.397777557373047
+        },
+        "tv_2d_parafac": {
+            "PSNR": 27.059146218261255,
+            "SSIM": 0.6974725723266602,
+            "RMSE": 0.04436522349715233,
+            "time": 14.245611429214478
+        },
+        "deeptensor_improved": {
+            "PSNR": 30.548479108718162,
+            "SSIM": 0.8302022814750671,
+            "RMSE": 0.02968766540288925,
+            "time": 425.59870076179504
+        }
+    }
+}

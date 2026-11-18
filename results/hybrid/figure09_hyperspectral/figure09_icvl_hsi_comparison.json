@@ -1,0 +1,101 @@
+{
+  "experiment": "figure09_icvl_hsi",
+  "models": {
+    "baseline": {
+      "metrics": {
+        "psnr": 46.06530472268848,
+        "ssim": 0.987412691116333,
+        "rmse": 0.004783500451594591,
+        "mae": 0.003350134240463376,
+        "rel_error": 0.04159017279744148
+      },
+      "params": 3005328,
+      "runtime_sec": 349.5590753555298,
+      "peak_vram_mb": 452.85498046875,
+      "extra_metrics": {}
+    },
+    "hybrid": {
+      "metrics": {
+        "psnr": 44.85260912472799,
+        "ssim": 0.9842376708984375,
+        "rmse": 0.005500225815922022,
+        "mae": 0.003756794147193432,
+        "rel_error": 0.04782167822122574
+      },
+      "params": 3137808,
+      "runtime_sec": 362.857444524765,
+      "peak_vram_mb": 456.42138671875,
+      "extra_metrics": {}
+    },
+    "cnn_control": {
+      "metrics": {
+        "psnr": 45.58443020752581,
+        "ssim": 0.9856666922569275,
+        "rmse": 0.005055797286331654,
+        "mae": 0.003435986116528511,
+        "rel_error": 0.04395759105682373
+      },
+      "params": 3137980,
+      "runtime_sec": 353.91467905044556,
+      "peak_vram_mb": 455.365234375,
+      "extra_metrics": {}
+    },
+    "pointwise_control": {
+      "metrics": {
+        "psnr": 45.42287949086473,
+        "ssim": 0.9852418303489685,
+        "rmse": 0.005150710232555866,
+        "mae": 0.0034960040356963873,
+        "rel_error": 0.04478274658322334
+      },
+      "params": 3137680,
+      "runtime_sec": 386.9237048625946,
+      "peak_vram_mb": 456.4169921875,
+      "extra_metrics": {}
+    },
+    "transformer": {
+      "metrics": {
+        "psnr": 43.402638265345814,
+        "ssim": 0.9766252040863037,
+        "rmse": 0.006499486975371838,
+        "mae": 0.00417529558762908,
+        "rel_error": 0.05650949105620384
+      },
+      "params": 3004764,
+      "runtime_sec": 264.26396441459656,
+      "peak_vram_mb": 467.71923828125,
+      "extra_metrics": {}
+    }
+  },
+  "comparisons": {
+    "hybrid_vs_baseline": {
+      "delta_psnr_db": -1.21269559796049,
+      "delta_ssim": -0.003175020217895508,
+      "delta_rmse": 0.0007167253643274307,
+      "param_ratio": 1.0440817108814746,
+      "psnr_improved": false
+    },
+    "cnn_control_vs_baseline": {
+      "delta_psnr_db": -0.4808745151626681,
+      "delta_ssim": -0.0017459988594055176,
+      "delta_rmse": 0.00027229683473706245,
+      "param_ratio": 1.0441389425713266,
+      "psnr_improved": false
+    },
+    "pointwise_control_vs_baseline": {
+      "delta_psnr_db": -0.6424252318237507,
+      "delta_ssim": -0.002170860767364502,
+      "delta_rmse": 0.0003672097809612751,
+      "param_ratio": 1.0440391198564682,
+      "psnr_improved": false
+    },
+    "transformer_vs_baseline": {
+      "delta_psnr_db": -2.6626664573426666,
+      "delta_ssim": -0.010787487030029297,
+      "delta_rmse": 0.0017159865237772465,
+      "param_ratio": 0.9998123332960662,
+      "psnr_improved": false
+    }
+  },
+  "csv_path": "E:\\Rakhal_Tensor\\results\\hybrid\\figure09_hyperspectral\\figure09_icvl_hsi_comparison.csv"
+}

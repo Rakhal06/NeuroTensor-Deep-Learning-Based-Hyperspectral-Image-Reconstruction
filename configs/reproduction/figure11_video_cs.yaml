@@ -1,0 +1,11 @@
+dataset: data/cat_video.mat
+nframes: 8
+rank: 32
+epochs: 3000
+tv_epochs: 500
+learning_rate: 0.001
+tv_learning_rate: 0.1
+lambda_tv: 0.01
+log_interval: 500
+device: cuda
+output_dir: results/baseline/figure11_video_cs

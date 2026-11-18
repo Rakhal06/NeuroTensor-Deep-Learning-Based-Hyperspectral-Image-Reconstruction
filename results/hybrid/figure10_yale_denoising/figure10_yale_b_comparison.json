@@ -1,0 +1,101 @@
+{
+  "experiment": "figure10_yale_b",
+  "models": {
+    "baseline": {
+      "metrics": {
+        "psnr": 27.780820039011576,
+        "ssim": 0.8528189659118652,
+        "rmse": 0.040828097611665726,
+        "mae": 0.02145211584866047,
+        "rel_error": 0.10387533903121948
+      },
+      "params": 5470508,
+      "runtime_sec": 149.98291516304016,
+      "peak_vram_mb": 915.5341796875,
+      "extra_metrics": {}
+    },
+    "hybrid": {
+      "metrics": {
+        "psnr": 28.03917097488454,
+        "ssim": 0.8591915965080261,
+        "rmse": 0.03963158279657364,
+        "mae": 0.020698657259345055,
+        "rel_error": 0.10083126276731491
+      },
+      "params": 5602988,
+      "runtime_sec": 152.0888659954071,
+      "peak_vram_mb": 919.11181640625,
+      "extra_metrics": {}
+    },
+    "cnn_control": {
+      "metrics": {
+        "psnr": 28.35214555729639,
+        "ssim": 0.8612009882926941,
+        "rmse": 0.03822898492217064,
+        "mae": 0.02005058340728283,
+        "rel_error": 0.09726282954216003
+      },
+      "params": 5603160,
+      "runtime_sec": 153.33820843696594,
+      "peak_vram_mb": 918.35107421875,
+      "extra_metrics": {}
+    },
+    "pointwise_control": {
+      "metrics": {
+        "psnr": 28.17025047467688,
+        "ssim": 0.8601135015487671,
+        "rmse": 0.03903799504041672,
+        "mae": 0.020539958029985428,
+        "rel_error": 0.09932100027799606
+      },
+      "params": 5602860,
+      "runtime_sec": 150.39796447753906,
+      "peak_vram_mb": 919.20947265625,
+      "extra_metrics": {}
+    },
+    "transformer": {
+      "metrics": {
+        "psnr": 28.555228232061435,
+        "ssim": 0.8655216097831726,
+        "rmse": 0.0373455286026001,
+        "mae": 0.019527578726410866,
+        "rel_error": 0.09501510858535767
+      },
+      "params": 4955144,
+      "runtime_sec": 123.0845513343811,
+      "peak_vram_mb": 908.408203125,
+      "extra_metrics": {}
+    }
+  },
+  "comparisons": {
+    "hybrid_vs_baseline": {
+      "delta_psnr_db": 0.258350935872965,
+      "delta_ssim": 0.006372630596160889,
+      "delta_rmse": -0.0011965148150920868,
+      "param_ratio": 1.0242171293781126,
+      "psnr_improved": true
+    },
+    "cnn_control_vs_baseline": {
+      "delta_psnr_db": 0.5713255182848123,
+      "delta_ssim": 0.008382022380828857,
+      "delta_rmse": -0.0025991126894950867,
+      "param_ratio": 1.024248570699467,
+      "psnr_improved": true
+    },
+    "pointwise_control_vs_baseline": {
+      "delta_psnr_db": 0.3894304356653038,
+      "delta_ssim": 0.0072945356369018555,
+      "delta_rmse": -0.0017901025712490082,
+      "param_ratio": 1.0241937311854767,
+      "psnr_improved": true
+    },
+    "transformer_vs_baseline": {
+      "delta_psnr_db": 0.7744081930498581,
+      "delta_ssim": 0.012702643871307373,
+      "delta_rmse": -0.003482569009065628,
+      "param_ratio": 0.9057922957063586,
+      "psnr_improved": true
+    }
+  },
+  "csv_path": "E:\\Rakhal_Tensor\\results\\hybrid\\figure10_yale_denoising\\figure10_yale_b_comparison.csv"
+}

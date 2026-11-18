@@ -1,0 +1,62 @@
+{
+  "cond_id": "cond_a_static_equal",
+  "condition_id": "Condition A",
+  "name": "Static Equal Fusion",
+  "router_type": "static",
+  "tau": 1.0,
+  "total_params": 4042396,
+  "block_params": 123888,
+  "runtime_sec": 554.6388916969299,
+  "peak_vram_mb": 598.90087890625,
+  "best_epoch": 3959,
+  "best_loss": 0.24941378831863403,
+  "metrics_inloop": {
+    "psnr": 30.242181311614942,
+    "ssim": 0.8560043228461285,
+    "rmse": 0.03075324185192585,
+    "mae": 0.018182964995503426,
+    "rel_error": 0.16745583713054657
+  },
+  "metrics_dip": {
+    "psnr": 30.242355394224965,
+    "ssim": 0.8561579614895521,
+    "rmse": 0.030752627179026604,
+    "mae": 0.018190817907452583,
+    "rel_error": 0.16745248436927795
+  },
+  "final_router_telem": {
+    "mean_weights": {
+      "cnn": 0.333333283662796,
+      "pointwise": 0.333333283662796,
+      "attention": 0.333333283662796
+    },
+    "router_entropy": 1.0986123085021973,
+    "channel_entropy": 1.0986123085021973,
+    "current_tau": 1.0,
+    "dominant_counts": {
+      "cnn": 128,
+      "pointwise": 0,
+      "attention": 0
+    },
+    "channel_distribution": {
+      "cnn": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "pointwise": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      },
+      "attention": {
+        "mean": 0.3333333432674408,
+        "std": 0.0,
+        "min": 0.3333333432674408,
+        "max": 0.3333333432674408
+      }
+    }
+  }
+}

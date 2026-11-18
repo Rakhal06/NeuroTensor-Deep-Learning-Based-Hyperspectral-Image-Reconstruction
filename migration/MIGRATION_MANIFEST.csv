@@ -1,0 +1,88 @@
+original_path,new_path,category,action,notes
+run_figure9_adaptive.py,experiments/extensions/adaptive_rank/run_figure9_adaptive.py,Git-Tracked File,git mv,Relocated with git history preserved
+run_figure9_sparsity.py,experiments/extensions/group_sparsity/run_figure9_sparsity.py,Git-Tracked File,git mv,Relocated with git history preserved
+run_figure9_completion.py,experiments/extensions/tensor_completion/run_figure9_completion.py,Git-Tracked File,git mv,Relocated with git history preserved
+run_figure9_robustness.py,experiments/extensions/noise_robustness/run_figure9_robustness.py,Git-Tracked File,git mv,Relocated with git history preserved
+run_figure9_ensemble.py,experiments/extensions/ensemble_uncertainty/run_figure9_ensemble.py,Git-Tracked File,git mv,Relocated with git history preserved
+run_figure9_interpretability.py,experiments/extensions/factor_interpretability/run_figure9_interpretability.py,Git-Tracked File,git mv,Relocated with git history preserved
+run_figure9_hybrid.py,experiments/extensions/hybrid_attention/run_figure9_hybrid.py,Git-Tracked File,git mv,Relocated with git history preserved
+run_figure9_spectral_transformer.py,experiments/extensions/spectral_transformer/run_figure9_spectral_transformer.py,Git-Tracked File,git mv,Relocated with git history preserved
+run_figure2.py,experiments/reproduction/figure02_eigenfaces/run_figure2.py,Git-Tracked File,git mv,Relocated with git history preserved
+run_figure6.py,experiments/reproduction/figure06_synthetic_robustness/run_figure6.py,Git-Tracked File,git mv,Relocated with git history preserved
+run_figure7.py,experiments/reproduction/figure07_robust_pca/run_figure7.py,Git-Tracked File,git mv,Relocated with git history preserved
+run_figure9.py,experiments/reproduction/figure09_hyperspectral/run_figure9.py,Git-Tracked File,git mv,Relocated with git history preserved
+run_figure9_bm3d.py,experiments/reproduction/figure09_hyperspectral/run_figure9_bm3d.py,Git-Tracked File,git mv,Relocated with git history preserved
+run_table1.py,experiments/reproduction/table01_synthetic/run_table1.py,Git-Tracked File,git mv,Relocated with git history preserved
+run_figure11.py,experiments/reproduction/figure11_video_cs/run_figure11.py,Git-Tracked File,git mv,Relocated with git history preserved
+run_figure11_TV.py,experiments/reproduction/figure11_video_cs/run_figure11_TV.py,Git-Tracked File,git mv,Relocated with git history preserved
+run_figure12.py,experiments/reproduction/figure12_pet_ct/run_figure12.py,Git-Tracked File,git mv,Relocated with git history preserved
+run_figure12_TV.py,experiments/reproduction/figure12_pet_ct/run_figure12_TV.py,Git-Tracked File,git mv,Relocated with git history preserved
+run_robustness.bat,experiments/reproduction/figure06_synthetic_robustness/run_robustness.bat,Git-Tracked File,git mv,Relocated with git history preserved
+demo.py,apps/streamlit_demo/demo.py,Git-Tracked File,git mv,Relocated with git history preserved
+demo_backend.py,apps/streamlit_demo/demo_backend.py,Git-Tracked File,git mv,Relocated with git history preserved
+check_attn.py,tools/check_attn.py,Git-Tracked File,git mv,Relocated with git history preserved
+generate_pdf.py,tools/generate_pdf.py,Git-Tracked File,git mv,Relocated with git history preserved
+matrix_decomp.py,archive/legacy/matrix_decomp.py,Git-Tracked File,git mv,Relocated with git history preserved
+demo_backup.py,archive/backups/demo_backup.py,Backup/Tool,copy,Preserved without modification
+demo_backend_backup.py,archive/backups/demo_backend_backup.py,Backup/Tool,copy,Preserved without modification
+fix_newlines.py,tools/fix_newlines.py,Backup/Tool,copy,Preserved without modification
+modify_robustness.py,tools/modify_robustness.py,Backup/Tool,copy,Preserved without modification
+scratch_calibrate.py,tools/scratch_calibrate.py,Backup/Tool,copy,Preserved without modification
+paper_reproduction/cnn_baseline/01_synthetic_decomposition/run_synthetic_suite.py,experiments/reproduction/table01_synthetic/run_synthetic_suite.py,Reproduction Runner,copy,Preserved without modification
+paper_reproduction/cnn_baseline/01_synthetic_decomposition/benchmark_figure4_separable_speedup.py,experiments/reproduction/figure04_efficiency/benchmark_figure4_separable_speedup.py,Reproduction Runner,copy,Preserved without modification
+paper_reproduction/cnn_baseline/01_synthetic_decomposition/benchmark_figure4_separable_speedup_improved.py,experiments/reproduction/figure04_efficiency/benchmark_figure4_separable_speedup_improved.py,Reproduction Runner,copy,Preserved without modification
+paper_reproduction/cnn_baseline/03_nmf/run_table2_nmf.py,experiments/reproduction/table02_nmf/run_table2_nmf.py,Reproduction Runner,copy,Preserved without modification
+paper_reproduction/cnn_baseline/05_hyperspectral_denoising/run_figure13_rank_sweep.py,experiments/reproduction/figure13a_hsi_rank/run_figure13_rank_sweep.py,Reproduction Runner,copy,Preserved without modification
+paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/run_figure10_yale_tensor.py,experiments/reproduction/figure10_yale_denoising/run_figure10_yale_tensor.py,Reproduction Runner,copy,Preserved without modification
+paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/run_figure13b_yale_rank_sweep.py,experiments/reproduction/figure13b_yale_rank/run_figure13b_yale_rank_sweep.py,Reproduction Runner,copy,Preserved without modification
+paper_reproduction/cnn_baseline/07_video_compressive_sensing/run_figure11.py,experiments/reproduction/figure11_video_cs/run_figure11_baseline.py,Reproduction Runner,copy,Preserved without modification
+paper_reproduction/cnn_baseline/09_speech_time_frequency/run_table3_speech_nmf.py,experiments/reproduction/table03_speech/run_table3_speech_nmf.py,Reproduction Runner,copy,Preserved without modification
+paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/run_figure10_yale_tensor_improved.py,experiments/improvements/figure10_yale/run_figure10_yale_tensor_improved.py,Improved Runner,copy,Preserved without modification
+paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/generate_improved_panel.py,experiments/improvements/figure10_yale/generate_improved_panel.py,Improved Runner,copy,Preserved without modification
+paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/run_figure13b_yale_rank_sweep_improved.py,experiments/improvements/figure13b_yale_rank/run_figure13b_yale_rank_sweep_improved.py,Improved Runner,copy,Preserved without modification
+paper_reproduction/cnn_baseline/07_video_compressive_sensing/run_figure11_improved.py,experiments/improvements/figure11_video/run_figure11_improved.py,Improved Runner,copy,Preserved without modification
+paper_reproduction/cnn_baseline/08_ct_reconstruction/run_figure12_improved.py,experiments/improvements/figure12_pet_ct/run_figure12_improved.py,Improved Runner,copy,Preserved without modification
+previous_neurotensor_experiments,experiments/legacy_experiments/previous_neurotensor_experiments,Legacy Extensions Archive,copy,Preserved without modification
+RESULTS-BASELINE/figure2/configuration.json,configs/reproduction/figure02_eigenfaces.json,Configuration,copy,Preserved without modification
+paper_reproduction/cnn_baseline/01_synthetic_decomposition/config.yaml,configs/reproduction/figure04_efficiency.yaml,Configuration,copy,Preserved without modification
+RESULTS-BASELINE/figure6/configuration.json,configs/reproduction/figure06_synthetic_robustness.json,Configuration,copy,Preserved without modification
+RESULTS-BASELINE/figure7/configuration.json,configs/reproduction/figure07_robust_pca.json,Configuration,copy,Preserved without modification
+RESULTS-BASELINE/figure9/configuration.json,configs/reproduction/figure09_hyperspectral.json,Configuration,copy,Preserved without modification
+paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/config.yaml,configs/reproduction/figure10_yale_denoising.yaml,Configuration,copy,Preserved without modification
+paper_reproduction/cnn_baseline/07_video_compressive_sensing/config.yaml,configs/reproduction/figure11_video_cs.yaml,Configuration,copy,Preserved without modification
+RESULTS-BASELINE/figure12/configuration.json,configs/reproduction/figure12_pet_ct.json,Configuration,copy,Preserved without modification
+paper_reproduction/cnn_baseline/05_hyperspectral_denoising/config.yaml,configs/reproduction/figure13a_hsi_rank.yaml,Configuration,copy,Preserved without modification
+paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/config.yaml,configs/reproduction/figure13b_yale_rank.yaml,Configuration,copy,Preserved without modification
+paper_reproduction/cnn_baseline/01_synthetic_decomposition/config.yaml,configs/reproduction/table01_synthetic.yaml,Configuration,copy,Preserved without modification
+paper_reproduction/cnn_baseline/09_speech_time_frequency/config.yaml,configs/reproduction/table03_speech.yaml,Configuration,copy,Preserved without modification
+paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/config.yaml,configs/improvements/figure10_yale.yaml,Configuration,copy,Preserved without modification
+paper_reproduction/cnn_baseline/07_video_compressive_sensing/config.yaml,configs/improvements/figure11_video.yaml,Configuration,copy,Preserved without modification
+paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/config.yaml,configs/improvements/figure13b_yale_rank.yaml,Configuration,copy,Preserved without modification
+RESULTS-BASELINE/figure2,results/baseline/figure02_eigenfaces,Baseline Results,copy,Preserved without modification
+RESULTS-BASELINE/figure6,results/baseline/figure06_synthetic_robustness,Baseline Results,copy,Preserved without modification
+RESULTS-BASELINE/figure7,results/baseline/figure07_robust_pca,Baseline Results,copy,Preserved without modification
+RESULTS-BASELINE/figure9,results/baseline/figure09_hyperspectral,Baseline Results,copy,Preserved without modification
+RESULTS-BASELINE/figure12,results/baseline/figure12_pet_ct,Baseline Results,copy,Preserved without modification
+paper_reproduction/cnn_baseline/01_synthetic_decomposition/synthetic_suite_metrics.json,results/baseline/table01_synthetic/synthetic_suite_metrics.json,Baseline Results,copy,Preserved without modification
+paper_reproduction/cnn_baseline/03_nmf/metrics.json,results/baseline/table02_nmf/metrics.json,Baseline Results,copy,Preserved without modification
+paper_reproduction/cnn_baseline/05_hyperspectral_denoising/figure13a_metrics.json,results/baseline/figure13a_hsi_rank/figure13a_metrics.json,Baseline Results,copy,Preserved without modification
+paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/original_baseline,results/baseline/figure10_yale_denoising,Baseline Results,copy,Preserved without modification
+paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/original_baseline/figure13b_metrics.json,results/baseline/figure13b_yale_rank/figure13b_metrics.json,Baseline Results,copy,Preserved without modification
+paper_reproduction/cnn_baseline/07_video_compressive_sensing/original_baseline,results/baseline/figure11_video_cs,Baseline Results,copy,Preserved without modification
+paper_reproduction/cnn_baseline/09_speech_time_frequency/metrics.json,results/baseline/table03_speech/metrics.json,Baseline Results,copy,Preserved without modification
+paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run,results/improved/figure10_yale_denoising,Improved Results,copy,Preserved without modification
+paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/improved_run_fig13b,results/improved/figure13b_yale_rank,Improved Results,copy,Preserved without modification
+paper_reproduction/cnn_baseline/07_video_compressive_sensing/improved_run,results/improved/figure11_video_cs,Improved Results,copy,Preserved without modification
+paper_reproduction/cnn_baseline/08_ct_reconstruction/improved_run,results/improved/figure12_pet_ct,Improved Results,copy,Preserved without modification
+codebase_audit,reports/audits/codebase_audit,Audit Reports,copy,Preserved without modification
+DATA_DIMENSION_TRACE.md,reports/audits/DATA_DIMENSION_TRACE.md,Audit Reports,copy,Preserved without modification
+PROJECT_CONTEXT.md,reports/audits/PROJECT_CONTEXT.md,Audit Reports,copy,Preserved without modification
+REPRODUCIBILITY.md,reports/audits/REPRODUCIBILITY.md,Audit Reports,copy,Preserved without modification
+paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/FIGURE10_IMPROVEMENT_REPORT.md,reports/improvements/FIGURE10_IMPROVEMENT_REPORT.md,Improvement Reports,copy,Preserved without modification
+paper_reproduction/cnn_baseline/06_yale_face_tensor_denoising/FIGURE13B_IMPROVEMENT_REPORT.md,reports/improvements/FIGURE13B_IMPROVEMENT_REPORT.md,Improvement Reports,copy,Preserved without modification
+paper_reproduction/cnn_baseline/07_video_compressive_sensing/FIGURE11_IMPROVEMENT_REPORT.md,reports/improvements/FIGURE11_IMPROVEMENT_REPORT.md,Improvement Reports,copy,Preserved without modification
+paper_reproduction/cnn_baseline/08_ct_reconstruction/FIGURE12_IMPROVEMENT_REPORT.md,reports/improvements/FIGURE12_IMPROVEMENT_REPORT.md,Improvement Reports,copy,Preserved without modification
+PHASE1_PERFORMANCE_GAP_AUDIT.md,reports/improvements/PHASE1_PERFORMANCE_GAP_AUDIT.md,Improvement Reports,copy,Preserved without modification
+paper_reproduction/consolidated_results/CONSOLIDATED_CNN_BASELINE_REPORT.md,reports/reproduction/CONSOLIDATED_CNN_BASELINE_REPORT.md,Reproduction Reports,copy,Preserved without modification
+PAPER_RESULTS,reports/reproduction/gallery_paper_results,Publication Gallery,copy,Preserved without modification
+documentation,reports/extensions/documentation,Extension Documentation,copy,Preserved without modification

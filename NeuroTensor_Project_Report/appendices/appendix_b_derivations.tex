@@ -1,0 +1,29 @@
+\section*{Appendix B: Mathematical Formulations and Derivations}
+\label{app:derivations}
+\addcontentsline{toc}{section}{Appendix B: Mathematical Formulations and Derivations}
+
+This appendix provides formal mathematical derivations for multilinear gradient backpropagation, Group Lasso shrinkage mechanics, and ALiBi geometric slope formulations.
+
+\subsection*{B.1 Multilinear Contraction and Backpropagation Gradients}
+For the 2-factor matrix model $\hat{Y} = \mathbf{U} \mathbf{V}^T$ with $\mathbf{U} \in \mathbb{R}^{M \times R}$ ($M=HW$) and $\mathbf{V} \in \mathbb{R}^{B \times R}$, gradients of scalar reconstruction loss $\mathcal{L}$ with respect to factor matrices are:
+\begin{equation}
+\frac{\partial \mathcal{L}}{\partial \mathbf{U}} = \left( \frac{\partial \mathcal{L}}{\partial \hat{Y}} \right) \mathbf{V} \in \mathbb{R}^{M \times R}, \qquad \frac{\partial \mathcal{L}}{\partial \mathbf{V}} = \left( \frac{\partial \mathcal{L}}{\partial \hat{Y}} \right)^T \mathbf{U} \in \mathbb{R}^{B \times R}
+\end{equation}
+Under the mean absolute error ($\ell_1$ norm), the element-wise error derivative is the subgradient: $(\frac{\partial \mathcal{L}}{\partial \hat{Y}})_{i, j} = \frac{1}{MB} \text{sign}(\hat{Y}_{i, j} - Y_{i, j}) \implies \nabla_{\mathbf{u}_r} \mathcal{L} = \frac{1}{MB} \text{sign}(\hat{Y} - Y) \mathbf{v}_r$.
+Thus, \textbf{the effective learning rate of the spatial generator is directly scaled by the norm of the spectral factor, and vice-versa}. If $\|\mathbf{v}_r\|_2 \to 0$, gradient flow into column $\mathbf{u}_r$ vanishes.
+
+For 3-way CP $\hat{\mathcal{Y}} = \sum_{r=1}^R \lambda_r \mathbf{u}_r \circ \mathbf{v}_r \circ \mathbf{w}_r$, matricization yields: $\hat{Y}_{(1)} = \mathbf{U} \boldsymbol{\Lambda} (\mathbf{W} \odot \mathbf{V})^T \implies \frac{\partial \mathcal{L}}{\partial \mathbf{U}} = (\frac{\partial \mathcal{L}}{\partial \hat{Y}_{(1)}}) (\mathbf{W} \odot \mathbf{V}) \boldsymbol{\Lambda}$, where $\odot$ denotes the Khatri--Rao product and $\boldsymbol{\Lambda} = \text{diag}(\boldsymbol{\lambda})$. Gradients for $\mathbf{V}$ and $\mathbf{W}$ follow cyclically via $\hat{Y}_{(2)}$ and $\hat{Y}_{(3)}$.
+
+\subsection*{B.2 Group Lasso Subgradient and Pruning Mechanics}
+In Extension 2, the joint Group Lasso regularizer across factor columns is: $\mathcal{R}(\mathbf{U}, \mathbf{V}) = \sum_{r=1}^R g_r$, where $g_r = \sqrt{\|\mathbf{u}_r\|_2^2 + \|\mathbf{v}_r\|_2^2}$. For $g_r > 0$, the gradient is $\nabla_{\mathbf{u}_r} \mathcal{R} = \mathbf{u}_r / g_r$. The total gradient backpropagating into spatial parameters $\boldsymbol{\theta}_U$ is:
+\begin{equation}
+\nabla_{\boldsymbol{\theta}_U} \mathcal{L}_\text{total} = \mathbf{J}_U^T \left( \nabla_{\mathbf{U}} \mathcal{L}_\text{train} + \lambda \begin{bmatrix} \frac{\mathbf{u}_1}{g_1} & \dots & \frac{\mathbf{u}_R}{g_R} \end{bmatrix} \right)
+\end{equation}
+where $\mathbf{J}_U = \partial \mathbf{U} / \partial \boldsymbol{\theta}_U$. As $g_r \to 0$, the regularization gradient maintains a constant unit norm $\lambda \frac{\mathbf{u}_r}{g_r}$ directed toward the origin, whereas the reconstruction gradient $\nabla_{\mathbf{u}_r} \mathcal{L}_\text{train} \propto \mathbf{v}_r$ vanishes quadratically. Once a component enters this shrinkage zone, the penalty permanently crushes it, explaining the catastrophic collapse from 27 components to 3 observed in Table~\ref{tab:group_sparsity_results}.
+
+\subsection*{B.3 Attention with Linear Biases (ALiBi) Slope Derivation}
+In ALiBi \citep{press2022train}, a non-learned distance bias matrix is subtracted prior to softmax:
+\begin{equation}
+A_{i, j}^{(h)} = \text{softmax}\left( \frac{\mathbf{q}_i \mathbf{k}_j^T}{\sqrt{d_k}} - m_h \cdot |i - j| \right), \qquad m_h = 2^{-\frac{8h}{H}}, \quad h \in \{1, 2, \dots, H\}
+\end{equation}
+For $H=4$ heads, the slope sequence is $m_1 = 2^{-2} = \frac{1}{4}, m_2 = 2^{-4} = \frac{1}{16}, m_3 = 2^{-6} = \frac{1}{64}, m_4 = 2^{-8} = \frac{1}{256}$. Head 1 enforces strict local attention ($-0.25$ penalty per band distance), while Head 4 provides diffuse global attention ($-0.0039$ penalty per band distance), smoothly modeling multi-scale spectral dependencies.
