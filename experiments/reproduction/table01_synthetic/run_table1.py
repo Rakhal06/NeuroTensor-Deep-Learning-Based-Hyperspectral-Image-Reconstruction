@@ -7,6 +7,7 @@
     Make sure you have enough disk space before running this script.
 '''
 
+import os
 import sys
 import tqdm
 import argparse

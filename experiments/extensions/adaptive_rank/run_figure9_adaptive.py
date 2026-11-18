@@ -36,6 +36,7 @@
     Baseline: main / commit a146cc7
 '''
 
+import os
 import sys
 import tqdm
 import copy

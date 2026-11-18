@@ -5,6 +5,7 @@
     different from the paper as PET scan was downsampled.
 '''
 
+import os
 import sys
 import tqdm
 

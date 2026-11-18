@@ -137,38 +137,103 @@ DeepTensor-Plus-Plus/
 
 ---
 
-## 5. How to Run Experiments
+## 5. Comprehensive Execution Guide for Evaluators & Faculty
 
-### Running Paper Reproduction Baselines:
+This section provides complete, tested reproduction commands mapping directly to every table, figure, and quantitative claim in the 30-page project report (`NeuroTensor_Project_Report/main.pdf`).
+
+### 5.1 Tier 1: Instant Verification & Architecture Audit (< 10 Seconds)
+Run these commands to immediately verify the mathematical integrity, test suite, and parameter counts without waiting for neural network training:
+
+1. **Automated Unit & Operator Tests:**
+   ```bash
+   python tests/run_all_tests.py
+   ```
+2. **Instant Parameter & Shape Verification for All 5 Spectral Architectures:**
+   ```bash
+   python -c "import torch; from src.deeptensor.models.factory import build_spectral_net; [print(f'{m:<20} | Params: {sum(p.numel() for p in build_spectral_net(20, 20, 260, net_type=m).parameters() if p.requires_grad):>10,} | Output: {list(build_spectral_net(20, 20, 260, net_type=m)(torch.zeros(1, 20, 260)).shape)}') for m in ['skip1d', 'hybrid', 'cnn_control', 'pointwise_control', 'transformer']]"
+   ```
+   *Expected Output: Confirms exact parameter matching (skip1d: 799,176; hybrid: 931,656; cnn_control: 931,828; pointwise_control: 931,528; transformer: 798,612).*
+
+---
+
+### 5.2 Tier 2: Fast Smoke Tests (1–2 Minutes for Full Pipeline Sanity Check)
+Run complete end-to-end forward/backward passes (10 epochs) across all 5 architectures and extensions to confirm flawless execution:
+
 ```bash
-# Figure 2: Eigenfaces Classification
+# Smoke test all five architectural configurations on ICVL:
+python experiments/hybrid_prototypes/run_hybrid_figure09_hsi.py --variant all --smoke_test
+
+# Smoke test Yale Face B multi-model denoising:
+python experiments/hybrid_prototypes/run_hybrid_figure10_yale.py --variant all --smoke_test
+
+# Smoke test Video Compressive Sensing:
+python experiments/hybrid_prototypes/run_hybrid_figure11_video.py --variant all --smoke_test
+
+# Smoke test 3D Dynamic PET/CT:
+python experiments/hybrid_prototypes/run_hybrid_figure12_pet_ct.py --variant all --smoke_test
+```
+
+---
+
+### 5.3 Tier 3: Reproducing the Nine Research Extensions (Report Chapter 4)
+
+| Report Reference | Extension Name | Script Command | Output Artifact |
+|---|---|---|---|
+| **Table 5 & Fig 3** | **Extension 1:** Self-Supervised Adaptive Rank Selection | `python experiments/extensions/adaptive_rank/run_figure9_adaptive.py` | `results/adaptive_rank_results.png`, logs |
+| **Table 6 & Fig 4** | **Extension 2:** Factor Group Sparsity (Group Lasso) | `python experiments/extensions/group_sparsity/run_figure9_sparsity.py --lambda_value 0.0001` | `results/factor_group-sparsity/`, plots |
+| **Table 7 & Fig 5** | **Extension 3:** Mask-Aware Tensor Completion ($p=0.50$) | `python experiments/extensions/tensor_completion/run_figure9_completion.py --missing_ratio 0.50` | `results/extensions/completion/`, metrics |
+| **Table 8 & Fig 6** | **Extension 4:** Noise Robustness (Gaussian vs Poisson) | `python experiments/extensions/noise_robustness/run_figure9_robustness.py` | `results/noise_robustness/`, summary |
+| **Table 9 & Fig 7** | **Extension 5:** Ensemble Disagreement & Spatial Uncertainty | `python experiments/extensions/ensemble_uncertainty/run_figure9_ensemble.py` | `results/ensemble/`, correlation analysis |
+| **Section 4.8** | **Extension 6:** 3D Separable ConvNet Computational Profiling | `python archive/legacy/paper_reproduction_legacy/cnn_baseline/01_synthetic_decomposition/benchmark_figure4_separable_speedup_improved.py` | Timing logs & speedup curves |
+| **Table 10 & Fig 8-10**| **Extension 7:** Factor Interpretability & Component Ablation | `python experiments/extensions/factor_interpretability/run_figure9_interpretability.py` | `results/interpretability/`, cosine matrices |
+| **Table 11 & Fig 11** | **Extensions 8 & 9:** 5-Model Architectural Comparison on ICVL | `python experiments/hybrid_prototypes/run_hybrid_figure09_hsi.py --variant all --epochs 5000` | `results/hybrid/figure09_hyperspectral/` |
+
+---
+
+### 5.4 Tier 4: Cross-Application Multimodal Benchmark (Report Table 12)
+To run the full 5-model comparative benchmark across all four distinct multimodal problem domains:
+
+```bash
+# 1. ICVL Hyperspectral Cube Denoising (174x164x260):
+python experiments/hybrid_prototypes/run_hybrid_figure09_hsi.py --variant all
+
+# 2. Yale Face B Photometric Tensor Denoising (192x168x160):
+python experiments/hybrid_prototypes/run_hybrid_figure10_yale.py --variant all
+
+# 3. Video Compressive Sensing (128x128x64):
+python experiments/hybrid_prototypes/run_hybrid_figure11_video.py --variant all
+
+# 4. Dynamic 3D PET/CT Radon Tomography (128x128x56):
+python experiments/hybrid_prototypes/run_hybrid_figure12_pet_ct.py --variant all
+```
+
+---
+
+### 5.5 Tier 5: Paper Baseline Reproduction & Interactive Demo
+
+```bash
+# Baseline Figure 2: Eigenfaces Classification
 python experiments/reproduction/figure02_eigenfaces/run_figure2.py
 
-# Figure 9: ICVL Hyperspectral Denoising
+# Baseline Figure 9: ICVL Hyperspectral Denoising
 python experiments/reproduction/figure09_hyperspectral/run_figure9.py
 
 # Table 1: Synthetic Matrix/Tensor Suite
 python experiments/reproduction/table01_synthetic/run_synthetic_suite.py
-```
 
-### Running High-Performance Improved Models:
-```bash
-# Figure 10: Yale Face B Denoising (128 channels, 4000 epochs)
-python experiments/improvements/figure10_yale/run_figure10_yale_tensor_improved.py --noise_ratio 0.3 --epochs 4000
-
-# Figure 11: Video Compressive Sensing (64 frames, 10000 epochs)
-python experiments/improvements/figure11_video/run_figure11_improved.py --epochs 10000
-
-# Figure 12: 3D PET/CT Radon Tomography (Poisson tau=100, Cosine LR)
-python experiments/improvements/figure12_pet_ct/run_figure12_improved.py --epochs 4000
-
-# Figure 13(b): Yale Face B Rank Sweep with CUDA PARAFAC ALS
-python experiments/improvements/figure13b_yale_rank/run_figure13b_yale_rank_sweep_improved.py --epochs 1500
-```
-
-### Launching the Interactive Demo:
-```bash
+# Launch Interactive Streamlit Demonstration Dashboard:
 streamlit run apps/streamlit_demo/demo.py
+```
+
+---
+
+### 5.6 Tier 6: Compiling the 30-Page LaTeX Project Report
+To recompile the official academic report PDF (`NeuroTensor_Project_Report/main.pdf`):
+
+```bash
+cd NeuroTensor_Project_Report
+pdflatex -interaction=nonstopmode main.tex
+pdflatex -interaction=nonstopmode main.tex
 ```
 
 ---
